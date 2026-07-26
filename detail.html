@@ -1,11 +1,9 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
-
 <head>
 
 <meta charset="UTF-8">
-
 
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
@@ -21,11 +19,7 @@
 </head>
 
 
-
 <body>
-
-
-<!-- 导航 -->
 
 
 <nav class="navbar">
@@ -41,16 +35,13 @@ GSH<span>.</span>
 </div>
 
 
-
 <ul>
-
 
 <li>
 <a href="index.html">
 首页
 </a>
 </li>
-
 
 
 <li>
@@ -60,13 +51,11 @@ GSH<span>.</span>
 </li>
 
 
-
 <li>
 <a href="personal-video.html">
 个人视频
 </a>
 </li>
-
 
 
 <li>
@@ -87,46 +76,29 @@ GSH<span>.</span>
 
 
 
-
-<!-- 主体 -->
-
-
 <main class="detail-page">
-
 
 
 <div class="container">
 
 
 
-<!-- 标题 -->
-
-
 <section class="detail-header">
 
 
 <div class="tag">
-
 CASE DETAIL
-
 </div>
 
 
-
 <h1 id="caseTitle">
-
 案例详情
-
 </h1>
 
 
-
 <p id="caseDesc">
-
 短视频运营案例分析
-
 </p>
-
 
 
 </section>
@@ -135,10 +107,7 @@ CASE DETAIL
 
 
 
-
-
-<!-- 视频区域 -->
-
+<!-- 视频 -->
 
 <section class="video-area">
 
@@ -147,11 +116,11 @@ CASE DETAIL
 id="detailVideo"
 controls
 playsinline
-webkit-playsinline
-preload="auto"
-muted>
+preload="metadata">
 
 </video>
+
+
 </section>
 
 
@@ -159,26 +128,46 @@ muted>
 
 
 
-<!-- 项目信息 -->
+<!-- 项目介绍 -->
 
 
 <section class="info-card">
 
 
 <h2>
-
 项目介绍
-
 </h2>
 
 
 <p id="projectInfo">
-
-正在加载...
-
+加载中...
 </p>
 
 
+</section>
+
+
+
+
+
+
+<!-- 投放数据截图 -->
+
+
+<section class="analysis-card">
+
+
+<h2>
+投放数据
+</h2>
+
+
+<img
+id="dataImage"
+class="data-image"
+>
+
+
 
 </section>
 
@@ -187,66 +176,47 @@ muted>
 
 
 
-
-<!-- 数据 -->
-
-
-<section class="data-grid">
+<!-- 数据分析 -->
 
 
+<section class="analysis-grid">
 
-<section class="data-grid">
+
+<div class="analysis-box">
 
 
-<div class="data-card">
+<h2>
+点击率分析
+</h2>
 
-<strong id="views">
---</strong>
 
-<span>
-播放量
-</span>
+<img
+id="ctrImage"
+>
+
+
 
 </div>
 
 
 
-<div class="data-card">
 
-<strong id="likes">
---</strong>
 
-<span>
-点赞
-</span>
+<div class="analysis-box">
+
+
+<h2>
+流失量分析
+</h2>
+
+
+<img
+id="lossImage"
+>
+
 
 </div>
 
-
-
-<div class="data-card">
-
-<strong id="comments">
---</strong>
-
-<span>
-评论
-</span>
-
-</div>
-
-
-
-<div class="data-card">
-
-<strong id="completion">
---</strong>
-
-<span>
-完播率
-</span>
-
-</div>
 
 
 </section>
@@ -255,28 +225,39 @@ muted>
 
 
 
-<!-- 我的职责 -->
 
 
 <section class="info-card">
 
 
 <h2>
-
 我的职责
+</h2>
 
+
+<p id="roleText">
+
+</p>
+
+
+</section>
+
+
+
+
+
+<section class="info-card">
+
+
+<h2>
+运营复盘
 </h2>
 
 
 <p>
 
-
-策划选题、
-脚本设计、
-视频剪辑、
-发布运营、
-数据复盘。
-
+根据用户反馈以及数据表现，
+持续优化内容结构和投放策略。
 
 </p>
 
@@ -284,35 +265,6 @@ muted>
 </section>
 
 
-
-
-
-
-<!-- 复盘 -->
-
-
-<section class="info-card">
-
-
-<h2>
-
-运营复盘
-
-</h2>
-
-
-<p id="review">
-
-
-通过内容结构优化，
-提升用户停留时间，
-根据数据反馈持续调整。
-
-
-</p>
-
-
-</section>
 
 
 
@@ -331,9 +283,6 @@ class="back-btn">
 
 
 </main>
-
-
-
 
 
 
