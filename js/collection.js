@@ -19,11 +19,21 @@ String(i).padStart(2,"0");
 
 
 
+const types=[
+"达人",
+"厂家",
+"口播",
+"剧情",
+"混剪"
+];
+
+let type=
+types[(i-1)%5];
+
 cards += `
-
-
-<div class="case-card"
-
+<div
+class="case-card"
+data-type="${type}"
 data-video="assets/videos/videos-${num}.mp4">
 
 
@@ -328,5 +338,47 @@ closeVideo();
 
 }
 
+
+});
+
+/* ===========================
+   分类筛选
+=========================== */
+
+const filters=document.querySelectorAll(".filter");
+
+filters.forEach(btn=>{
+
+btn.addEventListener("click",()=>{
+
+filters.forEach(b=>b.classList.remove("active"));
+
+btn.classList.add("active");
+
+const type=btn.dataset.filter;
+
+document.querySelectorAll(".case-card").forEach(card=>{
+
+if(type==="all"){
+
+card.style.display="block";
+
+}else{
+
+if(card.dataset.type===type){
+
+card.style.display="block";
+
+}else{
+
+card.style.display="none";
+
+}
+
+}
+
+});
+
+});
 
 });
