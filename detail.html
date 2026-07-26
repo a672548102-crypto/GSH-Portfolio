@@ -1,6 +1,7 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
+
 <head>
 
 <meta charset="UTF-8">
@@ -15,15 +16,16 @@
 
 <link rel="stylesheet" href="css/detail.css">
 
-
 </head>
+
 
 
 <body>
 
 
-<nav class="navbar">
+<!-- 导航 -->
 
+<nav class="navbar">
 
 <div class="container">
 
@@ -33,6 +35,7 @@
 GSH<span>.</span>
 
 </div>
+
 
 
 <ul>
@@ -70,8 +73,10 @@ GSH<span>.</span>
 
 </div>
 
-
 </nav>
+
+
+
 
 
 
@@ -83,25 +88,37 @@ GSH<span>.</span>
 
 
 
+<!-- 标题 -->
+
 <section class="detail-header">
 
 
 <div class="tag">
+
 CASE DETAIL
+
 </div>
 
 
 <h1 id="caseTitle">
+
 案例详情
+
 </h1>
 
 
 <p id="caseDesc">
+
 短视频运营案例分析
+
 </p>
 
 
 </section>
+
+
+
+
 
 
 
@@ -113,10 +130,16 @@ CASE DETAIL
 
 
 <video
+
 id="detailVideo"
+
 controls
+
 playsinline
-preload="metadata">
+
+preload="metadata"
+
+>
 
 </video>
 
@@ -128,19 +151,25 @@ preload="metadata">
 
 
 
-<!-- 项目介绍 -->
 
+
+
+<!-- 项目介绍 -->
 
 <section class="info-card">
 
 
 <h2>
+
 项目介绍
+
 </h2>
 
 
 <p id="projectInfo">
-加载中...
+
+正在加载...
+
 </p>
 
 
@@ -151,31 +180,21 @@ preload="metadata">
 
 
 
-<section class="performance">
-
-
-<h2>
-投放表现
-</h2>
 
 
 
-<div class="performance-layout">
+<!-- 数据展示 -->
 
 
-<img
-id="dataImage"
-class="data-image"
->
+<section class="data-grid">
 
 
+<div class="data-card">
 
-
-<div class="number-grid">
-
-
-<div>
 <strong id="views">
+
+-
+
 </strong>
 
 <span>
@@ -185,8 +204,13 @@ class="data-image"
 </div>
 
 
-<div>
+
+<div class="data-card">
+
 <strong id="likes">
+
+-
+
 </strong>
 
 <span>
@@ -196,8 +220,14 @@ class="data-image"
 </div>
 
 
-<div>
+
+
+<div class="data-card">
+
 <strong id="comments">
+
+-
+
 </strong>
 
 <span>
@@ -208,20 +238,13 @@ class="data-image"
 
 
 
-<div>
-<strong id="shares">
-</strong>
 
-<span>
-分享
-</span>
+<div class="data-card">
 
-</div>
-
-
-
-<div>
 <strong id="collect">
+
+-
+
 </strong>
 
 <span>
@@ -231,23 +254,41 @@ class="data-image"
 </div>
 
 
-<div>
-<strong id="date">
-</strong>
 
-<span>
-发布日期
-</span>
-
-</div>
+</section>
 
 
 
-</div>
 
 
 
-</div>
+
+
+
+<!-- 投放数据截图 -->
+
+<section class="analysis-card">
+
+
+<h2>
+
+投放数据截图
+
+</h2>
+
+
+
+<img
+
+id="dataImage"
+
+class="analysis-image phone-image"
+
+src=""
+
+alt="投放数据截图"
+
+>
 
 
 </section>
@@ -256,7 +297,151 @@ class="data-image"
 
 
 
+
+
+
+
+<!-- 点击率分析 -->
+
+
+<section class="analysis-card">
+
+
+<h2>
+
+点击率分析
+
+</h2>
+
+
+
+<img
+
+id="ctrImage"
+
+class="analysis-image"
+
+src=""
+
+alt="点击率分析"
+
+>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+<!-- 用户流失分析 -->
+
+
+<section class="analysis-card">
+
+
+<h2>
+
+用户流失分析
+
+</h2>
+
+
+
+<img
+
+id="lossImage"
+
+class="analysis-image"
+
+src=""
+
+alt="用户流失分析"
+
+>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- 我的职责 -->
+
+
+<section class="info-card">
+
+
+<h2>
+
+我的职责
+
+</h2>
+
+
+<p id="caseRole">
+
+正在加载...
+
+</p>
+
+
+</section>
+
+
+
+
+
+
+
+
+
+<!-- 运营复盘 -->
+
+
+<section class="info-card">
+
+
+<h2>
+
+运营复盘
+
+</h2>
+
+
+
+<p id="review">
+
+通过内容结构优化，
+提升用户停留时间，
+根据数据反馈持续调整。
+
+</p>
+
+
+
+</section>
+
+
+
+
+
+
+
+
 <a href="collection.html"
+
 class="back-btn">
 
 ← 返回案例集
@@ -266,10 +451,13 @@ class="back-btn">
 
 
 
+
 </div>
 
-
 </main>
+
+
+
 
 
 
