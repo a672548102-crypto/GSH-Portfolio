@@ -9,8 +9,14 @@
 "likes":"2.8w",
 "comments":"1.4k",
 "cover":"assets/covers/cover-01.png",
-"video":"assets/videos/videos-01.mp4"
+"video":"assets/videos/videos-01.mp4",
+"analysis":{
+"data":"assets/data/01-data.png",
+"ctr":"assets/data/01-ctr.png",
+"loss":"assets/data/01-loss.png"
+}
 },
+
 
 {
 "id":"02",
@@ -22,8 +28,14 @@
 "likes":"1.8w",
 "comments":"495",
 "cover":"assets/covers/cover-02.png",
-"video":"assets/videos/videos-02.mp4"
+"video":"assets/videos/videos-02.mp4",
+"analysis":{
+"data":"assets/data/02-data.png",
+"ctr":"assets/data/02-ctr.png",
+"loss":"assets/data/02-loss.png"
+}
 },
+
 
 {
 "id":"03",
@@ -35,8 +47,14 @@
 "likes":"1.3w",
 "comments":"528",
 "cover":"assets/covers/cover-03.png",
-"video":"assets/videos/videos-03.mp4"
+"video":"assets/videos/videos-03.mp4",
+"analysis":{
+"data":"assets/data/03-data.png",
+"ctr":"assets/data/03-ctr.png",
+"loss":"assets/data/03-loss.png"
+}
 },
+
 
 {
 "id":"04",
@@ -48,8 +66,14 @@
 "likes":"1.2w",
 "comments":"190",
 "cover":"assets/covers/cover-04.png",
-"video":"assets/videos/videos-04.mp4"
+"video":"assets/videos/videos-04.mp4",
+"analysis":{
+"data":"assets/data/04-data.png",
+"ctr":"assets/data/04-ctr.png",
+"loss":"assets/data/04-loss.png"
+}
 },
+
 
 {
 "id":"05",
@@ -61,8 +85,14 @@
 "likes":"1.1w",
 "comments":"412",
 "cover":"assets/covers/cover-05.png",
-"video":"assets/videos/videos-05.mp4"
+"video":"assets/videos/videos-05.mp4",
+"analysis":{
+"data":"assets/data/05-data.png",
+"ctr":"assets/data/05-ctr.png",
+"loss":"assets/data/05-loss.png"
+}
 },
+
 
 {
 "id":"06",
@@ -74,8 +104,14 @@
 "likes":"8926",
 "comments":"423",
 "cover":"assets/covers/cover-06.png",
-"video":"assets/videos/videos-06.mp4"
+"video":"assets/videos/videos-06.mp4",
+"analysis":{
+"data":"assets/data/06-data.png",
+"ctr":"assets/data/06-ctr.png",
+"loss":"assets/data/06-loss.png"
+}
 },
+
 
 {
 "id":"07",
@@ -87,8 +123,14 @@
 "likes":"7931",
 "comments":"176",
 "cover":"assets/covers/cover-07.png",
-"video":"assets/videos/videos-07.mp4"
+"video":"assets/videos/videos-07.mp4",
+"analysis":{
+"data":"assets/data/07-data.png",
+"ctr":"assets/data/07-ctr.png",
+"loss":"assets/data/07-loss.png"
+}
 },
+
 
 {
 "id":"08",
@@ -100,8 +142,14 @@
 "likes":"7783",
 "comments":"329",
 "cover":"assets/covers/cover-08.png",
-"video":"assets/videos/videos-08.mp4"
+"video":"assets/videos/videos-08.mp4",
+"analysis":{
+"data":"assets/data/08-data.png",
+"ctr":"assets/data/08-ctr.png",
+"loss":"assets/data/08-loss.png"
+}
 },
+
 
 {
 "id":"09",
@@ -113,8 +161,14 @@
 "likes":"7175",
 "comments":"483",
 "cover":"assets/covers/cover-09.png",
-"video":"assets/videos/videos-09.mp4"
+"video":"assets/videos/videos-09.mp4",
+"analysis":{
+"data":"assets/data/09-data.png",
+"ctr":"assets/data/09-ctr.png",
+"loss":"assets/data/09-loss.png"
+}
 },
+
 
 {
 "id":"10",
@@ -126,7 +180,12 @@
 "likes":"6046",
 "comments":"154",
 "cover":"assets/covers/cover-10.png",
-"video":"assets/videos/videos-10.mp4"
+"video":"assets/videos/videos-10.mp4",
+"analysis":{
+"data":"assets/data/10-data.png",
+"ctr":"assets/data/10-ctr.png",
+"loss":"assets/data/10-loss.png"
+}
 },
 {
 "id":"11",
@@ -137,9 +196,16 @@
 "views":"468.3w",
 "likes":"5540",
 "comments":"177",
+"share":"填写分享量",
+"collect":"填写收藏量",
+"date":"填写发布日期",
 "cover":"assets/covers/cover-11.png",
-"video":"assets/videos/videos-11.mp4"
+"video":"assets/videos/videos-11.mp4",
+"dataImage":"assets/analysis/11-data.png",
+"ctrImage":"assets/analysis/11-ctr.png",
+"lossImage":"assets/analysis/11-loss.png"
 },
+
 
 {
 "id":"12",
@@ -150,9 +216,16 @@
 "views":"648.6w",
 "likes":"4862",
 "comments":"319",
+"share":"填写分享量",
+"collect":"填写收藏量",
+"date":"填写发布日期",
 "cover":"assets/covers/cover-12.png",
-"video":"assets/videos/videos-12.mp4"
+"video":"assets/videos/videos-12.mp4",
+"dataImage":"assets/analysis/12-data.png",
+"ctrImage":"assets/analysis/12-ctr.png",
+"lossImage":"assets/analysis/12-loss.png"
 },
+
 
 {
 "id":"13",
@@ -163,9 +236,16 @@
 "views":"800.9w",
 "likes":"4663",
 "comments":"290",
+"share":"填写分享量",
+"collect":"填写收藏量",
+"date":"填写发布日期",
 "cover":"assets/covers/cover-13.png",
-"video":"assets/videos/videos-13.mp4"
+"video":"assets/videos/videos-13.mp4",
+"dataImage":"assets/analysis/13-data.png",
+"ctrImage":"assets/analysis/13-ctr.png",
+"lossImage":"assets/analysis/13-loss.png"
 },
+
 
 {
 "id":"14",
@@ -176,9 +256,16 @@
 "views":"922.2w",
 "likes":"4409",
 "comments":"145",
+"share":"填写分享量",
+"collect":"填写收藏量",
+"date":"填写发布日期",
 "cover":"assets/covers/cover-14.png",
-"video":"assets/videos/videos-14.mp4"
+"video":"assets/videos/videos-14.mp4",
+"dataImage":"assets/analysis/14-data.png",
+"ctrImage":"assets/analysis/14-ctr.png",
+"lossImage":"assets/analysis/14-loss.png"
 },
+
 
 {
 "id":"15",
@@ -189,9 +276,16 @@
 "views":"483.8w",
 "likes":"4105",
 "comments":"66",
+"share":"填写分享量",
+"collect":"填写收藏量",
+"date":"填写发布日期",
 "cover":"assets/covers/cover-15.png",
-"video":"assets/videos/videos-15.mp4"
+"video":"assets/videos/videos-15.mp4",
+"dataImage":"assets/analysis/15-data.png",
+"ctrImage":"assets/analysis/15-ctr.png",
+"lossImage":"assets/analysis/15-loss.png"
 },
+
 
 {
 "id":"16",
@@ -202,9 +296,16 @@
 "views":"250w",
 "likes":"3326",
 "comments":"130",
+"share":"填写分享量",
+"collect":"填写收藏量",
+"date":"填写发布日期",
 "cover":"assets/covers/cover-16.png",
-"video":"assets/videos/videos-16.mp4"
+"video":"assets/videos/videos-16.mp4",
+"dataImage":"assets/analysis/16-data.png",
+"ctrImage":"assets/analysis/16-ctr.png",
+"lossImage":"assets/analysis/16-loss.png"
 },
+
 
 {
 "id":"17",
@@ -215,9 +316,16 @@
 "views":"232.1w",
 "likes":"2792",
 "comments":"110",
+"share":"填写分享量",
+"collect":"填写收藏量",
+"date":"填写发布日期",
 "cover":"assets/covers/cover-17.png",
-"video":"assets/videos/videos-17.mp4"
+"video":"assets/videos/videos-17.mp4",
+"dataImage":"assets/analysis/17-data.png",
+"ctrImage":"assets/analysis/17-ctr.png",
+"lossImage":"assets/analysis/17-loss.png"
 },
+
 
 {
 "id":"18",
@@ -228,9 +336,16 @@
 "views":"275.2w",
 "likes":"2727",
 "comments":"79",
+"share":"填写分享量",
+"collect":"填写收藏量",
+"date":"填写发布日期",
 "cover":"assets/covers/cover-18.png",
-"video":"assets/videos/videos-18.mp4"
+"video":"assets/videos/videos-18.mp4",
+"dataImage":"assets/analysis/18-data.png",
+"ctrImage":"assets/analysis/18-ctr.png",
+"lossImage":"assets/analysis/18-loss.png"
 },
+
 
 {
 "id":"19",
@@ -241,9 +356,16 @@
 "views":"420.8w",
 "likes":"2503",
 "comments":"102",
+"share":"填写分享量",
+"collect":"填写收藏量",
+"date":"填写发布日期",
 "cover":"assets/covers/cover-19.png",
-"video":"assets/videos/videos-19.mp4"
+"video":"assets/videos/videos-19.mp4",
+"dataImage":"assets/analysis/19-data.png",
+"ctrImage":"assets/analysis/19-ctr.png",
+"lossImage":"assets/analysis/19-loss.png"
 },
+
 
 {
 "id":"20",
@@ -254,8 +376,14 @@
 "views":"540.5w",
 "likes":"2468",
 "comments":"83",
+"share":"填写分享量",
+"collect":"填写收藏量",
+"date":"填写发布日期",
 "cover":"assets/covers/cover-20.png",
-"video":"assets/videos/videos-20.mp4"
+"video":"assets/videos/videos-20.mp4",
+"dataImage":"assets/analysis/20-data.png",
+"ctrImage":"assets/analysis/20-ctr.png",
+"lossImage":"assets/analysis/20-loss.png"
 },
 {
 "id":"21",
@@ -266,9 +394,16 @@
 "views":"163.6w",
 "likes":"2259",
 "comments":"41",
+"share":"填写分享量",
+"collect":"填写收藏量",
+"date":"填写发布日期",
 "cover":"assets/covers/cover-21.png",
-"video":"assets/videos/videos-21.mp4"
+"video":"assets/videos/videos-21.mp4",
+"dataImage":"assets/analysis/21-data.png",
+"ctrImage":"assets/analysis/21-ctr.png",
+"lossImage":"assets/analysis/21-loss.png"
 },
+
 
 {
 "id":"22",
@@ -279,9 +414,16 @@
 "views":"215.7w",
 "likes":"2067",
 "comments":"141",
+"share":"填写分享量",
+"collect":"填写收藏量",
+"date":"填写发布日期",
 "cover":"assets/covers/cover-22.png",
-"video":"assets/videos/videos-22.mp4"
+"video":"assets/videos/videos-22.mp4",
+"dataImage":"assets/analysis/22-data.png",
+"ctrImage":"assets/analysis/22-ctr.png",
+"lossImage":"assets/analysis/22-loss.png"
 },
+
 
 {
 "id":"23",
@@ -292,9 +434,16 @@
 "views":"363.2w",
 "likes":"2043",
 "comments":"34",
+"share":"填写分享量",
+"collect":"填写收藏量",
+"date":"填写发布日期",
 "cover":"assets/covers/cover-23.png",
-"video":"assets/videos/videos-23.mp4"
+"video":"assets/videos/videos-23.mp4",
+"dataImage":"assets/analysis/23-data.png",
+"ctrImage":"assets/analysis/23-ctr.png",
+"lossImage":"assets/analysis/23-loss.png"
 },
+
 
 {
 "id":"24",
@@ -305,9 +454,16 @@
 "views":"365.7w",
 "likes":"1761",
 "comments":"71",
+"share":"填写分享量",
+"collect":"填写收藏量",
+"date":"填写发布日期",
 "cover":"assets/covers/cover-24.png",
-"video":"assets/videos/videos-24.mp4"
+"video":"assets/videos/videos-24.mp4",
+"dataImage":"assets/analysis/24-data.png",
+"ctrImage":"assets/analysis/24-ctr.png",
+"lossImage":"assets/analysis/24-loss.png"
 },
+
 
 {
 "id":"25",
@@ -318,9 +474,16 @@
 "views":"279.8w",
 "likes":"1171",
 "comments":"93",
+"share":"填写分享量",
+"collect":"填写收藏量",
+"date":"填写发布日期",
 "cover":"assets/covers/cover-25.png",
-"video":"assets/videos/videos-25.mp4"
+"video":"assets/videos/videos-25.mp4",
+"dataImage":"assets/analysis/25-data.png",
+"ctrImage":"assets/analysis/25-ctr.png",
+"lossImage":"assets/analysis/25-loss.png"
 },
+
 
 {
 "id":"26",
@@ -331,9 +494,16 @@
 "views":"162.9w",
 "likes":"1163",
 "comments":"144",
+"share":"填写分享量",
+"collect":"填写收藏量",
+"date":"填写发布日期",
 "cover":"assets/covers/cover-26.png",
-"video":"assets/videos/videos-26.mp4"
+"video":"assets/videos/videos-26.mp4",
+"dataImage":"assets/analysis/26-data.png",
+"ctrImage":"assets/analysis/26-ctr.png",
+"lossImage":"assets/analysis/26-loss.png"
 },
+
 
 {
 "id":"27",
@@ -344,9 +514,16 @@
 "views":"123.6w",
 "likes":"1561",
 "comments":"38",
+"share":"填写分享量",
+"collect":"填写收藏量",
+"date":"填写发布日期",
 "cover":"assets/covers/cover-27.png",
-"video":"assets/videos/videos-27.mp4"
+"video":"assets/videos/videos-27.mp4",
+"dataImage":"assets/analysis/27-data.png",
+"ctrImage":"assets/analysis/27-ctr.png",
+"lossImage":"assets/analysis/27-loss.png"
 },
+
 
 {
 "id":"28",
@@ -357,9 +534,16 @@
 "views":"104.2w",
 "likes":"1126",
 "comments":"25",
+"share":"填写分享量",
+"collect":"填写收藏量",
+"date":"填写发布日期",
 "cover":"assets/covers/cover-28.png",
-"video":"assets/videos/videos-28.mp4"
+"video":"assets/videos/videos-28.mp4",
+"dataImage":"assets/analysis/28-data.png",
+"ctrImage":"assets/analysis/28-ctr.png",
+"lossImage":"assets/analysis/28-loss.png"
 },
+
 
 {
 "id":"29",
@@ -370,9 +554,16 @@
 "views":"176.2w",
 "likes":"1307",
 "comments":"64",
+"share":"填写分享量",
+"collect":"填写收藏量",
+"date":"填写发布日期",
 "cover":"assets/covers/cover-29.png",
-"video":"assets/videos/videos-29.mp4"
+"video":"assets/videos/videos-29.mp4",
+"dataImage":"assets/analysis/29-data.png",
+"ctrImage":"assets/analysis/29-ctr.png",
+"lossImage":"assets/analysis/29-loss.png"
 },
+
 
 {
 "id":"30",
@@ -383,8 +574,14 @@
 "views":"157.3w",
 "likes":"1272",
 "comments":"19",
+"share":"填写分享量",
+"collect":"填写收藏量",
+"date":"填写发布日期",
 "cover":"assets/covers/cover-30.png",
-"video":"assets/videos/videos-30.mp4"
+"video":"assets/videos/videos-30.mp4",
+"dataImage":"assets/analysis/30-data.png",
+"ctrImage":"assets/analysis/30-ctr.png",
+"lossImage":"assets/analysis/30-loss.png"
 }
 
 ]
