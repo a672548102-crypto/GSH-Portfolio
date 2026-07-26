@@ -1,1 +1,46 @@
+[
+    {
+        "id":"01",
+        "title":"蝴蝶姐姐 · 达人种草",
+        "type":"达人合作类",
+        "role":"策划 + 剪辑 + 调色",
+        "views":"4001.6W",
+        "likes":"2.8W",
+        "comments":"1.4k",
+        "collect":"5.6k",
+        "completion":"68%",
+        "cover":"assets/covers/cover-01.png",
+        "video":"assets/videos/videos-01.mp4"
+    },
 
+
+    {
+        "id":"02",
+        "title":"冲突试吃 · 街坊反应",
+        "type":"街坊采访类",
+        "role":"选题策划 + 街坊拍摄 + 后期剪辑",
+        "views":"1620.3W",
+        "likes":"1.8W",
+        "comments":"495",
+        "collect":"3.2k",
+        "completion":"62%",
+        "cover":"assets/covers/cover-02.png",
+        "video":"assets/videos/videos-02.mp4"
+    },
+
+
+    {
+        "id":"03",
+        "title":"三伏反差 · 达人带货",
+        "type":"达人合作类",
+        "role":"脚本撰写 + 达人对接 + 后期剪辑",
+        "views":"2181.4W",
+        "likes":"1.3W",
+        "comments":"528",
+        "collect":"4.1k",
+        "completion":"65%",
+        "cover":"assets/covers/cover-03.png",
+        "video":"assets/videos/videos-03.mp4"
+    }
+
+]
