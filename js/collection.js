@@ -2,31 +2,58 @@ const caseGrid =
 document.getElementById("caseGrid");
 
 
+
+let allCases = [];
+
+
+
 // ===============================
-// 读取案例数据
+// 读取cases.json
 // ===============================
 
 fetch("assets/data/cases.json")
 
-
 .then(res=>res.json())
 
+.then(data=>{
 
-.then(cases=>{
+
+allCases=data;
 
 
-let cards="";
+//第一次加载全部
+
+renderCases(allCases);
+
+
+
+});
+
+
+
+
+
+// ===============================
+// 生成案例卡
+// ===============================
+
+function renderCases(cases){
+
+
+let html="";
 
 
 
 cases.forEach(item=>{
 
 
-cards += `
+html += `
+
 
 <div class="case-card"
 
 data-video="${item.video}">
+
 
 
 <img
@@ -36,6 +63,7 @@ class="case-cover"
 src="${item.cover}"
 
 loading="lazy">
+
 
 
 <div class="case-info">
@@ -68,6 +96,7 @@ ${item.category}
 ${item.type}
 </span>
 
+
 </div>
 
 
@@ -79,13 +108,17 @@ ${item.type}
 <div>
 
 <strong>
+
 ${item.views}
+
 </strong>
+
 
 <p>
 播放量
 </p>
 
+
 </div>
 
 
@@ -93,13 +126,17 @@ ${item.views}
 <div>
 
 <strong>
+
 ${item.likes}
+
 </strong>
+
 
 <p>
 点赞
 </p>
 
+
 </div>
 
 
@@ -107,19 +144,22 @@ ${item.likes}
 <div>
 
 <strong>
+
 ${item.comments}
+
 </strong>
+
 
 <p>
 评论
 </p>
 
-</div>
-
-
 
 </div>
 
+
+
+</div>
 
 
 
@@ -134,10 +174,13 @@ class="detail-link">
 </a>
 
 
+
 </div>
 
 
+
 </div>
+
 
 
 `;
@@ -148,13 +191,81 @@ class="detail-link">
 
 
 
-caseGrid.innerHTML=cards;
+caseGrid.innerHTML=html;
 
 
 
-// 初始化播放功能
+bindVideo();
 
-initVideo();
+
+
+}
+
+
+
+
+
+
+
+// ===============================
+// 分类筛选
+// ===============================
+
+
+const filters =
+document.querySelectorAll(".filter");
+
+
+
+filters.forEach(btn=>{
+
+
+btn.onclick=function(){
+
+
+filters.forEach(b=>{
+
+b.classList.remove("active");
+
+});
+
+
+this.classList.add("active");
+
+
+
+let type =
+this.dataset.filter;
+
+
+
+if(type==="all"){
+
+
+renderCases(allCases);
+
+
+}else{
+
+
+let result =
+allCases.filter(item=>{
+
+return item.category===type;
+
+
+});
+
+
+renderCases(result);
+
+
+}
+
+
+
+};
+
 
 
 });
@@ -164,45 +275,40 @@ initVideo();
 
 
 
+
+
 // ===============================
-// 视频弹窗
+// 视频播放
 // ===============================
 
 
 const modal =
-document.getElementById(
-"videoModal"
-);
+document.getElementById("videoModal");
 
 
 const player =
-document.getElementById(
-"player"
-);
+document.getElementById("player");
 
 
 const closeBtn =
-document.getElementById(
-"closeBtn"
-);
+document.getElementById("closeBtn");
 
 
 
 
 
-function initVideo(){
+
+function bindVideo(){
 
 
-document.querySelectorAll(
-".case-card"
-)
+
+document.querySelectorAll(".case-card")
 
 .forEach(card=>{
 
 
-card.addEventListener(
-"click",
-(e)=>{
+card.onclick=function(e){
+
 
 
 if(
@@ -215,19 +321,16 @@ return;
 
 
 
-let src =
-card.dataset.video;
+player.pause();
 
 
 
-player.src=src;
+player.src =
+this.dataset.video;
 
 
 
-modal.classList.add(
-"active"
-);
-
+modal.classList.add("active");
 
 
 player.load();
@@ -238,13 +341,16 @@ player.play().catch(()=>{});
 
 
 
-});
+};
 
 
+
 });
+
 
 
 }
+
 
 
 
@@ -265,36 +371,28 @@ player.pause();
 player.currentTime=0;
 
 
-player.removeAttribute(
-"src"
-);
+player.removeAttribute("src");
 
 
 player.load();
 
 
-
-modal.classList.remove(
-"active"
-);
+modal.classList.remove("active");
 
 
 }
 
 
 
-
-closeBtn.onclick =
+closeBtn.onclick=
 closeVideo;
 
 
 
-modal.onclick=(e)=>{
+modal.onclick=function(e){
 
 
-if(
-e.target===modal
-){
+if(e.target===modal){
 
 closeVideo();
 
@@ -306,19 +404,16 @@ closeVideo();
 
 
 
-
-// ESC关闭
-
 document.addEventListener(
 "keydown",
-e=>{
+function(e){
 
 
-if(
-e.key==="Escape"
-){
+if(e.key==="Escape"){
+
 
 closeVideo();
+
 
 }
 
