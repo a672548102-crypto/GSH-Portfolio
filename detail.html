@@ -1,16 +1,23 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
+
 <head>
 
+
 <meta charset="UTF-8">
+
 
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 
+
 <title>
+
 案例详情 | GSH
+
 </title>
+
 
 
 <link rel="stylesheet" href="css/detail.css">
@@ -19,59 +26,127 @@
 </head>
 
 
+
+
+
 <body>
 
+
+
+
+
+<!-- 导航 -->
 
 
 <nav class="navbar">
 
 
-<div class="container">
+
+<div class="container nav-container">
+
+
+
 
 
 <a href="index.html" class="logo">
 
-GSH<span>.</span>
+
+GSH.
+<span>
+个人作品集
+</span>
+
 
 </a>
 
 
 
-<ul>
+
+
+
+
+<ul class="nav-links">
+
 
 
 <li>
+
 <a href="index.html">
+
 首页
+
 </a>
+
 </li>
 
 
+
+
+
 <li>
+
 <a href="collection.html">
-项目案例集
+
+案例
+
 </a>
+
 </li>
 
 
+
+
+
 <li>
+
 <a href="personal-video.html">
-个人视频
+
+抖音
+
 </a>
+
 </li>
+
+
+
 
 
 <li>
+
 <a href="design-works.html">
-设计作品
+
+美工
+
 </a>
+
 </li>
+
+
+
+
+
+<li>
+
+<a href="resume/高帅航.pdf"
+target="_blank">
+
+简历
+
+</a>
+
+</li>
+
 
 
 </ul>
 
 
+
+
+
 </div>
+
+
 
 
 </nav>
@@ -80,29 +155,48 @@ GSH<span>.</span>
 
 
 
+
+
+
+
+
+<!-- 手机返回 -->
+
+
+<div class="mobile-back">
+
+
+<a href="collection.html">
+
+← 返回案例集
+
+</a>
+
+
+</div>
+
+
+
+
+
+
+
+
+
 <main class="detail-page">
+
 
 
 <div class="container">
 
 
 
-<!-- 手机顶部返回 -->
-
-
-<a href="collection.html"
-class="mobile-back">
-
-
-← 返回项目案例集
-
-</a>
-
 
 
 
 
 <section class="detail-header">
+
 
 
 <div class="tag">
@@ -112,11 +206,14 @@ CASE DETAIL
 </div>
 
 
+
+
 <h1 id="caseTitle">
 
 案例详情
 
 </h1>
+
 
 
 <p id="caseDesc">
@@ -126,12 +223,18 @@ CASE DETAIL
 </p>
 
 
+
 </section>
 
 
 
 
 
+
+
+
+
+<!-- 视频 -->
 
 
 <section class="video-area">
@@ -150,7 +253,10 @@ preload="metadata">
 </video>
 
 
+
 </section>
+
+
 
 
 
@@ -160,20 +266,28 @@ preload="metadata">
 
 <!-- 数据 -->
 
+
 <section class="data-grid">
 
 
 
 <div class="data-card">
 
+
 <strong id="views">
+
 -
+
 </strong>
 
 
+
 <span>
+
 播放量
+
 </span>
+
 
 
 </div>
@@ -181,19 +295,33 @@ preload="metadata">
 
 
 
+
+
+
+
 <div class="data-card">
+
 
 <strong id="likes">
+
 -
+
 </strong>
 
 
+
 <span>
-点赞
+
+点赞量
+
 </span>
 
 
+
 </div>
+
+
+
 
 
 
@@ -201,17 +329,27 @@ preload="metadata">
 
 <div class="data-card">
 
+
 <strong id="comments">
+
 -
+
 </strong>
 
 
+
 <span>
-评论
+
+评论量
+
 </span>
 
 
+
 </div>
+
+
+
 
 
 
@@ -224,12 +362,19 @@ preload="metadata">
 
 
 
+
+<!-- 项目信息 -->
+
+
 <section class="info-card">
 
 
 <h2>
+
 项目介绍
+
 </h2>
+
 
 
 <p id="projectInfo">
@@ -239,6 +384,7 @@ preload="metadata">
 </p>
 
 
+
 </section>
 
 
@@ -247,25 +393,35 @@ preload="metadata">
 
 
 
-<!-- 投放截图 -->
+
+
+<!-- 数据图片 -->
 
 
 <section class="analysis-card">
 
 
 <h2>
+
 投放数据截图
+
 </h2>
+
 
 
 <div class="chart-box phone-chart">
 
 
 <img
+
 id="dataImage"
-class="chart-img">
+
+class="chart-img"
+
+>
 
 </div>
+
 
 
 </section>
@@ -276,14 +432,15 @@ class="chart-img">
 
 
 
-<!-- CTR -->
 
 
 <section class="analysis-card">
 
 
 <h2>
+
 点击率分析
+
 </h2>
 
 
@@ -292,9 +449,12 @@ class="chart-img">
 
 
 <img
-id="ctrImage"
-class="chart-img">
 
+id="ctrImage"
+
+class="chart-img"
+
+>
 
 </div>
 
@@ -307,15 +467,15 @@ class="chart-img">
 
 
 
-
-<!-- 流失 -->
 
 
 <section class="analysis-card">
 
 
 <h2>
+
 用户流失分析
+
 </h2>
 
 
@@ -324,11 +484,15 @@ class="chart-img">
 
 
 <img
-id="lossImage"
-class="chart-img">
 
+id="lossImage"
+
+class="chart-img"
+
+>
 
 </div>
+
 
 
 </section>
@@ -337,14 +501,22 @@ class="chart-img">
 
 
 
+
+
+
+
+<!-- 我的职责 -->
 
 
 <section class="info-card">
 
 
 <h2>
+
 我的职责
+
 </h2>
+
 
 
 <p id="caseRole">
@@ -354,7 +526,10 @@ class="chart-img">
 </p>
 
 
+
 </section>
+
+
 
 
 
@@ -366,17 +541,26 @@ class="chart-img">
 
 
 <h2>
+
 运营复盘
+
 </h2>
+
 
 
 <p>
 
-通过内容结构优化、
-用户反馈分析，
-持续调整视频策略。
+
+通过用户反馈、
+数据分析以及内容优化，
+
+持续调整视频策略，
+提升作品传播效果。
+
+
 
 </p>
+
 
 
 </section>
@@ -387,12 +571,17 @@ class="chart-img">
 
 
 
+
+
+<!-- 底部返回 -->
+
+
 <a href="collection.html"
 
 class="back-btn">
 
 
-← 返回项目案例集
+← 返回案例集
 
 
 </a>
@@ -405,7 +594,10 @@ class="back-btn">
 </div>
 
 
+
 </main>
+
+
 
 
 
@@ -414,6 +606,9 @@ class="back-btn">
 <script src="js/detail.js"></script>
 
 
+
 </body>
+
+
 
 </html>
