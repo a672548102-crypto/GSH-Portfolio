@@ -1,136 +1,119 @@
-document.addEventListener('DOMContentLoaded', function() {
+document.addEventListener('DOMContentLoaded',()=>{
 
 
-const urlParams =
-new URLSearchParams(window.location.search);
+const params =
+new URLSearchParams(location.search);
 
 
 let caseId =
-urlParams.get("id") || "01";
+params.get("id") || "01";
 
 
 caseId =
 String(caseId).padStart(2,"0");
-// ========================================
-// 读取案例JSON
-// ========================================
+
+
 
 fetch("assets/data/cases.json")
 
 
-.then(res => res.json())
+.then(res=>res.json())
 
 
-.then(cases => {
+.then(cases=>{
 
 
 const data =
 cases.find(
-item => item.id === caseId
+item=>item.id===caseId
 );
 
 
 
 if(!data){
 
-console.log("没有找到案例:"+caseId);
+console.log(
+"没有找到案例",
+caseId
+);
 
 return;
 
 }
 
-    // ========================================
-    // 填充页面
-    // ========================================
-    document.querySelector("#caseTitle").textContent = data.title;
-    document.querySelector("#caseDesc").textContent = data.type;
 
-    const typeEl = document.querySelector("#caseType");
-    if (typeEl) typeEl.textContent = data.type;
 
-    const roleEl = document.querySelector("#caseRole");
-    if (roleEl) roleEl.textContent = data.role;
+//标题
 
-    const viewsEl = document.querySelector("#views");
-    if (viewsEl) viewsEl.textContent = data.views;
+document.querySelector("#caseTitle").textContent=data.title;
 
-    const likesEl = document.querySelector("#likes");
-    if (likesEl) likesEl.textContent = data.likes;
 
-    const commentsEl = document.querySelector("#comments");
-    if (commentsEl) commentsEl.textContent = data.comments;
+document.querySelector("#caseDesc").textContent=data.type;
 
-    const collectEl = document.querySelector("#collect");
-    if (collectEl) collectEl.textContent = data.collect;
 
-    const completionEl = document.querySelector("#completion");
-    if (completionEl) completionEl.textContent = data.completion;
 
-// ========================================
-// 视频加载
-// ========================================
+//数据
 
-const video = document.getElementById("detailVideo");
+
+document.querySelector("#views").textContent=data.views;
+
+
+document.querySelector("#likes").textContent=data.likes;
+
+
+document.querySelector("#comments").textContent=data.comments;
+
+
+
+//项目介绍
+
+const info =
+document.querySelector("#projectInfo");
+
+
+if(info){
+
+info.textContent=
+
+`本案例属于${data.type}，主要负责${data.role}。通过内容策划、视频制作以及后期优化，实现短视频传播效果提升。`;
+
+}
+
+
+
+
+//视频
+
+
+const video =
+document.querySelector("#detailVideo");
+
 
 
 if(video){
 
 
-const videoPath = data.video;
-
-
-console.log(
-"当前加载视频:",
-videoPath
-);
-
-
-
-video.src = videoPath;
+video.src=data.video;
 
 
 video.load();
 
 
 
-video.addEventListener(
-"canplay",
-()=>{
-
 console.log(
-"✅ 视频加载成功:",
-videoPath
+"当前视频:",
+data.video
 );
 
-});
-
-
-
-video.addEventListener(
-"error",
-()=>{
-
-console.log(
-"❌ 视频加载失败:",
-videoPath
-);
-
-});
 
 
 }
-    // ========================================
-    // 返回按钮
-    // ========================================
-    const backBtn = document.querySelector('.back-btn');
-    if (backBtn) {
-        backBtn.addEventListener('click', function(e) {
-            e.preventDefault();
-            window.location.href = 'collection.html';
-        });
-    }
+
+
+
 
 });
+
 
 
 });
