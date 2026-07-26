@@ -2,61 +2,48 @@ const caseGrid =
 document.getElementById("caseGrid");
 
 
-const totalCases = 30;
+// ===============================
+// 读取案例数据
+// ===============================
+
+fetch("assets/data/cases.json")
+
+
+.then(res=>res.json())
+
+
+.then(cases=>{
+
+
+let cards="";
 
 
 
-let cards = "";
+cases.forEach(item=>{
 
-
-//生成案例
-
-for(let i=1;i<=totalCases;i++){
-
-
-let num =
-String(i).padStart(2,"0");
-
-
-
-const types=[
-"达人",
-"厂家",
-"口播",
-"剧情",
-"混剪"
-];
-
-let type=
-types[(i-1)%5];
 
 cards += `
-<div
-class="case-card"
-data-type="${type}"
-data-video="assets/videos/videos-${num}.mp4">
 
+<div class="case-card"
+
+data-video="${item.video}">
 
 
 <img
 
 class="case-cover"
 
-src="assets/covers/cover-${num}.png"
-
-decoding="async"
+src="${item.cover}"
 
 loading="lazy">
-
 
 
 <div class="case-info">
 
 
-
 <div class="case-number">
 
-CASE ${num}
+CASE ${item.id}
 
 </div>
 
@@ -64,7 +51,7 @@ CASE ${num}
 
 <h3>
 
-短视频案例 ${i}
+${item.title}
 
 </h3>
 
@@ -73,17 +60,12 @@ CASE ${num}
 <div class="tags">
 
 <span>
-策划
+${item.category}
 </span>
 
 
 <span>
-剪辑
-</span>
-
-
-<span>
-运营
+${item.type}
 </span>
 
 </div>
@@ -97,7 +79,7 @@ CASE ${num}
 <div>
 
 <strong>
-128W+
+${item.views}
 </strong>
 
 <p>
@@ -111,13 +93,12 @@ CASE ${num}
 <div>
 
 <strong>
-3.2W
+${item.likes}
 </strong>
 
 <p>
 点赞
 </p>
-
 
 </div>
 
@@ -126,15 +107,15 @@ CASE ${num}
 <div>
 
 <strong>
-42%
+${item.comments}
 </strong>
 
 <p>
-完播率
+评论
 </p>
 
-
 </div>
+
 
 
 </div>
@@ -144,7 +125,7 @@ CASE ${num}
 
 <a
 
-href="detail.html?id=${num}"
+href="detail.html?id=${item.id}"
 
 class="detail-link">
 
@@ -153,9 +134,7 @@ class="detail-link">
 </a>
 
 
-
 </div>
-
 
 
 </div>
@@ -163,18 +142,31 @@ class="detail-link">
 
 `;
 
-}
 
 
-//一次性写入
-
-caseGrid.innerHTML = cards;
+});
 
 
 
+caseGrid.innerHTML=cards;
 
 
+
+// 初始化播放功能
+
+initVideo();
+
+
+});
+
+
+
+
+
+
+// ===============================
 // 视频弹窗
+// ===============================
 
 
 const modal =
@@ -198,7 +190,8 @@ document.getElementById(
 
 
 
-// 点击案例播放视频
+function initVideo(){
+
 
 document.querySelectorAll(
 ".case-card"
@@ -211,8 +204,6 @@ card.addEventListener(
 "click",
 (e)=>{
 
-
-// 点击详情按钮不播放
 
 if(
 e.target.closest(".detail-link")
@@ -229,7 +220,7 @@ card.dataset.video;
 
 
 
-player.src = src;
+player.src=src;
 
 
 
@@ -243,21 +234,7 @@ player.load();
 
 
 
-setTimeout(()=>{
-
-
-player.play()
-.catch(err=>{
-
-console.log(
-"播放失败",
-err
-);
-
-});
-
-
-},100);
+player.play().catch(()=>{});
 
 
 
@@ -267,10 +244,16 @@ err
 });
 
 
+}
 
 
 
-//关闭视频
+
+
+
+// ===============================
+// 关闭视频
+// ===============================
 
 
 function closeVideo(){
@@ -290,6 +273,7 @@ player.removeAttribute(
 player.load();
 
 
+
 modal.classList.remove(
 "active"
 );
@@ -299,9 +283,9 @@ modal.classList.remove(
 
 
 
+
 closeBtn.onclick =
 closeVideo;
-
 
 
 
@@ -316,6 +300,7 @@ closeVideo();
 
 }
 
+
 };
 
 
@@ -324,10 +309,9 @@ closeVideo();
 
 // ESC关闭
 
-
 document.addEventListener(
 "keydown",
-(e)=>{
+e=>{
 
 
 if(
@@ -338,47 +322,5 @@ closeVideo();
 
 }
 
-
-});
-
-/* ===========================
-   分类筛选
-=========================== */
-
-const filters=document.querySelectorAll(".filter");
-
-filters.forEach(btn=>{
-
-btn.addEventListener("click",()=>{
-
-filters.forEach(b=>b.classList.remove("active"));
-
-btn.classList.add("active");
-
-const type=btn.dataset.filter;
-
-document.querySelectorAll(".case-card").forEach(card=>{
-
-if(type==="all"){
-
-card.style.display="block";
-
-}else{
-
-if(card.dataset.type===type){
-
-card.style.display="block";
-
-}else{
-
-card.style.display="none";
-
-}
-
-}
-
-});
-
-});
 
 });
