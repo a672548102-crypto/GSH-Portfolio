@@ -1,14 +1,24 @@
+/* =====================================
+   GSH Portfolio
+   collection.js
+   Final Version
+===================================== */
+
+
+
 const caseGrid =
 document.getElementById("caseGrid");
+
 
 
 let allCases = [];
 
 
 
-// ===============================
+
+// =====================================
 // 读取案例数据
-// ===============================
+// =====================================
 
 
 fetch("assets/data/cases.json")
@@ -20,12 +30,23 @@ fetch("assets/data/cases.json")
 .then(data=>{
 
 
-allCases=data;
+allCases = data;
 
 
-//首次显示全部
+// 默认显示全部
 
 renderCases(allCases);
+
+
+})
+
+.catch(err=>{
+
+
+console.error(
+"cases.json读取失败:",
+err
+);
 
 
 });
@@ -36,9 +57,11 @@ renderCases(allCases);
 
 
 
-// ===============================
+
+
+// =====================================
 // 生成案例卡片
-// ===============================
+// =====================================
 
 
 function renderCases(cases){
@@ -59,6 +82,9 @@ html += `
 data-video="${item.video}">
 
 
+
+
+
 <img
 
 class="case-cover"
@@ -69,7 +95,40 @@ loading="lazy">
 
 
 
+
+
+<!-- 播放按钮 -->
+
+
+<div class="play-mask">
+
+
+<div class="play-icon">
+
+▶
+
+</div>
+
+
+<p>
+
+播放案例
+
+</p>
+
+
+</div>
+
+
+
+
+
+
+
 <div class="case-info">
+
+
+
 
 
 <div class="case-number">
@@ -80,11 +139,17 @@ CASE ${String(item.id).padStart(2,"0")}
 
 
 
+
+
+
 <h3>
 
 ${item.title}
 
 </h3>
+
+
+
 
 
 
@@ -98,11 +163,13 @@ ${item.category}
 </span>
 
 
+
 <span>
 
 ${item.type}
 
 </span>
+
 
 
 </div>
@@ -111,7 +178,12 @@ ${item.type}
 
 
 
+
+
 <div class="data-box">
+
+
+
 
 
 <div>
@@ -124,11 +196,18 @@ ${item.views}
 
 
 <p>
+
 播放量
+
 </p>
 
 
 </div>
+
+
+
+
+
 
 
 
@@ -142,11 +221,17 @@ ${item.likes}
 
 
 <p>
+
 点赞
+
 </p>
 
 
 </div>
+
+
+
+
 
 
 
@@ -161,7 +246,9 @@ ${item.comments}
 
 
 <p>
+
 评论
+
 </p>
 
 
@@ -169,7 +256,11 @@ ${item.comments}
 
 
 
+
+
 </div>
+
+
 
 
 
@@ -181,19 +272,28 @@ href="detail.html?id=${item.id}"
 
 class="detail-link">
 
+
 查看数据分析 →
+
 
 </a>
 
 
 
-</div>
+
+
 
 
 </div>
+
+
+
+</div>
+
 
 
 `;
+
 
 
 });
@@ -201,11 +301,14 @@ class="detail-link">
 
 
 
-caseGrid.innerHTML=html;
+
+
+caseGrid.innerHTML = html;
 
 
 
-//重新绑定视频
+
+//重新绑定播放
 
 bindVideo();
 
@@ -219,49 +322,67 @@ bindVideo();
 
 
 
-// ===============================
+
+
+
+
+// =====================================
 // 分类筛选
-// ===============================
+// =====================================
+
 
 
 const filters =
-document.querySelectorAll(".filter");
+
+document.querySelectorAll(
+".filter"
+);
+
+
 
 
 
 filters.forEach(btn=>{
 
 
+
 btn.addEventListener(
 "click",
-()=>{
+function(){
 
 
 
-//按钮状态
 
 
 filters.forEach(b=>{
+
 
 b.classList.remove(
 "active"
 );
 
+
 });
 
 
 
-btn.classList.add(
+
+
+this.classList.add(
 "active"
 );
 
 
 
 
-//获取分类
 
 const type =
-btn.dataset.filter;
+
+this.dataset.filter;
+
+
+
+
 
 
 
@@ -279,7 +400,11 @@ return;
 
 
 
+
+
+
 const result =
+
 allCases.filter(item=>{
 
 
@@ -290,16 +415,19 @@ return item.category===type;
 
 
 
+
+
+
+
 renderCases(result);
 
 
 
-});
-
 
 });
 
 
+});
 
 
 
@@ -307,26 +435,39 @@ renderCases(result);
 
 
 
-// ===============================
-// 视频播放
-// ===============================
+
+
+
+
+
+// =====================================
+// 视频弹窗
+// =====================================
+
 
 
 const modal =
+
 document.getElementById(
 "videoModal"
 );
 
 
 
+
+
 const player =
+
 document.getElementById(
 "player"
 );
 
 
 
+
+
 const closeBtn =
+
 document.getElementById(
 "closeBtn"
 );
@@ -337,14 +478,27 @@ document.getElementById(
 
 
 
+
+
+
+
+// =====================================
+// 绑定视频播放
+// =====================================
+
+
 function bindVideo(){
 
 
 
 const cards =
+
 document.querySelectorAll(
 ".case-card"
 );
+
+
+
 
 
 
@@ -352,13 +506,16 @@ cards.forEach(card=>{
 
 
 
-card.addEventListener(
-"click",
-function(e){
+
+
+card.onclick=function(e){
 
 
 
-//点击详情按钮不播放
+
+
+
+// 点击详情按钮不播放
 
 if(
 e.target.closest(".detail-link")
@@ -372,22 +529,50 @@ return;
 
 
 
-//关闭之前视频
+
+
+// 关闭之前视频
 
 
 player.pause();
-
 
 
 player.currentTime=0;
 
 
 
-//加载新视频
 
 
-player.src =
+
+
+// 当前视频
+
+
+const videoPath =
+
 this.dataset.video;
+
+
+
+
+
+
+
+console.log(
+"播放:",
+videoPath
+);
+
+
+
+
+
+
+
+player.src = videoPath;
+
+
+
 
 
 
@@ -397,18 +582,40 @@ modal.classList.add(
 
 
 
+
+
+
+
 player.load();
 
 
 
-//播放
+
+
+
 
 player.play()
-.catch(()=>{});
 
+.catch(()=>{
+
+
+console.log(
+"等待用户播放"
+);
 
 
 });
+
+
+
+
+
+
+
+};
+
+
+
 
 
 
@@ -426,9 +633,12 @@ player.play()
 
 
 
-// ===============================
+
+
+// =====================================
 // 关闭视频
-// ===============================
+// =====================================
+
 
 
 function closeVideo(){
@@ -465,18 +675,40 @@ modal.classList.remove(
 
 
 
+
+
+
+//关闭按钮
+
+
+if(closeBtn){
+
+
 closeBtn.addEventListener(
 "click",
 closeVideo
 );
 
 
+}
 
+
+
+
+
+
+
+
+//点击黑色区域关闭
+
+
+if(modal){
 
 
 modal.addEventListener(
 "click",
 function(e){
+
 
 
 if(e.target===modal){
@@ -488,7 +720,14 @@ closeVideo();
 }
 
 
+
 });
+
+
+}
+
+
+
 
 
 
@@ -504,6 +743,7 @@ document.addEventListener(
 function(e){
 
 
+
 if(e.key==="Escape"){
 
 
@@ -511,6 +751,7 @@ closeVideo();
 
 
 }
+
 
 
 });
