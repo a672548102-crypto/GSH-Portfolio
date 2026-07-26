@@ -1,8 +1,11 @@
-/* =====================================================
-   GSH Portfolio
-   detail.js
-   案例详情页最终版
-===================================================== */
+ /*
+ =====================================
+ GSH Portfolio
+ detail.js
+ V5.8 Detail Page
+ =====================================
+ */
+
 
 
 document.addEventListener(
@@ -10,12 +13,14 @@ document.addEventListener(
 ()=>{
 
 
-// ================================
+
+// ===============================
 // 获取案例ID
-// ================================
+// ===============================
 
 
 const params =
+
 new URLSearchParams(
 window.location.search
 );
@@ -23,11 +28,16 @@ window.location.search
 
 
 let caseId =
-params.get("id") || "01";
+
+params.get("id") || "1";
 
 
+
+
+// 统一格式
 
 caseId =
+
 String(caseId)
 .padStart(2,"0");
 
@@ -35,9 +45,13 @@ String(caseId)
 
 
 
-// ================================
-// 加载案例数据
-// ================================
+
+
+
+
+// ===============================
+// 读取JSON
+// ===============================
 
 
 fetch(
@@ -49,14 +63,28 @@ fetch(
 .then(res=>res.json())
 
 
+
 .then(cases=>{
 
 
 
+
+
 const data =
-cases.find(
-item=>item.id===caseId
-);
+
+cases.find(item=>{
+
+
+return String(item.id)
+.padStart(2,"0")
+===caseId;
+
+
+
+});
+
+
+
 
 
 
@@ -64,7 +92,7 @@ if(!data){
 
 
 console.error(
-"没有找到案例:",
+"案例不存在:",
 caseId
 );
 
@@ -78,40 +106,30 @@ return;
 
 
 
-// ================================
-// 标题信息
-// ================================
 
 
-const title =
+// ===============================
+// 基础信息
+// ===============================
+
+
+
 document.getElementById(
 "caseTitle"
-);
+).textContent =
 
-
-if(title){
-
-title.textContent =
 data.title;
 
-}
 
 
 
 
 
-const desc =
 document.getElementById(
 "caseDesc"
-);
+).textContent =
 
-
-if(desc){
-
-desc.textContent =
-data.type;
-
-}
+`${data.category} / ${data.type}`;
 
 
 
@@ -119,57 +137,38 @@ data.type;
 
 
 
-// ================================
-// 数据展示
-// ================================
+
+// ===============================
+// 数据
+// ===============================
 
 
 
-const views =
 document.getElementById(
 "views"
-);
+).textContent =
 
-
-if(views){
-
-views.textContent =
-data.views;
-
-}
+data.views || "-";
 
 
 
 
-const likes =
+
 document.getElementById(
 "likes"
-);
+).textContent =
 
-
-if(likes){
-
-likes.textContent =
-data.likes;
-
-}
+data.likes || "-";
 
 
 
 
 
-const comments =
 document.getElementById(
 "comments"
-);
+).textContent =
 
-
-if(comments){
-
-comments.textContent =
-data.comments;
-
-}
+data.comments || "-";
 
 
 
@@ -178,25 +177,21 @@ data.comments;
 
 
 
-
-// ================================
-// 视频加载
-// ================================
-
+// ===============================
+// 视频
+// ===============================
 
 
 const video =
+
 document.getElementById(
 "detailVideo"
 );
 
 
 
-if(video){
-
-
-
 video.src =
+
 data.video;
 
 
@@ -205,59 +200,32 @@ video.load();
 
 
 
-video.addEventListener(
-"error",
-()=>{
-
-
-console.error(
-"视频加载失败:",
-data.video
-);
-
-
-});
-
-
-
-}
 
 
 
 
 
 
-
-
-
-// ================================
+// ===============================
 // 项目介绍
-// ================================
+// ===============================
 
 
-
-const projectInfo =
 document.getElementById(
 "projectInfo"
-);
+).textContent =
 
 
 
-if(projectInfo){
+`${data.title}
 
+属于${data.type}项目，
 
-projectInfo.textContent =
+主要负责${data.role || "内容策划、视频剪辑以及账号运营"}。
 
+通过内容分析和数据优化，
 
-`${data.title}属于${data.type}，
-主要负责${data.role}。
-项目围绕短视频内容策划、
-脚本设计、视频剪辑以及账号运营展开，
-通过内容优化提升视频传播效果。`;
-
-
-
-}
+持续提升视频传播效果。`;
 
 
 
@@ -267,145 +235,85 @@ projectInfo.textContent =
 
 
 
-
-// ================================
-// 投放数据截图
-// ================================
-
+// ===============================
+// 图表
+// ===============================
 
 
-const dataImage =
+
 document.getElementById(
 "dataImage"
-);
+).src =
 
-
-
-if(dataImage){
-
-
-dataImage.src =
 
 `assets/charts/data-${caseId}.png`;
 
 
 
-dataImage.alt =
-"投放数据截图";
 
 
 
-}
-
-
-
-
-
-
-
-
-// ================================
-// 点击率分析
-// ================================
-
-
-
-const ctrImage =
 document.getElementById(
 "ctrImage"
-);
+).src =
 
-
-
-if(ctrImage){
-
-
-ctrImage.src =
 
 `assets/charts/ctr-${caseId}.png`;
 
 
 
-ctrImage.alt =
-"点击率分析";
-
-
-
-}
 
 
 
 
-
-
-
-
-
-
-// ================================
-// 用户流失分析
-// ================================
-
-
-
-const lossImage =
 document.getElementById(
 "lossImage"
-);
+).src =
 
-
-
-if(lossImage){
-
-
-lossImage.src =
 
 `assets/charts/loss-${caseId}.png`;
 
 
 
-lossImage.alt =
-"用户流失分析";
-
-
-
-}
 
 
 
 
 
 
+// ===============================
+// 职责
+// ===============================
 
 
 
-
-// ================================
-// 我的职责
-// ================================
-
-
-
-const role =
 document.getElementById(
 "caseRole"
+).textContent =
+
+
+data.role ||
+
+
+"负责视频策划、剪辑制作、账号运营以及数据复盘。";
+
+
+
+
+
+
+
+})
+
+
+
+.catch(err=>{
+
+
+console.error(
+"案例数据加载失败:",
+err
 );
-
-
-
-if(role){
-
-
-role.textContent =
-data.role;
-
-
-}
-
-
-
-
-
 
 
 });
