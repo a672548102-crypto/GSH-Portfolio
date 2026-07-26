@@ -139,7 +139,42 @@ data.role;
 
 
 
+// =======================
+// 投放数据
+// =======================
 
+
+document.getElementById(
+"views"
+).textContent=data.views;
+
+
+document.getElementById(
+"likes"
+).textContent=data.likes;
+
+
+document.getElementById(
+"comments"
+).textContent=data.comments;
+
+
+
+document.getElementById(
+"shares"
+).textContent=data.shares || "--";
+
+
+
+document.getElementById(
+"collect"
+).textContent=data.collect || "--";
+
+
+
+document.getElementById(
+"date"
+).textContent=data.date || "--";
 
 
 
