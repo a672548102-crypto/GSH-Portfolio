@@ -1,6 +1,12 @@
 document.addEventListener(
 "DOMContentLoaded",
-()=>{
+function(){
+
+
+
+// ===============================
+// 获取案例ID
+// ===============================
 
 
 const params =
@@ -9,16 +15,23 @@ window.location.search
 );
 
 
-
 let caseId =
 params.get("id") || "01";
 
 
+// 保证两位数
+
 caseId =
-String(caseId).padStart(2,"0");
+String(caseId)
+.padStart(2,"0");
 
 
 
+
+
+// ===============================
+// 读取案例数据
+// ===============================
 
 
 fetch(
@@ -26,11 +39,14 @@ fetch(
 )
 
 
+.then(
+res=>res.json()
+)
 
-.then(res=>res.json())
 
+.then(
+cases=>{
 
-.then(cases=>{
 
 
 const data =
@@ -40,10 +56,12 @@ item=>item.id===caseId
 
 
 
+
+
 if(!data){
 
 console.log(
-"案例不存在:",
+"未找到案例:",
 caseId
 );
 
@@ -55,24 +73,115 @@ return;
 
 
 
-// 标题
+// ===============================
+// 基础信息
+// ===============================
+
 
 
 document.querySelector(
 "#caseTitle"
-).textContent=data.title;
+).textContent =
+data.title;
 
 
 
 document.querySelector(
 "#caseDesc"
-).textContent=data.type;
+).textContent =
+data.type;
 
 
 
 
 
-// 视频
+// 项目介绍
+
+const info =
+document.querySelector(
+"#projectInfo"
+);
+
+
+if(info){
+
+info.textContent =
+`${data.title}属于${data.type}，
+主要负责${data.role}，
+通过内容策划、视频制作以及运营优化完成项目。`;
+
+}
+
+
+
+
+
+
+// ===============================
+// 数据
+// ===============================
+
+
+const views =
+document.querySelector(
+"#views"
+);
+
+
+if(views)
+views.textContent=data.views;
+
+
+
+
+const likes =
+document.querySelector(
+"#likes"
+);
+
+
+if(likes)
+likes.textContent=data.likes;
+
+
+
+
+
+const comments =
+document.querySelector(
+"#comments"
+);
+
+
+if(comments)
+comments.textContent=data.comments;
+
+
+
+
+
+
+const collect =
+document.querySelector(
+"#collect"
+);
+
+
+if(collect)
+collect.textContent =
+data.collect || "-";
+
+
+
+
+
+
+
+
+
+// ===============================
+// 视频加载
+// ===============================
 
 
 const video =
@@ -85,12 +194,46 @@ document.getElementById(
 if(video){
 
 
-video.src=data.video;
+
+video.src =
+data.video;
 
 
 video.load();
 
 
+
+
+video.addEventListener(
+"canplay",
+()=>{
+
+
+console.log(
+"视频加载成功:",
+data.video
+);
+
+
+});
+
+
+
+video.addEventListener(
+"error",
+()=>{
+
+
+console.log(
+"视频加载失败:",
+data.video
+);
+
+
+});
+
+
+
 }
 
 
@@ -98,20 +241,66 @@ video.load();
 
 
 
-// 项目介绍
 
 
-const project =
+
+// ===============================
+// 三张分析图片
+// ===============================
+
+
+const dataImg =
 document.getElementById(
-"projectInfo"
+"dataImage"
 );
 
 
 
-if(project){
+const ctrImg =
+document.getElementById(
+"ctrImage"
+);
 
-project.textContent =
-data.project || "暂无项目介绍";
+
+
+const lossImg =
+document.getElementById(
+"lossImage"
+);
+
+
+
+
+
+
+
+if(dataImg){
+
+
+dataImg.src =
+`assets/analysis/${caseId}-data.png`;
+
+}
+
+
+
+
+if(ctrImg){
+
+
+ctrImg.src =
+`assets/analysis/${caseId}-ctr.png`;
+
+}
+
+
+
+
+if(lossImg){
+
+
+lossImg.src =
+`assets/analysis/${caseId}-loss.png`;
 
 }
 
@@ -120,12 +309,17 @@ data.project || "暂无项目介绍";
 
 
 
-// 职责
+
+
+
+// ===============================
+// 我的职责
+// ===============================
 
 
 const role =
 document.getElementById(
-"roleText"
+"caseRole"
 );
 
 
@@ -139,58 +333,39 @@ data.role;
 
 
 
-// =======================
-// 投放数据
-// =======================
-
-
-document.getElementById(
-"views"
-).textContent=data.views;
-
-
-document.getElementById(
-"likes"
-).textContent=data.likes;
-
-
-document.getElementById(
-"comments"
-).textContent=data.comments;
 
 
 
-document.getElementById(
-"shares"
-).textContent=data.shares || "--";
 
 
 
-document.getElementById(
-"collect"
-).textContent=data.collect || "--";
+// ===============================
+// 返回按钮
+// ===============================
 
 
-
-document.getElementById(
-"date"
-).textContent=data.date || "--";
-
-
-
-// 三张分析图
-
-
-const dataImg =
-document.getElementById(
-"dataImage"
+const backBtn =
+document.querySelector(
+".back-btn"
 );
 
 
-if(dataImg){
 
-dataImg.src =
-data.dataImage;
+if(backBtn){
+
+
+backBtn.onclick=function(e){
+
+
+e.preventDefault();
+
+
+window.location.href =
+"collection.html";
+
+
+};
+
 
 }
 
@@ -198,40 +373,9 @@ data.dataImage;
 
 
 
-const ctrImg =
-document.getElementById(
-"ctrImage"
-);
-
-
-if(ctrImg){
-
-ctrImg.src =
-data.ctrImage;
-
 }
 
-
-
-
-
-
-const lossImg =
-document.getElementById(
-"lossImage"
 );
-
-
-if(lossImg){
-
-lossImg.src =
-data.lossImage;
-
-}
-
-
-
-});
 
 
 
