@@ -1,6 +1,10 @@
-// =====================================
-// 页面加载动画
-// =====================================
+/*
+=====================================
+GSH Portfolio
+main.js
+Final Tech Version
+=====================================
+*/
 
 
 document.addEventListener(
@@ -8,14 +12,16 @@ document.addEventListener(
 ()=>{
 
 
-document.body.classList.add(
-"loaded"
-);
-
-
-
 startCounter();
 
+
+initParticles();
+
+
+initAvatar();
+
+
+initMenu();
 
 
 });
@@ -25,9 +31,11 @@ startCounter();
 
 
 
-// =====================================
-// 数字递增动画
-// =====================================
+/*
+=====================================
+数字递增
+=====================================
+*/
 
 
 function startCounter(){
@@ -49,21 +57,30 @@ counter.dataset.target
 );
 
 
-
-let current=0;
-
-
-
-const speed =
-target / 80;
+const unit =
+counter.dataset.unit || "";
 
 
 
+let current = 0;
 
-const update = ()=>{
 
 
-current += speed;
+const duration = 1500;
+
+
+const step =
+target /
+(duration / 16);
+
+
+
+
+
+function update(){
+
+
+current += step;
 
 
 
@@ -71,7 +88,7 @@ if(current < target){
 
 
 counter.innerText =
-Math.floor(current);
+Math.floor(current)+unit;
 
 
 
@@ -83,13 +100,14 @@ requestAnimationFrame(update);
 
 
 counter.innerText =
-target;
+target+unit;
 
 
 }
 
 
-};
+
+}
 
 
 
@@ -110,9 +128,408 @@ update();
 
 
 
-// =====================================
-// 移动端菜单
-// =====================================
+
+/*
+=====================================
+科技粒子背景
+=====================================
+*/
+
+
+function initParticles(){
+
+
+
+const canvas =
+document.getElementById(
+"particleCanvas"
+);
+
+
+
+if(!canvas)
+return;
+
+
+
+const ctx =
+canvas.getContext(
+"2d"
+);
+
+
+
+let width =
+canvas.width =
+window.innerWidth;
+
+
+
+let height =
+canvas.height =
+window.innerHeight;
+
+
+
+const particles=[];
+
+
+
+const count =
+window.innerWidth < 768
+?
+35
+:
+80;
+
+
+
+
+
+for(let i=0;i<count;i++){
+
+
+
+particles.push({
+
+
+x:
+Math.random()*width,
+
+
+y:
+Math.random()*height,
+
+
+size:
+Math.random()*2+1,
+
+
+speedX:
+(Math.random()-.5)*0.4,
+
+
+speedY:
+(Math.random()-.5)*0.4
+
+
+
+});
+
+
+}
+
+
+
+
+
+
+function draw(){
+
+
+
+ctx.clearRect(
+0,
+0,
+width,
+height
+);
+
+
+
+
+particles.forEach(
+(p,i)=>{
+
+
+
+p.x += p.speedX;
+
+p.y += p.speedY;
+
+
+
+
+
+if(
+p.x<0 ||
+p.x>width
+)
+p.speedX*=-1;
+
+
+
+if(
+p.y<0 ||
+p.y>height
+)
+p.speedY*=-1;
+
+
+
+
+
+
+
+ctx.beginPath();
+
+
+
+ctx.arc(
+p.x,
+p.y,
+p.size,
+0,
+Math.PI*2
+);
+
+
+
+ctx.fillStyle =
+"rgba(139,92,246,.7)";
+
+
+
+ctx.fill();
+
+
+
+
+
+/*
+粒子连线
+*/
+
+
+particles.forEach(
+(q,j)=>{
+
+
+if(i!==j){
+
+
+
+const dx =
+p.x-q.x;
+
+
+
+const dy =
+p.y-q.y;
+
+
+
+const distance =
+Math.sqrt(
+dx*dx+dy*dy
+);
+
+
+
+
+
+if(distance<120){
+
+
+
+ctx.beginPath();
+
+
+
+ctx.moveTo(
+p.x,
+p.y
+);
+
+
+
+ctx.lineTo(
+q.x,
+q.y
+);
+
+
+
+ctx.strokeStyle =
+"rgba(0,217,255,.12)";
+
+
+
+ctx.stroke();
+
+
+
+}
+
+
+
+}
+
+
+
+});
+
+
+
+});
+
+
+
+
+
+requestAnimationFrame(draw);
+
+
+
+}
+
+
+
+
+draw();
+
+
+
+
+
+
+window.addEventListener(
+"resize",
+()=>{
+
+
+width =
+canvas.width =
+window.innerWidth;
+
+
+height =
+canvas.height =
+window.innerHeight;
+
+
+
+});
+
+
+}
+
+
+
+
+
+
+
+
+
+/*
+=====================================
+头像3D效果
+=====================================
+*/
+
+
+function initAvatar(){
+
+
+
+const avatar =
+document.querySelector(
+".avatar-ring"
+);
+
+
+
+if(!avatar)
+return;
+
+
+
+
+avatar.addEventListener(
+"mousemove",
+(e)=>{
+
+
+const rect =
+avatar.getBoundingClientRect();
+
+
+
+const x =
+e.clientX -
+rect.left;
+
+
+
+const y =
+e.clientY -
+rect.top;
+
+
+
+const rotateX =
+-(y-110)/15;
+
+
+
+const rotateY =
+(x-110)/15;
+
+
+
+
+
+avatar.style.transform =
+
+`
+scale(1.06)
+rotateX(${rotateX}deg)
+rotateY(${rotateY}deg)
+`;
+
+
+
+});
+
+
+
+
+
+
+
+avatar.addEventListener(
+"mouseleave",
+()=>{
+
+
+avatar.style.transform =
+"scale(1)";
+
+
+});
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/*
+=====================================
+移动菜单
+=====================================
+*/
+
+
+function initMenu(){
+
 
 
 const menu =
@@ -129,7 +546,9 @@ document.querySelector(
 
 
 
-if(menu){
+if(!menu)
+return;
+
 
 
 
@@ -143,61 +562,12 @@ nav.classList.toggle(
 );
 
 
-
 menu.classList.toggle(
 "active"
 );
 
 
 
-}
-
-);
-
-
-}
-
-
-
-
-
-
-// =====================================
-// 平滑滚动
-// =====================================
-
-
-document.querySelectorAll(
-'a[href^="#"]'
-)
-
-.forEach(link=>{
-
-
-link.addEventListener(
-"click",
-function(e){
-
-
-
-const target =
-document.querySelector(
-this.getAttribute("href")
-);
-
-
-
-if(target){
-
-
-e.preventDefault();
-
-
-
-target.scrollIntoView({
-
-behavior:"smooth"
-
 });
 
 
@@ -205,79 +575,28 @@ behavior:"smooth"
 
 
 
-});
-
-
-
-});
 
 
 
 
 
 
-// =====================================
-// 头像鼠标光效
-// =====================================
+/*
+=====================================
+页面淡入
+=====================================
+*/
 
 
-const avatar =
-document.querySelector(
-".avatar-ring"
-);
-
-
-
-if(avatar){
-
-
-
-avatar.addEventListener(
-"mousemove",
-(e)=>{
-
-
-const rect =
-avatar.getBoundingClientRect();
-
-
-
-const x =
-e.clientX - rect.left;
-
-
-
-const y =
-e.clientY - rect.top;
-
-
-
-avatar.style.transform =
-
-`
-scale(1.08)
-rotateX(${-(y-130)/20}deg)
-rotateY(${(x-130)/20}deg)
-`;
-
-
-
-});
-
-
-
-
-
-avatar.addEventListener(
-"mouseleave",
+window.addEventListener(
+"load",
 ()=>{
 
 
-avatar.style.transform=
-"scale(1)";
+document.body.classList.add(
+"loaded"
+);
+
 
 
 });
-
-
-}
