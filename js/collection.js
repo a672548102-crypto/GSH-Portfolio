@@ -1,21 +1,24 @@
-/* =====================================
+/*
+=====================================
 GSH Portfolio
 collection.js
-Hover Play Version
-===================================== */
+V5.8 Project Collection
+=====================================
+*/
 
 
 const caseGrid =
 document.getElementById("caseGrid");
 
 
-let allCases=[];
+let allCases = [];
+
 
 
 
 
 // ===============================
-// 读取数据
+// 加载案例数据
 // ===============================
 
 
@@ -28,7 +31,7 @@ fetch("assets/data/cases.json")
 .then(data=>{
 
 
-allCases=data;
+allCases = data;
 
 
 renderCases(allCases);
@@ -36,11 +39,12 @@ renderCases(allCases);
 
 })
 
+
 .catch(err=>{
 
 
 console.error(
-"cases.json读取失败",
+"cases.json读取失败:",
 err
 );
 
@@ -53,8 +57,9 @@ err
 
 
 
+
 // ===============================
-// 生成案例
+// 渲染案例
 // ===============================
 
 
@@ -77,6 +82,8 @@ data-video="${item.video}">
 
 
 
+
+
 <div class="cover-box">
 
 
@@ -86,7 +93,11 @@ class="case-cover"
 
 src="${item.cover}"
 
-loading="lazy">
+loading="lazy"
+
+alt="${item.title}">
+
+
 
 
 
@@ -103,13 +114,19 @@ loading="lazy">
 </div>
 
 
+
 </div>
 
 
 
 
 
+
+
+
 <div class="case-info">
+
+
 
 
 
@@ -123,6 +140,12 @@ CASE ${String(item.id).padStart(2,"0")}
 
 
 
+
+
+<div class="title-line">
+
+
+
 <h3>
 
 ${item.title}
@@ -131,28 +154,18 @@ ${item.title}
 
 
 
-
-
-
-<div class="tags">
-
-
-<span>
-
-${item.category}
-
-</span>
-
-
-
-<span>
+<span class="case-type">
 
 ${item.type}
 
 </span>
 
 
+
 </div>
+
+
+
 
 
 
@@ -176,7 +189,6 @@ ${item.views}
 播放量
 </p>
 
-
 </div>
 
 
@@ -195,7 +207,6 @@ ${item.likes}
 <p>
 点赞
 </p>
-
 
 </div>
 
@@ -216,13 +227,13 @@ ${item.comments}
 评论
 </p>
 
-
 </div>
 
 
 
 
 </div>
+
 
 
 
@@ -239,12 +250,18 @@ class="detail-link">
 
 查看数据分析 →
 
-
 </a>
 
 
 
+
+
+
+
 </div>
+
+
+
 
 
 
@@ -262,14 +279,19 @@ class="detail-link">
 
 
 
-caseGrid.innerHTML=html;
+caseGrid.innerHTML = html;
+
 
 
 
 bindVideo();
 
 
+
 }
+
+
+
 
 
 
@@ -283,31 +305,61 @@ bindVideo();
 // ===============================
 
 
-const filters=
-document.querySelectorAll(".filter");
+
+const filters =
+
+document.querySelectorAll(
+".filter"
+);
+
+
 
 
 
 filters.forEach(btn=>{
 
 
-btn.onclick=function(){
+btn.addEventListener(
+"click",
+()=>{
 
 
 
-filters.forEach(b=>{
 
-b.classList.remove("active");
+
+filters.forEach(item=>{
+
+
+item.classList.remove(
+"active"
+);
+
 
 });
 
 
 
-this.classList.add("active");
 
 
 
-const type=this.dataset.filter;
+btn.classList.add(
+"active"
+);
+
+
+
+
+
+
+
+const type =
+
+btn.dataset.filter;
+
+
+
+
+
 
 
 
@@ -317,27 +369,45 @@ if(type==="all"){
 renderCases(allCases);
 
 
-}else{
-
-
-const result =
-allCases.filter(item=>{
-
-return item.category===type;
-
-});
-
-
-renderCases(result);
+return;
 
 
 }
 
 
-};
+
+
+
+
+
+
+const result =
+
+allCases.filter(item=>{
+
+
+return item.category === type;
 
 
 });
+
+
+
+
+
+
+
+renderCases(result);
+
+
+
+
+});
+
+
+});
+
+
 
 
 
@@ -353,24 +423,30 @@ renderCases(result);
 // ===============================
 
 
-const modal=
+const modal =
+
 document.getElementById(
 "videoModal"
 );
 
 
 
-const player=
+const player =
+
 document.getElementById(
 "player"
 );
 
 
 
-const closeBtn=
+const closeBtn =
+
 document.getElementById(
 "closeBtn"
 );
+
+
+
 
 
 
@@ -381,17 +457,29 @@ function bindVideo(){
 
 
 
+const cards =
+
 document.querySelectorAll(
 ".case-card"
-)
+);
 
-.forEach(card=>{
+
+
+
+
+
+
+cards.forEach(card=>{
 
 
 
 card.onclick=function(e){
 
 
+
+
+
+// 点击详情按钮不播放
 
 if(
 e.target.closest(".detail-link")
@@ -405,6 +493,17 @@ return;
 
 
 
+
+const videoPath =
+
+this.dataset.video;
+
+
+
+
+
+
+
 player.pause();
 
 
@@ -412,8 +511,14 @@ player.currentTime=0;
 
 
 
-player.src=
-this.dataset.video;
+
+
+
+
+player.src = videoPath;
+
+
+
 
 
 
@@ -423,15 +528,41 @@ modal.classList.add(
 
 
 
+
+
+
+
 player.load();
 
 
 
+
+
+
+
+
 player.play()
-.catch(()=>{});
+
+.catch(()=>{
+
+
+console.log(
+"等待用户操作"
+);
+
+
+});
+
+
+
+
+
 
 
 };
+
+
+
 
 
 
@@ -449,13 +580,20 @@ player.play()
 
 
 
+
+
+
 // ===============================
-// 关闭
+// 关闭视频
 // ===============================
 
 
 
 function closeVideo(){
+
+
+if(!player)return;
+
 
 
 player.pause();
@@ -483,34 +621,53 @@ modal.classList.remove(
 
 
 
+
+
+
+
+
 if(closeBtn){
 
 
-closeBtn.onclick=
-closeVideo;
+closeBtn.addEventListener(
+"click",
+closeVideo
+);
 
 
 }
+
+
+
+
+
 
 
 
 if(modal){
 
 
-modal.onclick=function(e){
+modal.addEventListener(
+"click",
+(e)=>{
 
 
 if(e.target===modal){
 
+
 closeVideo();
 
+
+}
+
+
+});
+
+
 }
 
 
-};
 
-
-}
 
 
 
@@ -519,7 +676,7 @@ closeVideo();
 
 document.addEventListener(
 "keydown",
-e=>{
+(e)=>{
 
 
 if(e.key==="Escape"){
