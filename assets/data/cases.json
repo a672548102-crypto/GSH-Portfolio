@@ -1,46 +1,390 @@
 [
-    {
-        "id":"01",
-        "title":"蝴蝶姐姐 · 达人种草",
-        "type":"达人合作类",
-        "role":"策划 + 剪辑 + 调色",
-        "views":"4001.6W",
-        "likes":"2.8W",
-        "comments":"1.4k",
-        "collect":"5.6k",
-        "completion":"68%",
-        "cover":"assets/covers/cover-01.png",
-        "video":"assets/videos/videos-01.mp4"
-    },
+{
+"id":"01",
+"title":"蝴蝶姐姐",
+"type":"达人合作类",
+"category":"达人",
+"role":"策划 + 剪辑 + 调色",
+"views":"4001.6w",
+"likes":"2.8w",
+"comments":"1.4k",
+"cover":"assets/covers/cover-01.png",
+"video":"assets/videos/videos-01.mp4"
+},
 
+{
+"id":"02",
+"title":"冲突试吃",
+"type":"街坊采访类",
+"category":"口播",
+"role":"选题策划 + 后期剪辑",
+"views":"1620.3w",
+"likes":"1.8w",
+"comments":"495",
+"cover":"assets/covers/cover-02.PNG",
+"video":"assets/videos/videos-02.mp4"
+},
 
-    {
-        "id":"02",
-        "title":"冲突试吃 · 街坊反应",
-        "type":"街坊采访类",
-        "role":"选题策划 + 街坊拍摄 + 后期剪辑",
-        "views":"1620.3W",
-        "likes":"1.8W",
-        "comments":"495",
-        "collect":"3.2k",
-        "completion":"62%",
-        "cover":"assets/covers/cover-02.png",
-        "video":"assets/videos/videos-02.mp4"
-    },
+{
+"id":"03",
+"title":"三伏反差",
+"type":"达人带货类",
+"category":"达人",
+"role":"脚本策划 + 视频剪辑",
+"views":"2181.4w",
+"likes":"1.3w",
+"comments":"528",
+"cover":"assets/covers/cover-03.PNG",
+"video":"assets/videos/videos-03.mp4"
+},
 
+{
+"id":"04",
+"title":"蝴蝶姐姐",
+"type":"达人合作类",
+"category":"达人",
+"role":"策划 + 剪辑",
+"views":"2214.8w",
+"likes":"1.2w",
+"comments":"190",
+"cover":"assets/covers/cover-04.PNG",
+"video":"assets/videos/videos-04.mp4"
+},
 
-    {
-        "id":"03",
-        "title":"三伏反差 · 达人带货",
-        "type":"达人合作类",
-        "role":"脚本撰写 + 达人对接 + 后期剪辑",
-        "views":"2181.4W",
-        "likes":"1.3W",
-        "comments":"528",
-        "collect":"4.1k",
-        "completion":"65%",
-        "cover":"assets/covers/cover-03.png",
-        "video":"assets/videos/videos-03.mp4"
-    }
+{
+"id":"05",
+"title":"街边试吃",
+"type":"用户口播类",
+"category":"口播",
+"role":"选题策划 + 剪辑制作",
+"views":"1301w",
+"likes":"1.1w",
+"comments":"412",
+"cover":"assets/covers/cover-05.PNG",
+"video":"assets/videos/videos-05.mp4"
+},
+
+{
+"id":"06",
+"title":"品牌信任",
+"type":"品牌宣传类",
+"category":"厂家",
+"role":"品牌内容策划 + 后期制作",
+"views":"1374.2w",
+"likes":"8926",
+"comments":"423",
+"cover":"assets/covers/cover-06.PNG",
+"video":"assets/videos/videos-06.mp4"
+},
+
+{
+"id":"07",
+"title":"蝴蝶姐姐",
+"type":"达人种草类",
+"category":"达人",
+"role":"达人沟通 + 视频剪辑",
+"views":"1759w",
+"likes":"7931",
+"comments":"176",
+"cover":"assets/covers/cover-07.PNG",
+"video":"assets/videos/videos-07.mp4"
+},
+
+{
+"id":"08",
+"title":"蝴蝶姐姐",
+"type":"达人内容类",
+"category":"达人",
+"role":"内容策划 + 后期剪辑",
+"views":"987.9w",
+"likes":"7783",
+"comments":"329",
+"cover":"assets/covers/cover-08.PNG",
+"video":"assets/videos/videos-08.mp4"
+},
+
+{
+"id":"09",
+"title":"顶级烟嗓",
+"type":"混剪内容类",
+"category":"混剪",
+"role":"素材整理 + 节奏剪辑",
+"views":"2396.6w",
+"likes":"7175",
+"comments":"483",
+"cover":"assets/covers/cover-09.PNG",
+"video":"assets/videos/videos-09.mp4"
+},
+
+{
+"id":"10",
+"title":"冲突等待",
+"type":"剧情内容类",
+"category":"剧情",
+"role":"剧情设计 + 视频剪辑",
+"views":"673.9w",
+"likes":"6046",
+"comments":"154",
+"cover":"assets/covers/cover-10.PNG",
+"video":"assets/videos/videos-10.mp4"
+},
+{
+"id":"11",
+"title":"品牌信任",
+"type":"品牌宣传类",
+"category":"厂家",
+"role":"品牌内容策划 + 后期制作",
+"views":"468.3w",
+"likes":"5540",
+"comments":"177",
+"cover":"assets/covers/cover-11.PNG",
+"video":"assets/videos/videos-11.mp4"
+},
+
+{
+"id":"12",
+"title":"品牌信任",
+"type":"品牌故事类",
+"category":"厂家",
+"role":"脚本策划 + 视频剪辑",
+"views":"648.6w",
+"likes":"4862",
+"comments":"319",
+"cover":"assets/covers/cover-12.PNG",
+"video":"assets/videos/videos-12.mp4"
+},
+
+{
+"id":"13",
+"title":"头茬新货",
+"type":"产品展示类",
+"category":"厂家",
+"role":"产品策划 + 后期制作",
+"views":"800.9w",
+"likes":"4663",
+"comments":"290",
+"cover":"assets/covers/cover-13.PNG",
+"video":"assets/videos/videos-13.mp4"
+},
+
+{
+"id":"14",
+"title":"呆萌带货",
+"type":"达人带货类",
+"category":"达人",
+"role":"达人沟通 + 剪辑包装",
+"views":"922.2w",
+"likes":"4409",
+"comments":"145",
+"cover":"assets/covers/cover-14.PNG",
+"video":"assets/videos/videos-14.mp4"
+},
+
+{
+"id":"15",
+"title":"蝴蝶姐姐",
+"type":"达人种草类",
+"category":"达人",
+"role":"选题策划 + 视频剪辑",
+"views":"483.8w",
+"likes":"4105",
+"comments":"66",
+"cover":"assets/covers/cover-15.PNG",
+"video":"assets/videos/videos-15.mp4"
+},
+
+{
+"id":"16",
+"title":"电视采访",
+"type":"品牌采访类",
+"category":"厂家",
+"role":"素材整理 + 剪辑制作",
+"views":"250w",
+"likes":"3326",
+"comments":"130",
+"cover":"assets/covers/cover-16.PNG",
+"video":"assets/videos/videos-16.mp4"
+},
+
+{
+"id":"17",
+"title":"大爷开头",
+"type":"剧情内容类",
+"category":"剧情",
+"role":"创意设计 + 节奏剪辑",
+"views":"232.1w",
+"likes":"2792",
+"comments":"110",
+"cover":"assets/covers/cover-17.PNG",
+"video":"assets/videos/videos-17.mp4"
+},
+
+{
+"id":"18",
+"title":"小孩开头",
+"type":"剧情内容类",
+"category":"剧情",
+"role":"剧情策划 + 后期制作",
+"views":"275.2w",
+"likes":"2727",
+"comments":"79",
+"cover":"assets/covers/cover-18.PNG",
+"video":"assets/videos/videos-18.mp4"
+},
+
+{
+"id":"19",
+"title":"百斤师傅",
+"type":"厂家生产类",
+"category":"厂家",
+"role":"拍摄策划 + 视频剪辑",
+"views":"420.8w",
+"likes":"2503",
+"comments":"102",
+"cover":"assets/covers/cover-19.PNG",
+"video":"assets/videos/videos-19.mp4"
+},
+
+{
+"id":"20",
+"title":"微笑姐姐",
+"type":"达人内容类",
+"category":"达人",
+"role":"达人合作 + 内容优化",
+"views":"540.5w",
+"likes":"2468",
+"comments":"83",
+"cover":"assets/covers/cover-20.PNG",
+"video":"assets/videos/videos-20.mp4"
+},
+{
+"id":"21",
+"title":"冲突试吃",
+"type":"街坊采访类",
+"category":"口播",
+"role":"选题设计 + 人物采访 + 后期剪辑",
+"views":"163.6w",
+"likes":"2259",
+"comments":"41",
+"cover":"assets/covers/cover-21.PNG",
+"video":"assets/videos/videos-21.mp4"
+},
+
+{
+"id":"22",
+"title":"大爷开头",
+"type":"剧情内容类",
+"category":"剧情",
+"role":"创意策划 + 剪辑包装",
+"views":"215.7w",
+"likes":"2067",
+"comments":"141",
+"cover":"assets/covers/cover-22.PNG",
+"video":"assets/videos/videos-22.mp4"
+},
+
+{
+"id":"23",
+"title":"蝴蝶姐姐",
+"type":"达人合作类",
+"category":"达人",
+"role":"达人沟通 + 内容策划 + 后期剪辑",
+"views":"363.2w",
+"likes":"2043",
+"comments":"34",
+"cover":"assets/covers/cover-23.PNG",
+"video":"assets/videos/videos-23.mp4"
+},
+
+{
+"id":"24",
+"title":"流行混剪",
+"type":"热点混剪类",
+"category":"混剪",
+"role":"素材整理 + 热点分析 + 节奏剪辑",
+"views":"365.7w",
+"likes":"1761",
+"comments":"71",
+"cover":"assets/covers/cover-24.PNG",
+"video":"assets/videos/videos-24.mp4"
+},
+
+{
+"id":"25",
+"title":"产地拍摄",
+"type":"产品纪录类",
+"category":"厂家",
+"role":"拍摄策划 + 产品内容制作",
+"views":"279.8w",
+"likes":"1171",
+"comments":"93",
+"cover":"assets/covers/cover-25.PNG",
+"video":"assets/videos/videos-25.mp4"
+},
+
+{
+"id":"26",
+"title":"换仓库啦",
+"type":"剧情内容类",
+"category":"剧情",
+"role":"创意构思 + 剪辑制作",
+"views":"162.9w",
+"likes":"1163",
+"comments":"144",
+"cover":"assets/covers/cover-26.PNG",
+"video":"assets/videos/videos-26.mp4"
+},
+
+{
+"id":"27",
+"title":"电视采访",
+"type":"品牌采访类",
+"category":"厂家",
+"role":"采访整理 + 视频包装",
+"views":"123.6w",
+"likes":"1561",
+"comments":"38",
+"cover":"assets/covers/cover-27.PNG",
+"video":"assets/videos/videos-27.mp4"
+},
+
+{
+"id":"28",
+"title":"街边埋怨",
+"type":"街坊口播类",
+"category":"口播",
+"role":"人物设计 + 口播剪辑",
+"views":"104.2w",
+"likes":"1126",
+"comments":"25",
+"cover":"assets/covers/cover-28.PNG",
+"video":"assets/videos/videos-28.mp4"
+},
+
+{
+"id":"29",
+"title":"大爷开头",
+"type":"剧情内容类",
+"category":"剧情",
+"role":"剧情策划 + 视频剪辑",
+"views":"176.2w",
+"likes":"1307",
+"comments":"64",
+"cover":"assets/covers/cover-29.PNG",
+"video":"assets/videos/videos-29.mp4"
+},
+
+{
+"id":"30",
+"title":"蝴蝶姐姐",
+"type":"达人合作类",
+"category":"达人",
+"role":"达人沟通 + 内容优化 + 后期制作",
+"views":"157.3w",
+"likes":"1272",
+"comments":"19",
+"cover":"assets/covers/cover-30.PNG",
+"video":"assets/videos/videos-30.mp4"
+}
 
 ]
