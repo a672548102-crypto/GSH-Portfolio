@@ -1,14 +1,21 @@
 /* =====================================
 GSH Portfolio
 detail.css
-V7 Unified Style
+Case Detail Stable Final
 ===================================== */
+
+
+/* =====================
+基础
+===================== */
 
 
 *{
 
 margin:0;
+
 padding:0;
+
 box-sizing:border-box;
 
 }
@@ -21,10 +28,7 @@ box-sizing:border-box;
 
 --blue:#00d9ff;
 
---bg:#050816;
-
 }
-
 
 
 
@@ -38,17 +42,13 @@ font-family:
 sans-serif;
 
 
-
 color:white;
-
 
 
 min-height:100vh;
 
 
-
 overflow-x:hidden;
-
 
 
 background:
@@ -61,7 +61,6 @@ linear-gradient(
 );
 
 
-
 position:relative;
 
 
@@ -71,8 +70,11 @@ position:relative;
 
 
 
+
+
+
 /* =====================
-科技网格背景
+统一科技网格
 ===================== */
 
 
@@ -95,12 +97,10 @@ z-index:-2;
 background-image:
 
 
-
 linear-gradient(
 rgba(139,92,246,.12) 1px,
 transparent 1px
 ),
-
 
 
 linear-gradient(
@@ -119,10 +119,11 @@ background-size:
 
 animation:
 
-gridMove 20s linear infinite;
+gridMove 25s linear infinite;
 
 
 }
+
 
 
 
@@ -139,7 +140,9 @@ background-position:
 }
 
 
+
 to{
+
 
 background-position:
 
@@ -155,6 +158,9 @@ background-position:
 
 
 
+
+
+
 body::after{
 
 
@@ -164,18 +170,16 @@ content:"";
 position:fixed;
 
 
-width:500px;
+width:320px;
 
 
-height:500px;
+height:320px;
 
 
-
-right:-200px;
+right:-120px;
 
 
 top:120px;
-
 
 
 border-radius:50%;
@@ -186,7 +190,7 @@ background:
 
 radial-gradient(
 circle,
-rgba(139,92,6f,.3),
+rgba(139,92,246,.25),
 transparent 70%
 );
 
@@ -194,53 +198,15 @@ transparent 70%
 
 filter:
 
-blur(45px);
+blur(25px);
 
 
 
 z-index:-1;
 
 
-
-animation:
-
-lightFloat 10s infinite alternate;
-
-
 }
 
-
-
-
-
-
-@keyframes lightFloat{
-
-
-from{
-
-
-transform:
-
-translateY(0);
-
-
-}
-
-
-
-to{
-
-
-transform:
-
-translateY(80px);
-
-
-}
-
-
-}
 
 
 
@@ -266,16 +232,14 @@ margin:auto;
 
 
 
+
+
 /* =====================
 导航
 ===================== */
 
 
 .navbar{
-
-
-height:70px;
-
 
 
 position:fixed;
@@ -286,6 +250,8 @@ top:0;
 
 left:0;
 
+
+height:70px;
 
 
 width:100%;
@@ -298,20 +264,24 @@ z-index:1000;
 
 background:
 
-rgba(5,8,22,.7);
+rgba(5,8,22,.75);
 
 
 
 backdrop-filter:
 
-blur(20px);
+blur(12px);
+
+
+-webkit-backdrop-filter:
+
+blur(12px);
 
 
 
 border-bottom:
 
 1px solid rgba(255,255,255,.08);
-
 
 
 }
@@ -340,6 +310,7 @@ justify-content:space-between;
 
 
 
+
 .logo{
 
 
@@ -349,15 +320,16 @@ font-size:24px;
 font-weight:900;
 
 
-color:white;
-
-
 text-decoration:none;
 
 
+color:white;
+
+
+white-space:nowrap;
+
+
 }
-
-
 
 
 
@@ -368,7 +340,6 @@ color:#c4b5fd;
 
 
 }
-
 
 
 
@@ -389,21 +360,16 @@ list-style:none;
 
 
 
-
-
 .nav-links a{
-
-
-color:#aaa;
 
 
 text-decoration:none;
 
 
+color:#aaa;
+
+
 font-size:15px;
-
-
-transition:.3s;
 
 
 }
@@ -427,36 +393,23 @@ color:white;
 
 
 /* =====================
-详情页面
+详情头部
 ===================== */
-
-
-.detail-page{
-
-
-padding-top:130px;
-
-
-padding-bottom:80px;
-
-
-}
-
-
-
 
 
 .detail-header{
 
 
+padding-top:150px;
+
+
 text-align:center;
 
 
-margin-bottom:50px;
+padding-bottom:50px;
 
 
 }
-
 
 
 
@@ -467,15 +420,12 @@ margin-bottom:50px;
 display:inline-block;
 
 
-
 padding:
 
 8px 20px;
 
 
-
 border-radius:30px;
-
 
 
 background:
@@ -487,10 +437,6 @@ rgba(139,92,246,.15);
 color:#ddd6fe;
 
 
-
-font-size:13px;
-
-
 }
 
 
@@ -500,7 +446,7 @@ font-size:13px;
 .detail-header h1{
 
 
-font-size:46px;
+font-size:48px;
 
 
 margin:
@@ -513,16 +459,15 @@ margin:
 
 
 
+
 .detail-header p{
 
 
 color:#aaa;
 
 
-font-size:16px;
-
-
 }
+
 
 
 
@@ -532,67 +477,24 @@ font-size:16px;
 
 
 /* =====================
-主体
+视频区域
 ===================== */
-
-
-.detail-main{
-
-
-max-width:1000px;
-
-
-margin:auto;
-
-
-}
-
-
-
-
-
-
-/* 视频 */
 
 
 .video-area{
 
 
-background:
-
-rgba(255,255,255,.06);
+display:flex;
 
 
-
-border:
-
-1px solid rgba(255,255,255,.1);
+justify-content:center;
 
 
-
-padding:
-
-20px;
-
-
-
-border-radius:25px;
-
-
-
-backdrop-filter:
-
-blur(15px);
-
-
-
-box-shadow:
-
-0 20px 50px rgba(0,0,0,.3);
-
+margin-bottom:50px;
 
 
 }
+
 
 
 
@@ -600,69 +502,51 @@ box-shadow:
 .video-area video{
 
 
-width:100%;
-
+width:min(900px,100%);
 
 
 max-height:600px;
 
 
-
-border-radius:15px;
-
+border-radius:22px;
 
 
 background:black;
 
 
+object-fit:contain;
+
+
 }
+
+
+
+
+
+
+
+
+
 /* =====================
-数据模块
+数据统计
 ===================== */
 
 
-.data-panel{
+.case-data{
 
 
 display:flex;
 
 
-justify-content:space-around;
+justify-content:center;
 
 
-gap:20px;
+gap:60px;
 
 
-margin-top:35px;
+margin:
 
-
-
-padding:
-
-25px;
-
-
-
-border-radius:20px;
-
-
-
-background:
-
-rgba(255,255,255,.06);
-
-
-
-border:
-
-1px solid rgba(255,255,255,.1);
-
-
-
-backdrop-filter:
-
-blur(15px);
-
+40px 0;
 
 
 }
@@ -671,10 +555,7 @@ blur(15px);
 
 
 
-.data-item{
-
-
-flex:1;
+.case-data div{
 
 
 text-align:center;
@@ -684,13 +565,15 @@ text-align:center;
 
 
 
-.data-item strong{
+
+
+.case-data strong{
 
 
 display:block;
 
 
-font-size:34px;
+font-size:36px;
 
 
 font-weight:900;
@@ -701,7 +584,7 @@ background:
 
 linear-gradient(
 135deg,
-#ffffff,
+white,
 #c4b5fd
 );
 
@@ -719,13 +602,7 @@ color:transparent;
 
 
 
-.data-item span{
-
-
-display:block;
-
-
-margin-top:8px;
+.case-data span{
 
 
 color:#999;
@@ -743,94 +620,61 @@ font-size:14px;
 
 
 
+
 /* =====================
 抖音链接
 ===================== */
 
 
-.douyin-link{
+.douyin-box{
 
 
-margin-top:30px;
+text-align:center;
 
+
+margin:
+
+30px 0 60px;
+
+
+}
+
+
+
+
+
+.douyin-box a{
+
+
+display:inline-block;
 
 
 padding:
 
-25px;
+12px 35px;
 
 
-
-border-radius:20px;
+border-radius:40px;
 
 
 
 background:
 
-rgba(255,255,255,.05);
+linear-gradient(
+135deg,
+#8b5cf6,
+#00d9ff
+);
 
 
 
-border:
-
-1px solid rgba(255,255,255,.1);
-
-
-
-}
-
-
-
-.douyin-link h3{
-
-
-font-size:20px;
-
-
-margin-bottom:15px;
-
-
-}
-
-
-
-.douyin-link a{
-
-
-display:block;
-
-
-color:#c4b5fd;
+color:white;
 
 
 text-decoration:none;
 
 
-
-padding:
-
-12px 18px;
-
-
-
-border-radius:12px;
-
-
-
-background:
-
-rgba(139,92,246,.15);
-
-
-
-border:
-
-1px solid rgba(139,92,246,.3);
-
-
-
-word-break:break-all;
-
+font-weight:700;
 
 
 transition:.3s;
@@ -840,19 +684,18 @@ transition:.3s;
 
 
 
-.douyin-link a:hover{
 
 
-background:
-
-rgba(139,92,246,.35);
+.douyin-box a:hover{
 
 
+transform:
 
-color:white;
+translateY(-4px);
 
 
 }
+
 
 
 
@@ -866,43 +709,22 @@ color:white;
 ===================== */
 
 
-.description{
-
-
-margin-top:30px;
-
+.detail-section{
 
 
 padding:
 
-30px;
-
-
-
-border-radius:20px;
-
-
-
-background:
-
-rgba(255,255,255,.05);
-
-
-
-border:
-
-1px solid rgba(255,255,255,.1);
-
+40px 0;
 
 
 }
 
 
 
-.description h2{
+.detail-section h2{
 
 
-font-size:26px;
+font-size:30px;
 
 
 margin-bottom:20px;
@@ -912,16 +734,15 @@ margin-bottom:20px;
 
 
 
-.description p{
+
+
+.detail-section p{
 
 
 color:#aaa;
 
 
 line-height:2;
-
-
-font-size:15px;
 
 
 }
@@ -932,9 +753,94 @@ font-size:15px;
 
 
 
+
+
 /* =====================
-底部
+职责
 ===================== */
+
+
+.role-box{
+
+
+padding:
+
+30px;
+
+
+border-radius:20px;
+
+
+background:
+
+rgba(255,255,255,.06);
+
+
+
+border:
+
+1px solid rgba(255,255,255,.1);
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================
+数据图
+===================== */
+
+
+.chart-box{
+
+
+display:grid;
+
+
+grid-template-columns:
+
+repeat(3,1fr);
+
+
+
+gap:30px;
+
+
+margin-top:40px;
+
+
+}
+
+
+
+
+.chart-box img{
+
+
+width:100%;
+
+
+border-radius:18px;
+
+
+background:
+
+rgba(255,255,255,.05);
+
+
+}
+
+
+
+
+
+
+
 
 
 footer{
@@ -948,39 +854,9 @@ padding:
 35px;
 
 
-
 color:#777;
 
 
-font-size:14px;
-
-
-}
-
-
-
-
-
-
-
-
-/* =====================
-平板
-===================== */
-
-
-@media(max-width:900px){
-
-
-.detail-header h1{
-
-
-font-size:38px;
-
-
-}
-
-
 }
 
 
@@ -992,12 +868,11 @@ font-size:38px;
 
 
 /* =====================
-手机端
+手机
 ===================== */
 
 
 @media(max-width:768px){
-
 
 
 .container{
@@ -1007,7 +882,6 @@ width:92%;
 
 
 }
-
 
 
 
@@ -1035,6 +909,7 @@ font-size:18px;
 
 
 
+
 .nav-links{
 
 
@@ -1042,6 +917,7 @@ gap:10px;
 
 
 }
+
 
 
 
@@ -1057,10 +933,11 @@ font-size:12px;
 
 
 
-.detail-page{
+
+.detail-header{
 
 
-padding-top:100px;
+padding-top:120px;
 
 
 }
@@ -1072,7 +949,7 @@ padding-top:100px;
 .detail-header h1{
 
 
-font-size:30px;
+font-size:32px;
 
 
 }
@@ -1081,63 +958,40 @@ font-size:30px;
 
 
 
-.detail-header p{
+.video-area video{
 
 
-font-size:14px;
-
-
-}
-
-
-
-
-
-.video-area{
-
-
-padding:12px;
-
-
-border-radius:18px;
+border-radius:15px;
 
 
 }
+
+
 
 
 
 
 
 /*
-重点：
-数据手机保持横排
+数据手机横排
 */
 
-
-.data-panel{
+.case-data{
 
 
 display:flex;
 
 
-gap:8px;
+flex-direction:row;
 
 
-padding:
-
-15px 8px;
+gap:15px;
 
 
-}
+justify-content:space-between;
 
 
-
-
-
-.data-item{
-
-
-min-width:0;
+width:100%;
 
 
 }
@@ -1145,7 +999,8 @@ min-width:0;
 
 
 
-.data-item strong{
+
+.case-data strong{
 
 
 font-size:22px;
@@ -1155,7 +1010,9 @@ font-size:22px;
 
 
 
-.data-item span{
+
+
+.case-data span{
 
 
 font-size:12px;
@@ -1166,36 +1023,13 @@ font-size:12px;
 
 
 
-.douyin-link{
-
-
-padding:
-
-20px;
-
-
-}
 
 
 
-
-.douyin-link h3{
-
-
-font-size:18px;
+.douyin-box a{
 
 
-}
-
-
-
-
-.description{
-
-
-padding:
-
-20px;
+width:90%;
 
 
 }
@@ -1204,23 +1038,27 @@ padding:
 
 
 
-.description h2{
+.chart-box{
 
 
-font-size:22px;
+grid-template-columns:
+
+1fr;
+
+
+gap:20px;
 
 
 }
 
 
 
-.description p{
 
 
-font-size:14px;
+body::after{
 
 
-line-height:1.8;
+display:none;
 
 
 }
@@ -1234,37 +1072,9 @@ line-height:1.8;
 
 
 
-
-
-/* =====================
-超小屏
-===================== */
 
 
 @media(max-width:480px){
-
-
-
-.nav-links{
-
-
-gap:6px;
-
-
-}
-
-
-
-
-.nav-links a{
-
-
-font-size:11px;
-
-
-}
-
-
 
 
 
@@ -1278,23 +1088,10 @@ font-size:16px;
 
 
 
-
-.data-panel{
-
-
-gap:4px;
+.nav-links{
 
 
-}
-
-
-
-
-
-.data-item strong{
-
-
-font-size:19px;
+gap:7px;
 
 
 }
@@ -1303,7 +1100,7 @@ font-size:19px;
 
 
 
-.data-item span{
+.nav-links a{
 
 
 font-size:11px;
@@ -1315,15 +1112,24 @@ font-size:11px;
 
 
 
-.detail-header h1{
+.case-data{
 
 
-font-size:26px;
+gap:8px;
 
 
 }
 
 
+
+
+.case-data strong{
+
+
+font-size:20px;
+
+
+}
 
 
 
