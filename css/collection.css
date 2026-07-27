@@ -340,7 +340,7 @@ text-decoration:none;
 
 color:white;
 
-
+white-space:nowrap;
 }
 
 
@@ -348,7 +348,7 @@ color:white;
 
 .logo span{
 
-
+font-weight:900;
 color:#c4b5fd;
 
 
