@@ -1,12 +1,385 @@
 /* =====================================
- GSH Portfolio V6.1
+ GSH Portfolio
  collection.css
- 案例集页面最终版
+ Case Page Final Stable
 ===================================== */
 
 
 /* =====================
-页面顶部
+基础
+===================== */
+
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+
+
+:root{
+
+--purple:#8b5cf6;
+
+--blue:#00d9ff;
+
+--bg:#050816;
+
+--card:rgba(255,255,255,.06);
+
+--text:#ffffff;
+
+}
+
+
+
+body{
+
+
+font-family:
+
+"Inter",
+"Microsoft YaHei",
+sans-serif;
+
+
+background:
+
+linear-gradient(
+135deg,
+#050816,
+#090d24,
+#050816
+);
+
+
+color:white;
+
+
+min-height:100vh;
+
+
+overflow-x:hidden;
+
+
+}
+
+
+
+
+.container{
+
+
+width:min(1200px,90%);
+
+
+margin:auto;
+
+
+}
+
+
+
+
+
+
+/* =====================
+科技背景
+===================== */
+
+
+body::before{
+
+
+content:"";
+
+
+position:fixed;
+
+
+inset:0;
+
+
+z-index:-2;
+
+
+
+background-image:
+
+
+linear-gradient(
+rgba(139,92,246,.12) 1px,
+transparent 1px
+),
+
+
+linear-gradient(
+90deg,
+rgba(0,217,255,.1) 1px,
+transparent 1px
+);
+
+
+
+background-size:
+
+55px 55px;
+
+
+
+animation:gridMove 25s linear infinite;
+
+
+}
+
+
+
+
+@keyframes gridMove{
+
+
+from{
+
+background-position:0 0;
+
+}
+
+
+to{
+
+background-position:55px 55px;
+
+}
+
+
+}
+
+
+
+
+
+
+
+/* =====================
+导航
+===================== */
+
+
+.navbar{
+
+
+position:fixed;
+
+
+top:0;
+
+
+left:0;
+
+
+width:100%;
+
+
+height:70px;
+
+
+z-index:1000;
+
+
+
+background:
+
+rgba(5,8,22,.72);
+
+
+
+backdrop-filter:
+
+blur(16px);
+
+
+
+-webkit-backdrop-filter:
+
+blur(16px);
+
+
+
+border-bottom:
+
+1px solid rgba(255,255,255,.08);
+
+
+}
+
+
+
+
+
+
+.nav-container{
+
+
+height:100%;
+
+
+display:flex;
+
+
+align-items:center;
+
+
+justify-content:space-between;
+
+
+}
+
+
+
+
+
+.logo{
+
+
+font-size:24px;
+
+
+font-weight:900;
+
+
+text-decoration:none;
+
+
+color:white;
+
+
+white-space:nowrap;
+
+
+}
+
+
+
+
+
+.logo span{
+
+
+color:#c4b5fd;
+
+
+}
+
+
+
+
+
+.nav-links{
+
+
+display:flex;
+
+
+gap:35px;
+
+
+align-items:center;
+
+
+list-style:none;
+
+
+}
+
+
+
+
+.nav-links a{
+
+
+text-decoration:none;
+
+
+color:#aaa;
+
+
+font-size:15px;
+
+
+transition:.3s;
+
+
+}
+
+
+
+.nav-links a:hover,
+.nav-links a.active{
+
+
+color:white;
+
+
+}
+
+
+
+
+
+
+.menu-toggle{
+
+
+display:none;
+
+
+background:none;
+
+
+border:none;
+
+
+cursor:pointer;
+
+
+}
+
+
+
+
+.menu-toggle span{
+
+
+display:block;
+
+
+width:24px;
+
+
+height:2px;
+
+
+background:white;
+
+
+margin:5px;
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+/* =====================
+页面标题
 ===================== */
 
 
@@ -16,7 +389,7 @@
 padding-top:140px;
 
 
-padding-bottom:70px;
+padding-bottom:60px;
 
 
 text-align:center;
@@ -26,13 +399,44 @@ text-align:center;
 
 
 
-.page-header .tag{
+.tag{
 
 
-margin-bottom:20px;
+display:inline-block;
+
+
+padding:
+
+8px 20px;
+
+
+border-radius:30px;
+
+
+
+background:
+
+rgba(139,92,6,0.15);
+
+
+
+border:
+
+1px solid rgba(139,92,246,.3);
+
+
+
+font-size:13px;
+
+
+color:#ddd6fe;
+
+
+letter-spacing:2px;
 
 
 }
+
 
 
 
@@ -42,20 +446,22 @@ margin-bottom:20px;
 font-size:48px;
 
 
+margin:25px 0 15px;
+
+
 font-weight:900;
-
-
-margin-bottom:15px;
 
 
 }
 
 
 
+
+
 .page-header p{
 
 
-color:#999;
+color:#aaa;
 
 
 font-size:16px;
@@ -69,12 +475,16 @@ font-size:16px;
 
 
 
+
 /* =====================
-筛选按钮
+分类按钮
 ===================== */
 
 
 .filter-box{
+
+
+margin-top:45px;
 
 
 display:flex;
@@ -83,16 +493,10 @@ display:flex;
 justify-content:center;
 
 
-align-items:center;
+gap:18px;
 
 
 flex-wrap:wrap;
-
-
-gap:15px;
-
-
-margin-top:40px;
 
 
 }
@@ -111,14 +515,14 @@ padding:
 border-radius:30px;
 
 
-border:
-
-1px solid rgba(255,255,255,.15);
-
-
 background:
 
-rgba(255,255,255,.05);
+rgba(255,255,255,.06);
+
+
+border:
+
+1px solid rgba(255,255,255,.12);
 
 
 color:#aaa;
@@ -127,10 +531,7 @@ color:#aaa;
 cursor:pointer;
 
 
-font-size:14px;
-
-
-transition:.35s;
+transition:.3s;
 
 
 }
@@ -141,23 +542,20 @@ transition:.35s;
 .filter.active{
 
 
+background:
+
+linear-gradient(
+135deg,
+#8b5cf6,
+#00d9ff
+);
+
+
+
 color:white;
 
 
 border-color:transparent;
-
-
-background:
-
-linear-gradient(
-
-135deg,
-
-#8b5cf6,
-
-#00d9ff
-
-);
 
 
 }
@@ -170,18 +568,15 @@ linear-gradient(
 
 
 
-
 /* =====================
-案例区域
+案例网格
 ===================== */
 
 
 .collection{
 
 
-padding:
-
-40px 0 100px;
+padding-bottom:100px;
 
 
 }
@@ -199,6 +594,7 @@ display:grid;
 grid-template-columns:
 
 repeat(3,1fr);
+
 
 
 gap:30px;
@@ -222,16 +618,6 @@ gap:30px;
 .case-card{
 
 
-position:relative;
-
-
-overflow:hidden;
-
-
-border-radius:22px;
-
-
-
 background:
 
 rgba(255,255,255,.06);
@@ -244,13 +630,17 @@ border:
 
 
 
+border-radius:22px;
+
+
+overflow:hidden;
+
+
 transition:.35s;
 
 
 
 }
-
-
 
 
 
@@ -271,23 +661,7 @@ rgba(139,92,246,.8);
 
 box-shadow:
 
-0 20px 50px
-
-rgba(139,92,246,.25);
-
-
-}
-
-
-
-
-/* 删除小三角 */
-
-.case-card::before,
-.case-card::after{
-
-
-display:none;
+0 20px 50px rgba(139,92,246,.25);
 
 
 }
@@ -300,19 +674,13 @@ display:none;
 
 
 
-
-/* =====================
-封面
-===================== */
+.case-cover{
 
 
-.cover-box{
+height:230px;
 
 
-width:100%;
-
-
-aspect-ratio:16/9;
+position:relative;
 
 
 background:#111;
@@ -326,7 +694,7 @@ overflow:hidden;
 
 
 
-.case-cover{
+.case-cover img{
 
 
 width:100%;
@@ -338,9 +706,6 @@ height:100%;
 object-fit:cover;
 
 
-display:block;
-
-
 transition:.4s;
 
 
@@ -350,10 +715,67 @@ transition:.4s;
 
 
 
-.case-card:hover .case-cover{
+.case-card:hover img{
 
 
-transform:scale(1.05);
+transform:scale(1.08);
+
+
+}
+
+
+
+
+
+
+
+/* 视频按钮 */
+
+
+.play-btn{
+
+
+position:absolute;
+
+
+left:50%;
+
+
+top:50%;
+
+
+transform:
+
+translate(-50%,-50%);
+
+
+
+width:65px;
+
+
+height:65px;
+
+
+border-radius:50%;
+
+
+border:none;
+
+
+cursor:pointer;
+
+
+
+background:
+
+rgba(139,92,246,.85);
+
+
+
+color:white;
+
+
+font-size:25px;
 
 
 }
@@ -365,9 +787,8 @@ transform:scale(1.05);
 
 
 
-/* =====================
-案例内容
-===================== */
+
+/* 内容 */
 
 
 .case-info{
@@ -382,15 +803,7 @@ padding:25px;
 
 
 
-
-
-
-/*
-标题 + 类型同行
-*/
-
-
-.case-title-row{
+.case-title{
 
 
 display:flex;
@@ -399,13 +812,13 @@ display:flex;
 align-items:center;
 
 
-justify-content:space-between;
+gap:12px;
 
 
-gap:15px;
+white-space:nowrap;
 
 
-margin-bottom:15px;
+overflow:hidden;
 
 
 }
@@ -413,25 +826,10 @@ margin-bottom:15px;
 
 
 
+.case-title h3{
 
 
-
-.case-title-row h3{
-
-
-font-size:22px;
-
-
-font-weight:800;
-
-
-margin:0;
-
-
-color:white;
-
-
-white-space:nowrap;
+font-size:21px;
 
 
 overflow:hidden;
@@ -446,36 +844,13 @@ text-overflow:ellipsis;
 
 
 
-/* 视频类型 */
-
-
 .case-type{
-
-
-flex-shrink:0;
 
 
 font-size:13px;
 
 
-padding:
-
-5px 12px;
-
-
-
-border-radius:20px;
-
-
-
-background:
-
-rgba(139,92,246,.18);
-
-
-
 color:#c4b5fd;
-
 
 
 border:
@@ -483,7 +858,17 @@ border:
 1px solid rgba(139,92,246,.35);
 
 
-white-space:nowrap;
+
+padding:
+
+4px 10px;
+
+
+
+border-radius:20px;
+
+
+flex-shrink:0;
 
 
 }
@@ -492,42 +877,27 @@ white-space:nowrap;
 
 
 
-
-
-
-
-
-/* 角色说明 */
 
 
 .case-role{
 
 
+margin-top:15px;
+
+
 color:#aaa;
 
 
+line-height:1.7;
+
+
 font-size:14px;
-
-
-line-height:1.8;
-
-
-min-height:75px;
 
 
 }
 
 
 
-
-
-
-
-
-
-/* =====================
-数据
-===================== */
 
 
 .case-data{
@@ -542,181 +912,15 @@ justify-content:space-between;
 margin-top:20px;
 
 
-padding-top:20px;
+color:#999;
 
 
-border-top:
-
-1px solid rgba(255,255,255,.08);
-
-
-}
-
-
-
-
-
-.case-data div{
-
-
-text-align:center;
-
-
-flex:1;
+font-size:13px;
 
 
 }
 
 
-
-
-.case-data strong{
-
-
-display:block;
-
-
-font-size:18px;
-
-
-font-weight:800;
-
-
-color:white;
-
-
-}
-
-
-
-
-.case-data span{
-
-
-font-size:12px;
-
-
-color:#888;
-
-
-}
-
-
-
-
-
-
-
-
-/* =====================
-播放按钮
-===================== */
-
-
-.play-btn{
-
-
-margin-top:25px;
-
-
-width:100%;
-
-
-padding:
-
-12px;
-
-
-
-border-radius:30px;
-
-
-
-border:
-
-1px solid rgba(255,255,255,.15);
-
-
-
-background:
-
-rgba(255,255,255,.05);
-
-
-
-color:white;
-
-
-
-cursor:pointer;
-
-
-
-transition:.3s;
-
-
-}
-
-
-
-
-.play-btn:hover{
-
-
-background:
-
-linear-gradient(
-
-135deg,
-
-#8b5cf6,
-
-#00d9ff
-
-);
-
-
-
-border-color:transparent;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =====================
-无数据
-===================== */
-
-
-.no-data{
-
-
-height:200px;
-
-
-display:flex;
-
-
-align-items:center;
-
-
-justify-content:center;
-
-
-color:#888;
-
-
-font-size:15px;
-
-
-}
 
 
 
@@ -740,6 +944,12 @@ position:fixed;
 inset:0;
 
 
+background:
+
+rgba(0,0,0,.75);
+
+
+
 display:none;
 
 
@@ -749,18 +959,10 @@ align-items:center;
 justify-content:center;
 
 
-background:
-
-rgba(0,0,0,.85);
-
-
-
-z-index:9999;
+z-index:2000;
 
 
 }
-
-
 
 
 
@@ -779,9 +981,7 @@ display:flex;
 .video-box{
 
 
-width:
-
-min(900px,90%);
+width:min(900px,90%);
 
 
 position:relative;
@@ -822,8 +1022,7 @@ position:absolute;
 right:-15px;
 
 
-top:-45px;
-
+top:-15px;
 
 
 width:40px;
@@ -832,31 +1031,57 @@ width:40px;
 height:40px;
 
 
-
 border-radius:50%;
-
 
 
 border:none;
 
 
-
 background:#8b5cf6;
-
 
 
 color:white;
 
 
-
-font-size:28px;
-
+font-size:25px;
 
 
 cursor:pointer;
 
 
+z-index:2;
+
+
 }
+
+
+
+
+
+
+
+
+
+/* =====================
+footer
+===================== */
+
+
+footer{
+
+
+text-align:center;
+
+
+padding:40px;
+
+
+color:#777;
+
+
+}
+
+
 
 
 
@@ -874,7 +1099,6 @@ cursor:pointer;
 @media(max-width:1000px){
 
 
-
 .case-grid{
 
 
@@ -884,7 +1108,6 @@ repeat(2,1fr);
 
 
 }
-
 
 
 }
@@ -906,6 +1129,100 @@ repeat(2,1fr);
 
 
 
+.container{
+
+
+width:92%;
+
+
+}
+
+
+
+
+.navbar{
+
+
+height:65px;
+
+
+}
+
+
+
+
+.logo{
+
+
+font-size:18px;
+
+
+}
+
+
+
+
+.nav-links{
+
+
+position:absolute;
+
+
+top:65px;
+
+
+left:0;
+
+
+width:100%;
+
+
+display:none;
+
+
+flex-direction:column;
+
+
+background:
+
+rgba(5,8,22,.95);
+
+
+
+padding:30px 0;
+
+
+}
+
+
+
+
+.nav-links.show{
+
+
+display:flex;
+
+
+}
+
+
+
+
+
+.menu-toggle{
+
+
+display:block;
+
+
+}
+
+
+
+
+
+
+
 .page-header{
 
 
@@ -917,6 +1234,7 @@ padding-top:110px;
 
 
 
+
 .page-header h1{
 
 
@@ -924,7 +1242,6 @@ font-size:34px;
 
 
 }
-
 
 
 
@@ -942,41 +1259,10 @@ grid-template-columns:
 
 
 
-
-.case-info{
-
-
-padding:20px;
+.case-title h3{
 
 
-}
-
-
-
-
-
-.case-title-row{
-
-
-align-items:flex-start;
-
-
-flex-direction:column;
-
-
-gap:8px;
-
-
-}
-
-
-
-
-
-.case-title-row h3{
-
-
-font-size:20px;
+font-size:18px;
 
 
 }
@@ -993,8 +1279,30 @@ font-size:12px;
 
 
 
+}
+
+
+
+
+@media(max-width:480px){
+
+
+.case-title{
+
+
+gap:8px;
 
 
 }
 
 
+.case-title h3{
+
+
+font-size:16px;
+
+
+}
+
+
+}
