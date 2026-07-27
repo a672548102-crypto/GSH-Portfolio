@@ -8,8 +8,6 @@ box-sizing:border-box;
 
 }
 
-
-
 body{
 
 
@@ -24,10 +22,7 @@ Inter,
 Arial,
 sans-serif;
 
-
 }
-
-
 
 .container{
 
@@ -40,15 +35,9 @@ margin:auto;
 
 padding:0 28px;
 
-
 }
 
-
-
-
-
 /* 导航 */
-
 
 .navbar{
 
@@ -79,11 +68,7 @@ border-bottom:
 
 1px solid rgba(255,255,255,.08);
 
-
 }
-
-
-
 
 .navbar .container{
 
@@ -99,10 +84,7 @@ align-items:center;
 
 justify-content:space-between;
 
-
 }
-
-
 
 .logo{
 
@@ -111,21 +93,14 @@ font-size:22px;
 
 font-weight:800;
 
-
 }
-
-
 
 .logo span{
 
 
 color:#8b5cf6;
 
-
 }
-
-
-
 
 .navbar ul{
 
@@ -138,10 +113,7 @@ gap:30px;
 
 list-style:none;
 
-
 }
-
-
 
 .navbar a{
 
@@ -151,25 +123,16 @@ color:#b4abc9;
 
 text-decoration:none;
 
-
 }
-
-
 
 .navbar a:hover{
 
 
 color:white;
 
-
 }
 
-
-
-
-
 /* 标题 */
-
 
 .page-header{
 
@@ -182,10 +145,7 @@ padding-bottom:60px;
 
 text-align:center;
 
-
 }
-
-
 
 .tag{
 
@@ -201,20 +161,14 @@ color:#a78bfa;
 
 margin-bottom:15px;
 
-
 }
-
-
 
 .page-header h1{
 
 
 font-size:42px;
 
-
 }
-
-
 
 .page-header p{
 
@@ -224,15 +178,9 @@ margin-top:15px;
 
 color:#b4abc9;
 
-
 }
 
-
-
-
-
 /* 作品 */
-
 
 .design-grid{
 
@@ -250,12 +198,7 @@ gap:30px;
 
 padding-bottom:100px;
 
-
 }
-
-
-
-
 
 .design-card{
 
@@ -278,11 +221,7 @@ overflow:hidden;
 
 transition:.35s;
 
-
 }
-
-
-
 
 .design-card:hover{
 
@@ -296,10 +235,7 @@ box-shadow:
 
 0 20px 50px rgba(0,0,0,.5);
 
-
 }
-
-
 
 .design-card img{
 
@@ -312,31 +248,21 @@ height:320px;
 
 object-fit:cover;
 
-
 }
-
-
-
 
 .design-info{
 
 
 padding:20px;
 
-
 }
-
-
 
 .design-info h3{
 
 
 font-size:18px;
 
-
 }
-
-
 
 .design-info p{
 
@@ -349,11 +275,7 @@ color:#b4abc9;
 
 font-size:14px;
 
-
 }
-
-
-
 
 footer{
 
@@ -366,11 +288,7 @@ text-align:center;
 
 color:#71678f;
 
-
 }
-
-
-
 
 @media(max-width:768px){
 
@@ -381,8 +299,6 @@ padding:0 16px;
 
 }
 
-
-
 .navbar ul{
 
 
@@ -391,10 +307,7 @@ gap:12px;
 
 font-size:13px;
 
-
 }
-
-
 
 .design-grid{
 
@@ -403,29 +316,20 @@ grid-template-columns:
 
 1fr;
 
-
 }
-
-
 
 .page-header h1{
 
 
 font-size:30px;
 
-
 }
-
-
-
 
 .design-card img{
 
 
 height:auto;
 
-
 }
-
 
 }
