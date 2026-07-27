@@ -1,16 +1,34 @@
 /* =====================================
  GSH Portfolio
  collection.js
- Stable Final Version
+ Collection Final Stable
 ===================================== */
 
 
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
 
-const caseGrid =
 
+
+const caseGrid = 
 document.getElementById(
 "caseGrid"
 );
+
+
+
+if(!caseGrid){
+
+console.error(
+"没有找到案例容器"
+);
+
+return;
+
+}
+
+
 
 
 
@@ -21,62 +39,16 @@ let allCases = [];
 
 
 
-
-
-
 /* ===============================
-初始化
-=============================== */
-
-
-document.addEventListener(
-"DOMContentLoaded",
-()=>{
-
-
-loadCases();
-
-
-initModal();
-
-
-
-});
-
-
-
-
-
-
-
-
-
-
-
-
-/* ===============================
-读取案例数据
-=============================== */
-
-
-function loadCases(){
-
-
-
-
-
-if(!caseGrid)
-
-return;
-
-
-
-
+加载案例数据
+================================ */
 
 
 fetch(
 "assets/data/cases.json"
 )
+
+
 
 .then(res=>{
 
@@ -90,44 +62,41 @@ throw new Error(
 }
 
 
-
 return res.json();
 
 
 })
 
+
+
 .then(data=>{
 
 
-
-allCases=data;
-
-
-
-renderCases(
-allCases
-);
+allCases = data || [];
 
 
 
-initFilter();
+renderCases(allCases);
 
 
 
 })
 
+
+
 .catch(err=>{
 
 
 console.error(
+"案例数据读取失败:",
 err
 );
 
 
 
-caseGrid.innerHTML=`
+caseGrid.innerHTML = `
 
-<div class="empty-tip">
+<div class="empty">
 
 案例数据加载失败
 
@@ -141,14 +110,6 @@ caseGrid.innerHTML=`
 
 
 
-}
-
-
-
-
-
-
-
 
 
 
@@ -157,28 +118,33 @@ caseGrid.innerHTML=`
 
 /* ===============================
 生成案例卡片
-=============================== */
+================================ */
 
 
-function renderCases(list){
-
-
-
-
-
-if(!list.length){
+function renderCases(cases){
 
 
 
-caseGrid.innerHTML=`
+let html = "";
 
-<div class="empty-tip">
+
+
+
+
+
+if(!cases.length){
+
+
+caseGrid.innerHTML = `
+
+<div class="empty">
 
 暂无案例
 
 </div>
 
 `;
+
 
 return;
 
@@ -191,25 +157,13 @@ return;
 
 
 
-
-let html="";
-
-
-
-
-
-
-
-
-list.forEach(item=>{
+cases.forEach(item=>{
 
 
 
 
 
 html += `
-
-
 
 <div class="case-card"
 
@@ -219,13 +173,7 @@ data-video="${item.video || ''}">
 
 
 
-
-
-
 <div class="cover-box">
-
-
-
 
 
 <img
@@ -234,28 +182,11 @@ class="case-cover"
 
 src="${item.cover || ''}"
 
-alt="${item.title || '案例'}"
+alt="${item.title || '案例封面'}"
 
 loading="lazy"
 
 >
-
-
-
-
-
-<div class="hover-play">
-
-<span>
-
-▶
-
-</span>
-
-</div>
-
-
-
 
 
 </div>
@@ -274,9 +205,6 @@ loading="lazy"
 
 
 
-
-
-
 <div class="case-number">
 
 CASE ${String(item.id).padStart(2,"0")}
@@ -290,6 +218,8 @@ CASE ${String(item.id).padStart(2,"0")}
 
 
 
+<div class="title-line">
+
 
 <h3>
 
@@ -300,17 +230,13 @@ ${item.title || "未命名案例"}
 
 
 
+<span class="type-tag">
 
-
-
-
-<div class="tags">
-
-<span>
-
-${item.category || item.type || "案例"}
+${item.type || "短视频"}
 
 </span>
+
+
 
 </div>
 
@@ -321,10 +247,28 @@ ${item.category || item.type || "案例"}
 
 
 
+
+<div class="tags">
+
+
+<span>
+
+${item.category || "案例"}
+
+</span>
+
+
+</div>
+
+
+
+
+
+
+
+
+
 <div class="data-box">
-
-
-
 
 
 
@@ -403,8 +347,8 @@ ${item.comments || "-"}
 
 
 
-
 </div>
+
 
 
 
@@ -430,12 +374,7 @@ class="detail-link">
 
 
 
-
-
 </div>
-
-
-
 
 
 
@@ -443,7 +382,6 @@ class="detail-link">
 
 
 `;
-
 
 
 
@@ -462,8 +400,7 @@ caseGrid.innerHTML = html;
 
 
 
-
-bindCards();
+bindVideo();
 
 
 
@@ -478,23 +415,12 @@ bindCards();
 
 
 
-
-
-
-
-
 /* ===============================
-筛选
-=============================== */
+分类筛选
+================================ */
 
 
-function initFilter(){
-
-
-
-
-
-const buttons =
+const filters =
 
 document.querySelectorAll(
 ".filter"
@@ -504,27 +430,27 @@ document.querySelectorAll(
 
 
 
-
-buttons.forEach(btn=>{
-
+filters.forEach(btn=>{
 
 
 
-
-btn.onclick=()=>{
-
+btn.addEventListener(
+"click",
+()=>{
 
 
 
 
 
-buttons.forEach(b=>
+filters.forEach(item=>{
 
-b.classList.remove(
+
+item.classList.remove(
 "active"
-)
-
 );
+
+
+});
 
 
 
@@ -552,17 +478,17 @@ btn.dataset.filter;
 if(type==="all"){
 
 
+
 renderCases(
 allCases
 );
+
 
 
 return;
 
 
 }
-
-
 
 
 
@@ -575,13 +501,7 @@ const result =
 allCases.filter(item=>{
 
 
-return (
-
-item.category===type ||
-
-item.type===type
-
-);
+return item.category === type;
 
 
 });
@@ -591,15 +511,7 @@ item.type===type
 
 
 
-
-renderCases(
-result
-);
-
-
-
-};
-
+renderCases(result);
 
 
 
@@ -607,13 +519,7 @@ result
 });
 
 
-
-}
-
-
-
-
-
+});
 
 
 
@@ -624,111 +530,8 @@ result
 
 
 /* ===============================
-绑定卡片
-=============================== */
-
-
-function bindCards(){
-
-
-
-
-
-document.querySelectorAll(
-".case-card"
-)
-
-.forEach(card=>{
-
-
-
-
-
-card.addEventListener(
-"click",
-(e)=>{
-
-
-
-
-
-// 点击详情按钮不播放
-
-if(
-e.target.closest(
-".detail-link"
-)
-
-){
-
-return;
-
-
-}
-
-
-
-
-
-
-
-const video =
-
-card.dataset.video;
-
-
-
-
-
-
-
-if(!video)
-
-return;
-
-
-
-
-
-
-
-
-openVideo(video);
-
-
-
-
-
-
-});
-
-
-
-
-
-
-});
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/* ===============================
-视频弹窗
-=============================== */
+视频播放
+================================ */
 
 
 const modal =
@@ -747,6 +550,7 @@ document.getElementById(
 
 
 
+
 const closeBtn =
 
 document.getElementById(
@@ -761,71 +565,75 @@ document.getElementById(
 
 
 
-function openVideo(src){
+function bindVideo(){
 
 
 
+const cards =
 
-
-if(!modal || !player)
-
-return;
-
-
-
-
-
-
-player.src=src;
-
-
-
-modal.classList.add(
-"active"
+document.querySelectorAll(
+".case-card"
 );
 
 
 
-player.load();
+
+
+
+cards.forEach(card=>{
 
 
 
 
 
-// PC尝试播放
-
-if(window.innerWidth>768){
-
-
-player.play()
-
-.catch(()=>{});
-
-
-}
-
-
-
-
-}
+card.addEventListener(
+"click",
+function(e){
 
 
 
 
 
 
+// 点击详情按钮不播放
 
+if(
+e.target.closest(
+".detail-link"
+)
 
+){
 
-function closeVideo(){
-
-
-
-
-
-if(!player || !modal)
 
 return;
+
+
+}
+
+
+
+
+
+
+
+const video =
+
+this.dataset.video;
+
+
+
+
+
+
+if(!video){
+
+
+return;
+
+
+}
+
+
 
 
 
@@ -836,8 +644,76 @@ player.pause();
 
 
 
+player.currentTime = 0;
 
-player.currentTime=0;
+
+
+player.src = video;
+
+
+
+
+
+modal.classList.add(
+"active"
+);
+
+
+
+
+
+player.load();
+
+
+
+
+
+player.play()
+
+.catch(()=>{
+
+
+console.log(
+"等待用户点击播放"
+);
+
+
+});
+
+
+
+});
+
+
+});
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* ===============================
+关闭弹窗
+================================ */
+
+
+function closeVideo(){
+
+
+
+if(!player)
+return;
+
+
+
+player.pause();
 
 
 
@@ -852,10 +728,10 @@ player.load();
 
 
 
+
 modal.classList.remove(
 "active"
 );
-
 
 
 
@@ -867,24 +743,14 @@ modal.classList.remove(
 
 
 
-
-
-
-
-
-function initModal(){
-
-
-
-
-
-
 if(closeBtn){
 
 
-closeBtn.onclick=
 
-closeVideo;
+closeBtn.addEventListener(
+"click",
+closeVideo
+);
 
 
 }
@@ -899,10 +765,14 @@ if(modal){
 
 
 
-modal.onclick=(e)=>{
+modal.addEventListener(
+"click",
+e=>{
 
 
-if(e.target===modal){
+if(
+e.target === modal
+){
 
 
 closeVideo();
@@ -911,9 +781,7 @@ closeVideo();
 }
 
 
-
-};
-
+});
 
 
 }
@@ -929,7 +797,9 @@ document.addEventListener(
 e=>{
 
 
-if(e.key==="Escape"){
+if(
+e.key === "Escape"
+){
 
 
 closeVideo();
@@ -938,9 +808,9 @@ closeVideo();
 }
 
 
-
 });
 
 
 
-}
+
+});
