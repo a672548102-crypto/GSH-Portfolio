@@ -1,14 +1,13 @@
 /* =====================================
  GSH Portfolio
  collection.css
- Case Page Final Stable
+ Collection Page Final
 ===================================== */
 
 
 /* =====================
 基础
 ===================== */
-
 
 *{
 margin:0;
@@ -26,16 +25,11 @@ box-sizing:border-box;
 
 --bg:#050816;
 
---card:rgba(255,255,255,.06);
-
---text:#ffffff;
-
 }
 
 
 
 body{
-
 
 font-family:
 
@@ -62,21 +56,6 @@ min-height:100vh;
 
 overflow-x:hidden;
 
-
-}
-
-
-
-
-.container{
-
-
-width:min(1200px,90%);
-
-
-margin:auto;
-
-
 }
 
 
@@ -85,24 +64,19 @@ margin:auto;
 
 
 /* =====================
-科技背景
+背景网格
 ===================== */
 
 
 body::before{
 
-
 content:"";
-
 
 position:fixed;
 
-
 inset:0;
 
-
-z-index:-2;
-
+z-index:-1;
 
 
 background-image:
@@ -127,11 +101,11 @@ background-size:
 55px 55px;
 
 
-
 animation:gridMove 25s linear infinite;
 
 
 }
+
 
 
 
@@ -154,6 +128,22 @@ background-position:55px 55px;
 
 
 }
+
+
+
+
+
+
+
+.container{
+
+width:min(1200px,90%);
+
+margin:auto;
+
+}
+
+
 
 
 
@@ -217,7 +207,6 @@ border-bottom:
 
 
 
-
 .nav-container{
 
 
@@ -262,7 +251,6 @@ white-space:nowrap;
 
 
 
-
 .logo span{
 
 
@@ -275,16 +263,17 @@ color:#c4b5fd;
 
 
 
+
 .nav-links{
 
 
 display:flex;
 
 
-gap:35px;
-
-
 align-items:center;
+
+
+gap:35px;
 
 
 list-style:none;
@@ -328,6 +317,8 @@ color:white;
 
 
 
+
+
 .menu-toggle{
 
 
@@ -344,7 +335,6 @@ cursor:pointer;
 
 
 }
-
 
 
 
@@ -376,8 +366,6 @@ margin:5px;
 
 
 
-
-
 /* =====================
 页面标题
 ===================== */
@@ -399,6 +387,7 @@ text-align:center;
 
 
 
+
 .tag{
 
 
@@ -413,11 +402,9 @@ padding:
 border-radius:30px;
 
 
-
 background:
 
-rgba(139,92,6,0.15);
-
+rgba(139,92,246,.15);
 
 
 border:
@@ -426,16 +413,17 @@ border:
 
 
 
-font-size:13px;
-
-
 color:#ddd6fe;
+
+
+font-size:13px;
 
 
 letter-spacing:2px;
 
 
 }
+
 
 
 
@@ -464,9 +452,6 @@ font-weight:900;
 color:#aaa;
 
 
-font-size:16px;
-
-
 }
 
 
@@ -476,8 +461,9 @@ font-size:16px;
 
 
 
+
 /* =====================
-分类按钮
+筛选按钮
 ===================== */
 
 
@@ -500,7 +486,6 @@ flex-wrap:wrap;
 
 
 }
-
 
 
 
@@ -538,6 +523,7 @@ transition:.3s;
 
 
 
+
 .filter:hover,
 .filter.active{
 
@@ -569,7 +555,7 @@ border-color:transparent;
 
 
 /* =====================
-案例网格
+案例区域
 ===================== */
 
 
@@ -584,7 +570,6 @@ padding-bottom:100px;
 
 
 
-
 .case-grid{
 
 
@@ -594,7 +579,6 @@ display:grid;
 grid-template-columns:
 
 repeat(3,1fr);
-
 
 
 gap:30px;
@@ -633,14 +617,25 @@ border:
 border-radius:22px;
 
 
+
 overflow:hidden;
 
 
 transition:.35s;
 
 
+}
+
+
+/* 删除小三角 */
+
+.case-card::before,
+.case-card::after{
+
+display:none;
 
 }
+
 
 
 
@@ -649,13 +644,12 @@ transition:.35s;
 
 transform:
 
-translateY(-10px);
-
+translateY(-8px);
 
 
 border-color:
 
-rgba(139,92,246,.8);
+rgba(139,92,246,.7);
 
 
 
@@ -665,8 +659,6 @@ box-shadow:
 
 
 }
-
-
 
 
 
@@ -686,9 +678,6 @@ position:relative;
 background:#111;
 
 
-overflow:hidden;
-
-
 }
 
 
@@ -706,21 +695,6 @@ height:100%;
 object-fit:cover;
 
 
-transition:.4s;
-
-
-}
-
-
-
-
-
-.case-card:hover img{
-
-
-transform:scale(1.08);
-
-
 }
 
 
@@ -729,7 +703,42 @@ transform:scale(1.08);
 
 
 
-/* 视频按钮 */
+
+
+/* 图片不存在 */
+
+.no-data{
+
+
+height:100%;
+
+
+display:flex;
+
+
+align-items:center;
+
+
+justify-content:center;
+
+
+color:#777;
+
+
+font-size:14px;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* 播放按钮 */
 
 
 .play-btn{
@@ -765,11 +774,9 @@ border:none;
 cursor:pointer;
 
 
-
 background:
 
 rgba(139,92,246,.85);
-
 
 
 color:white;
@@ -787,8 +794,9 @@ font-size:25px;
 
 
 
-
-/* 内容 */
+/* =====================
+案例内容
+===================== */
 
 
 .case-info{
@@ -815,9 +823,6 @@ align-items:center;
 gap:12px;
 
 
-white-space:nowrap;
-
-
 overflow:hidden;
 
 
@@ -825,11 +830,13 @@ overflow:hidden;
 
 
 
-
 .case-title h3{
 
 
 font-size:21px;
+
+
+white-space:nowrap;
 
 
 overflow:hidden;
@@ -842,21 +849,10 @@ text-overflow:ellipsis;
 
 
 
-
-
 .case-type{
 
 
 font-size:13px;
-
-
-color:#c4b5fd;
-
-
-border:
-
-1px solid rgba(139,92,246,.35);
-
 
 
 padding:
@@ -864,8 +860,23 @@ padding:
 4px 10px;
 
 
-
 border-radius:20px;
+
+
+white-space:nowrap;
+
+
+color:#ddd6fe;
+
+
+background:
+
+rgba(139,92,246,.15);
+
+
+border:
+
+1px solid rgba(139,92,246,.3);
 
 
 flex-shrink:0;
@@ -878,20 +889,19 @@ flex-shrink:0;
 
 
 
-
 .case-role{
 
 
 margin-top:15px;
 
 
-color:#aaa;
-
-
-line-height:1.7;
-
-
 font-size:14px;
+
+
+line-height:1.8;
+
+
+color:#aaa;
 
 
 }
@@ -899,8 +909,10 @@ font-size:14px;
 
 
 
-
 .case-data{
+
+
+margin-top:20px;
 
 
 display:flex;
@@ -909,18 +921,13 @@ display:flex;
 justify-content:space-between;
 
 
-margin-top:20px;
+font-size:13px;
 
 
 color:#999;
 
 
-font-size:13px;
-
-
 }
-
-
 
 
 
@@ -944,12 +951,6 @@ position:fixed;
 inset:0;
 
 
-background:
-
-rgba(0,0,0,.75);
-
-
-
 display:none;
 
 
@@ -959,10 +960,16 @@ align-items:center;
 justify-content:center;
 
 
+background:
+
+rgba(0,0,0,.75);
+
+
 z-index:2000;
 
 
 }
+
 
 
 
@@ -973,7 +980,6 @@ display:flex;
 
 
 }
-
 
 
 
@@ -991,8 +997,6 @@ position:relative;
 
 
 
-
-
 .video-box video{
 
 
@@ -1006,9 +1010,6 @@ background:black;
 
 
 }
-
-
-
 
 
 
@@ -1049,9 +1050,6 @@ font-size:25px;
 cursor:pointer;
 
 
-z-index:2;
-
-
 }
 
 
@@ -1080,8 +1078,6 @@ color:#777;
 
 
 }
-
-
 
 
 
@@ -1162,6 +1158,7 @@ font-size:18px;
 
 
 
+
 .nav-links{
 
 
@@ -1183,13 +1180,15 @@ display:none;
 flex-direction:column;
 
 
-background:
-
-rgba(5,8,22,.95);
-
+gap:25px;
 
 
 padding:30px 0;
+
+
+background:
+
+rgba(5,8,22,.95);
 
 
 }
@@ -1208,7 +1207,6 @@ display:flex;
 
 
 
-
 .menu-toggle{
 
 
@@ -1216,9 +1214,6 @@ display:block;
 
 
 }
-
-
-
 
 
 
@@ -1233,8 +1228,6 @@ padding-top:110px;
 
 
 
-
-
 .page-header h1{
 
 
@@ -1242,7 +1235,6 @@ font-size:34px;
 
 
 }
-
 
 
 
@@ -1259,10 +1251,20 @@ grid-template-columns:
 
 
 
+.case-title{
+
+
+gap:8px;
+
+
+}
+
+
+
 .case-title h3{
 
 
-font-size:18px;
+font-size:17px;
 
 
 }
@@ -1275,8 +1277,12 @@ font-size:18px;
 font-size:12px;
 
 
-}
+padding:
 
+3px 8px;
+
+
+}
 
 
 }
@@ -1287,19 +1293,21 @@ font-size:12px;
 @media(max-width:480px){
 
 
-.case-title{
+
+.case-title h3{
 
 
-gap:8px;
+font-size:15px;
 
 
 }
 
 
-.case-title h3{
+
+.case-type{
 
 
-font-size:16px;
+font-size:11px;
 
 
 }
