@@ -1,13 +1,18 @@
 /* =====================================
- GSH Portfolio
- style.css
- Homepage Final Stable
+GSH Portfolio
+style.css
+Homepage Fixed Version
+修复：
+1. 首页数据显示
+2. 删除头像描边
+3. 保留科技风
 ===================================== */
 
 
 /* =====================
 基础
 ===================== */
+
 
 *{
 margin:0;
@@ -75,8 +80,6 @@ position:relative;
 
 
 
-
-
 /* =====================
 科技背景
 ===================== */
@@ -126,9 +129,7 @@ animation:
 gridMove 25s linear infinite;
 
 
-
 }
-
 
 
 
@@ -138,18 +139,14 @@ gridMove 25s linear infinite;
 
 from{
 
-background-position:
-
-0 0;
+background-position:0 0;
 
 }
 
 
 to{
 
-background-position:
-
-55px 55px;
+background-position:55px 55px;
 
 }
 
@@ -160,8 +157,6 @@ background-position:
 
 
 
-
-/* 光晕 */
 
 
 body::after{
@@ -218,6 +213,7 @@ lightMove 12s infinite alternate;
 
 
 
+
 @keyframes lightMove{
 
 
@@ -241,10 +237,6 @@ transform:translateY(60px);
 
 
 
-
-
-
-
 .container{
 
 
@@ -255,6 +247,11 @@ margin:auto;
 
 
 }
+
+
+
+
+
 
 /* =====================
 导航
@@ -313,8 +310,6 @@ border-bottom:
 
 
 
-
-
 .nav-container{
 
 
@@ -359,7 +354,6 @@ white-space:nowrap;
 
 
 
-
 .logo span{
 
 
@@ -388,6 +382,7 @@ list-style:none;
 
 
 }
+
 
 
 
@@ -424,10 +419,6 @@ color:white;
 
 
 
-
-
-/* 手机菜单按钮 */
-
 .menu-toggle{
 
 
@@ -450,7 +441,6 @@ cursor:pointer;
 
 
 }
-
 
 
 
@@ -484,11 +474,10 @@ transition:.3s;
 
 
 
-
-
 /* =====================
-Hero区域
+Hero
 ===================== */
+
 
 
 .hero{
@@ -537,11 +526,11 @@ align-items:center;
 
 
 
-
-
 /* =====================
-头像
+头像区域
+已删除紫蓝描边
 ===================== */
+
 
 
 .avatar-box{
@@ -572,34 +561,19 @@ width:210px;
 height:210px;
 
 
-padding:5px;
-
-
 border-radius:50%;
-
 
 
 position:relative;
 
 
-
-background:
-
-linear-gradient(
-135deg,
-#8b5cf6,
-#00d9ff
-);
+padding:0;
 
 
-
-box-shadow:
-
-0 0 30px rgba(139,92,246,.35);
+background:none;
 
 
-
-transition:.35s;
+box-shadow:none;
 
 
 }
@@ -607,60 +581,16 @@ transition:.35s;
 
 
 
-
-
-/*
-外层光晕
-
-注意：
-不用z-index:-1
-
-避免手机端消失
-*/
+/* 删除外层光圈 */
 
 
 .avatar-ring::before{
 
 
-content:"";
-
-
-position:absolute;
-
-
-inset:-8px;
-
-
-border-radius:50%;
-
-
-
-background:
-
-linear-gradient(
-135deg,
-rgba(139,92,246,.6),
-rgba(0,217,255,.5)
-);
-
-
-
-filter:
-
-blur(18px);
-
-
-
-opacity:.45;
-
-
-z-index:0;
+display:none;
 
 
 }
-
-
-
 
 
 
@@ -680,12 +610,6 @@ border-radius:50%;
 object-fit:cover;
 
 
-position:relative;
-
-
-z-index:1;
-
-
 display:block;
 
 
@@ -698,20 +622,21 @@ display:block;
 .avatar-ring:hover{
 
 
-transform:
-
-scale(1.05);
+transform:scale(1.05);
 
 
-box-shadow:
-
-0 0 50px rgba(0,217,255,.35);
+transition:.35s;
 
 
 }
 
+
+
+
+
+
 /* =====================
-Hero文字区域
+Hero文字
 ===================== */
 
 
@@ -722,6 +647,7 @@ max-width:650px;
 
 
 }
+
 
 
 
@@ -743,7 +669,7 @@ border-radius:30px;
 
 background:
 
-rgba(139,92,246,.15);
+rgba(139,92,6,0.15);
 
 
 
@@ -763,8 +689,6 @@ letter-spacing:1px;
 
 
 }
-
-
 
 
 
@@ -791,6 +715,7 @@ font-weight:900;
 
 
 
+
 .hero-content h1 span{
 
 
@@ -798,7 +723,6 @@ color:#c4b5fd;
 
 
 }
-
 
 
 
@@ -839,14 +763,6 @@ max-width:580px;
 
 }
 
-
-
-
-
-
-
-
-
 /* =====================
 数据统计
 ===================== */
@@ -861,14 +777,10 @@ display:flex;
 gap:50px;
 
 
-margin:
-
-45px 0;
+margin:45px 0;
 
 
 }
-
-
 
 
 
@@ -887,6 +799,9 @@ text-align:left;
 
 
 display:block;
+
+
+min-width:90px;
 
 
 font-size:38px;
@@ -915,7 +830,11 @@ background-clip:text;
 color:transparent;
 
 
+opacity:1;
+
+
 }
+
 
 
 
@@ -930,9 +849,6 @@ color:#999;
 
 
 }
-
-
-
 
 
 
@@ -954,7 +870,6 @@ gap:20px;
 
 
 }
-
 
 
 
@@ -1051,6 +966,9 @@ border:none;
 
 
 
+
+
+
 /* =====================
 个人优势
 ===================== */
@@ -1083,6 +1001,7 @@ margin-bottom:50px;
 
 
 }
+
 
 
 
@@ -1201,9 +1120,6 @@ font-size:15px;
 
 
 
-
-
-
 /* =====================
 联系区域
 ===================== */
@@ -1258,6 +1174,7 @@ gap:50px;
 
 
 
+
 .qr div{
 
 
@@ -1282,6 +1199,7 @@ border:
 
 
 }
+
 
 
 
@@ -1323,9 +1241,6 @@ color:#aaa;
 
 
 
-
-
-
 /* =====================
 footer
 ===================== */
@@ -1347,8 +1262,15 @@ color:#777;
 
 }
 
+
+
+
+
+
+
+
 /* =====================
-平板适配
+平板
 ===================== */
 
 
@@ -1368,7 +1290,6 @@ gap:40px;
 
 
 }
-
 
 
 
@@ -1417,9 +1338,8 @@ gap:30px;
 
 
 
-
 /* =====================
-手机适配
+手机
 ===================== */
 
 
@@ -1440,9 +1360,6 @@ width:92%;
 
 
 
-
-/* 导航 */
-
 .navbar{
 
 
@@ -1450,18 +1367,6 @@ height:65px;
 
 
 }
-
-
-
-
-.nav-container{
-
-
-position:relative;
-
-
-}
-
 
 
 
@@ -1529,6 +1434,7 @@ border-bottom:
 
 
 
+
 .nav-links.show{
 
 
@@ -1536,19 +1442,6 @@ display:flex;
 
 
 }
-
-
-
-
-
-.nav-links a{
-
-
-font-size:14px;
-
-
-}
-
 
 
 
@@ -1568,7 +1461,6 @@ display:block;
 
 
 
-
 .menu-toggle.active span:nth-child(1){
 
 
@@ -1579,6 +1471,7 @@ rotate(45deg);
 
 
 }
+
 
 
 
@@ -1610,10 +1503,7 @@ rotate(-45deg);
 
 
 
-
-
-
-/* 首页 */
+/* Hero */
 
 
 .hero{
@@ -1667,17 +1557,6 @@ height:170px;
 
 
 
-.avatar-ring::before{
-
-
-inset:-6px;
-
-
-}
-
-
-
-
 
 .hero-content{
 
@@ -1696,8 +1575,6 @@ align-items:center;
 
 
 
-
-
 .hero-content h1{
 
 
@@ -1705,6 +1582,8 @@ font-size:38px;
 
 
 }
+
+
 
 
 
@@ -1736,8 +1615,6 @@ line-height:1.9;
 
 
 
-
-
 .stats{
 
 
@@ -1750,9 +1627,7 @@ justify-content:center;
 gap:20px;
 
 
-margin:
-
-35px 0;
+margin:35px 0;
 
 
 }
@@ -1767,6 +1642,8 @@ text-align:center;
 
 
 }
+
+
 
 
 
@@ -1795,11 +1672,7 @@ font-size:12px;
 
 
 
-
 .buttons{
-
-
-width:100%;
 
 
 justify-content:center;
@@ -1809,6 +1682,7 @@ flex-wrap:wrap;
 
 
 }
+
 
 
 
@@ -1828,19 +1702,17 @@ padding:
 
 
 
-
 /* 优势 */
 
 
 .advantages{
 
 
-padding:
-
-70px 0;
+padding:70px 0;
 
 
 }
+
 
 
 
@@ -1895,9 +1767,7 @@ padding:
 .contact{
 
 
-padding:
-
-70px 0;
+padding:70px 0;
 
 
 }
@@ -1976,6 +1846,8 @@ font-size:16px;
 
 
 
+
+
 .hero-content h1{
 
 
@@ -1983,6 +1855,8 @@ font-size:32px;
 
 
 }
+
+
 
 
 
@@ -2069,12 +1943,12 @@ font-size:20px;
 
 
 
+
+
 .qr div{
 
 
-padding:
-
-15px;
+padding:15px;
 
 
 }
@@ -2096,3 +1970,4 @@ height:110px;
 
 
 }
+
