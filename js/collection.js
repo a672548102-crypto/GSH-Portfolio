@@ -1,9 +1,8 @@
 /* =====================================
 GSH Portfolio
 collection.js
-案例集最终版
+案例集最终稳定版
 ===================================== */
-
 
 
 let casesData = [];
@@ -12,24 +11,27 @@ let casesData = [];
 
 
 
-// =======================
-// 获取案例数据
-// =======================
+/* =======================
+获取案例数据
+======================= */
 
 
 fetch("data/cases.json")
 
+
 .then(res=>{
 
 
-if(!res.ok){
+    if(!res.ok){
 
-throw new Error("cases.json不存在");
+        throw new Error(
+            "cases.json不存在"
+        );
 
-}
+    }
 
 
-return res.json();
+    return res.json();
 
 
 })
@@ -38,31 +40,39 @@ return res.json();
 .then(data=>{
 
 
-casesData=data;
+    casesData=data;
 
 
-renderCases(casesData);
+    renderCases(casesData);
 
 
 })
 
 
-
 .catch(err=>{
 
 
-console.error(err);
+    console.error(err);
 
 
-document.querySelector("#caseGrid").innerHTML=`
 
-<div class="no-data">
+    const grid=document.querySelector("#caseGrid");
 
-案例数据暂未找到
 
-</div>
+    if(grid){
 
-`;
+        grid.innerHTML=`
+
+        <div class="no-data">
+
+        案例数据暂未找到
+
+        </div>
+
+        `;
+
+    }
+
 
 });
 
@@ -74,175 +84,197 @@ document.querySelector("#caseGrid").innerHTML=`
 
 
 
-// =======================
-// 渲染案例
-// =======================
+/* =======================
+渲染案例
+======================= */
 
 
 function renderCases(list){
 
 
+    const grid=document.querySelector("#caseGrid");
 
-const grid=document.querySelector("#caseGrid");
 
+    if(!grid)return;
 
 
-grid.innerHTML="";
 
+    grid.innerHTML="";
 
 
 
-list.forEach(item=>{
 
 
+    list.forEach(item=>{
 
-const card=document.createElement("div");
 
+        const card=document.createElement("div");
 
-card.className="case-card";
 
+        card.className="case-card";
 
 
 
 
-card.innerHTML=`
 
-<div class="cover-box">
+        card.innerHTML=`
 
+        <div class="cover-box">
 
-<img
 
-src="${item.cover}"
+            <img
 
-class="case-cover"
+            src="${item.cover}"
 
-alt="${item.title}"
+            class="case-cover"
 
-onerror="this.parentNode.innerHTML='<div class=no-data>该数据暂未找到</div>'"
+            alt="${item.title}"
 
->
+            >
 
+        </div>
 
-</div>
 
 
 
 
+        <div class="case-info">
 
 
-<div class="case-info">
 
+            <div class="case-title">
 
 
+                <h3>
 
+                ${item.title}
 
-<div class="case-title">
+                </h3>
 
 
-<h3>
 
-${item.title}
+                <span class="type-tag">
 
-</h3>
+                ${item.type || "案例类"}
 
+                </span>
 
 
-<span class="type-tag">
 
-${item.type}
+            </div>
 
-</span>
 
 
-</div>
 
 
 
+            <p class="case-role">
 
+            ${item.role || "该数据暂未找到"}
 
+            </p>
 
 
-<p class="case-role">
 
 
-${item.role}
 
-</p>
 
+            <div class="case-data">
 
 
+                <span>
 
+                播放 ${item.views || "-"}
 
+                </span>
 
 
-<div class="case-data">
 
+                <span>
 
-<span>
+                点赞 ${item.likes || "-"}
 
-播放 ${item.views}
+                </span>
 
-</span>
 
 
-<span>
+                <span>
 
-点赞 ${item.likes}
+                评论 ${item.comments || "-"}
 
-</span>
+                </span>
 
 
-<span>
 
-评论 ${item.comments}
+            </div>
 
-</span>
 
 
-</div>
+        </div>
 
 
+        `;
 
 
 
-</div>
 
 
-`;
 
 
 
+        // 图片加载失败
 
+        const img=card.querySelector(".case-cover");
 
 
-// 点击播放
 
-card.addEventListener(
-"click",
-()=>{
+        img.onerror=function(){
 
 
-openVideo(item.video);
+            this.parentNode.innerHTML=`
+
+            <div class="no-data">
+
+            该数据暂未找到
+
+            </div>
+
+            `;
+
+
+        };
+
+
+
+
+
+
+
+        // 点击播放视频
+
+        card.onclick=function(){
+
+
+            openVideo(item.video);
+
+
+        };
+
+
+
+
+
+
+
+        grid.appendChild(card);
+
+
+
+    });
 
 
 }
 
-);
-
-
-
-
-
-
-grid.appendChild(card);
-
-
-
-});
-
-
-
-}
 
 
 
@@ -251,12 +283,9 @@ grid.appendChild(card);
 
 
 
-
-
-
-// =======================
-// 分类筛选
-// =======================
+/* =======================
+分类筛选
+======================= */
 
 
 
@@ -264,62 +293,76 @@ const filters=document.querySelectorAll(".filter");
 
 
 
-
 filters.forEach(btn=>{
 
 
-btn.addEventListener(
-"click",
-()=>{
-
-
-document
-.querySelector(".filter.active")
-.classList.remove("active");
+    btn.addEventListener(
+    "click",
+    ()=>{
 
 
 
-btn.classList.add("active");
+        const active=document.querySelector(
+            ".filter.active"
+        );
 
 
+        if(active){
 
+            active.classList.remove(
+                "active"
+            );
 
-
-const type=btn.dataset.filter;
-
-
+        }
 
 
 
 
-if(type==="all"){
-
-
-renderCases(casesData);
-
-
-}
-
-else{
-
-
-const result=casesData.filter(
-item=>item.category===type
-);
+        btn.classList.add(
+            "active"
+        );
 
 
 
-renderCases(result);
 
 
-}
+        const type=btn.dataset.filter;
 
 
 
-}
 
-);
 
+
+        if(type==="all"){
+
+
+            renderCases(
+                casesData
+            );
+
+
+        }
+
+        else{
+
+
+            const result=
+            casesData.filter(
+                item=>
+                item.category===type
+            );
+
+
+
+            renderCases(result);
+
+
+
+        }
+
+
+
+    });
 
 
 });
@@ -334,22 +377,24 @@ renderCases(result);
 
 
 
-// =======================
-// 视频弹窗
-// =======================
+/* =======================
+视频弹窗
+======================= */
 
 
 
-const modal=document.querySelector("#videoModal");
-
-const player=document.querySelector("#player");
-
-const closeBtn=document.querySelector("#closeBtn");
-
-const videoError=document.querySelector("#videoError");
+const modal=
+document.querySelector("#videoModal");
 
 
 
+const player=
+document.querySelector("#player");
+
+
+
+const closeBtn=
+document.querySelector("#closeBtn");
 
 
 
@@ -359,37 +404,51 @@ function openVideo(src){
 
 
 
-if(!src){
+    if(!modal || !player){
+
+        return;
+
+    }
 
 
-showVideoError();
 
 
-return;
+    if(!src){
+
+
+        showVideoError();
+
+
+        return;
+
+
+    }
+
+
+
+
+
+    player.style.display="block";
+
+
+    player.src=src;
+
+
+
+    modal.classList.add(
+        "show"
+    );
+
+
+
+
+    player.play()
+    .catch(()=>{});
+
 
 
 }
 
-
-
-
-player.src=src;
-
-
-videoError.style.display="none";
-
-
-
-modal.classList.add("show");
-
-
-
-player.play()
-.catch(()=>{});
-
-
-
-}
 
 
 
@@ -400,13 +459,15 @@ player.play()
 function showVideoError(){
 
 
-modal.classList.add("show");
+
+    modal.classList.add(
+        "show"
+    );
 
 
-player.style.display="none";
 
+    player.style.display="none";
 
-videoError.style.display="block";
 
 
 }
@@ -415,27 +476,37 @@ videoError.style.display="block";
 
 
 
-//关闭
+
+
+//关闭按钮
+
+
+if(closeBtn){
 
 
 closeBtn.onclick=function(){
 
 
 
-modal.classList.remove("show");
+    modal.classList.remove(
+        "show"
+    );
 
 
 
-player.pause();
+    player.pause();
 
 
-player.currentTime=0;
+
+    player.currentTime=0;
 
 
-player.src="";
+
+    player.src="";
 
 
-player.style.display="block";
+
+    player.style.display="block";
 
 
 
@@ -443,11 +514,20 @@ player.style.display="block";
 
 
 
+}
 
 
 
 
-//点击黑色区域关闭
+
+
+
+
+// 点击黑色区域关闭
+
+
+if(modal){
+
 
 
 modal.addEventListener(
@@ -455,17 +535,26 @@ modal.addEventListener(
 e=>{
 
 
-if(e.target===modal){
+    if(e.target===modal){
 
 
-closeBtn.click();
+        if(closeBtn){
+
+            closeBtn.click();
+
+        }
+
+
+    }
+
+
+});
 
 
 }
 
 
 
-});
 
 
 
@@ -473,32 +562,37 @@ closeBtn.click();
 
 
 
+/* =======================
+手机导航
+======================= */
+
+
+const menuBtn=
+document.querySelector(".menu-toggle");
 
 
 
-// =======================
-// 手机导航
-// =======================
-
-
-const menuBtn=document.querySelector(".menu-toggle");
-
-
-const nav=document.querySelector(".nav-links");
+const nav=
+document.querySelector(".nav-links");
 
 
 
-if(menuBtn){
+
+if(menuBtn && nav){
 
 
 
 menuBtn.onclick=()=>{
 
 
-menuBtn.classList.toggle("active");
+    menuBtn.classList.toggle(
+        "active"
+    );
 
 
-nav.classList.toggle("show");
+    nav.classList.toggle(
+        "show"
+    );
 
 
 };
@@ -506,7 +600,3 @@ nav.classList.toggle("show");
 
 
 }
-
-
-
-
