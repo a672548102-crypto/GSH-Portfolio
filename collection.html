@@ -5,7 +5,7 @@
 
 <meta charset="UTF-8">
 
-<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
 <title>
@@ -13,19 +13,27 @@
 </title>
 
 
+<link rel="icon" href="assets/icons/favicon.ico">
+
+
+<!-- collection专用css -->
 <link rel="stylesheet" href="css/collection.css">
 
 
 </head>
 
 
+
 <body>
 
 
+<!-- =====================
+导航
+===================== -->
 
-<!-- 导航 -->
 
 <nav class="navbar">
+
 
 <div class="container nav-container">
 
@@ -39,6 +47,8 @@ GSH.
 </span>
 
 </a>
+
+
 
 
 
@@ -84,27 +94,45 @@ GSH.
 </li>
 
 
+
 </ul>
+
+
 
 
 
 
 <button class="menu-toggle">
 
+
 <span></span>
+
 <span></span>
+
 <span></span>
+
 
 </button>
 
 
+
+
 </div>
+
 
 </nav>
 
 
 
 
+
+
+
+
+
+<!-- =====================
+标题区域
+===================== -->
 
 
 <section class="page-header">
@@ -114,27 +142,38 @@ GSH.
 
 
 <div class="tag">
+
 MY PROJECTS
+
 </div>
 
 
 
 <h1>
+
 项目案例集
+
 </h1>
 
 
 
 <p>
+
 30个短视频运营案例展示
+
 </p>
 
+
+
+
+<!-- 分类筛选 -->
 
 
 <div class="filter-box">
 
 
-<button class="filter active"
+<button 
+class="filter active"
 data-filter="all">
 
 全部
@@ -143,47 +182,58 @@ data-filter="all">
 
 
 
-<button class="filter"
+<button 
+class="filter"
 data-filter="达人">
 
-达人类
+达人
 
 </button>
 
 
-<button class="filter"
+
+<button 
+class="filter"
 data-filter="厂家">
 
-厂家类
+厂家
 
 </button>
 
 
-<button class="filter"
+
+<button 
+class="filter"
 data-filter="口播">
 
-口播类
+口播
 
 </button>
 
 
-<button class="filter"
+
+<button 
+class="filter"
 data-filter="剧情">
 
-剧情类
+剧情
 
 </button>
 
 
-<button class="filter"
+
+<button 
+class="filter"
 data-filter="混剪">
 
-混剪类
+混剪
 
 </button>
+
 
 
 </div>
+
 
 
 </div>
@@ -195,6 +245,13 @@ data-filter="混剪">
 
 
 
+
+
+
+
+<!-- =====================
+案例列表
+===================== -->
 
 
 <section class="collection">
@@ -208,6 +265,9 @@ class="case-grid"
 id="caseGrid">
 
 
+<!-- JS自动生成 -->
+
+
 </div>
 
 
@@ -223,12 +283,19 @@ id="caseGrid">
 
 
 
-<!-- 视频弹窗 -->
 
-<div class="video-modal" id="videoModal">
+<!-- =====================
+视频播放弹窗
+===================== -->
+
+
+<div 
+class="video-modal"
+id="videoModal">
 
 
 <div class="video-box">
+
 
 
 <button 
@@ -237,8 +304,9 @@ id="closeBtn">
 
 ×
 
-
 </button>
+
+
 
 
 
@@ -248,14 +316,30 @@ controls
 playsinline
 preload="metadata">
 
+
 </video>
 
 
 
+
+<div 
+class="video-error"
+id="videoError">
+
+
+该视频数据暂未上传
+
+
+</div>
+
+
+
+
 </div>
 
 
 </div>
+
 
 
 
@@ -266,7 +350,9 @@ preload="metadata">
 
 <footer>
 
+
 © 2026 GSH Portfolio
+
 
 </footer>
 
@@ -275,7 +361,9 @@ preload="metadata">
 
 
 
+
 <script src="js/collection.js"></script>
+
 
 
 </body>
