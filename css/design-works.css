@@ -1,18 +1,24 @@
 /* =====================================
 GSH Portfolio
 design-works.css
-V7 Unified Style
+Design Works Stable Final
 ===================================== */
+
+
+/* =====================
+基础
+===================== */
 
 
 *{
 
 margin:0;
+
 padding:0;
+
 box-sizing:border-box;
 
 }
-
 
 
 
@@ -22,11 +28,7 @@ box-sizing:border-box;
 
 --blue:#00d9ff;
 
---bg:#050816;
-
 }
-
-
 
 
 
@@ -40,17 +42,13 @@ font-family:
 sans-serif;
 
 
-
 color:white;
-
 
 
 min-height:100vh;
 
 
-
 overflow-x:hidden;
-
 
 
 background:
@@ -61,7 +59,6 @@ linear-gradient(
 #090d24,
 #050816
 );
-
 
 
 position:relative;
@@ -75,9 +72,8 @@ position:relative;
 
 
 
-
 /* =====================
-科技网格背景
+统一科技背景
 ===================== */
 
 
@@ -100,12 +96,10 @@ z-index:-2;
 background-image:
 
 
-
 linear-gradient(
 rgba(139,92,246,.12) 1px,
 transparent 1px
 ),
-
 
 
 linear-gradient(
@@ -124,7 +118,7 @@ background-size:
 
 animation:
 
-gridMove 20s linear infinite;
+gridMove 25s linear infinite;
 
 
 }
@@ -144,6 +138,7 @@ background-position:
 }
 
 
+
 to{
 
 background-position:
@@ -161,6 +156,8 @@ background-position:
 
 
 
+/* 光晕 */
+
 
 body::after{
 
@@ -171,14 +168,14 @@ content:"";
 position:fixed;
 
 
-width:500px;
+width:320px;
 
 
-height:500px;
+height:320px;
 
 
 
-right:-200px;
+right:-120px;
 
 
 top:120px;
@@ -193,7 +190,7 @@ background:
 
 radial-gradient(
 circle,
-rgba(139,92,246,.3),
+rgba(139,92,246,.25),
 transparent 70%
 );
 
@@ -201,48 +198,16 @@ transparent 70%
 
 filter:
 
-blur(45px);
+blur(25px);
 
 
 
 z-index:-1;
 
 
-
-animation:
-
-lightFloat 10s infinite alternate;
-
-
 }
 
 
-
-
-
-
-@keyframes lightFloat{
-
-
-from{
-
-transform:
-
-translateY(0);
-
-}
-
-
-to{
-
-transform:
-
-translateY(80px);
-
-}
-
-
-}
 
 
 
@@ -268,16 +233,13 @@ margin:auto;
 
 
 
+
 /* =====================
 导航
 ===================== */
 
 
 .navbar{
-
-
-height:70px;
-
 
 
 position:fixed;
@@ -294,19 +256,28 @@ width:100%;
 
 
 
+height:70px;
+
+
+
 z-index:1000;
 
 
 
 background:
 
-rgba(5,8,22,.7);
+rgba(5,8,22,.75);
 
 
 
 backdrop-filter:
 
-blur(20px);
+blur(12px);
+
+
+-webkit-backdrop-filter:
+
+blur(12px);
 
 
 
@@ -315,8 +286,9 @@ border-bottom:
 1px solid rgba(255,255,255,.08);
 
 
-
 }
+
+
 
 
 
@@ -341,33 +313,36 @@ justify-content:space-between;
 
 
 
-
-
 .logo{
+
 
 font-size:24px;
 
+
 font-weight:900;
 
-text-decoration:none;
 
 color:white;
 
+
+text-decoration:none;
+
+
 white-space:nowrap;
 
+
 }
+
 
 
 
 .logo span{
 
+
 color:#c4b5fd;
 
-font-weight:900;
 
 }
-
-
 
 
 
@@ -389,24 +364,22 @@ list-style:none;
 
 
 
-
 .nav-links a{
 
 
 color:#aaa;
 
 
-font-size:15px;
-
-
 text-decoration:none;
+
+
+font-size:15px;
 
 
 transition:.3s;
 
 
 }
-
 
 
 
@@ -429,7 +402,7 @@ color:white;
 
 
 /* =====================
-标题
+页面标题
 ===================== */
 
 
@@ -449,19 +422,15 @@ text-align:center;
 
 
 
-
-
 .tag{
 
 
 display:inline-block;
 
 
-
 padding:
 
 8px 20px;
-
 
 
 border-radius:30px;
@@ -477,13 +446,10 @@ rgba(139,92,246,.15);
 color:#ddd6fe;
 
 
-
 font-size:13px;
 
 
-
 }
-
 
 
 
@@ -503,35 +469,25 @@ margin:
 
 
 
-
-
 .page-header p{
 
 
 color:#aaa;
 
 
-font-size:16px;
-
-
 }
+
+
+
+
+
+
+
+
+
 /* =====================
-作品展示
+作品区域
 ===================== */
-
-
-.works{
-
-
-padding:
-
-40px 0 100px;
-
-
-}
-
-
-
 
 
 .work-grid{
@@ -549,6 +505,9 @@ repeat(3,1fr);
 gap:30px;
 
 
+padding-bottom:80px;
+
+
 }
 
 
@@ -556,15 +515,10 @@ gap:30px;
 
 
 
+
+
+
 .work-card{
-
-
-overflow:hidden;
-
-
-
-border-radius:22px;
-
 
 
 background:
@@ -579,17 +533,16 @@ border:
 
 
 
-backdrop-filter:
+border-radius:22px;
 
-blur(15px);
+
+
+overflow:hidden;
 
 
 
 transition:.35s;
 
-
-
-position:relative;
 
 
 }
@@ -609,7 +562,7 @@ translateY(-10px);
 
 border-color:
 
-rgba(139,92,246,.7);
+rgba(139,92,246,.8);
 
 
 
@@ -618,10 +571,7 @@ box-shadow:
 0 20px 50px rgba(139,92,246,.25);
 
 
-
 }
-
-
 
 
 
@@ -633,38 +583,18 @@ box-shadow:
 width:100%;
 
 
-aspect-ratio:4/3;
+aspect-ratio:
+
+16/10;
 
 
 object-fit:cover;
 
 
-
 display:block;
 
 
-
-transition:.5s;
-
-
 }
-
-
-
-
-
-.work-card:hover img{
-
-
-transform:
-
-scale(1.08);
-
-
-}
-
-
-
 
 
 
@@ -679,7 +609,6 @@ padding:
 
 
 }
-
 
 
 
@@ -701,7 +630,7 @@ margin-bottom:12px;
 .work-info p{
 
 
-color:#999;
+color:#aaa;
 
 
 font-size:14px;
@@ -718,78 +647,6 @@ line-height:1.8;
 
 
 
-/* 图片遮罩 */
-
-
-.work-card::after{
-
-
-content:"查看作品";
-
-
-position:absolute;
-
-
-left:50%;
-
-
-top:50%;
-
-
-
-transform:
-
-translate(-50%,-50%);
-
-
-
-padding:
-
-10px 25px;
-
-
-
-border-radius:30px;
-
-
-
-background:
-
-rgba(139,92,246,.85);
-
-
-
-opacity:0;
-
-
-
-transition:.35s;
-
-
-
-}
-
-
-
-.work-card:hover::after{
-
-
-opacity:1;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =====================
-底部
-===================== */
 
 
 footer{
@@ -804,9 +661,6 @@ padding:
 
 
 color:#777;
-
-
-font-size:14px;
 
 
 }
@@ -827,7 +681,6 @@ font-size:14px;
 @media(max-width:1000px){
 
 
-
 .work-grid{
 
 
@@ -837,6 +690,7 @@ repeat(2,1fr);
 
 
 }
+
 
 
 }
@@ -865,7 +719,6 @@ width:92%;
 
 
 }
-
 
 
 
@@ -904,8 +757,6 @@ gap:10px;
 
 
 
-
-
 .nav-links a{
 
 
@@ -913,7 +764,6 @@ font-size:12px;
 
 
 }
-
 
 
 
@@ -932,6 +782,7 @@ padding-bottom:40px;
 
 
 
+
 .page-header h1{
 
 
@@ -939,19 +790,6 @@ font-size:34px;
 
 
 }
-
-
-
-
-
-.page-header p{
-
-
-font-size:14px;
-
-
-}
-
 
 
 
@@ -983,8 +821,6 @@ border-radius:18px;
 
 
 
-
-
 .work-info{
 
 
@@ -999,26 +835,13 @@ padding:
 
 
 
-.work-info h3{
+body::after{
 
 
-font-size:18px;
-
-
-}
-
-
-
-
-
-.work-info p{
-
-
-font-size:13px;
+display:none;
 
 
 }
-
 
 
 
@@ -1030,11 +853,6 @@ font-size:13px;
 
 
 
-
-
-/* =====================
-超小屏
-===================== */
 
 
 @media(max-width:480px){
@@ -1048,6 +866,7 @@ font-size:16px;
 
 
 }
+
 
 
 
@@ -1078,11 +897,10 @@ font-size:11px;
 .page-header h1{
 
 
-font-size:28px;
+font-size:30px;
 
 
 }
-
 
 
 }
