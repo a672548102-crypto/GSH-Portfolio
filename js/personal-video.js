@@ -1,7 +1,7 @@
 /* =====================================
  GSH Portfolio
  personal-video.js
- Douyin Works Stable Version
+ Stable Final Version
 ===================================== */
 
 
@@ -11,8 +11,32 @@ document.addEventListener(
 ()=>{
 
 
+loadVideos();
 
-const videoGrid =
+
+});
+
+
+
+
+
+
+
+
+
+/* ===============================
+加载视频数据
+=============================== */
+
+
+function loadVideos(){
+
+
+
+
+
+const grid =
+
 document.getElementById(
 "videoGrid"
 );
@@ -21,36 +45,137 @@ document.getElementById(
 
 
 
-/*
-加载抖音作品数据
-*/
+
+if(!grid)
+
+return;
 
 
-fetch("./assets/data/videos.json")
+
+
+
+
+
+
+fetch(
+"assets/data/videos.json"
+)
 
 .then(res=>{
 
 
 if(!res.ok){
 
+
 throw new Error(
-"videos.json不存在"
+"videos.json加载失败"
 );
 
+
 }
+
 
 
 return res.json();
 
 
+
 })
 
-.then(videos=>{
+.then(data=>{
 
 
 
-if(!videoGrid){
 
+
+renderVideos(
+grid,
+data
+);
+
+
+
+
+
+
+})
+
+.catch(err=>{
+
+
+console.error(
+"视频数据错误:",
+err
+);
+
+
+
+grid.innerHTML=`
+
+<div class="empty-tip">
+
+视频作品加载失败
+
+</div>
+
+`;
+
+
+
+});
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===============================
+生成视频卡片
+=============================== */
+
+
+function renderVideos(grid,videos){
+
+
+
+
+
+
+grid.innerHTML="";
+
+
+
+
+
+
+
+if(!videos || videos.length===0){
+
+
+
+grid.innerHTML=`
+
+<div class="empty-tip">
+
+暂无视频作品
+
+</div>
+
+`;
 
 return;
 
@@ -61,56 +186,115 @@ return;
 
 
 
-videos.forEach((item,index)=>{
+
+
+
+const videoList=[];
+
+
+
+
+
+
+
+videos.forEach(item=>{
 
 
 
 
 
 const card =
+
 document.createElement(
 "div"
 );
 
 
-card.className =
+
+card.className=
+
 "video-card";
 
 
 
 
 
-card.innerHTML =
 
-`
+
+const videoSrc =
+
+item.video ||
+
+"";
+
+
+
+
+
+
+
+card.innerHTML=`
 
 <div class="video-cover-box">
 
 
+
 <video
+
 class="video-cover"
-src="${item.video || ''}"
-poster="${item.cover || ''}"
-controls
-preload="metadata">
+
+${videoSrc ? `src="${videoSrc}"` : ""}
+
+poster="${item.cover || ""}"
+
+preload="metadata"
+
+playsinline>
+
 </video>
+
+
+
+<div class="video-play">
+
+▶
+
+</div>
+
 
 
 </div>
 
 
 
+
+
+
+
+
+
 <div class="video-info">
 
 
+
 <h3>
+
 ${item.title || "抖音作品"}
+
 </h3>
 
 
+
+
+
 <p>
+
 ${item.desc || "短视频创作案例"}
+
 </p>
+
+
+
 
 
 
@@ -119,14 +303,21 @@ ${item.desc || "短视频创作案例"}
 <div class="video-data">
 
 
+
+
+
 <div>
 
 <strong>
+
 ${item.views || "0"}
+
 </strong>
 
 <span>
+
 播放
+
 </span>
 
 </div>
@@ -134,17 +325,24 @@ ${item.views || "0"}
 
 
 
+
 <div>
 
 <strong>
+
 ${item.likes || "0"}
+
 </strong>
 
 <span>
+
 点赞
+
 </span>
 
 </div>
+
+
 
 
 
@@ -152,18 +350,27 @@ ${item.likes || "0"}
 <div>
 
 <strong>
+
 ${item.comments || "0"}
+
 </strong>
 
 <span>
+
 评论
+
 </span>
 
 </div>
 
 
 
+
+
+
 </div>
+
+
 
 
 
@@ -178,7 +385,7 @@ href="${item.douyin || '#'}"
 
 target="_blank"
 
->
+rel="noopener noreferrer">
 
 查看抖音作品
 
@@ -186,8 +393,10 @@ target="_blank"
 
 
 
-</div>
 
+
+
+</div>
 
 `;
 
@@ -195,78 +404,155 @@ target="_blank"
 
 
 
-videoGrid.appendChild(card);
 
 
 
 
-});
+
+grid.appendChild(card);
 
 
 
 
-/*
-视频单播放
-*/
 
 
-const videos =
-document.querySelectorAll(
+const video =
+
+card.querySelector(
 "video"
 );
 
 
 
-videos.forEach(video=>{
+
+const play =
+
+card.querySelector(
+".video-play"
+);
 
 
-video.addEventListener(
-"play",
-()=>{
 
 
-videos.forEach(other=>{
+
+if(video){
 
 
-if(other !== video){
+videoList.push(video);
 
-
-other.pause();
 
 
 }
 
 
-});
-
-
-});
-
-
-});
 
 
 
-
-})
-
+/* 点击播放 */
 
 
-.catch(err=>{
+if(play && video){
 
 
-console.error(
 
-"抖音作品加载失败:",
-err
+play.onclick=()=>{
 
+
+
+
+
+if(video.paused){
+
+
+pauseOther(
+videoList,
+video
 );
 
 
 
+video.play();
+
+
+play.style.opacity="0";
+
+
+
+}else{
+
+
+video.pause();
+
+
+play.style.opacity="1";
+
+
+
+}
+
+
+
+};
+
+
+
+}
+
+
+
+
+
 });
 
 
 
 
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===============================
+暂停其它视频
+=============================== */
+
+
+function pauseOther(list,current){
+
+
+
+
+
+list.forEach(video=>{
+
+
+if(video!==current){
+
+
+video.pause();
+
+
+
+}
+
+
+
 });
+
+
+
+}
