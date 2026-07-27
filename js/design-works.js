@@ -1,7 +1,7 @@
 /* =====================================
  GSH Portfolio
  design-works.js
- 修复 ID 不匹配 Bug
+ 修复 ID 不匹配 Bug（完整版）
 ===================================== */
 
 
@@ -9,10 +9,10 @@ document.addEventListener(
 "DOMContentLoaded",
 ()=>{
 
-// 修复：HTML 中使用的是 designGrid，不是 workGrid
+// 修复：HTML 中使用的是 designGrid
 const workGrid =
 document.getElementById(
-"designGrid"   // ← 改成 designGrid
+"designGrid"
 );
 
 if(!workGrid){
@@ -55,7 +55,7 @@ document.createElement(
 );
 
 card.className =
-"design-card";  // ← 改成 design-card 匹配 CSS
+"design-card";
 
 card.innerHTML =
 
