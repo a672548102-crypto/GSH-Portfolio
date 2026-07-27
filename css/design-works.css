@@ -1,44 +1,262 @@
+/* =====================================
+GSH Portfolio
+design-works.css
+V7 Unified Style
+===================================== */
+
+
 *{
 
 margin:0;
-
 padding:0;
-
 box-sizing:border-box;
 
 }
 
 
 
+
+:root{
+
+--purple:#8b5cf6;
+
+--blue:#00d9ff;
+
+--bg:#050816;
+
+}
+
+
+
+
+
 body{
 
 
-background:#06030e;
-
-
-color:#ede8ff;
-
-
 font-family:
-Inter,
-Arial,
+
+"Inter",
+"Microsoft YaHei",
 sans-serif;
 
 
+
+color:white;
+
+
+
+min-height:100vh;
+
+
+
+overflow-x:hidden;
+
+
+
+background:
+
+linear-gradient(
+135deg,
+#050816,
+#090d24,
+#050816
+);
+
+
+
+position:relative;
+
+
 }
+
+
+
+
+
+
+
+
+/* =====================
+科技网格背景
+===================== */
+
+
+body::before{
+
+
+content:"";
+
+
+position:fixed;
+
+
+inset:0;
+
+
+z-index:-2;
+
+
+
+background-image:
+
+
+
+linear-gradient(
+rgba(139,92,246,.12) 1px,
+transparent 1px
+),
+
+
+
+linear-gradient(
+90deg,
+rgba(0,217,255,.1) 1px,
+transparent 1px
+);
+
+
+
+background-size:
+
+55px 55px;
+
+
+
+animation:
+
+gridMove 20s linear infinite;
+
+
+}
+
+
+
+
+@keyframes gridMove{
+
+
+from{
+
+background-position:
+
+0 0;
+
+}
+
+
+to{
+
+background-position:
+
+55px 55px;
+
+}
+
+
+}
+
+
+
+
+
+
+
+
+body::after{
+
+
+content:"";
+
+
+position:fixed;
+
+
+width:500px;
+
+
+height:500px;
+
+
+
+right:-200px;
+
+
+top:120px;
+
+
+
+border-radius:50%;
+
+
+
+background:
+
+radial-gradient(
+circle,
+rgba(139,92,246,.3),
+transparent 70%
+);
+
+
+
+filter:
+
+blur(45px);
+
+
+
+z-index:-1;
+
+
+
+animation:
+
+lightFloat 10s infinite alternate;
+
+
+}
+
+
+
+
+
+
+@keyframes lightFloat{
+
+
+from{
+
+transform:
+
+translateY(0);
+
+}
+
+
+to{
+
+transform:
+
+translateY(80px);
+
+}
+
+
+}
+
+
+
+
 
 
 
 .container{
 
 
-max-width:1200px;
+width:min(1200px,90%);
 
 
 margin:auto;
-
-
-padding:0 28px;
 
 
 }
@@ -47,10 +265,19 @@ padding:0 28px;
 
 
 
-/* 导航 */
+
+
+
+/* =====================
+导航
+===================== */
 
 
 .navbar{
+
+
+height:70px;
+
 
 
 position:fixed;
@@ -59,20 +286,28 @@ position:fixed;
 top:0;
 
 
+left:0;
+
+
+
 width:100%;
 
 
-z-index:999;
+
+z-index:1000;
+
 
 
 background:
 
-rgba(8,10,18,.65);
+rgba(5,8,22,.7);
+
 
 
 backdrop-filter:
 
-blur(18px);
+blur(20px);
+
 
 
 border-bottom:
@@ -80,15 +315,16 @@ border-bottom:
 1px solid rgba(255,255,255,.08);
 
 
+
 }
 
 
 
 
-.navbar .container{
+.nav-container{
 
 
-height:70px;
+height:100%;
 
 
 display:flex;
@@ -104,59 +340,19 @@ justify-content:space-between;
 
 
 
+
+
+
 .logo{
 
 
-font-size:22px;
-
-font-weight:800;
+font-size:24px;
 
 
-}
-
-
-
-.logo span{
-
-
-color:#8b5cf6;
-
-
-}
-
-
-
-
-.navbar ul{
-
-
-display:flex;
-
-
-gap:30px;
-
-
-list-style:none;
-
-
-}
-
-
-
-.navbar a{
-
-
-color:#b4abc9;
+font-weight:900;
 
 
 text-decoration:none;
-
-
-}
-
-
-
-.navbar a:hover{
 
 
 color:white;
@@ -168,13 +364,84 @@ color:white;
 
 
 
-/* 标题 */
+.logo span{
+
+
+color:#c4b5fd;
+
+
+}
+
+
+
+
+
+
+.nav-links{
+
+
+display:flex;
+
+
+gap:35px;
+
+
+list-style:none;
+
+
+}
+
+
+
+
+
+.nav-links a{
+
+
+color:#aaa;
+
+
+font-size:15px;
+
+
+text-decoration:none;
+
+
+transition:.3s;
+
+
+}
+
+
+
+
+
+.nav-links a:hover,
+.nav-links .active{
+
+
+color:white;
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================
+标题
+===================== */
 
 
 .page-header{
 
 
-padding-top:140px;
+padding-top:150px;
 
 
 padding-bottom:60px;
@@ -187,245 +454,69 @@ text-align:center;
 
 
 
+
+
 .tag{
+
+
+display:inline-block;
+
+
+
+padding:
+
+8px 20px;
+
+
+
+border-radius:30px;
+
+
+
+background:
+
+rgba(139,92,246,.15);
+
+
+
+color:#ddd6fe;
+
 
 
 font-size:13px;
 
 
-letter-spacing:2px;
-
-
-color:#a78bfa;
-
-
-margin-bottom:15px;
-
 
 }
+
+
 
 
 
 .page-header h1{
 
 
-font-size:42px;
+font-size:48px;
+
+
+margin:
+
+25px 0 15px;
 
 
 }
+
+
 
 
 
 .page-header p{
 
 
-margin-top:15px;
+color:#aaa;
 
 
-color:#b4abc9;
-
-
-}
-
-
-
-
-
-/* 作品 */
-
-
-.design-grid{
-
-
-display:grid;
-
-
-grid-template-columns:
-
-repeat(3,1fr);
-
-
-gap:30px;
-
-
-padding-bottom:100px;
-
-
-}
-
-
-
-
-
-.design-card{
-
-
-background:
-
-rgba(109,40,217,.08);
-
-
-border:
-
-1px solid rgba(139,92,246,.2);
-
-
-border-radius:20px;
-
-
-overflow:hidden;
-
-
-transition:.35s;
-
-
-}
-
-
-
-
-.design-card:hover{
-
-
-transform:
-
-translateY(-8px);
-
-
-box-shadow:
-
-0 20px 50px rgba(0,0,0,.5);
-
-
-}
-
-
-
-.design-card img{
-
-
-width:100%;
-
-
-height:320px;
-
-
-object-fit:cover;
-
-
-}
-
-
-
-
-.design-info{
-
-
-padding:20px;
-
-
-}
-
-
-
-.design-info h3{
-
-
-font-size:18px;
-
-
-}
-
-
-
-.design-info p{
-
-
-margin-top:8px;
-
-
-color:#b4abc9;
-
-
-font-size:14px;
-
-
-}
-
-
-
-
-footer{
-
-
-padding:30px;
-
-
-text-align:center;
-
-
-color:#71678f;
-
-
-}
-
-
-
-
-@media(max-width:768px){
-
-
-.container{
-
-padding:0 16px;
-
-}
-
-
-
-.navbar ul{
-
-
-gap:12px;
-
-
-font-size:13px;
-
-
-}
-
-
-
-.design-grid{
-
-
-grid-template-columns:
-
-1fr;
-
-
-}
-
-
-
-.page-header h1{
-
-
-font-size:30px;
-
-
-}
-
-
-
-
-.design-card img{
-
-
-height:auto;
-
-
-}
+font-size:16px;
 
 
 }
