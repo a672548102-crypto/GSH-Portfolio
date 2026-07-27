@@ -1,0 +1,26 @@
+[
+  {
+    "image": "assets/design/product-01.jpg",
+    "title": "张笨仁 · 抖音/京东主图设计",
+    "desc": "电商主图设计 · 突出产品卖点与品牌视觉",
+    "type": "商品主图"
+  },
+  {
+    "image": "assets/design/giftbox-01.jpg",
+    "title": "张笨仁 · 礼盒包装设计",
+    "desc": "品牌礼盒视觉设计 · 提升礼品属性",
+    "type": "礼盒包装"
+  },
+  {
+    "image": "assets/design/packaging-01.jpg",
+    "title": "金刀瓜子 · 包装设计",
+    "desc": "休闲食品包装设计 · 终端陈列视觉",
+    "type": "瓜子包装"
+  },
+  {
+    "image": "assets/design/poster-01.jpg",
+    "title": "张笨仁 · 展会海报设计",
+    "desc": "品牌展会宣传海报 · 线下视觉呈现",
+    "type": "海报设计"
+  }
+]
