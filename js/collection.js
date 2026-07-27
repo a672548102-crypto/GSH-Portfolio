@@ -1,34 +1,17 @@
 /* =====================================
- GSH Portfolio
+ GSH Portfolio V6.0
  collection.js
- Collection Final Stable
+ 案例集数据渲染
 ===================================== */
 
 
-document.addEventListener(
-"DOMContentLoaded",
-()=>{
+const caseGrid = document.getElementById("caseGrid");
 
+const modal = document.getElementById("videoModal");
 
+const player = document.getElementById("player");
 
-const caseGrid = 
-document.getElementById(
-"caseGrid"
-);
-
-
-
-if(!caseGrid){
-
-console.error(
-"没有找到案例容器"
-);
-
-return;
-
-}
-
-
+const closeBtn = document.getElementById("closeBtn");
 
 
 
@@ -38,115 +21,71 @@ let allCases = [];
 
 
 
+/*
+默认无数据图片
+*/
 
-/* ===============================
+const noDataImage =
+"assets/images/no-data.png";
+
+
+
+
+
+/*
 加载案例数据
-================================ */
+*/
 
+async function loadCases(){
 
-fetch(
-"assets/data/cases.json"
-)
 
+    try{
 
 
-.then(res=>{
+        const res =
+        await fetch("data/cases.json");
 
 
-if(!res.ok){
 
-throw new Error(
-"cases.json加载失败"
-);
+        if(!res.ok){
 
-}
+            throw new Error(
+            "cases.json读取失败"
+            );
 
+        }
 
-return res.json();
 
 
-})
+        allCases =
+        await res.json();
 
 
 
-.then(data=>{
+        renderCases(allCases);
 
 
-allCases = data || [];
 
+    }catch(err){
 
 
-renderCases(allCases);
+        console.error(err);
 
 
 
-})
+        caseGrid.innerHTML = `
 
+        <div class="no-data">
 
+        案例数据暂未找到
 
-.catch(err=>{
+        </div>
 
+        `;
 
-console.error(
-"案例数据读取失败:",
-err
-);
 
+    }
 
-
-caseGrid.innerHTML = `
-
-<div class="empty">
-
-案例数据加载失败
-
-</div>
-
-`;
-
-
-
-});
-
-
-
-
-
-
-
-
-
-/* ===============================
-生成案例卡片
-================================ */
-
-
-function renderCases(cases){
-
-
-
-let html = "";
-
-
-
-
-
-
-if(!cases.length){
-
-
-caseGrid.innerHTML = `
-
-<div class="empty">
-
-暂无案例
-
-</div>
-
-`;
-
-
-return;
 
 
 }
@@ -157,251 +96,202 @@ return;
 
 
 
-cases.forEach(item=>{
 
+/*
+渲染案例
+*/
 
 
+function renderCases(data){
 
 
-html += `
+    caseGrid.innerHTML="";
 
-<div class="case-card"
 
-data-video="${item.video || ''}">
 
+    data.forEach(item=>{
 
 
+        const card =
+        document.createElement("div");
 
 
-<div class="cover-box">
 
+        card.className =
+        "case-card";
 
-<img
 
-class="case-cover"
 
-src="${item.cover || ''}"
+        card.innerHTML = `
 
-alt="${item.title || '案例封面'}"
 
-loading="lazy"
+        <div class="cover-box">
 
->
 
+        <img
 
-</div>
+        class="case-cover"
 
+        src="${item.cover}"
 
+        alt="${item.title}"
 
+        onerror="
+        this.onerror=null;
+        this.src='${noDataImage}'
+        "
 
+        >
 
 
+        </div>
 
 
 
-<div class="case-info">
 
 
+        <div class="case-info">
 
 
+        <h3>
 
-<div class="case-number">
+        ${item.title}
 
-CASE ${String(item.id).padStart(2,"0")}
+        </h3>
 
-</div>
 
 
 
+        <div class="case-type">
 
+        ${item.type}
 
+        /
 
+        ${item.category}
 
+        </div>
 
-<div class="title-line">
 
 
-<h3>
 
-${item.title || "未命名案例"}
 
-</h3>
+        <p class="case-role">
 
+        ${item.role}
 
+        </p>
 
 
-<span class="type-tag">
 
-${item.type || "短视频"}
 
-</span>
 
+        <div class="case-data">
 
 
-</div>
+        <div>
 
+        <strong>
 
+        ${item.views || "暂无"}
 
+        </strong>
 
+        <span>
 
+        播放
 
+        </span>
 
 
+        </div>
 
-<div class="tags">
 
 
-<span>
 
-${item.category || "案例"}
 
-</span>
 
+        <div>
 
-</div>
+        <strong>
 
+        ${item.likes || "暂无"}
 
+        </strong>
 
+        <span>
 
+        点赞
 
+        </span>
 
 
+        </div>
 
 
-<div class="data-box">
 
 
 
 
+        <div>
 
-<div>
+        <strong>
 
-<strong>
+        ${item.comments || "暂无"}
 
-${item.views || "-"}
+        </strong>
 
-</strong>
 
+        <span>
 
-<p>
+        评论
 
-播放量
+        </span>
 
-</p>
 
+        </div>
 
-</div>
 
 
+        </div>
 
 
 
 
+        <button
 
+        class="play-btn"
 
-<div>
+        data-video="${item.video}"
 
-<strong>
+        >
 
-${item.likes || "-"}
+        查看视频
 
-</strong>
+        </button>
 
 
-<p>
 
-点赞
 
-</p>
 
+        </div>
 
-</div>
 
+        `;
 
 
 
+        caseGrid.appendChild(card);
 
 
 
+    });
 
-<div>
 
-<strong>
 
-${item.comments || "-"}
 
-</strong>
 
-
-<p>
-
-评论
-
-</p>
-
-
-</div>
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<a
-
-href="detail.html?id=${item.id}"
-
-class="detail-link">
-
-
-查看数据分析 →
-
-</a>
-
-
-
-
-
-
-
-</div>
-
-
-
-</div>
-
-
-`;
-
-
-
-});
-
-
-
-
-
-
-
-caseGrid.innerHTML = html;
-
-
-
-
-
-
-bindVideo();
-
+    bindVideo();
 
 
 
@@ -415,13 +305,156 @@ bindVideo();
 
 
 
-/* ===============================
+/*
+绑定视频按钮
+*/
+
+
+function bindVideo(){
+
+
+    const buttons =
+    document.querySelectorAll(
+    ".play-btn"
+    );
+
+
+
+    buttons.forEach(btn=>{
+
+
+        btn.onclick=function(){
+
+
+
+            const src =
+            this.dataset.video;
+
+
+
+            if(!src){
+
+
+                alert(
+                "视频暂未上传"
+                );
+
+
+                return;
+
+
+            }
+
+
+
+
+            player.src=src;
+
+
+
+            player.onerror=function(){
+
+
+                alert(
+                "该视频暂未找到"
+                );
+
+
+                player.removeAttribute(
+                "src"
+                );
+
+
+            };
+
+
+
+            modal.classList.add(
+            "show"
+            );
+
+
+
+            player.play();
+
+
+
+        }
+
+
+    })
+
+
+}
+
+
+
+
+
+
+
+
+
+/*
+关闭视频
+*/
+
+
+closeBtn.onclick=function(){
+
+
+    modal.classList.remove(
+    "show"
+    );
+
+
+
+    player.pause();
+
+
+
+    player.removeAttribute(
+    "src"
+    );
+
+
+}
+
+
+
+
+
+
+modal.onclick=function(e){
+
+
+    if(
+        e.target===modal
+    ){
+
+
+        closeBtn.click();
+
+
+    }
+
+
+}
+
+
+
+
+
+
+
+
+
+/*
 分类筛选
-================================ */
+*/
 
 
 const filters =
-
 document.querySelectorAll(
 ".filter"
 );
@@ -429,94 +462,67 @@ document.querySelectorAll(
 
 
 
-
 filters.forEach(btn=>{
 
 
-
-btn.addEventListener(
-"click",
-()=>{
+    btn.onclick=function(){
 
 
 
+        filters.forEach(b=>{
 
+            b.classList.remove(
+            "active"
+            );
 
-filters.forEach(item=>{
-
-
-item.classList.remove(
-"active"
-);
-
-
-});
+        });
 
 
 
-
-
-btn.classList.add(
-"active"
-);
-
+        this.classList.add(
+        "active"
+        );
 
 
 
-
-
-const type =
-
-btn.dataset.filter;
+        const type =
+        this.dataset.filter;
 
 
 
+        if(type==="all"){
+
+
+            renderCases(
+            allCases
+            );
+
+
+        }else{
 
 
 
+            const result =
+            allCases.filter(
+            item=>
 
-if(type==="all"){
+            item.category===type
 
-
-
-renderCases(
-allCases
-);
-
+            );
 
 
-return;
+
+            renderCases(
+            result
+            );
 
 
-}
+        }
 
 
 
 
-
-
-
-const result =
-
-allCases.filter(item=>{
-
-
-return item.category === type;
-
-
-});
-
-
-
-
-
-
-renderCases(result);
-
-
-
-
-});
+    }
 
 
 });
@@ -529,288 +535,9 @@ renderCases(result);
 
 
 
-/* ===============================
-视频播放
-================================ */
+/*
+启动
+*/
 
 
-const modal =
-
-document.getElementById(
-"videoModal"
-);
-
-
-
-const player =
-
-document.getElementById(
-"player"
-);
-
-
-
-
-const closeBtn =
-
-document.getElementById(
-"closeBtn"
-);
-
-
-
-
-
-
-
-
-
-function bindVideo(){
-
-
-
-const cards =
-
-document.querySelectorAll(
-".case-card"
-);
-
-
-
-
-
-
-cards.forEach(card=>{
-
-
-
-
-
-card.addEventListener(
-"click",
-function(e){
-
-
-
-
-
-
-// 点击详情按钮不播放
-
-if(
-e.target.closest(
-".detail-link"
-)
-
-){
-
-
-return;
-
-
-}
-
-
-
-
-
-
-
-const video =
-
-this.dataset.video;
-
-
-
-
-
-
-if(!video){
-
-
-return;
-
-
-}
-
-
-
-
-
-
-
-
-player.pause();
-
-
-
-player.currentTime = 0;
-
-
-
-player.src = video;
-
-
-
-
-
-modal.classList.add(
-"active"
-);
-
-
-
-
-
-player.load();
-
-
-
-
-
-player.play()
-
-.catch(()=>{
-
-
-console.log(
-"等待用户点击播放"
-);
-
-
-});
-
-
-
-});
-
-
-});
-
-
-
-}
-
-
-
-
-
-
-
-
-
-/* ===============================
-关闭弹窗
-================================ */
-
-
-function closeVideo(){
-
-
-
-if(!player)
-return;
-
-
-
-player.pause();
-
-
-
-player.removeAttribute(
-"src"
-);
-
-
-
-player.load();
-
-
-
-
-
-modal.classList.remove(
-"active"
-);
-
-
-
-}
-
-
-
-
-
-
-
-if(closeBtn){
-
-
-
-closeBtn.addEventListener(
-"click",
-closeVideo
-);
-
-
-}
-
-
-
-
-
-
-
-if(modal){
-
-
-
-modal.addEventListener(
-"click",
-e=>{
-
-
-if(
-e.target === modal
-){
-
-
-closeVideo();
-
-
-}
-
-
-});
-
-
-}
-
-
-
-
-
-
-
-document.addEventListener(
-"keydown",
-e=>{
-
-
-if(
-e.key === "Escape"
-){
-
-
-closeVideo();
-
-
-}
-
-
-});
-
-
-
-
-});
+loadCases();
