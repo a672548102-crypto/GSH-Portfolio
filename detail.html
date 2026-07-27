@@ -1,58 +1,40 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
-
 <head>
 
-
 <meta charset="UTF-8">
-
 
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 
-
 <title>
-
-案例详情 | GSH
-
+案例详情 | GSH个人作品集
 </title>
-
 
 
 <link rel="stylesheet" href="css/detail.css">
 
 
-
 </head>
-
-
-
 
 
 <body>
 
 
 
-
-
 <!-- 导航 -->
-
 
 <nav class="navbar">
 
 
-<div class="container nav-box">
+<div class="container nav-container">
 
 
 
-<a href="index.html"
+<a href="index.html" class="logo">
 
-class="logo">
-
-
-GSH<span>.</span>
-
+GSH.<span>个人作品集</span>
 
 </a>
 
@@ -60,71 +42,56 @@ GSH<span>.</span>
 
 
 
-<ul>
+<ul class="nav-links">
 
 
 <li>
-
 <a href="index.html">
 
 首页
 
 </a>
-
 </li>
 
 
 
-
 <li>
-
 <a href="collection.html">
 
 案例
 
 </a>
-
 </li>
 
 
 
-
 <li>
-
 <a href="personal-video.html">
 
 抖音
 
 </a>
-
 </li>
 
 
 
-
 <li>
-
 <a href="design-works.html">
 
 美工
 
 </a>
-
 </li>
-
 
 
 
 <li>
-
-<a href="resume/高帅航.pdf">
+<a href="resume/高帅航.pdf" target="_blank">
 
 简历
 
 </a>
-
 </li>
-
 
 
 
@@ -132,8 +99,8 @@ GSH<span>.</span>
 
 
 
-
 </div>
+
 
 </nav>
 
@@ -144,33 +111,9 @@ GSH<span>.</span>
 
 
 
-<!-- 手机返回 -->
+<!-- 详情 -->
 
-
-<div class="mobile-back">
-
-
-<a href="collection.html">
-
-
-← 返回案例集
-
-
-</a>
-
-
-</div>
-
-
-
-
-
-
-
-
-
-<main class="detail-page">
-
+<section class="detail-page">
 
 
 <div class="container">
@@ -179,7 +122,8 @@ GSH<span>.</span>
 
 
 
-<section class="detail-header">
+<div class="detail-header">
+
 
 
 <div class="tag">
@@ -190,30 +134,33 @@ CASE DETAIL
 
 
 
+<h1 id="title">
 
-<h1 id="caseTitle">
-
-案例详情
+案例标题
 
 </h1>
 
 
 
 
-<p id="caseDesc">
+<p id="type">
 
-短视频运营案例分析
+短视频运营案例
 
 </p>
 
 
 
-</section>
+</div>
 
 
 
 
 
+
+
+
+<div class="detail-main">
 
 
 
@@ -222,24 +169,21 @@ CASE DETAIL
 <!-- 视频 -->
 
 
-<section class="video-area">
+<div class="video-area">
 
 
 <video
 
-id="detailVideo"
+id="video"
 
 controls
 
-playsinline
-
-preload="metadata">
+playsinline>
 
 </video>
 
 
-
-</section>
+</div>
 
 
 
@@ -252,18 +196,16 @@ preload="metadata">
 <!-- 数据 -->
 
 
-<section class="data-grid">
+<div class="data-panel">
 
 
 
-
-
-<div class="data-card">
+<div class="data-item">
 
 
 <strong id="views">
 
--
+0
 
 </strong>
 
@@ -281,13 +223,12 @@ preload="metadata">
 
 
 
-
-<div class="data-card">
+<div class="data-item">
 
 
 <strong id="likes">
 
--
+0
 
 </strong>
 
@@ -305,13 +246,12 @@ preload="metadata">
 
 
 
-
-<div class="data-card">
+<div class="data-item">
 
 
 <strong id="comments">
 
--
+0
 
 </strong>
 
@@ -329,8 +269,7 @@ preload="metadata">
 
 
 
-</section>
-
+</div>
 
 
 
@@ -342,34 +281,25 @@ preload="metadata">
 <!-- 抖音链接 -->
 
 
-<section class="douyin-box">
+<div class="douyin-link">
 
 
-<h2>
+<h3>
 
 抖音视频链接
 
-</h2>
+</h3>
 
 
+<a href="#" id="douyinUrl" target="_blank">
 
-
-<a
-
-id="douyinLink"
-
-href="#"
-
-target="_blank">
-
-
-点击查看视频
-
+填写抖音视频链接
 
 </a>
 
 
-</section>
+
+</div>
 
 
 
@@ -378,11 +308,10 @@ target="_blank">
 
 
 
+<!-- 描述 -->
 
-<!-- 项目介绍 -->
 
-
-<section class="info-card">
+<div class="description">
 
 
 <h2>
@@ -393,15 +322,15 @@ target="_blank">
 
 
 
-<p id="projectInfo">
+<p id="desc">
 
-加载中...
+案例详细介绍内容
 
 </p>
 
 
 
-</section>
+</div>
 
 
 
@@ -410,30 +339,9 @@ target="_blank">
 
 
 
-
-<!-- 数据图 -->
-
-<section class="analysis-card">
+</div>
 
 
-<h2>
-
-投放数据图
-
-</h2>
-
-
-
-<div class="chart-box">
-
-
-<img
-
-id="dataImage"
-
-class="chart-img"
-
->
 
 </div>
 
@@ -446,162 +354,13 @@ class="chart-img"
 
 
 
+<footer>
 
 
-<section class="analysis-card">
+© 2026 GSH Portfolio
 
 
-<h2>
-
-点击率分析图
-
-</h2>
-
-
-
-<div class="chart-box">
-
-
-<img
-
-id="ctrImage"
-
-class="chart-img"
-
->
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<section class="analysis-card">
-
-
-<h2>
-
-用户流失分析图
-
-</h2>
-
-
-
-<div class="chart-box">
-
-
-<img
-
-id="lossImage"
-
-class="chart-img"
-
->
-
-</div>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- 职责 -->
-
-<section class="info-card">
-
-
-<h2>
-
-我的职责
-
-</h2>
-
-
-
-<p id="caseRole">
-
-加载中...
-
-</p>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<section class="info-card">
-
-
-<h2>
-
-运营复盘
-
-</h2>
-
-
-
-<p>
-
-通过用户数据分析、
-内容结构调整以及持续优化，
-提升视频传播效果。
-
-</p>
-
-
-</section>
-
-
-
-
-
-
-
-
-
-<!-- 底部返回 -->
-
-
-<a href="collection.html"
-
-class="back-btn">
-
-
-← 返回案例集
-
-
-</a>
-
-
-
-
-
-
-
-</div>
-
-
-</main>
-
+</footer>
 
 
 
@@ -612,9 +371,7 @@ class="back-btn">
 <script src="js/detail.js"></script>
 
 
-
 </body>
-
 
 
 </html>
