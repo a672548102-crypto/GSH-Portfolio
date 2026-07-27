@@ -2,7 +2,7 @@
 =====================================
 GSH Portfolio
 design-works.js
-加载美工设计作品数据
+加载美工设计作品数据 + 模态框
 =====================================
 */
 
@@ -25,6 +25,10 @@ console.warn(
 return;
 
 }
+
+// ====================================
+// 加载数据
+// ====================================
 
 fetch("./assets/data/design.json")
 
@@ -62,42 +66,34 @@ return;
 
 }
 
+// 渲染卡片
 grid.innerHTML = works.map(item=>{
 
-// 根据类型设置不同的 CSS 类
 let typeClass = 'type-other';
 
 if(item.type === '商品主图' || item.type === '电商主图'){
-
 typeClass = 'type-product';
-
 } else if(item.type === '礼盒包装' || item.type === '包装设计'){
-
 typeClass = 'type-giftbox';
-
 } else if(item.type === '瓜子包装'){
-
 typeClass = 'type-packaging';
-
 } else if(item.type === '海报设计'){
-
 typeClass = 'type-poster';
-
 } else if(item.type === 'AI源文件'){
-
 typeClass = 'type-ai';
-
 }
+
+const imageCount = (item.images || []).length;
 
 return `
 
-<div class="design-card">
+<div class="design-card" data-id="${item.id}">
 
 <div class="cover-box">
 
 <img
 
-src="${item.image}"
+src="${item.cover || item.images?.[0] || ''}"
 
 alt="${item.title}"
 
@@ -113,6 +109,12 @@ ${item.type || '设计'}
 
 </span>
 
+<span class="view-all-badge">
+
+📷 ${imageCount} 张
+
+</span>
+
 </div>
 
 <div class="design-info">
@@ -121,6 +123,8 @@ ${item.type || '设计'}
 
 <p>${item.desc || ''}</p>
 
+<span class="image-count">共 ${imageCount} 张作品</span>
+
 </div>
 
 </div>
@@ -128,6 +132,41 @@ ${item.type || '设计'}
 `;
 
 }).join('');
+
+// ====================================
+// 绑定点击事件（打开模态框）
+// ====================================
+
+const cards =
+document.querySelectorAll(
+".design-card"
+);
+
+cards.forEach(card=>{
+
+card.addEventListener(
+"click",
+()=>{
+
+const id =
+card.dataset.id;
+
+const data =
+works.find(
+item => item.id === id
+);
+
+if(data){
+
+openGallery(data);
+
+}
+
+}
+
+);
+
+});
 
 })
 
@@ -154,9 +193,137 @@ grid.innerHTML = `
 
 });
 
-// =====================
+// ====================================
+// 模态框功能
+// ====================================
+
+const modal =
+document.getElementById(
+"galleryModal"
+);
+
+const galleryGrid =
+document.getElementById(
+"galleryGrid"
+);
+
+const galleryTitle =
+document.getElementById(
+"galleryTitle"
+);
+
+const galleryDesc =
+document.getElementById(
+"galleryDesc"
+);
+
+const galleryCount =
+document.getElementById(
+"galleryCount"
+);
+
+const galleryClose =
+document.getElementById(
+"galleryClose"
+);
+
+// 打开模态框
+function openGallery(data){
+
+const images =
+data.images || [];
+
+galleryTitle.textContent =
+data.title;
+
+galleryDesc.textContent =
+data.desc || '';
+
+galleryCount.textContent =
+`共 ${images.length} 张图片`;
+
+// 渲染图片
+galleryGrid.innerHTML =
+images.map(img => `
+
+<div class="gallery-item">
+
+<img
+
+src="${img}"
+
+alt="${data.title}"
+
+loading="lazy"
+
+onerror="this.style.display='none'"
+
+>
+
+</div>
+
+`).join('');
+
+modal.classList.add(
+"active"
+);
+
+document.body.style.overflow =
+"hidden";
+
+}
+
+// 关闭模态框
+function closeGallery(){
+
+modal.classList.remove(
+"active"
+);
+
+document.body.style.overflow =
+"";
+
+}
+
+// 点击关闭按钮
+galleryClose.addEventListener(
+"click",
+closeGallery
+);
+
+// 点击背景关闭
+modal.addEventListener(
+"click",
+(e)=>{
+
+if(e.target === modal){
+
+closeGallery();
+
+}
+
+}
+
+);
+
+// ESC 关闭
+document.addEventListener(
+"keydown",
+(e)=>{
+
+if(e.key === "Escape"){
+
+closeGallery();
+
+}
+
+}
+
+);
+
+// ====================================
 // 移动端菜单
-// =====================
+// ====================================
 
 const menu =
 document.querySelector(
