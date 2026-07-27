@@ -19,8 +19,6 @@ sans-serif;
 
 }
 
-
-
 .container{
 
 max-width:1200px;
@@ -30,11 +28,6 @@ margin:auto;
 padding:0 28px;
 
 }
-
-
-
-
-
 
 /* 导航 */
 
@@ -58,8 +51,6 @@ border-bottom:
 
 }
 
-
-
 .navbar .container{
 
 height:70px;
@@ -72,8 +63,6 @@ justify-content:space-between;
 
 }
 
-
-
 .logo{
 
 font-size:22px;
@@ -82,15 +71,11 @@ font-weight:800;
 
 }
 
-
-
 .logo span{
 
 color:#8b5cf6;
 
 }
-
-
 
 .navbar ul{
 
@@ -102,8 +87,6 @@ list-style:none;
 
 }
 
-
-
 .navbar a{
 
 color:#b4abc9;
@@ -112,21 +95,13 @@ text-decoration:none;
 
 }
 
-
-
 .navbar a:hover{
 
 color:white;
 
 }
 
-
-
-
-
-
 /* 标题 */
-
 
 .page-header{
 
@@ -137,8 +112,6 @@ padding-bottom:60px;
 text-align:center;
 
 }
-
-
 
 .tag{
 
@@ -152,15 +125,11 @@ margin-bottom:15px;
 
 }
 
-
-
 h1{
 
 font-size:42px;
 
 }
-
-
 
 .page-header p{
 
@@ -170,14 +139,7 @@ margin-top:15px;
 
 }
 
-
-
-
-
-
-
 /* 视频 */
-
 
 .video-grid{
 
@@ -193,9 +155,6 @@ padding-bottom:100px;
 
 }
 
-
-
-
 .video-card{
 
 background:
@@ -210,8 +169,6 @@ border-radius:20px;
 padding:20px;
 
 }
-
-
 
 .video-card video{
 
@@ -229,14 +186,11 @@ object-fit:contain;
 
 }
 
-
 .video-card h3{
 
 margin-top:20px;
 
 }
-
-
 
 .video-card p{
 
@@ -245,10 +199,6 @@ color:#b4abc9;
 margin-top:10px;
 
 }
-
-
-
-
 
 footer{
 
@@ -260,10 +210,6 @@ color:#71678f;
 
 }
 
-
-
-
-
 @media(max-width:768px){
 
 
@@ -273,7 +219,6 @@ padding:0 16px;
 
 }
 
-
 .navbar ul{
 
 gap:12px;
@@ -282,21 +227,16 @@ font-size:13px;
 
 }
 
-
-
 .video-grid{
 
 grid-template-columns:1fr;
 
 }
 
-
-
 h1{
 
 font-size:30px;
 
 }
-
 
 }
