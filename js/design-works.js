@@ -1,8 +1,9 @@
 /* =====================================
  GSH Portfolio
  design-works.js
- Design Works Stable Version
+ Stable Final Version
 ===================================== */
+
 
 
 document.addEventListener(
@@ -10,10 +11,33 @@ document.addEventListener(
 ()=>{
 
 
+loadDesignWorks();
 
 
 
-const workGrid =
+});
+
+
+
+
+
+
+
+
+
+/* ===============================
+加载美工作品
+=============================== */
+
+
+function loadDesignWorks(){
+
+
+
+
+
+const grid =
+
 document.getElementById(
 "workGrid"
 );
@@ -22,31 +46,20 @@ document.getElementById(
 
 
 
-if(!workGrid){
 
-
-console.warn(
-"没有找到作品容器"
-);
-
+if(!grid)
 
 return;
 
 
-}
 
 
 
 
 
-
-
-/*
-加载美工作品数据
-*/
-
-
-fetch("./assets/data/design.json")
+fetch(
+"assets/data/design.json"
+)
 
 .then(res=>{
 
@@ -66,9 +79,107 @@ throw new Error(
 return res.json();
 
 
+
 })
 
-.then(works=>{
+.then(data=>{
+
+
+
+
+
+renderWorks(
+grid,
+data
+);
+
+
+
+
+})
+
+.catch(err=>{
+
+
+console.error(
+"美工作品加载失败:",
+err
+);
+
+
+
+grid.innerHTML=`
+
+<div class="empty-tip">
+
+作品加载失败
+
+</div>
+
+`;
+
+
+
+});
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===============================
+生成作品
+=============================== */
+
+
+function renderWorks(grid,works){
+
+
+
+
+
+grid.innerHTML="";
+
+
+
+
+
+
+
+if(!works || works.length===0){
+
+
+
+grid.innerHTML=`
+
+<div class="empty-tip">
+
+暂无设计作品
+
+</div>
+
+`;
+
+
+
+return;
+
+
+}
+
+
+
 
 
 
@@ -81,14 +192,19 @@ works.forEach((item,index)=>{
 
 
 
+
 const card =
+
 document.createElement(
 "div"
 );
 
 
 
-card.className =
+
+
+card.className=
+
 "work-card";
 
 
@@ -96,15 +212,32 @@ card.className =
 
 
 
-card.innerHTML =
+
+
+const image =
+
+item.image ||
+
+item.cover ||
+
+item.img ||
+
+item.src ||
+
+"";
 
 
 
-`
+
+
+
+
+
+card.innerHTML=`
 
 <img
 
-src="${item.image || item.cover || ''}"
+src="${image}"
 
 alt="${item.title || '设计作品'}"
 
@@ -117,11 +250,14 @@ loading="lazy"
 <div class="work-info">
 
 
+
 <h3>
 
 ${item.title || "设计作品"}
 
 </h3>
+
+
 
 
 
@@ -132,8 +268,8 @@ ${item.desc || "电商视觉设计作品"}
 </p>
 
 
-</div>
 
+</div>
 
 `;
 
@@ -141,36 +277,61 @@ ${item.desc || "电商视觉设计作品"}
 
 
 
-workGrid.appendChild(card);
-
-
-
-
-});
 
 
 
 
 
 
-})
+
+// 图片错误处理
 
 
+const img =
 
-.catch(err=>{
-
-
-console.error(
-
-"美工作品加载失败:",
-err
-
+card.querySelector(
+"img"
 );
 
 
 
-});
+
+
+if(img){
+
+
+
+img.onerror=()=>{
+
+
+img.src=
+
+"assets/images/default.jpg";
+
+
+};
+
+
+
+}
+
+
+
+
+
+
+
+
+grid.appendChild(card);
+
+
+
 
 
 
 });
+
+
+
+
+}
