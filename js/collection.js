@@ -11,9 +11,9 @@ let casesData = [];
 
 
 
-/* =======================
-获取案例数据
-======================= */
+/* =====================
+加载数据
+===================== */
 
 
 fetch("assets/data/cases.json")
@@ -22,56 +22,51 @@ fetch("assets/data/cases.json")
 .then(res=>{
 
 
-    if(!res.ok){
+if(!res.ok){
 
-        throw new Error(
-            "cases.json不存在"
-        );
+throw new Error(
+"cases.json加载失败"
+);
 
-    }
+}
 
 
-    return res.json();
+return res.json();
 
 
 })
+
 
 
 .then(data=>{
 
 
-    casesData=data;
+casesData=data;
 
 
-    renderCases(casesData);
+renderCases(casesData);
 
 
 })
 
 
+
 .catch(err=>{
 
 
-    console.error(err);
+console.error(err);
 
 
 
-    const grid=document.querySelector("#caseGrid");
+document.querySelector("#caseGrid").innerHTML=`
 
+<div class="no-data">
 
-    if(grid){
+案例数据暂未找到
 
-        grid.innerHTML=`
+</div>
 
-        <div class="no-data">
-
-        案例数据暂未找到
-
-        </div>
-
-        `;
-
-    }
+`;
 
 
 });
@@ -84,193 +79,237 @@ fetch("assets/data/cases.json")
 
 
 
-/* =======================
+/* =====================
 渲染案例
-======================= */
+===================== */
 
 
 function renderCases(list){
 
 
-    const grid=document.querySelector("#caseGrid");
 
+const grid=document.querySelector("#caseGrid");
 
-    if(!grid)return;
 
 
+if(!grid)return;
 
-    grid.innerHTML="";
 
 
+grid.innerHTML="";
 
 
 
-    list.forEach(item=>{
 
 
-        const card=document.createElement("div");
+list.forEach(item=>{
 
 
-        card.className="case-card";
 
+const card=document.createElement("div");
 
 
 
+card.className="case-card";
 
-        card.innerHTML=`
 
-        <div class="cover-box">
 
 
-            <img
 
-            src="${item.cover}"
+/*
+只显示 type
 
-            class="case-cover"
+不读取 category
 
-            alt="${item.title}"
+*/
 
-            >
 
-        </div>
+let typeName =
+item.type || "类型暂未填写";
 
 
 
 
 
-        <div class="case-info">
 
 
 
-            <div class="case-title">
+card.innerHTML=`
 
+<div class="cover-box">
 
-                <h3>
 
-                ${item.title}
+<img
 
-                </h3>
+class="case-cover"
 
+src="${item.cover || ''}"
 
+alt="${item.title || ''}"
 
-                <span class="type-tag">
+>
 
-                ${item.type || "案例类"}
 
-                </span>
+</div>
 
 
 
-            </div>
 
 
 
+<div class="case-info">
 
 
 
-            <p class="case-role">
 
-            ${item.role || "该数据暂未找到"}
 
-            </p>
+<div class="case-title">
 
 
+<h3>
 
+${item.title || "项目名称"}
 
+</h3>
 
 
-            <div class="case-data">
 
+<span class="type-tag">
 
-                <span>
+${typeName}
 
-                播放 ${item.views || "-"}
+</span>
 
-                </span>
 
 
+</div>
 
-                <span>
 
-                点赞 ${item.likes || "-"}
 
-                </span>
 
 
 
-                <span>
 
-                评论 ${item.comments || "-"}
 
-                </span>
 
+<p class="case-role">
 
+${item.role || "项目描述暂未填写"}
 
-            </div>
+</p>
 
 
 
-        </div>
 
 
-        `;
 
 
 
 
+<div class="case-data">
 
 
+<span>
 
+播放 ${item.views || "暂无"}
 
-        // 图片加载失败
+</span>
 
-        const img=card.querySelector(".case-cover");
 
 
+<span>
 
-        img.onerror=function(){
+点赞 ${item.likes || "暂无"}
 
+</span>
 
-            this.parentNode.innerHTML=`
 
-            <div class="no-data">
 
-            该数据暂未找到
+<span>
 
-            </div>
+评论 ${item.comments || "暂无"}
 
-            `;
+</span>
 
 
-        };
 
+</div>
 
 
 
 
 
+</div>
 
-        // 点击播放视频
 
-        card.onclick=function(){
+`;
 
 
-            openVideo(item.video);
 
 
-        };
 
 
 
+/* =====================
+图片检测
+===================== */
 
 
+const img =
+card.querySelector(".case-cover");
 
 
-        grid.appendChild(card);
 
+img.onerror=function(){
 
 
-    });
+this.parentNode.innerHTML=`
+
+<div class="no-data">
+
+该数据暂未找到
+
+</div>
+
+`;
+
+
+
+};
+
+
+
+
+
+
+
+/* =====================
+视频点击
+===================== */
+
+
+card.onclick=function(){
+
+
+openVideo(
+item.video
+);
+
+
+};
+
+
+
+
+
+
+
+grid.appendChild(card);
+
+
+
+});
+
 
 
 }
@@ -283,86 +322,82 @@ function renderCases(list){
 
 
 
-/* =======================
+
+
+
+
+/* =====================
 分类筛选
-======================= */
+===================== */
 
 
+const filters=
+document.querySelectorAll(".filter");
 
-const filters=document.querySelectorAll(".filter");
 
 
 
 filters.forEach(btn=>{
 
 
-    btn.addEventListener(
-    "click",
-    ()=>{
+btn.onclick=function(){
 
 
 
-        const active=document.querySelector(
-            ".filter.active"
-        );
+const current=
+document.querySelector(".filter.active");
 
 
-        if(active){
 
-            active.classList.remove(
-                "active"
-            );
+if(current){
 
-        }
+current.classList.remove("active");
+
+}
 
 
 
 
-        btn.classList.add(
-            "active"
-        );
+this.classList.add("active");
 
 
 
 
 
-        const type=btn.dataset.filter;
+const type=this.dataset.filter;
 
 
 
 
 
 
-        if(type==="all"){
+if(type==="all"){
 
 
-            renderCases(
-                casesData
-            );
+renderCases(casesData);
 
 
-        }
+}
 
-        else{
+else{
 
 
-            const result=
-            casesData.filter(
-                item=>
-                item.category===type
-            );
+const result =
+casesData.filter(
+item=>item.category===type
+);
 
 
 
-            renderCases(result);
+renderCases(result);
+
+
+}
 
 
 
-        }
+};
 
-
-
-    });
 
 
 });
@@ -377,24 +412,34 @@ filters.forEach(btn=>{
 
 
 
-/* =======================
-视频弹窗
-======================= */
 
+
+
+
+/* =====================
+视频弹窗
+===================== */
 
 
 const modal=
 document.querySelector("#videoModal");
 
 
-
 const player=
 document.querySelector("#player");
 
 
-
 const closeBtn=
 document.querySelector("#closeBtn");
+
+
+const videoError=
+document.querySelector("#videoError");
+
+
+
+
+
 
 
 
@@ -404,50 +449,51 @@ function openVideo(src){
 
 
 
-    if(!modal || !player){
-
-        return;
-
-    }
+if(!src){
 
 
+showVideoError();
 
 
-    if(!src){
+return;
 
 
-        showVideoError();
-
-
-        return;
-
-
-    }
+}
 
 
 
 
 
-    player.style.display="block";
 
 
-    player.src=src;
+player.style.display="block";
 
 
-
-    modal.classList.add(
-        "show"
-    );
+videoError.style.display="none";
 
 
 
+player.src=src;
 
-    player.play()
-    .catch(()=>{});
+
+
+modal.classList.add("show");
+
+
+
+
+
+player.play()
+
+.catch(()=>{
+
+
+});
 
 
 
 }
+
 
 
 
@@ -460,14 +506,13 @@ function showVideoError(){
 
 
 
-    modal.classList.add(
-        "show"
-    );
+modal.classList.add("show");
 
 
+player.style.display="none";
 
-    player.style.display="none";
 
+videoError.style.display="block";
 
 
 }
@@ -478,36 +523,36 @@ function showVideoError(){
 
 
 
-//关闭按钮
+
+
+
+
+
+
+/* =====================
+关闭视频
+===================== */
 
 
 if(closeBtn){
+
 
 
 closeBtn.onclick=function(){
 
 
 
-    modal.classList.remove(
-        "show"
-    );
+modal.classList.remove("show");
 
 
 
-    player.pause();
+player.pause();
 
 
-
-    player.currentTime=0;
-
+player.currentTime=0;
 
 
-    player.src="";
-
-
-
-    player.style.display="block";
-
+player.src="";
 
 
 };
@@ -523,32 +568,27 @@ closeBtn.onclick=function(){
 
 
 
-// 点击黑色区域关闭
+/* 点击遮罩关闭 */
 
 
 if(modal){
 
 
-
-modal.addEventListener(
-"click",
-e=>{
+modal.onclick=function(e){
 
 
-    if(e.target===modal){
+
+if(e.target===modal){
 
 
-        if(closeBtn){
-
-            closeBtn.click();
-
-        }
+closeBtn.click();
 
 
-    }
+}
 
 
-});
+};
+
 
 
 }
@@ -562,18 +602,23 @@ e=>{
 
 
 
-/* =======================
+
+
+
+
+/* =====================
 手机导航
-======================= */
+===================== */
 
 
-const menuBtn=
+const menuBtn =
 document.querySelector(".menu-toggle");
 
 
 
-const nav=
+const nav =
 document.querySelector(".nav-links");
+
 
 
 
@@ -582,17 +627,16 @@ if(menuBtn && nav){
 
 
 
-menuBtn.onclick=()=>{
+menuBtn.onclick=function(){
 
 
-    menuBtn.classList.toggle(
-        "active"
-    );
+
+this.classList.toggle("active");
 
 
-    nav.classList.toggle(
-        "show"
-    );
+
+nav.classList.toggle("show");
+
 
 
 };
