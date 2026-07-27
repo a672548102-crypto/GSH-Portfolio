@@ -1,727 +1,763 @@
-/* =====================================
-GSH Portfolio
-index.css
-首页最终稳定版
-===================================== */
+<!DOCTYPE html>
+<html lang="zh-CN">
+
+<head>
+
+<meta charset="UTF-8">
+
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
 
-/* =====================
+<title>
+高帅航 | 短视频运营 & 视频剪辑
+</title>
+
+
+
+<!-- 公共样式 -->
+
+<link rel="stylesheet" href="css/style.css">
+
+
+<!-- 首页样式 -->
+
+<link rel="stylesheet" href="css/index.css">
+
+
+
+<link rel="icon" href="assets/icons/favicon.ico">
+
+
+</head>
+
+
+
+<body>
+
+
+
+<!-- =====================
+导航
+===================== -->
+
+<nav class="navbar">
+
+
+<div class="container nav-container">
+
+
+<a href="index.html" class="logo">
+
+GSH.
+
+<span>
+个人作品集
+</span>
+
+</a>
+
+
+
+
+<ul class="nav-links">
+
+
+<li>
+
+<a href="index.html" class="active">
+
+首页
+
+</a>
+
+</li>
+
+
+
+<li>
+
+<a href="collection.html">
+
+案例
+
+</a>
+
+</li>
+
+
+
+<li>
+
+<a href="personal-video.html">
+
+抖音
+
+</a>
+
+</li>
+
+
+
+<li>
+
+<a href="design-works.html">
+
+美工
+
+</a>
+
+</li>
+
+
+
+<li>
+
+<a href="resume/高帅航.pdf" target="_blank">
+
+简历
+
+</a>
+
+</li>
+
+
+</ul>
+
+
+
+
+<button class="menu-toggle">
+
+
+<span></span>
+
+<span></span>
+
+<span></span>
+
+
+</button>
+
+
+
+</div>
+
+
+</nav>
+
+
+
+
+
+
+
+
+
+<!-- =====================
 Hero
-===================== */
+===================== -->
 
 
-.hero{
+<section class="hero">
 
-min-height:100vh;
 
-display:flex;
+<div class="container hero-grid">
 
-align-items:center;
 
-padding-top:80px;
 
-}
 
 
+<!-- 头像 -->
 
-.hero-grid{
 
-display:grid;
+<div class="avatar-box">
 
-grid-template-columns:260px 1fr;
 
-gap:70px;
+<div class="avatar-ring">
 
-align-items:center;
 
-}
+<img
 
 
+src="assets/avatar/avatar.jpg"
 
 
+class="avatar"
 
 
-/* =====================
-头像
-===================== */
+alt="高帅航"
 
 
-.avatar-box{
+onerror="this.onerror=null;this.src='assets/images/no-data.png';"
 
-display:flex;
 
-justify-content:center;
+>
 
-align-items:center;
 
-}
 
+</div>
 
 
-.avatar-ring{
+</div>
 
-width:210px;
 
-height:210px;
 
-border-radius:50%;
 
-overflow:hidden;
 
-}
 
 
 
-.avatar{
 
-width:100%;
+<!-- 介绍 -->
 
-height:100%;
 
-object-fit:cover;
+<div class="hero-content">
 
-border-radius:50%;
 
-}
 
+<div class="tag">
 
 
+SHORT VIDEO OPERATION
 
 
+</div>
 
-/* =====================
-文字区域
-===================== */
 
 
-.hero-content{
 
-max-width:650px;
 
-}
+<h1>
 
+你好，我是
 
+<span>
 
-.tag{
+高帅航
 
-display:inline-block;
+</span>
 
-padding:8px 20px;
 
-border-radius:30px;
+</h1>
 
-background:
 
-rgba(139,92,246,.15);
 
 
-border:
 
-1px solid rgba(139,92,246,.3);
+<h2>
 
+短视频运营 / 视频剪辑 / 电商美工
 
-font-size:13px;
+</h2>
 
-color:#ddd6fe;
 
-}
 
 
 
 
+<p>
 
-.hero-content h1{
 
-font-size:58px;
+专注短视频内容策划、脚本创作、
+视频剪辑、电商视觉设计以及账号运营。
 
-line-height:1.2;
 
-margin:25px 0;
+通过内容分析与数据优化，
+打造具有商业价值的视频作品。
 
-font-weight:900;
 
-}
+</p>
 
 
 
-.hero-content h1 span{
 
-color:#c4b5fd;
 
-}
 
 
+<!-- 数据 -->
 
 
-.hero-content h2{
+<div class="stats">
 
-font-size:26px;
 
-font-weight:700;
 
-margin-bottom:20px;
+<div>
 
-white-space:nowrap;
 
-}
+<strong class="counter" data-target="30">
 
+0
 
+</strong>
 
-.hero-content p{
 
-font-size:16px;
+<span>
 
-line-height:2;
+作品案例
 
-color:#aaa;
+</span>
 
-max-width:580px;
 
-}
+</div>
 
 
 
 
 
 
-/* =====================
-数据统计
-===================== */
+<div>
 
 
-.stats{
+<strong class="counter" data-target="2333">
 
-display:flex;
+0
 
-gap:50px;
+</strong>
 
-margin:45px 0;
 
-}
+<span>
 
+千川消耗（万）
 
+</span>
 
-.stats strong{
 
-display:block;
+</div>
 
-font-size:38px;
 
-font-weight:900;
 
 
-background:
 
-linear-gradient(
-135deg,
-#ffffff,
-#c4b5fd
-);
 
 
--webkit-background-clip:text;
+<div>
 
-background-clip:text;
 
-color:transparent;
+<strong class="counter" data-target="5000">
 
-}
+0
 
+</strong>
 
 
-.stats span{
+<span>
 
-font-size:14px;
+带来营收（万）
 
-color:#999;
+</span>
 
-}
 
+</div>
 
 
 
 
 
-/* =====================
-按钮
-===================== */
 
+</div>
 
-.buttons{
 
-display:flex;
 
-gap:20px;
 
-}
 
 
 
 
 
-/* =====================
-优势
-===================== */
+<div class="buttons">
 
 
-.advantages{
 
-padding:100px 0;
+<a href="collection.html" class="btn primary">
 
-}
 
+查看案例
 
 
-.advantages h2{
+</a>
 
-text-align:center;
 
-font-size:40px;
 
-margin-bottom:50px;
 
-}
 
+<a href="resume/高帅航.pdf"
 
+target="_blank"
 
-.advantage-grid{
+class="btn">
 
-display:grid;
 
-grid-template-columns:
+下载简历
 
-repeat(3,1fr);
 
-gap:30px;
+</a>
 
-}
 
 
+</div>
 
-.advantage-card{
 
-padding:35px;
 
-border-radius:22px;
 
-background:
 
-rgba(255,255,255,.06);
 
-border:
 
-1px solid rgba(255,255,255,.1);
+</div>
 
-transition:.35s;
 
-}
 
 
 
-.advantage-card:hover{
 
-transform:translateY(-8px);
+</div>
 
-}
 
+</section>
 
 
-.advantage-card h3{
 
-font-size:22px;
 
-margin-bottom:15px;
 
-}
 
 
 
-.advantage-card p{
 
-font-size:15px;
+<!-- =====================
+个人优势
+===================== -->
 
-line-height:1.8;
 
-color:#aaa;
+<section class="advantages">
 
-}
 
+<div class="container">
 
 
+<h2>
 
+个人优势
 
+</h2>
 
 
-/* =====================
-联系
-===================== */
 
 
-.contact{
 
-padding:100px 0;
+<div class="advantage-grid">
 
-text-align:center;
 
-}
 
 
 
-.contact h2{
+<div class="advantage-card">
 
-font-size:40px;
 
-margin-bottom:50px;
+<h3>
 
-}
+内容策划能力
 
+</h3>
 
 
-.qr{
+<p>
 
-display:flex;
+熟悉短视频选题分析、
+脚本创作和内容结构规划，
+提升内容传播效果。
 
-justify-content:center;
+</p>
 
-gap:50px;
 
-}
+</div>
 
 
 
-.qr img{
 
-width:160px;
 
-height:160px;
 
-object-fit:cover;
 
-border-radius:15px;
+<div class="advantage-card">
 
-}
 
+<h3>
 
+视频制作能力
 
+</h3>
 
 
-/* =====================
-平板
-===================== */
+<p>
 
+熟练完成剪辑包装、
+节奏优化、视觉设计，
+提升用户观看体验。
 
-@media(max-width:1000px){
+</p>
 
 
-.hero-grid{
+</div>
 
-grid-template-columns:220px 1fr;
 
-gap:40px;
 
-}
 
 
 
-.hero-content h1{
 
-font-size:45px;
+<div class="advantage-card">
 
-}
 
+<h3>
 
-}
+账号运营能力
 
+</h3>
 
 
+<p>
 
-/* =====================
-手机
-===================== */
+根据平台数据反馈，
+优化账号方向，
+提升内容表现。
 
+</p>
 
-@media(max-width:768px){
 
+</div>
 
 
-.hero{
 
-padding-top:100px;
 
-padding-bottom:70px;
 
-min-height:auto;
 
-}
 
+<div class="advantage-card">
 
 
-.hero-grid{
+<h3>
 
-grid-template-columns:1fr;
+数据分析能力
 
-text-align:center;
+</h3>
 
-gap:35px;
 
-}
+<p>
 
+结合播放量、互动率、
+转化数据进行内容复盘。
 
+</p>
 
 
+</div>
 
-.avatar-ring{
 
-width:160px;
 
-height:160px;
 
-}
 
 
 
+<div class="advantage-card">
 
-.hero-content{
 
-width:100%;
+<h3>
 
-display:flex;
+AI视频制作
 
-flex-direction:column;
+</h3>
 
-align-items:center;
 
-}
+<p>
 
+结合AI工具提升创作效率，
+辅助完成商业视频生产。
 
+</p>
 
-.tag{
 
-font-size:12px;
+</div>
 
-padding:7px 16px;
 
-}
 
 
 
-.hero-content h1{
 
-font-size:34px;
 
-margin:18px 0;
+<div class="advantage-card">
 
-}
 
+<h3>
 
+商业视觉设计
 
-.hero-content h2{
+</h3>
 
 
-font-size:17px;
+<p>
 
+具备电商美工能力，
+理解品牌视觉与营销需求。
 
-line-height:1.5;
+</p>
 
 
-white-space:normal;
+</div>
 
 
-max-width:330px;
 
 
-}
 
 
 
-.hero-content p{
+</div>
 
 
-font-size:13px;
+</div>
 
 
-line-height:1.8;
+</section>
 
 
-max-width:330px;
 
 
-}
 
 
 
 
-.stats{
 
+<!-- =====================
+联系方式
+===================== -->
 
-width:100%;
 
-justify-content:center;
+<section class="contact">
 
-gap:15px;
 
-margin:30px 0;
+<div class="container">
 
 
-}
+<h2>
 
+期待与你合作
 
+</h2>
 
 
-.stats strong{
 
 
-font-size:24px;
 
 
-}
+<div class="qr">
 
 
 
-.stats span{
 
 
-font-size:11px;
 
+<div>
 
-}
 
+<img
 
 
+src="assets/qr/wechat.jpg"
 
 
-.buttons{
+alt="微信二维码"
 
 
-justify-content:center;
+onerror="this.onerror=null;this.src='assets/images/no-data.png';"
 
-flex-wrap:wrap;
 
+>
 
-}
 
+<p>
 
+微信
 
-.advantages{
+</p>
 
-padding:70px 0;
 
-}
+</div>
 
 
 
-.advantages h2{
 
-font-size:30px;
 
-}
 
 
 
-.advantage-grid{
 
-grid-template-columns:1fr;
+<div>
 
-gap:20px;
 
-}
+<img
 
 
+src="assets/qr/douyin.jpg"
 
-.advantage-card{
 
-padding:25px;
+alt="抖音二维码"
 
-}
 
+onerror="this.onerror=null;this.src='assets/images/no-data.png';"
 
 
+>
 
-.contact{
 
-padding:70px 0;
 
-}
+<p>
 
+抖音
 
+</p>
 
-.contact h2{
 
-font-size:30px;
+</div>
 
-}
 
 
 
-.qr{
 
-gap:20px;
 
-flex-wrap:wrap;
+</div>
 
-}
 
 
+</div>
 
-.qr img{
 
-width:120px;
+</section>
 
-height:120px;
 
-}
 
 
-}
 
 
 
 
 
+<footer>
 
-/* 小屏 */
 
-@media(max-width:480px){
+© 2026 GSH Portfolio
 
 
-.hero-content h1{
+</footer>
 
-font-size:30px;
 
-}
 
 
 
-.hero-content h2{
 
-font-size:16px;
 
-max-width:300px;
 
-}
 
+<script src="js/main.js"></script>
 
 
-.stats{
+</body>
 
-gap:8px;
 
-}
-
-
-
-.stats strong{
-
-font-size:21px;
-
-}
-
-
-.stats span{
-
-font-size:10px;
-
-}
-
-
-}
+</html>
