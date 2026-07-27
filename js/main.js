@@ -13,8 +13,6 @@ document.addEventListener(
 
 startCounter();
 
-// 删除 initParticles(); 调用
-
 initAvatar();
 
 initMenu();
