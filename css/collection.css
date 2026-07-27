@@ -1,14 +1,21 @@
 /* =====================================
 GSH Portfolio
 collection.css
-V7 Unified Style
+Collection Stable Final
 ===================================== */
+
+
+/* =====================
+基础
+===================== */
 
 
 *{
 
 margin:0;
+
 padding:0;
+
 box-sizing:border-box;
 
 }
@@ -24,7 +31,6 @@ box-sizing:border-box;
 --bg:#050816;
 
 }
-
 
 
 
@@ -70,8 +76,11 @@ position:relative;
 
 
 
+
+
+
 /* =====================
-科技网格背景
+统一网格背景
 ===================== */
 
 
@@ -87,6 +96,7 @@ position:fixed;
 inset:0;
 
 
+
 z-index:-2;
 
 
@@ -94,12 +104,10 @@ z-index:-2;
 background-image:
 
 
-
 linear-gradient(
 rgba(139,92,246,.12) 1px,
 transparent 1px
 ),
-
 
 
 linear-gradient(
@@ -118,10 +126,13 @@ background-size:
 
 animation:
 
-gridMove 20s linear infinite;
+gridMove 25s linear infinite;
+
 
 
 }
+
+
 
 
 
@@ -131,6 +142,7 @@ gridMove 20s linear infinite;
 from{
 
 background-position:
+
 0 0;
 
 }
@@ -139,6 +151,7 @@ background-position:
 to{
 
 background-position:
+
 55px 55px;
 
 }
@@ -150,6 +163,13 @@ background-position:
 
 
 
+
+/* =====================
+环境光
+优化手机
+===================== */
+
+
 body::after{
 
 
@@ -159,14 +179,15 @@ content:"";
 position:fixed;
 
 
-width:500px;
+
+width:320px;
 
 
-height:500px;
+height:320px;
 
 
 
-right:-200px;
+right:-120px;
 
 
 top:120px;
@@ -181,7 +202,7 @@ background:
 
 radial-gradient(
 circle,
-rgba(139,92,246,.3),
+rgba(139,92,6,.25),
 transparent 70%
 );
 
@@ -189,7 +210,7 @@ transparent 70%
 
 filter:
 
-blur(45px);
+blur(25px);
 
 
 
@@ -197,37 +218,25 @@ z-index:-1;
 
 
 
-animation:
+}
 
-lightFloat 10s infinite alternate;
+
+
+body::after{
+
+
+background:
+
+radial-gradient(
+circle,
+rgba(139,92,246,.25),
+transparent 70%
+);
 
 
 }
 
 
-
-
-
-@keyframes lightFloat{
-
-
-from{
-
-transform:
-translateY(0);
-
-}
-
-
-to{
-
-transform:
-translateY(80px);
-
-}
-
-
-}
 
 
 
@@ -252,6 +261,7 @@ margin:auto;
 
 
 
+
 /* =====================
 导航
 ===================== */
@@ -263,7 +273,6 @@ margin:auto;
 height:70px;
 
 
-
 position:fixed;
 
 
@@ -271,7 +280,6 @@ top:0;
 
 
 left:0;
-
 
 
 width:100%;
@@ -284,20 +292,24 @@ z-index:1000;
 
 background:
 
-rgba(5,8,22,.7);
+rgba(5,8,22,.75);
 
 
 
 backdrop-filter:
 
-blur(20px);
+blur(12px);
+
+
+-webkit-backdrop-filter:
+
+blur(12px);
 
 
 
 border-bottom:
 
 1px solid rgba(255,255,255,.08);
-
 
 
 }
@@ -326,6 +338,7 @@ justify-content:space-between;
 
 
 
+
 .logo{
 
 
@@ -335,12 +348,15 @@ font-size:24px;
 font-weight:900;
 
 
+color:white;
+
+
 text-decoration:none;
 
 
-color:white;
-
 white-space:nowrap;
+
+
 }
 
 
@@ -348,14 +364,11 @@ white-space:nowrap;
 
 .logo span{
 
-font-weight:900;
+
 color:#c4b5fd;
 
 
 }
-
-
-
 
 
 
@@ -379,13 +392,13 @@ list-style:none;
 .navbar a{
 
 
-text-decoration:none;
-
-
 color:#aaa;
 
 
 font-size:15px;
+
+
+text-decoration:none;
 
 
 transition:.3s;
@@ -411,8 +424,9 @@ color:white;
 
 
 
+
 /* =====================
-标题区域
+标题
 ===================== */
 
 
@@ -440,7 +454,6 @@ text-align:center;
 display:inline-block;
 
 
-
 padding:
 
 8px 20px;
@@ -465,7 +478,6 @@ font-size:13px;
 
 
 }
-
 
 
 
@@ -504,14 +516,11 @@ color:#aaa;
 
 
 /* =====================
-筛选
+筛选按钮
 ===================== */
 
 
 .filter-box{
-
-
-margin-top:35px;
 
 
 display:flex;
@@ -526,8 +535,10 @@ gap:15px;
 flex-wrap:wrap;
 
 
-}
+margin-top:30px;
 
+
+}
 
 
 
@@ -539,14 +550,13 @@ padding:
 8px 22px;
 
 
-
 border-radius:30px;
 
 
 
 border:
 
-1px solid rgba(139,92,246,.3);
+1px solid rgba(139,92,246,.35);
 
 
 
@@ -563,7 +573,6 @@ color:#aaa;
 cursor:pointer;
 
 
-
 transition:.3s;
 
 
@@ -572,8 +581,9 @@ transition:.3s;
 
 
 
-.filter.active,
-.filter:hover{
+
+.filter:hover,
+.filter.active{
 
 
 background:
@@ -598,8 +608,9 @@ color:white;
 
 
 
+
 /* =====================
-案例区域
+案例列表
 ===================== */
 
 
@@ -618,19 +629,19 @@ repeat(3,1fr);
 gap:30px;
 
 
+
+padding-bottom:80px;
+
+
 }
 
 
 
 
+
+
+
 .case-card{
-
-
-position:relative;
-
-
-overflow:hidden;
-
 
 
 background:
@@ -649,7 +660,7 @@ border-radius:22px;
 
 
 
-transition:.35s;
+overflow:hidden;
 
 
 
@@ -657,12 +668,12 @@ cursor:pointer;
 
 
 
-backdrop-filter:
-
-blur(12px);
+transition:.35s;
 
 
 }
+
+
 
 
 
@@ -677,7 +688,7 @@ translateY(-10px);
 
 border-color:
 
-rgba(139,92,246,.7);
+rgba(139,92,246,.8);
 
 
 
@@ -686,7 +697,10 @@ box-shadow:
 0 20px 50px rgba(139,92,246,.25);
 
 
+
 }
+
+
 
 
 
@@ -698,7 +712,9 @@ box-shadow:
 width:100%;
 
 
-aspect-ratio:16/9;
+aspect-ratio:
+
+16/9;
 
 
 
@@ -709,112 +725,7 @@ object-fit:cover;
 display:block;
 
 
-
-transition:.5s;
-
-
 }
-
-
-
-
-.case-card:hover .case-cover{
-
-
-transform:
-
-scale(1.08);
-
-
-}
-
-
-
-
-
-
-
-
-/* 播放按钮 */
-
-
-.hover-play{
-
-
-position:absolute;
-
-
-top:50%;
-
-
-left:50%;
-
-
-
-transform:
-
-translate(-50%,-50%);
-
-
-
-opacity:0;
-
-
-
-transition:.3s;
-
-
-}
-
-
-
-
-
-.case-card:hover .hover-play{
-
-
-opacity:1;
-
-
-}
-
-
-
-.play-circle{
-
-
-width:65px;
-
-
-height:65px;
-
-
-border-radius:50%;
-
-
-
-display:flex;
-
-
-align-items:center;
-
-
-justify-content:center;
-
-
-
-background:
-
-rgba(139,92,246,.85);
-
-
-
-font-size:28px;
-
-
-}
-
-
 
 
 
@@ -823,10 +734,14 @@ font-size:28px;
 .case-info{
 
 
-padding:20px;
+padding:
+
+20px;
 
 
 }
+
+
 
 
 
@@ -842,10 +757,8 @@ color:#c4b5fd;
 letter-spacing:2px;
 
 
-margin-bottom:10px;
-
-
 }
+
 
 
 
@@ -856,7 +769,9 @@ margin-bottom:10px;
 font-size:20px;
 
 
-margin-bottom:15px;
+margin:
+
+12px 0;
 
 
 }
@@ -876,15 +791,10 @@ display:flex;
 gap:8px;
 
 
-margin-bottom:20px;
-
-
 flex-wrap:wrap;
 
 
 }
-
-
 
 
 
@@ -896,12 +806,11 @@ padding:
 5px 12px;
 
 
+border-radius:20px;
+
+
 
 font-size:12px;
-
-
-
-border-radius:20px;
 
 
 
@@ -914,13 +823,17 @@ rgba(139,92,246,.15);
 color:#ddd6fe;
 
 
-
 }
 
 
 
 
 
+
+
+
+
+/* 数据 */
 
 
 .data-box{
@@ -929,26 +842,26 @@ color:#ddd6fe;
 display:flex;
 
 
+margin-top:20px;
+
 
 padding:
 
 15px 0;
 
 
-
 border-top:
 
-1px solid rgba(255,255,255,.08);
-
+1px solid rgba(255,255,255,.1);
 
 
 border-bottom:
 
-1px solid rgba(255,255,255,.08);
-
+1px solid rgba(255,255,255,.1);
 
 
 }
+
 
 
 
@@ -963,7 +876,6 @@ text-align:center;
 
 
 }
-
 
 
 
@@ -1000,9 +912,7 @@ color:#999;
 
 
 
-/* =====================
-查看数据按钮
-===================== */
+/* 查看按钮 */
 
 
 .detail-link{
@@ -1019,24 +929,17 @@ padding:
 12px;
 
 
+border-radius:14px;
+
+
 
 text-align:center;
-
-
-
-border-radius:14px;
 
 
 
 background:
 
 rgba(139,92,246,.25);
-
-
-
-border:
-
-1px solid rgba(196,181,253,.3);
 
 
 
@@ -1047,9 +950,7 @@ color:white;
 text-decoration:none;
 
 
-
 transition:.3s;
-
 
 
 }
@@ -1068,8 +969,15 @@ linear-gradient(
 );
 
 
-
 }
+
+
+
+
+
+
+
+
 
 /* =====================
 视频弹窗
@@ -1085,13 +993,6 @@ position:fixed;
 inset:0;
 
 
-
-background:
-
-rgba(0,0,0,.82);
-
-
-
 display:flex;
 
 
@@ -1099,6 +1000,12 @@ align-items:center;
 
 
 justify-content:center;
+
+
+
+background:
+
+rgba(0,0,0,.82);
 
 
 
@@ -1113,13 +1020,10 @@ visibility:hidden;
 z-index:9999;
 
 
-
 transition:.3s;
 
 
-
 }
-
 
 
 
@@ -1148,7 +1052,6 @@ width:90%;
 max-width:900px;
 
 
-
 background:black;
 
 
@@ -1156,12 +1059,7 @@ background:black;
 border-radius:20px;
 
 
-
 overflow:hidden;
-
-
-
-position:relative;
 
 
 }
@@ -1179,12 +1077,12 @@ width:100%;
 max-height:80vh;
 
 
-
 object-fit:contain;
 
 
-
 }
+
+
 
 
 
@@ -1197,11 +1095,10 @@ object-fit:contain;
 position:absolute;
 
 
-right:15px;
+right:20px;
 
 
-top:15px;
-
+top:20px;
 
 
 width:40px;
@@ -1210,9 +1107,7 @@ width:40px;
 height:40px;
 
 
-
 border-radius:50%;
-
 
 
 background:
@@ -1221,41 +1116,13 @@ rgba(255,255,255,.15);
 
 
 
-border:
-
-1px solid rgba(255,255,255,.2);
-
+border:none;
 
 
 color:white;
 
 
-
-font-size:25px;
-
-
-
-cursor:pointer;
-
-
-
-z-index:10;
-
-
-
-}
-
-
-
-
-
-.close-btn:hover{
-
-
-background:
-
-rgba(139,92,246,.6);
-
+font-size:24px;
 
 
 }
@@ -1266,10 +1133,6 @@ rgba(139,92,246,.6);
 
 
 
-
-/* =====================
-底部
-===================== */
 
 
 footer{
@@ -1278,19 +1141,10 @@ footer{
 text-align:center;
 
 
-
-padding:
-
-35px;
-
+padding:35px;
 
 
 color:#777;
-
-
-
-font-size:14px;
-
 
 
 }
@@ -1311,7 +1165,6 @@ font-size:14px;
 @media(max-width:1000px){
 
 
-
 .case-grid{
 
 
@@ -1323,8 +1176,12 @@ repeat(2,1fr);
 }
 
 
-
 }
+
+
+
+
+
 
 
 
@@ -1337,7 +1194,6 @@ repeat(2,1fr);
 @media(max-width:768px){
 
 
-
 .container{
 
 
@@ -1345,8 +1201,6 @@ width:92%;
 
 
 }
-
-
 
 
 
@@ -1360,8 +1214,6 @@ height:65px;
 
 
 
-
-
 .logo{
 
 
@@ -1372,7 +1224,6 @@ font-size:18px;
 
 
 
-
 .navbar ul{
 
 
@@ -1380,7 +1231,6 @@ gap:10px;
 
 
 }
-
 
 
 
@@ -1402,9 +1252,6 @@ font-size:12px;
 padding-top:120px;
 
 
-padding-bottom:40px;
-
-
 }
 
 
@@ -1417,48 +1264,6 @@ font-size:34px;
 
 
 }
-
-
-
-
-
-.page-header p{
-
-
-font-size:14px;
-
-
-}
-
-
-
-
-
-.filter-box{
-
-
-gap:10px;
-
-
-}
-
-
-
-
-
-.filter{
-
-
-padding:
-
-7px 16px;
-
-
-font-size:13px;
-
-
-}
-
 
 
 
@@ -1491,6 +1296,7 @@ border-radius:18px;
 
 
 
+
 .case-info{
 
 
@@ -1498,45 +1304,6 @@ padding:18px;
 
 
 }
-
-
-
-
-.case-info h3{
-
-
-font-size:18px;
-
-
-}
-
-
-
-
-.data-box strong{
-
-
-font-size:16px;
-
-
-}
-
-
-
-
-.detail-link{
-
-
-padding:
-
-11px;
-
-
-font-size:14px;
-
-
-}
-
 
 
 
@@ -1554,17 +1321,10 @@ border-radius:15px;
 
 
 
-
-.close-btn{
-
-
-width:35px;
+body::after{
 
 
-height:35px;
-
-
-font-size:22px;
+display:none;
 
 
 }
@@ -1579,13 +1339,9 @@ font-size:22px;
 
 
 
-/* =====================
-小屏手机
-===================== */
 
 
 @media(max-width:480px){
-
 
 
 .logo{
@@ -1595,7 +1351,6 @@ font-size:16px;
 
 
 }
-
 
 
 
@@ -1632,21 +1387,13 @@ font-size:30px;
 
 
 
-
-.tags span{
-
-
-font-size:11px;
+.data-box strong{
 
 
-padding:
-
-4px 10px;
+font-size:16px;
 
 
 }
-
-
 
 
 
