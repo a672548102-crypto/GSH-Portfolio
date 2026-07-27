@@ -1,73 +1,45 @@
 /* =====================================
-GSH Portfolio
-style.css
-Tech Grid Final Version
+统一高级科技背景
+所有页面通用
 ===================================== */
-
-
-
-*{
-
-margin:0;
-padding:0;
-box-sizing:border-box;
-
-}
-
-
-
-
-:root{
-
-
---bg:#050816;
-
---purple:#8b5cf6;
-
---blue:#00d9ff;
-
---white:#f8fafc;
-
---gray:#94a3b8;
-
-
-}
-
-
-
-
-
-
-html{
-
-scroll-behavior:smooth;
-
-}
-
-
-
 
 
 body{
 
 
-font-family:
-
-"Inter",
-"Microsoft YaHei",
-sans-serif;
-
-
-
 background:
 
-#050816;
+radial-gradient(
+circle at 15% 20%,
+rgba(139,92,246,.38),
+transparent 35%
+),
+
+
+radial-gradient(
+circle at 85% 25%,
+rgba(0,217,255,.25),
+transparent 35%
+),
+
+
+radial-gradient(
+circle at 50% 100%,
+rgba(168,85,247,.18),
+transparent 45%
+),
+
+
+linear-gradient(
+135deg,
+#050816,
+#080d25,
+#050816
+);
+
 
 
 color:white;
-
-
-min-height:100vh;
 
 
 overflow-x:hidden;
@@ -83,10 +55,7 @@ position:relative;
 
 
 
-
-/* =====================================
-科技网格背景
-===================================== */
+/* 科技网格 */
 
 
 body::before{
@@ -109,14 +78,14 @@ background-image:
 
 
 linear-gradient(
-rgba(139,92,246,.12) 1px,
+rgba(139,92,246,.13) 1px,
 transparent 1px
 ),
 
 
 linear-gradient(
 90deg,
-rgba(0,217,255,.12) 1px,
+rgba(0,217,255,.10) 1px,
 transparent 1px
 );
 
@@ -124,17 +93,11 @@ transparent 1px
 
 background-size:
 
-60px 60px;
+55px 55px;
 
 
 
-mask-image:
-
-linear-gradient(
-to bottom,
-black,
-transparent 90%
-);
+opacity:.7;
 
 
 
@@ -143,7 +106,7 @@ transparent 90%
 
 
 
-/* 动态扫描光 */
+/* 流动光束 */
 
 
 body::after{
@@ -155,47 +118,51 @@ content:"";
 position:fixed;
 
 
-top:-40%;
+top:-30%;
 
 
 left:-20%;
 
 
+
 width:140%;
 
 
-height:80%;
+height:120%;
+
 
 
 z-index:-1;
 
 
+
 background:
 
 
-linear-gradient(
+radial-gradient(
+circle,
+rgba(139,92,246,.28),
+transparent 35%
+),
 
-120deg,
 
-transparent 35%,
-
-rgba(139,92,246,.18),
-
-rgba(0,217,255,.12),
-
-transparent 65%
-
+radial-gradient(
+circle,
+rgba(0,217,255,.22),
+transparent 35%
 );
 
 
 
-filter:blur(40px);
+filter:
+
+blur(70px);
 
 
 
 animation:
 
-scanMove 10s infinite linear;
+ambientMove 14s infinite alternate ease-in-out;
 
 
 
@@ -204,7 +171,8 @@ scanMove 10s infinite linear;
 
 
 
-@keyframes scanMove{
+
+@keyframes ambientMove{
 
 
 0%{
@@ -212,8 +180,29 @@ scanMove 10s infinite linear;
 
 transform:
 
-translateY(-20%)
-rotate(0deg);
+translate(
+-5%,
+-5%
+)
+scale(1);
+
+
+
+}
+
+
+
+50%{
+
+
+transform:
+
+translate(
+10%,
+5%
+)
+scale(1.15);
+
 
 
 }
@@ -225,482 +214,15 @@ rotate(0deg);
 
 transform:
 
-translateY(80%)
-rotate(360deg);
-
-
-}
-
-
-
-}
-
-
-
-
-
-
-
-
-
-.container{
-
-
-width:min(1200px,90%);
-
-
-margin:auto;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =====================================
-导航
-===================================== */
-
-
-.navbar{
-
-
-position:fixed;
-
-
-top:0;
-
-
-left:0;
-
-
-width:100%;
-
-
-height:72px;
-
-
-
-z-index:999;
-
-
-
-background:
-
-rgba(5,8,22,.65);
-
-
-
-backdrop-filter:
-
-blur(20px);
-
-
-
-border-bottom:
-
-1px solid rgba(255,255,255,.08);
+translate(
+-5%,
+15%
+)
+scale(1);
 
 
 
 }
-
-
-
-
-
-.nav-container{
-
-
-height:100%;
-
-
-display:flex;
-
-
-align-items:center;
-
-
-justify-content:space-between;
-
-
-
-}
-
-
-
-
-
-
-
-.logo{
-
-
-font-size:24px;
-
-
-font-weight:900;
-
-
-color:white;
-
-
-text-decoration:none;
-
-
-letter-spacing:1px;
-
-
-white-space:nowrap;
-
-
-}
-
-
-
-
-.logo span{
-
-
-color:#8b5cf6;
-
-
-}
-
-
-
-
-
-
-
-.nav-links{
-
-
-display:flex;
-
-
-align-items:center;
-
-
-gap:35px;
-
-
-list-style:none;
-
-
-}
-
-
-
-
-.nav-links a{
-
-
-color:#cbd5e1;
-
-
-text-decoration:none;
-
-
-font-size:15px;
-
-
-transition:.3s;
-
-
-}
-
-
-
-
-.nav-links a:hover{
-
-
-color:white;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* 手机按钮 */
-
-
-.menu-toggle{
-
-
-display:none;
-
-
-background:none;
-
-
-border:none;
-
-
-cursor:pointer;
-
-
-}
-
-
-
-
-
-.menu-toggle span{
-
-
-display:block;
-
-
-width:26px;
-
-
-height:2px;
-
-
-background:white;
-
-
-margin:6px;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =====================================
-Hero
-===================================== */
-
-
-.hero{
-
-
-min-height:100vh;
-
-
-display:flex;
-
-
-align-items:center;
-
-
-padding-top:80px;
-
-
-}
-
-
-
-
-
-
-
-.hero-grid{
-
-
-display:grid;
-
-
-grid-template-columns:
-
-280px 1fr;
-
-
-gap:70px;
-
-
-align-items:center;
-
-
-}
-
-
-
-
-
-
-
-/* =====================================
-头像
-===================================== */
-
-
-.avatar-box{
-
-
-display:flex;
-
-
-justify-content:center;
-
-
-}
-
-
-
-
-
-
-.avatar-ring{
-
-
-width:220px;
-
-
-height:220px;
-
-
-padding:4px;
-
-
-border-radius:50%;
-
-
-position:relative;
-
-
-
-background:
-
-
-linear-gradient(
-135deg,
-#00d9ff,
-#8b5cf6
-);
-
-
-
-transition:.4s;
-
-
-box-shadow:
-
-0 0 30px rgba(139,92,246,.25);
-
-
-}
-
-
-
-
-
-.avatar-ring::before{
-
-
-content:"";
-
-
-position:absolute;
-
-
-inset:-8px;
-
-
-border-radius:50%;
-
-
-background:
-
-
-linear-gradient(
-135deg,
-#00d9ff,
-#8b5cf6
-);
-
-
-
-filter:blur(20px);
-
-
-opacity:.35;
-
-
-z-index:-1;
-
-
-transition:.4s;
-
-
-}
-
-
-
-
-
-
-
-.avatar-ring:hover{
-
-
-transform:
-
-scale(1.04);
-
-
-
-box-shadow:
-
-
-0 0 45px rgba(0,217,255,.45);
-
-
-
-}
-
-
-
-
-.avatar-ring:hover::before{
-
-
-opacity:.8;
-
-
-}
-
-
-
-
-
-
-
-.avatar{
-
-
-width:100%;
-
-
-height:100%;
-
-
-border-radius:50%;
-
-
-object-fit:cover;
-
-
-display:block;
 
 
 }
