@@ -1,31 +1,72 @@
 /* =====================================
-统一高级科技背景
-所有页面通用
+GSH Portfolio V6.0
+style.css
+Homepage Final
 ===================================== */
 
 
+/* =====================
+基础
+===================== */
+
+*{
+margin:0;
+padding:0;
+box-sizing:border-box;
+}
+
+
+:root{
+
+--bg:#050816;
+--purple:#8b5cf6;
+--blue:#00d9ff;
+--text:#f5f3ff;
+--gray:#a1a1aa;
+
+}
+
+
+
+html{
+scroll-behavior:smooth;
+}
+
+
+
 body{
+
+font-family:
+"Inter",
+"Microsoft YaHei",
+sans-serif;
+
+
+color:white;
+
+
+min-height:100vh;
 
 
 background:
 
 radial-gradient(
-circle at 15% 20%,
-rgba(139,92,246,.38),
+circle at 15% 15%,
+rgba(139,92,246,.45),
 transparent 35%
 ),
 
 
 radial-gradient(
-circle at 85% 25%,
-rgba(0,217,255,.25),
+circle at 85% 20%,
+rgba(0,217,255,.3),
 transparent 35%
 ),
 
 
 radial-gradient(
 circle at 50% 100%,
-rgba(168,85,247,.18),
+rgba(139,92,246,.25),
 transparent 45%
 ),
 
@@ -33,29 +74,22 @@ transparent 45%
 linear-gradient(
 135deg,
 #050816,
-#080d25,
+#090d24,
 #050816
 );
 
 
-
-color:white;
-
-
 overflow-x:hidden;
 
-
 position:relative;
-
 
 }
 
 
 
-
-
-
-/* 科技网格 */
+/* =====================
+科技网格背景
+===================== */
 
 
 body::before{
@@ -78,14 +112,14 @@ background-image:
 
 
 linear-gradient(
-rgba(139,92,246,.13) 1px,
+rgba(139,92,246,.12) 1px,
 transparent 1px
 ),
 
 
 linear-gradient(
 90deg,
-rgba(0,217,255,.10) 1px,
+rgba(0,217,255,.1) 1px,
 transparent 1px
 );
 
@@ -93,20 +127,16 @@ transparent 1px
 
 background-size:
 
-55px 55px;
+60px 60px;
 
 
 
-opacity:.7;
+opacity:.8;
 
 
 
 }
 
-
-
-
-/* 流动光束 */
 
 
 body::after{
@@ -118,18 +148,16 @@ content:"";
 position:fixed;
 
 
-top:-30%;
-
-
-left:-20%;
-
-
-
-width:140%;
+width:120%;
 
 
 height:120%;
 
+
+top:-10%;
+
+
+left:-10%;
 
 
 z-index:-1;
@@ -141,67 +169,1127 @@ background:
 
 radial-gradient(
 circle,
-rgba(139,92,246,.28),
-transparent 35%
+rgba(139,92,246,.2),
+transparent 40%
 ),
 
 
 radial-gradient(
 circle,
-rgba(0,217,255,.22),
-transparent 35%
+rgba(0,217,255,.15),
+transparent 40%
+);
+
+
+
+filter:blur(70px);
+
+
+
+animation:
+
+bgMove 15s infinite alternate ease-in-out;
+
+
+}
+
+
+
+
+@keyframes bgMove{
+
+
+0%{
+
+transform:
+translate(-5%,-5%)
+scale(1);
+
+}
+
+
+50%{
+
+transform:
+translate(8%,5%)
+scale(1.15);
+
+}
+
+
+100%{
+
+transform:
+translate(-3%,10%)
+scale(1);
+
+}
+
+
+}
+
+
+
+
+
+
+.container{
+
+width:min(1200px,90%);
+
+margin:auto;
+
+}
+
+
+
+
+
+/* =====================
+导航栏
+===================== */
+
+
+.navbar{
+
+
+position:fixed;
+
+
+top:0;
+
+
+left:0;
+
+
+width:100%;
+
+
+height:70px;
+
+
+
+z-index:999;
+
+
+
+background:
+
+rgba(5,8,22,.65);
+
+
+
+backdrop-filter:
+
+blur(25px);
+
+
+
+border-bottom:
+
+1px solid rgba(255,255,255,.1);
+
+
+
+}
+
+
+
+
+.nav-container{
+
+
+height:100%;
+
+
+display:flex;
+
+
+align-items:center;
+
+
+justify-content:space-between;
+
+
+}
+
+
+
+
+.logo{
+
+
+font-size:25px;
+
+
+font-weight:900;
+
+
+color:white;
+
+
+text-decoration:none;
+
+
+letter-spacing:.5px;
+
+
+}
+
+
+
+.logo span{
+
+
+color:var(--purple);
+
+
+}
+
+
+
+
+
+.nav-links{
+
+
+display:flex;
+
+
+align-items:center;
+
+
+gap:35px;
+
+
+list-style:none;
+
+
+}
+
+
+
+
+.nav-links a{
+
+
+color:#b4b4be;
+
+
+text-decoration:none;
+
+
+transition:.3s;
+
+
+font-size:15px;
+
+
+}
+
+
+
+
+.nav-links a:hover{
+
+
+color:white;
+
+
+}
+
+
+
+
+.nav-btn{
+
+
+padding:
+
+9px 25px;
+
+
+border-radius:30px;
+
+
+background:
+
+linear-gradient(
+135deg,
+var(--purple),
+var(--blue)
+);
+
+
+color:white!important;
+
+
+}
+
+
+
+
+
+
+.menu-toggle{
+
+
+display:none;
+
+
+}
+
+
+
+
+
+
+
+/* =====================
+Hero首页
+===================== */
+
+
+.hero{
+
+
+min-height:100vh;
+
+
+display:flex;
+
+
+align-items:center;
+
+
+padding-top:80px;
+
+
+}
+
+
+
+
+.hero-grid{
+
+
+display:grid;
+
+
+grid-template-columns:
+
+300px 1fr;
+
+
+gap:80px;
+
+
+align-items:center;
+
+
+}
+
+
+
+
+
+
+
+/* =====================
+头像
+===================== */
+
+
+.avatar-box{
+
+
+display:flex;
+
+
+justify-content:center;
+
+
+}
+
+
+
+.avatar-ring{
+
+
+width:220px;
+
+
+height:220px;
+
+
+padding:5px;
+
+
+border-radius:50%;
+
+
+background:
+
+linear-gradient(
+135deg,
+var(--purple),
+var(--blue)
+);
+
+
+
+position:relative;
+
+
+
+transition:.4s;
+
+
+
+box-shadow:
+
+0 0 30px rgba(139,92,246,.35);
+
+
+
+}
+
+
+
+
+
+.avatar-ring::before{
+
+
+content:"";
+
+
+position:absolute;
+
+
+inset:-12px;
+
+
+border-radius:50%;
+
+
+background:
+
+linear-gradient(
+135deg,
+var(--purple),
+var(--blue)
 );
 
 
 
 filter:
 
-blur(70px);
+blur(25px);
 
+
+
+opacity:.35;
+
+
+
+z-index:-1;
+
+
+}
+
+
+
+
+.avatar-ring:hover{
+
+
+transform:
+
+scale(1.06);
+
+
+box-shadow:
+
+0 0 55px rgba(0,217,255,.45);
+
+
+}
+
+
+
+
+
+.avatar{
+
+
+width:100%;
+
+
+height:100%;
+
+
+border-radius:50%;
+
+
+object-fit:cover;
+
+
+display:block;
+
+
+}
+
+
+
+
+
+
+
+/* =====================
+文字区域
+===================== */
+
+
+.tag{
+
+
+display:inline-block;
+
+
+padding:
+
+8px 20px;
+
+
+border-radius:30px;
+
+
+background:
+
+rgba(139,92,246,.15);
+
+
+color:#ddd6fe;
+
+
+font-size:13px;
+
+
+}
+
+
+
+
+.hero-content h1{
+
+
+font-size:60px;
+
+
+margin:
+
+25px 0;
+
+
+}
+
+
+
+
+.hero-content h1 span{
+
+
+color:#c4b5fd;
+
+
+}
+
+
+
+
+
+.hero-content h2{
+
+
+font-size:26px;
+
+
+margin-bottom:20px;
+
+
+}
+
+
+
+
+.hero-content p{
+
+
+max-width:560px;
+
+
+line-height:2;
+
+
+color:#b4b4be;
+
+
+}
+
+
+
+
+
+/* =====================
+数据
+===================== */
+
+
+.stats{
+
+
+display:flex;
+
+
+gap:50px;
+
+
+margin:
+
+40px 0;
+
+
+}
+
+
+
+
+.stats div{
+
+
+min-width:80px;
+
+
+}
+
+
+
+
+
+.stats strong{
+
+
+display:block;
+
+
+font-size:36px;
+
+
+font-weight:900;
+
+
+}
+
+
+
+
+.stats span{
+
+
+color:#999;
+
+
+font-size:14px;
+
+
+}
+
+
+
+
+
+/* =====================
+按钮
+===================== */
+
+
+.buttons{
+
+
+display:flex;
+
+
+gap:20px;
+
+
+}
+
+
+
+
+
+.btn{
+
+
+padding:
+
+14px 35px;
+
+
+border-radius:40px;
+
+
+border:
+
+1px solid rgba(255,255,255,.25);
+
+
+color:white;
+
+
+text-decoration:none;
+
+
+transition:.3s;
+
+
+}
+
+
+
+
+.btn:hover{
+
+
+transform:
+
+translateY(-5px);
+
+
+}
+
+
+
+
+
+.btn.primary{
+
+
+background:
+
+linear-gradient(
+135deg,
+var(--purple),
+var(--blue)
+);
+
+
+border:none;
+
+
+
+box-shadow:
+
+0 0 35px rgba(139,92,246,.4);
+
+
+
+}
+
+/* =====================
+个人优势
+===================== */
+
+
+.advantages{
+
+padding:
+
+100px 0;
+
+}
+
+
+
+.advantages h2{
+
+
+text-align:center;
+
+
+font-size:38px;
+
+
+margin-bottom:50px;
+
+
+}
+
+
+
+
+
+.advantage-grid{
+
+
+display:grid;
+
+
+grid-template-columns:
+
+repeat(3,1fr);
+
+
+gap:25px;
+
+
+}
+
+
+
+
+
+.advantage-card{
+
+
+padding:
+
+30px;
+
+
+border-radius:20px;
+
+
+
+background:
+
+rgba(255,255,255,.06);
+
+
+
+border:
+
+1px solid rgba(255,255,255,.1);
+
+
+
+backdrop-filter:
+
+blur(15px);
+
+
+
+transition:.35s;
+
+
+}
+
+
+
+
+
+.advantage-card:hover{
+
+
+transform:
+
+translateY(-10px);
+
+
+
+border-color:
+
+var(--purple);
+
+
+
+box-shadow:
+
+0 20px 50px rgba(139,92,246,.25);
+
+
+}
+
+
+
+
+.advantage-card h3{
+
+
+font-size:20px;
+
+
+margin-bottom:15px;
+
+
+color:#ddd6fe;
+
+
+}
+
+
+
+
+.advantage-card p{
+
+
+font-size:14px;
+
+
+line-height:1.8;
+
+
+color:#aaa;
+
+
+}
+
+
+
+
+
+
+
+/* =====================
+联系区域
+===================== */
+
+
+.contact{
+
+
+padding:
+
+100px 0;
+
+
+text-align:center;
+
+
+}
+
+
+
+
+.contact h2{
+
+
+font-size:38px;
+
+
+margin-bottom:30px;
+
+
+}
+
+
+
+
+
+.qr{
+
+
+display:flex;
+
+
+justify-content:center;
+
+
+gap:50px;
+
+
+margin-top:40px;
+
+
+}
+
+
+
+
+
+.qr div{
+
+
+padding:20px;
+
+
+border-radius:20px;
+
+
+background:
+
+rgba(255,255,255,.05);
+
+
+border:
+
+1px solid rgba(255,255,255,.1);
+
+
+backdrop-filter:
+
+blur(15px);
+
+
+
+}
+
+
+
+.qr img{
+
+
+width:130px;
+
+
+height:130px;
+
+
+object-fit:cover;
+
+
+border-radius:18px;
+
+
+}
+
+
+
+
+
+.qr p{
+
+
+margin-top:12px;
+
+
+color:#aaa;
+
+
+}
+
+
+
+
+
+
+
+/* =====================
+底部
+===================== */
+
+
+footer{
+
+
+text-align:center;
+
+
+padding:
+
+30px;
+
+
+color:#777;
+
+
+font-size:14px;
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================
+数字动画优化
+===================== */
+
+
+.counter{
+
+
+display:inline-block;
+
+
+background:
+
+linear-gradient(
+135deg,
+#fff,
+#c4b5fd
+);
+
+
+
+-webkit-background-clip:text;
+
+
+color:transparent;
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================
+页面进入动画
+===================== */
+
+
+.hero-content,
+.avatar-box{
 
 
 animation:
 
-ambientMove 14s infinite alternate ease-in-out;
-
+fadeUp .8s ease forwards;
 
 
 }
 
 
 
+@keyframes fadeUp{
 
 
-@keyframes ambientMove{
+from{
 
 
-0%{
+opacity:0;
 
 
 transform:
 
-translate(
--5%,
--5%
-)
-scale(1);
-
+translateY(30px);
 
 
 }
 
 
 
-50%{
+to{
+
+
+opacity:1;
 
 
 transform:
 
-translate(
-10%,
-5%
-)
-scale(1.15);
+translateY(0);
+
+
+}
 
 
 
@@ -209,20 +1297,418 @@ scale(1.15);
 
 
 
-100%{
 
 
-transform:
 
-translate(
--5%,
-15%
-)
-scale(1);
+
+
+
+/* =====================
+手机适配
+===================== */
+
+
+@media(max-width:768px){
+
+
+
+.container{
+
+
+width:92%;
+
+
+}
+
+
+
+
+
+
+.navbar{
+
+
+height:65px;
+
+
+}
+
+
+
+
+.nav-container{
+
+
+padding:0 10px;
+
+
+}
+
+
+
+
+.logo{
+
+
+font-size:20px;
+
+
+}
+
+
+
+
+.nav-links{
+
+
+gap:10px;
+
+
+font-size:12px;
+
+
+}
+
+
+
+
+.nav-links a{
+
+
+font-size:12px;
+
+
+}
+
+
+
+
+.hero{
+
+
+padding-top:110px;
+
+
+}
+
+
+
+.hero-grid{
+
+
+grid-template-columns:
+
+1fr;
+
+
+gap:40px;
+
+
+text-align:center;
+
+
+}
+
+
+
+
+
+.avatar-ring{
+
+
+width:180px;
+
+
+height:180px;
+
+
+}
+
+
+
+
+
+.hero-content h1{
+
+
+font-size:40px;
+
+
+}
+
+
+
+
+.hero-content h2{
+
+
+font-size:22px;
+
+
+}
+
+
+
+
+.hero-content p{
+
+
+font-size:14px;
+
+
+line-height:1.8;
+
+
+}
+
+
+
+
+.stats{
+
+
+justify-content:center;
+
+
+gap:25px;
+
+
+}
+
+
+
+
+
+.stats strong{
+
+
+font-size:28px;
+
+
+}
+
+
+
+
+
+.buttons{
+
+
+justify-content:center;
+
+
+flex-wrap:wrap;
+
+
+}
+
+
+
+
+.btn{
+
+
+padding:
+
+12px 28px;
+
+
+}
+
+
+
+
+
+
+.advantages{
+
+
+padding:
+
+70px 0;
+
+
+}
+
+
+
+
+.advantages h2{
+
+
+font-size:30px;
+
+
+}
+
+
+
+
+
+.advantage-grid{
+
+
+grid-template-columns:
+
+1fr;
+
+
+gap:20px;
+
+
+}
+
+
+
+
+
+.advantage-card{
+
+
+padding:25px;
+
+
+}
+
+
+
+
+
+.contact{
+
+
+padding:
+
+70px 0;
+
+
+}
+
+
+
+
+
+.qr{
+
+
+gap:20px;
+
+
+}
+
+
+
+
+
+.qr img{
+
+
+width:110px;
+
+
+height:110px;
+
+
+}
 
 
 
 }
+
+
+
+
+
+
+
+/* =====================
+超小屏幕
+===================== */
+
+
+@media(max-width:480px){
+
+
+
+.logo{
+
+
+font-size:18px;
+
+
+}
+
+
+
+
+.hero-content h1{
+
+
+font-size:34px;
+
+
+}
+
+
+
+
+.hero-content h2{
+
+
+font-size:19px;
+
+
+}
+
+
+
+
+
+.stats{
+
+
+gap:15px;
+
+
+}
+
+
+
+
+.stats strong{
+
+
+font-size:24px;
+
+
+}
+
+
+
+
+.stats span{
+
+
+font-size:12px;
+
+
+}
+
+
+
+
+
+.qr{
+
+
+flex-direction:column;
+
+
+align-items:center;
+
+
+}
+
 
 
 }
