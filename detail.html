@@ -1,266 +1,246 @@
-/* =====================================
- GSH Portfolio
- detail.css
- Detail Tech Version
-===================================== */
+<!DOCTYPE html>
+<html lang="zh-CN">
 
 
-*,
-*::before,
-*::after{
+<head>
 
-margin:0;
 
-padding:0;
+<meta charset="UTF-8">
 
-box-sizing:border-box;
 
-}
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 
 
+<title>
 
+案例详情 | GSH
 
-:root{
+</title>
 
---bg:#05060c;
 
---purple:#8b5cf6;
 
---blue:#00d9ff;
+<link rel="stylesheet" href="css/detail.css">
 
---card:
-rgba(255,255,255,.05);
 
-}
 
+</head>
 
 
 
 
-body{
 
+<body>
 
-background:
 
-#05060c;
 
 
-color:white;
 
+<!-- 导航 -->
 
-font-family:
 
-"Microsoft YaHei",
-sans-serif;
+<nav class="navbar">
 
 
-min-height:100vh;
+<div class="container nav-box">
 
 
-}
 
+<a href="index.html"
 
+class="logo">
 
 
-body::before{
+GSH<span>.</span>
 
 
-content:"";
+</a>
 
 
-position:fixed;
 
 
-inset:0;
 
+<ul>
 
-background-image:
 
+<li>
 
-linear-gradient(
-rgba(255,255,255,.04) 1px,
-transparent 1px
-),
+<a href="index.html">
 
+首页
 
-linear-gradient(
-90deg,
-rgba(255,255,255,.04) 1px,
-transparent 1px
-);
+</a>
 
+</li>
 
-background-size:
 
-60px 60px;
 
 
-z-index:-1;
+<li>
 
+<a href="collection.html">
 
-}
+案例
 
+</a>
 
+</li>
 
 
 
-a{
 
-text-decoration:none;
+<li>
 
-color:inherit;
+<a href="personal-video.html">
 
-}
+抖音
 
+</a>
 
+</li>
 
-.container{
 
 
-width:min(1200px,90%);
 
+<li>
 
-margin:auto;
+<a href="design-works.html">
 
+美工
 
-}
+</a>
 
+</li>
 
 
 
 
+<li>
 
+<a href="resume/高帅航.pdf">
 
-/* =====================
-导航
-===================== */
+简历
 
+</a>
 
-.navbar{
+</li>
 
 
-position:fixed;
 
 
-top:0;
+</ul>
 
 
-left:0;
 
 
-width:100%;
+</div>
 
+</nav>
 
-height:70px;
 
 
-z-index:999;
 
 
 
-background:
 
-rgba(5,6,12,.7);
 
+<!-- 手机返回 -->
 
-backdrop-filter:
 
-blur(20px);
+<div class="mobile-back">
 
 
-border-bottom:
+<a href="collection.html">
 
-1px solid rgba(255,255,255,.1);
 
+← 返回案例集
 
-}
 
+</a>
 
 
+</div>
 
-.nav-container{
 
 
-height:100%;
 
 
-display:flex;
 
 
-align-items:center;
 
 
-justify-content:space-between;
+<main class="detail-page">
 
 
-}
 
+<div class="container">
 
 
 
-.logo{
 
 
-font-size:24px;
+<section class="detail-header">
 
 
-font-weight:900;
+<div class="tag">
 
+CASE DETAIL
 
-}
+</div>
 
 
 
-.logo span{
 
+<h1 id="caseTitle">
 
-color:#8b5cf6;
+案例详情
 
+</h1>
 
-}
 
 
 
+<p id="caseDesc">
 
+短视频运营案例分析
 
-.navbar ul{
+</p>
 
 
-display:flex;
 
+</section>
 
-gap:30px;
 
 
-list-style:none;
 
 
-}
 
 
 
 
 
-.navbar a{
+<!-- 视频 -->
 
 
-color:#aaa;
+<section class="video-area">
 
 
-}
+<video
 
+id="detailVideo"
 
+controls
 
+playsinline
 
+preload="metadata">
 
-.navbar a:hover{
+</video>
 
 
-color:white;
 
+</section>
 
-}
 
 
 
@@ -269,265 +249,266 @@ color:white;
 
 
 
+<!-- 数据 -->
 
 
-/* =====================
-主体
-===================== */
+<section class="data-grid">
 
 
-.detail-page{
 
 
-padding-top:120px;
 
+<div class="data-card">
 
-padding-bottom:80px;
 
+<strong id="views">
 
-}
+-
 
+</strong>
 
 
+<span>
 
+播放量
 
-/* 手机返回 */
+</span>
 
 
-.mobile-back{
+</div>
 
 
-display:none;
 
 
-}
 
 
+<div class="data-card">
 
 
+<strong id="likes">
 
-/* 标题 */
+-
 
+</strong>
 
-.detail-header{
 
+<span>
 
-text-align:center;
+点赞量
 
+</span>
 
-margin-bottom:40px;
 
+</div>
 
-}
 
 
 
 
 
-.tag{
+<div class="data-card">
 
 
-display:inline-block;
+<strong id="comments">
 
+-
 
-padding:
+</strong>
 
-8px 20px;
 
+<span>
 
-background:
+评论量
 
-rgba(139,92,246,.15);
+</span>
 
 
-border-radius:30px;
+</div>
 
 
-color:#c4b5fd;
 
 
-font-size:13px;
 
+</section>
 
-}
 
 
 
-.detail-header h1{
 
 
-font-size:48px;
 
 
-margin:25px 0 15px;
 
+<!-- 抖音链接 -->
 
-}
 
+<section class="douyin-box">
 
 
-.detail-header p{
+<h2>
 
+抖音视频链接
 
-color:#aaa;
+</h2>
 
 
-}
 
 
+<a
 
+id="douyinLink"
 
+href="#"
 
+target="_blank">
 
 
+点击查看视频
 
 
-/* =====================
-视频
-===================== */
+</a>
 
 
-.video-area{
+</section>
 
 
-max-width:900px;
 
 
-margin:auto;
 
 
-background:black;
 
 
-border-radius:20px;
 
+<!-- 项目介绍 -->
 
-overflow:hidden;
 
+<section class="info-card">
 
-border:
 
-1px solid rgba(139,92,246,.3);
+<h2>
 
+项目介绍
 
-}
+</h2>
 
 
 
+<p id="projectInfo">
 
+加载中...
 
-.video-area video{
+</p>
 
 
-width:100%;
 
+</section>
 
-display:block;
 
 
-max-height:600px;
 
 
-object-fit:contain;
 
 
-}
 
 
+<!-- 数据图 -->
 
+<section class="analysis-card">
 
 
+<h2>
 
+投放数据图
 
+</h2>
 
 
-/* =====================
-数据区域
-===================== */
 
+<div class="chart-box">
 
-.data-grid{
 
+<img
 
-display:grid;
+id="dataImage"
 
+class="chart-img"
 
-grid-template-columns:
+>
 
-repeat(3,1fr);
+</div>
 
 
-gap:20px;
+</section>
 
 
-margin:
 
-40px 0;
 
 
-}
 
 
 
 
-.data-card{
+<section class="analysis-card">
 
 
-padding:
+<h2>
 
-25px;
+点击率分析图
 
+</h2>
 
-background:
 
-rgba(255,255,255,.05);
 
+<div class="chart-box">
 
-border:
 
-1px solid rgba(255,255,255,.1);
+<img
 
+id="ctrImage"
 
-border-radius:18px;
+class="chart-img"
 
+>
 
-text-align:center;
+</div>
 
 
-}
+</section>
 
 
 
 
 
-.data-card strong{
 
 
-display:block;
 
 
-font-size:32px;
+<section class="analysis-card">
 
 
-font-weight:900;
+<h2>
 
+用户流失分析图
 
-}
+</h2>
 
 
 
+<div class="chart-box">
 
-.data-card span{
 
+<img
 
-color:#aaa;
+id="lossImage"
 
+class="chart-img"
 
-font-size:14px;
+>
 
+</div>
 
-}
 
+</section>
 
 
 
@@ -536,504 +517,104 @@ font-size:14px;
 
 
 
-/* =====================
-抖音链接
-===================== */
 
+<!-- 职责 -->
 
-.douyin-box{
+<section class="info-card">
 
 
-background:
+<h2>
 
-rgba(139,92,246,.08);
+我的职责
 
+</h2>
 
-border:
 
-1px solid rgba(139,92,246,.25);
 
+<p id="caseRole">
 
-padding:25px;
+加载中...
 
+</p>
 
-border-radius:18px;
 
+</section>
 
-margin-bottom:30px;
 
 
-}
 
 
 
 
-.douyin-box h2{
 
 
-font-size:20px;
+<section class="info-card">
 
 
-color:#c4b5fd;
+<h2>
 
+运营复盘
 
-margin-bottom:15px;
+</h2>
 
 
-}
 
+<p>
 
+通过用户数据分析、
+内容结构调整以及持续优化，
+提升视频传播效果。
 
+</p>
 
-#douyinLink{
 
+</section>
 
-color:#00d9ff;
 
 
-word-break:break-all;
 
 
-}
 
 
 
 
+<!-- 底部返回 -->
 
 
+<a href="collection.html"
 
+class="back-btn">
 
-/* =====================
-信息卡
-===================== */
 
+← 返回案例集
 
-.info-card{
 
+</a>
 
-background:
 
-rgba(255,255,255,.05);
 
 
-border:
 
-1px solid rgba(255,255,255,.1);
 
 
-border-radius:18px;
+</div>
 
 
-padding:30px;
+</main>
 
 
-margin-bottom:30px;
 
 
-}
 
 
 
-.info-card h2{
 
+<script src="js/detail.js"></script>
 
-color:#c4b5fd;
 
 
-font-size:22px;
+</body>
 
 
-margin-bottom:15px;
 
-
-}
-
-
-
-.info-card p{
-
-
-line-height:2;
-
-
-color:#aaa;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =====================
-图片分析区域
-===================== */
-
-
-.analysis-card{
-
-
-background:
-
-rgba(255,255,255,.05);
-
-
-border:
-
-1px solid rgba(139,92,246,.2);
-
-
-padding:30px;
-
-
-border-radius:18px;
-
-
-margin-bottom:30px;
-
-
-}
-
-
-
-
-
-.analysis-card h2{
-
-
-color:#c4b5fd;
-
-
-margin-bottom:20px;
-
-
-}
-
-
-
-
-
-.chart-box{
-
-
-width:100%;
-
-
-height:500px;
-
-
-overflow:hidden;
-
-
-border-radius:16px;
-
-
-background:#000;
-
-
-display:flex;
-
-
-align-items:center;
-
-
-justify-content:center;
-
-
-}
-
-
-
-
-
-
-.chart-img{
-
-
-width:100%;
-
-
-height:100%;
-
-
-object-fit:contain;
-
-
-display:block;
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =====================
-底部返回
-===================== */
-
-
-.back-btn{
-
-
-display:block;
-
-
-width:max-content;
-
-
-margin:
-
-40px auto 0;
-
-
-padding:
-
-12px 35px;
-
-
-border-radius:40px;
-
-
-background:
-
-rgba(139,92,246,.25);
-
-
-color:#ddd;
-
-
-}
-
-
-
-
-
-.back-btn:hover{
-
-
-background:#8b5cf6;
-
-
-}
-
-
-
-
-
-
-
-
-
-
-/* =====================
-手机
-===================== */
-
-
-@media(max-width:768px){
-
-
-
-.container{
-
-
-width:92%;
-
-
-}
-
-
-
-
-.navbar ul{
-
-
-gap:12px;
-
-
-}
-
-
-
-.navbar a{
-
-
-font-size:12px;
-
-
-}
-
-
-
-.detail-page{
-
-
-padding-top:130px;
-
-
-}
-
-
-
-
-
-.mobile-back{
-
-
-display:block;
-
-
-margin-bottom:20px;
-
-
-color:#c4b5fd;
-
-
-font-size:14px;
-
-
-}
-
-
-
-
-
-.detail-header h1{
-
-
-font-size:30px;
-
-
-}
-
-
-
-
-
-
-
-/* 手机数据强制横排 */
-
-
-.data-grid{
-
-
-grid-template-columns:
-
-repeat(3,1fr);
-
-
-gap:8px;
-
-
-}
-
-
-
-
-.data-card{
-
-
-padding:
-
-15px 5px;
-
-
-}
-
-
-
-
-.data-card strong{
-
-
-font-size:20px;
-
-
-}
-
-
-
-.data-card span{
-
-
-font-size:11px;
-
-
-}
-
-
-
-
-
-
-.douyin-box{
-
-
-padding:20px;
-
-
-}
-
-
-
-
-
-
-
-.analysis-card{
-
-
-padding:18px;
-
-
-}
-
-
-
-
-
-.chart-box{
-
-
-height:300px;
-
-
-}
-
-
-
-
-
-.info-card{
-
-
-padding:20px;
-
-
-}
-
-
-
-
-.back-btn{
-
-
-margin-top:30px;
-
-
-}
-
-
-
-
-}
+</html>
