@@ -1,14 +1,18 @@
-/*
-=====================================
-GSH Portfolio
-collection.js
-V5.8 Project Collection
-=====================================
-*/
+/* =====================================
+ GSH Portfolio
+ collection.js
+ Project Collection Final
+===================================== */
+
 
 
 const caseGrid =
-document.getElementById("caseGrid");
+
+document.getElementById(
+"caseGrid"
+);
+
+
 
 
 let allCases = [];
@@ -17,27 +21,34 @@ let allCases = [];
 
 
 
-// ===============================
-// 加载案例数据
-// ===============================
 
 
-fetch("assets/data/cases.json")
+/* ===============================
+读取案例数据
+================================ */
+
+
+fetch(
+"assets/data/cases.json"
+)
+
 
 
 .then(res=>res.json())
 
 
+
 .then(data=>{
 
 
-allCases = data;
+allCases=data;
 
 
 renderCases(allCases);
 
 
 })
+
 
 
 .catch(err=>{
@@ -58,22 +69,28 @@ err
 
 
 
-// ===============================
-// 渲染案例
-// ===============================
+
+/* ===============================
+生成案例卡片
+================================ */
 
 
 function renderCases(cases){
+
 
 
 let html="";
 
 
 
+
+
 cases.forEach(item=>{
 
 
+
 html += `
+
 
 
 <div class="case-card"
@@ -87,6 +104,7 @@ data-video="${item.video}">
 <div class="cover-box">
 
 
+
 <img
 
 class="case-cover"
@@ -95,13 +113,14 @@ src="${item.cover}"
 
 loading="lazy"
 
-alt="${item.title}">
+>
 
 
 
 
 
 <div class="hover-play">
+
 
 
 <div class="play-circle">
@@ -111,11 +130,13 @@ alt="${item.title}">
 </div>
 
 
-</div>
-
-
 
 </div>
+
+
+
+</div>
+
 
 
 
@@ -154,9 +175,31 @@ ${item.title}
 
 
 
-<span class="case-type">
+
+<span class="type-tag">
 
 ${item.type}
+
+</span>
+
+
+
+</div>
+
+
+
+
+
+
+
+
+<div class="tags">
+
+
+
+<span>
+
+${item.category}
 
 </span>
 
@@ -178,16 +221,20 @@ ${item.type}
 
 <div>
 
+
 <strong>
 
-${item.views}
+${item.views || "-"}
 
 </strong>
 
 
 <p>
+
 播放量
+
 </p>
+
 
 </div>
 
@@ -195,20 +242,26 @@ ${item.views}
 
 
 
+
 <div>
+
 
 <strong>
 
-${item.likes}
+${item.likes || "-"}
 
 </strong>
 
 
 <p>
+
 点赞
+
 </p>
 
+
 </div>
+
 
 
 
@@ -216,19 +269,22 @@ ${item.likes}
 
 <div>
 
+
 <strong>
 
-${item.comments}
+${item.comments || "-"}
 
 </strong>
 
 
 <p>
+
 评论
+
 </p>
 
-</div>
 
+</div>
 
 
 
@@ -269,6 +325,7 @@ class="detail-link">
 
 
 
+
 `;
 
 
@@ -279,7 +336,9 @@ class="detail-link">
 
 
 
+
 caseGrid.innerHTML = html;
+
 
 
 
@@ -298,12 +357,9 @@ bindVideo();
 
 
 
-
-
-// ===============================
-// 分类筛选
-// ===============================
-
+/* ===============================
+分类筛选
+================================ */
 
 
 const filters =
@@ -316,7 +372,9 @@ document.querySelectorAll(
 
 
 
+
 filters.forEach(btn=>{
+
 
 
 btn.addEventListener(
@@ -327,10 +385,10 @@ btn.addEventListener(
 
 
 
-filters.forEach(item=>{
+filters.forEach(b=>{
 
 
-item.classList.remove(
+b.classList.remove(
 "active"
 );
 
@@ -341,12 +399,9 @@ item.classList.remove(
 
 
 
-
 btn.classList.add(
 "active"
 );
-
-
 
 
 
@@ -362,8 +417,8 @@ btn.dataset.filter;
 
 
 
-
 if(type==="all"){
+
 
 
 renderCases(allCases);
@@ -380,18 +435,15 @@ return;
 
 
 
-
 const result =
 
 allCases.filter(item=>{
 
 
-return item.category === type;
+return item.category===type;
 
 
 });
-
-
 
 
 
@@ -418,9 +470,10 @@ renderCases(result);
 
 
 
-// ===============================
-// 视频弹窗
-// ===============================
+
+/* ===============================
+视频播放
+================================ */
 
 
 const modal =
@@ -457,19 +510,15 @@ function bindVideo(){
 
 
 
-const cards =
+
 
 document.querySelectorAll(
 ".case-card"
-);
+)
+
+.forEach(card=>{
 
 
-
-
-
-
-
-cards.forEach(card=>{
 
 
 
@@ -479,24 +528,19 @@ card.onclick=function(e){
 
 
 
-// 点击详情按钮不播放
+// 点击查看分析按钮不播放
 
 if(
-e.target.closest(".detail-link")
+e.target.closest(
+".detail-link"
+)
 ){
+
 
 return;
 
+
 }
-
-
-
-
-
-
-const videoPath =
-
-this.dataset.video;
 
 
 
@@ -514,9 +558,9 @@ player.currentTime=0;
 
 
 
+player.src =
 
-player.src = videoPath;
-
+this.dataset.video;
 
 
 
@@ -530,12 +574,7 @@ modal.classList.add(
 
 
 
-
-
 player.load();
-
-
-
 
 
 
@@ -547,7 +586,7 @@ player.play()
 
 
 console.log(
-"等待用户操作"
+"等待用户播放"
 );
 
 
@@ -556,11 +595,7 @@ console.log(
 
 
 
-
-
-
 };
-
 
 
 
@@ -580,26 +615,22 @@ console.log(
 
 
 
-
-
-
-// ===============================
-// 关闭视频
-// ===============================
+/* ===============================
+关闭视频
+================================ */
 
 
 
 function closeVideo(){
 
 
-if(!player)return;
-
-
 
 player.pause();
 
 
+
 player.currentTime=0;
+
 
 
 player.removeAttribute(
@@ -607,7 +638,9 @@ player.removeAttribute(
 );
 
 
+
 player.load();
+
 
 
 modal.classList.remove(
@@ -625,20 +658,17 @@ modal.classList.remove(
 
 
 
-
 if(closeBtn){
 
 
-closeBtn.addEventListener(
-"click",
-closeVideo
-);
+
+closeBtn.onclick=
+
+closeVideo;
+
 
 
 }
-
-
-
 
 
 
@@ -649,7 +679,7 @@ if(modal){
 
 modal.addEventListener(
 "click",
-(e)=>{
+e=>{
 
 
 if(e.target===modal){
@@ -676,7 +706,7 @@ closeVideo();
 
 document.addEventListener(
 "keydown",
-(e)=>{
+e=>{
 
 
 if(e.key==="Escape"){
