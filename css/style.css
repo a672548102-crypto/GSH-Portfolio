@@ -1,7 +1,7 @@
 /* =====================================
-GSH Portfolio V7.0
-style.css
-Homepage Final Fix
+ GSH Portfolio
+ style.css
+ Homepage Stable Final
 ===================================== */
 
 
@@ -9,11 +9,14 @@ Homepage Final Fix
 基础
 ===================== */
 
-
 *{
+
 margin:0;
+
 padding:0;
+
 box-sizing:border-box;
+
 }
 
 
@@ -21,10 +24,12 @@ box-sizing:border-box;
 :root{
 
 --purple:#8b5cf6;
+
 --blue:#00d9ff;
+
 --bg:#050816;
+
 --text:#f5f3ff;
---gray:#a1a1aa;
 
 }
 
@@ -40,7 +45,9 @@ scroll-behavior:smooth;
 
 body{
 
+
 font-family:
+
 "Inter",
 "Microsoft YaHei",
 sans-serif;
@@ -67,7 +74,9 @@ linear-gradient(
 
 position:relative;
 
+
 }
+
 
 
 
@@ -81,11 +90,15 @@ position:relative;
 
 body::before{
 
+
 content:"";
+
 
 position:fixed;
 
+
 inset:0;
+
 
 z-index:-2;
 
@@ -115,39 +128,51 @@ background-size:
 
 animation:
 
-gridMove 20s linear infinite;
+gridMove 25s linear infinite;
 
 
 }
+
+
 
 
 
 @keyframes gridMove{
 
 
-0%{
+from{
 
 background-position:
+
 0 0;
 
+
 }
 
 
-100%{
+to{
+
 
 background-position:
+
 55px 55px;
 
-}
-
 
 }
 
 
+}
 
 
 
-/* 环境光 */
+
+
+
+/* =====================
+环境光
+手机优化版
+===================== */
+
 
 body::after{
 
@@ -158,26 +183,28 @@ content:"";
 position:fixed;
 
 
-width:500px;
+width:380px;
 
 
-height:500px;
+height:380px;
 
 
-right:-200px;
+
+right:-140px;
 
 
-top:100px;
+top:120px;
 
 
 border-radius:50%;
+
 
 
 background:
 
 radial-gradient(
 circle,
-rgba(139,92,246,.25),
+rgba(139,92,246,.28),
 transparent 70%
 );
 
@@ -185,7 +212,7 @@ transparent 70%
 
 filter:
 
-blur(40px);
+blur(30px);
 
 
 
@@ -195,21 +222,23 @@ z-index:-1;
 
 animation:
 
-lightFloat 10s infinite alternate;
+lightMove 12s infinite alternate;
+
 
 
 }
 
 
 
-
-@keyframes lightFloat{
+@keyframes lightMove{
 
 
 from{
 
 transform:
+
 translateY(0);
+
 
 }
 
@@ -217,12 +246,16 @@ translateY(0);
 to{
 
 transform:
-translateY(80px);
+
+translateY(60px);
+
 
 }
 
 
 }
+
+
 
 
 
@@ -232,11 +265,16 @@ translateY(80px);
 
 .container{
 
+
 width:min(1200px,90%);
+
 
 margin:auto;
 
+
 }
+
+
 
 
 
@@ -267,7 +305,6 @@ width:100%;
 height:70px;
 
 
-
 z-index:999;
 
 
@@ -280,7 +317,12 @@ rgba(5,8,22,.75);
 
 backdrop-filter:
 
-blur(15px);
+blur(12px);
+
+
+-webkit-backdrop-filter:
+
+blur(12px);
 
 
 
@@ -289,8 +331,9 @@ border-bottom:
 1px solid rgba(255,255,255,.08);
 
 
-
 }
+
+
 
 
 
@@ -316,7 +359,6 @@ justify-content:space-between;
 
 
 
-
 .logo{
 
 
@@ -326,16 +368,17 @@ font-size:24px;
 font-weight:900;
 
 
-color:white;
-
-
 text-decoration:none;
 
 
-letter-spacing:.5px;
+color:white;
+
+
+white-space:nowrap;
 
 
 }
+
 
 
 
@@ -344,6 +387,9 @@ letter-spacing:.5px;
 
 
 color:#c4b5fd;
+
+
+font-weight:900;
 
 
 }
@@ -358,9 +404,6 @@ color:#c4b5fd;
 display:flex;
 
 
-align-items:center;
-
-
 gap:35px;
 
 
@@ -372,10 +415,11 @@ list-style:none;
 
 
 
+
 .nav-links a{
 
 
-color:#b5b5c5;
+color:#aaa;
 
 
 text-decoration:none;
@@ -388,8 +432,6 @@ transition:.3s;
 
 
 }
-
-
 
 
 
@@ -408,31 +450,10 @@ color:white;
 
 
 
-.menu-toggle{
-
-
-display:none;
-
-
-background:none;
-
-
-border:none;
-
-
-}
-
-
-
-
-
-
-
 
 /* =====================
 Hero
 ===================== */
-
 
 
 .hero{
@@ -451,6 +472,7 @@ padding-top:80px;
 
 
 }
+
 
 
 
@@ -481,6 +503,7 @@ align-items:center;
 
 
 
+
 /* =====================
 头像
 ===================== */
@@ -500,6 +523,7 @@ justify-content:center;
 
 
 
+
 .avatar-ring{
 
 
@@ -515,6 +539,7 @@ padding:4px;
 border-radius:50%;
 
 
+
 background:
 
 linear-gradient(
@@ -528,13 +553,13 @@ linear-gradient(
 position:relative;
 
 
-
 transition:.35s;
+
 
 
 box-shadow:
 
-0 0 25px rgba(139,92,246,.25);
+0 0 25px rgba(139,92,246,.3);
 
 
 }
@@ -571,8 +596,9 @@ linear-gradient(
 opacity:.35;
 
 
-filter:blur(15px);
+filter:
 
+blur(12px);
 
 
 z-index:-1;
@@ -583,8 +609,8 @@ z-index:-1;
 
 
 
-/* 电脑hover */
 
+/* 电脑端头像放大 */
 
 @media(min-width:769px){
 
@@ -599,7 +625,7 @@ scale(1.05);
 
 box-shadow:
 
-0 0 40px rgba(0,217,255,.35);
+0 0 45px rgba(0,217,255,.35);
 
 
 }
@@ -638,8 +664,71 @@ display:block;
 
 
 
+
+
+
+
 /* =====================
-标题内容
+手机修复
+===================== */
+
+
+@media(max-width:768px){
+
+
+
+.avatar-ring{
+
+
+width:170px;
+
+
+height:170px;
+
+
+}
+
+
+
+
+
+.avatar-ring::before{
+
+
+display:none!important;
+
+
+}
+
+
+
+.avatar-ring:hover,
+.avatar-ring:active{
+
+
+transform:none!important;
+
+
+box-shadow:
+
+0 0 25px rgba(139,92,246,.3)!important;
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================
+标题
 ===================== */
 
 
@@ -662,7 +751,6 @@ background:
 rgba(139,92,246,.15);
 
 
-
 color:#ddd6fe;
 
 
@@ -670,6 +758,7 @@ font-size:13px;
 
 
 }
+
 
 
 
@@ -702,6 +791,7 @@ color:#c4b5fd;
 
 
 
+
 .hero-content h2{
 
 
@@ -730,30 +820,37 @@ line-height:2;
 
 
 }
+
+
+
+
+
+
+
+
+
 /* =====================
-数据区域
+数据
 ===================== */
 
 
 .stats{
 
+
 display:flex;
 
+
 gap:45px;
+
 
 margin:
 
 40px 0;
 
-}
-
-
-
-.stats div{
-
-text-align:left;
 
 }
+
+
 
 
 
@@ -769,12 +866,11 @@ font-size:36px;
 font-weight:900;
 
 
-
 background:
 
 linear-gradient(
 135deg,
-#ffffff,
+white,
 #c4b5fd
 );
 
@@ -808,396 +904,6 @@ color:#999;
 
 
 
-/* =====================
-按钮
-===================== */
-
-
-.buttons{
-
-
-display:flex;
-
-
-gap:20px;
-
-
-}
-
-
-
-
-
-.btn{
-
-
-padding:
-
-13px 35px;
-
-
-border-radius:40px;
-
-
-border:
-
-1px solid rgba(255,255,255,.25);
-
-
-text-decoration:none;
-
-
-color:white;
-
-
-transition:.3s;
-
-
-}
-
-
-
-.btn:hover{
-
-
-transform:
-
-translateY(-4px);
-
-
-}
-
-
-
-
-.btn.primary{
-
-
-border:none;
-
-
-background:
-
-linear-gradient(
-135deg,
-#8b5cf6,
-#00d9ff
-);
-
-
-
-box-shadow:
-
-0 10px 30px rgba(139,92,246,.25);
-
-
-}
-
-
-
-
-
-
-
-
-/* =====================
-个人优势
-===================== */
-
-
-.advantages{
-
-
-padding:
-
-100px 0;
-
-
-}
-
-
-
-.advantages h2{
-
-
-text-align:center;
-
-
-font-size:38px;
-
-
-margin-bottom:50px;
-
-
-}
-
-
-
-
-.advantage-grid{
-
-
-display:grid;
-
-
-grid-template-columns:
-
-repeat(3,1fr);
-
-
-
-gap:25px;
-
-
-}
-
-
-
-
-
-.advantage-card{
-
-
-padding:
-
-30px;
-
-
-border-radius:20px;
-
-
-
-background:
-
-rgba(255,255,255,.06);
-
-
-
-border:
-
-1px solid rgba(255,255,255,.1);
-
-
-
-backdrop-filter:
-
-blur(12px);
-
-
-
-transition:.35s;
-
-
-}
-
-
-
-
-
-.advantage-card:hover{
-
-
-transform:
-
-translateY(-8px);
-
-
-
-border-color:
-
-rgba(139,92,246,.8);
-
-
-
-}
-
-
-
-
-
-.advantage-card h3{
-
-
-font-size:20px;
-
-
-margin-bottom:15px;
-
-
-color:#ddd6fe;
-
-
-}
-
-
-
-
-
-.advantage-card p{
-
-
-font-size:14px;
-
-
-line-height:1.8;
-
-
-color:#aaa;
-
-
-}
-
-
-
-
-
-
-
-
-/* =====================
-联系区域
-===================== */
-
-
-.contact{
-
-
-padding:
-
-100px 0;
-
-
-text-align:center;
-
-
-}
-
-
-
-.contact h2{
-
-
-font-size:38px;
-
-
-}
-
-
-
-
-
-.qr{
-
-
-display:flex;
-
-
-justify-content:center;
-
-
-gap:50px;
-
-
-margin-top:40px;
-
-
-}
-
-
-
-.qr div{
-
-
-background:
-
-rgba(255,255,255,.05);
-
-
-
-padding:
-
-20px;
-
-
-border-radius:20px;
-
-
-
-border:
-
-1px solid rgba(255,255,255,.1);
-
-
-}
-
-
-
-.qr img{
-
-
-width:130px;
-
-
-height:130px;
-
-
-object-fit:cover;
-
-
-border-radius:15px;
-
-
-}
-
-
-
-
-.qr p{
-
-
-margin-top:10px;
-
-
-color:#aaa;
-
-
-}
-
-
-
-
-
-
-
-/* =====================
-底部
-===================== */
-
-
-footer{
-
-
-text-align:center;
-
-
-padding:
-
-30px;
-
-
-font-size:14px;
-
-
-color:#777;
-
-
-}
-
-
-
-
-
-
 
 
 
@@ -1209,7 +915,6 @@ color:#777;
 @media(max-width:768px){
 
 
-
 .container{
 
 
@@ -1217,7 +922,6 @@ width:92%;
 
 
 }
-
 
 
 
@@ -1234,24 +938,20 @@ height:65px;
 .logo{
 
 
-font-size:19px;
+font-size:18px;
 
 
 }
-
-
 
 
 
 .nav-links{
 
 
-gap:12px;
+gap:10px;
 
 
 }
-
-
 
 
 
@@ -1265,9 +965,6 @@ font-size:12px;
 
 
 
-
-
-
 .hero{
 
 
@@ -1275,7 +972,6 @@ padding-top:110px;
 
 
 }
-
 
 
 
@@ -1299,65 +995,10 @@ text-align:center;
 
 
 
-.avatar-ring{
-
-
-width:170px;
-
-
-height:170px;
-
-
-}
-
-
-
-
-
-/*
-手机禁止头像hover光晕
-防止曝光问题
-*/
-
-
-.avatar-ring::before{
-
-
-display:none;
-
-
-}
-
-
-
 .hero-content h1{
 
 
 font-size:38px;
-
-
-}
-
-
-
-.hero-content h2{
-
-
-font-size:20px;
-
-
-}
-
-
-
-
-.hero-content p{
-
-
-font-size:14px;
-
-
-line-height:1.8;
 
 
 }
@@ -1375,23 +1016,7 @@ justify-content:center;
 gap:20px;
 
 
-margin:30px 0;
-
-
 }
-
-
-
-
-.stats div{
-
-
-text-align:center;
-
-
-}
-
-
 
 
 
@@ -1405,171 +1030,33 @@ font-size:26px;
 
 
 
-
-
-.stats span{
-
-
-font-size:12px;
-
-
 }
 
-
-
-
-
-
-.buttons{
-
-
-justify-content:center;
-
-
-flex-wrap:wrap;
-
-
-}
-
-
-
-
-.btn{
-
-
-padding:
-
-12px 25px;
-
-
-}
-
-
-
-
-
-.advantages{
-
-
-padding:
-
-70px 0;
-
-
-}
-
-
-
-
-
-.advantages h2{
-
-
-font-size:30px;
-
-
-}
-
-
-
-
-
-.advantage-grid{
-
-
-grid-template-columns:
-
-1fr;
-
-
-gap:18px;
-
-
-}
-
-
-
-
-
-.advantage-card{
-
-
-padding:
-
-25px;
-
-
-}
-
-
-
-
-
-.contact{
-
-
-padding:
-
-70px 0;
-
-
-}
-
-
-
-
-
-.qr{
-
-
-gap:20px;
-
-
-}
-
-
-
-
-
-.qr img{
-
-
-width:110px;
-
-
-height:110px;
-
-
-}
-
-
-
-
-}
-
-
-
-
-
-
-
-
-/* =====================
-超小屏
-===================== */
 
 
 @media(max-width:480px){
 
 
 
-.nav-links{
+.logo{
 
 
-gap:8px;
+font-size:16px;
 
 
 }
+
+
+
+
+.nav-links{
+
+
+gap:7px;
+
+
+}
+
 
 
 
@@ -1577,17 +1064,6 @@ gap:8px;
 
 
 font-size:11px;
-
-
-}
-
-
-
-
-.logo{
-
-
-font-size:17px;
 
 
 }
@@ -1605,35 +1081,10 @@ font-size:32px;
 
 
 
-
-.stats{
-
-
-gap:12px;
-
-
-}
-
-
-
-
 .stats strong{
 
 
 font-size:22px;
-
-
-}
-
-
-
-.qr{
-
-
-flex-direction:column;
-
-
-align-items:center;
 
 
 }
