@@ -1,50 +1,45 @@
 /* =====================================
 GSH Portfolio
 collection.css
-案例页面专用最终版
+案例集最终稳定版
 ===================================== */
 
 
+
 /* =====================
-页面标题
+页面头部
 ===================== */
 
 
 .page-header{
 
-    padding-top:150px;
+padding-top:150px;
 
-    text-align:center;
+padding-bottom:70px;
 
-    padding-bottom:70px;
+text-align:center;
 
 }
 
 
 
-.tag{
+.page-header .tag{
 
-    display:inline-block;
+display:inline-block;
 
-    padding:8px 20px;
+padding:8px 20px;
 
-    border-radius:30px;
+border-radius:30px;
 
-    background:
+background:rgba(139,92,246,.15);
 
-    rgba(139,92,246,.15);
+border:1px solid rgba(139,92,246,.3);
 
+color:#ddd6fe;
 
-    border:
+font-size:13px;
 
-    1px solid rgba(139,92,246,.3);
-
-
-    color:#ddd6fe;
-
-    font-size:13px;
-
-    letter-spacing:1px;
+letter-spacing:1px;
 
 }
 
@@ -53,13 +48,11 @@ collection.css
 
 .page-header h1{
 
-    font-size:52px;
+font-size:52px;
 
-    margin:
+font-weight:900;
 
-    25px 0 15px;
-
-    font-weight:900;
+margin:25px 0 15px;
 
 }
 
@@ -67,11 +60,13 @@ collection.css
 
 .page-header p{
 
-    color:#aaa;
+font-size:18px;
 
-    font-size:18px;
+color:#aaa;
 
 }
+
+
 
 
 
@@ -85,24 +80,15 @@ collection.css
 
 .filter-box{
 
+margin-top:45px;
 
-    margin-top:45px;
+display:flex;
 
+justify-content:center;
 
-    display:flex;
+gap:18px;
 
-
-    justify-content:center;
-
-
-    align-items:center;
-
-
-    gap:18px;
-
-
-    flex-wrap:wrap;
-
+flex-wrap:wrap;
 
 }
 
@@ -111,33 +97,25 @@ collection.css
 .filter{
 
 
-    padding:
-
-    10px 25px;
+padding:10px 25px;
 
 
-    border-radius:30px;
+border-radius:30px;
 
 
-    background:
-
-    rgba(255,255,255,.06);
+border:1px solid rgba(255,255,255,.12);
 
 
-
-    border:
-
-    1px solid rgba(255,255,255,.12);
+background:rgba(255,255,255,.06);
 
 
-
-    color:#aaa;
-
-
-    cursor:pointer;
+color:#aaa;
 
 
-    transition:.3s;
+cursor:pointer;
+
+
+transition:.3s;
 
 
 }
@@ -148,22 +126,23 @@ collection.css
 .filter.active{
 
 
-    background:
+background:
 
-    linear-gradient(
-    135deg,
-    #8b5cf6,
-    #00d9ff
-    );
-
-
-    color:white;
+linear-gradient(
+135deg,
+#8b5cf6,
+#00d9ff
+);
 
 
-    border-color:transparent;
+color:white;
+
+
+border-color:transparent;
 
 
 }
+
 
 
 
@@ -180,7 +159,7 @@ collection.css
 .collection{
 
 
-    padding-bottom:100px;
+padding-bottom:100px;
 
 
 }
@@ -190,18 +169,19 @@ collection.css
 .case-grid{
 
 
-    display:grid;
+display:grid;
 
 
-    grid-template-columns:
-
-    repeat(3,1fr);
+grid-template-columns:repeat(3,1fr);
 
 
-    gap:30px;
+gap:30px;
 
 
 }
+
+
+
 
 
 
@@ -216,51 +196,45 @@ collection.css
 .case-card{
 
 
-    background:
+background:
 
-    rgba(255,255,255,.06);
-
-
-
-    border:
-
-    1px solid rgba(255,255,255,.1);
+rgba(255,255,255,.06);
 
 
+border:
 
-    border-radius:22px;
-
-
-
-    overflow:hidden;
+1px solid rgba(255,255,255,.1);
 
 
+border-radius:22px;
 
-    transition:.35s;
+
+overflow:hidden;
+
+
+transition:.35s;
+
+
+cursor:pointer;
 
 
 }
+
 
 
 
 .case-card:hover{
 
 
-    transform:
-
-    translateY(-10px);
+transform:translateY(-10px);
 
 
-
-    box-shadow:
-
-    0 20px 50px rgba(139,92,246,.25);
+border-color:rgba(139,92,246,.7);
 
 
+box-shadow:
 
-    border-color:
-
-    rgba(139,92,246,.6);
+0 20px 50px rgba(139,92,246,.25);
 
 
 }
@@ -271,47 +245,25 @@ collection.css
 
 
 
-/* =====================
-封面
-===================== */
-
-
-.cover-box{
-
-
-    width:100%;
-
-
-    height:220px;
-
-
-    background:
-
-    rgba(255,255,255,.05);
-
-
-}
-
-
+/* 封面 */
 
 
 .case-cover{
 
 
-    width:100%;
+width:100%;
 
 
-    height:220px;
+height:220px;
 
 
-    object-fit:cover;
+display:block;
 
 
-    display:block;
+object-fit:cover;
 
 
 }
-
 
 
 
@@ -320,30 +272,25 @@ collection.css
 .no-data{
 
 
-    width:100%;
+height:220px;
 
 
-    height:220px;
+display:flex;
 
 
-    display:flex;
+align-items:center;
 
 
-    justify-content:center;
+justify-content:center;
 
 
-    align-items:center;
+background:rgba(255,255,255,.05);
 
 
-    color:#999;
+color:#999;
 
 
-    font-size:14px;
-
-
-    background:
-
-    rgba(255,255,255,.05);
+font-size:14px;
 
 
 }
@@ -354,18 +301,19 @@ collection.css
 
 
 
-/* =====================
-案例内容
-===================== */
+/* 内容 */
 
 
 .case-info{
 
 
-    padding:25px;
+padding:25px;
 
 
 }
+
+
+
 
 
 
@@ -373,24 +321,28 @@ collection.css
 
 
 /*
-标题+类型标签同行
-禁止换行
+标题+类型
+只允许一个标签
 */
+
 
 
 .case-title{
 
 
-    display:flex;
+display:flex;
 
 
-    align-items:center;
+align-items:center;
 
 
-    gap:12px;
+gap:10px;
 
 
-    margin-bottom:15px;
+margin-bottom:15px;
+
+
+overflow:hidden;
 
 
 }
@@ -398,23 +350,22 @@ collection.css
 
 
 
-
 .case-title h3{
 
 
-    font-size:22px;
+font-size:22px;
 
 
-    font-weight:800;
+font-weight:800;
 
 
-    white-space:nowrap;
+white-space:nowrap;
 
 
-    overflow:hidden;
+overflow:hidden;
 
 
-    text-overflow:ellipsis;
+text-overflow:ellipsis;
 
 
 }
@@ -425,42 +376,35 @@ collection.css
 .type-tag{
 
 
-    flex-shrink:0;
+flex-shrink:0;
 
 
-    font-size:12px;
+font-size:12px;
 
 
-    padding:
-
-    5px 12px;
+padding:5px 12px;
 
 
-
-    border-radius:20px;
-
+border-radius:20px;
 
 
-    background:
+background:
 
-    rgba(139,92,246,.18);
-
-
-
-    border:
-
-    1px solid rgba(139,92,246,.35);
+rgba(139,92,246,.18);
 
 
+border:
 
-    color:#ddd6fe;
+1px solid rgba(139,92,246,.35);
 
 
-    white-space:nowrap;
+color:#ddd6fe;
+
+
+white-space:nowrap;
 
 
 }
-
 
 
 
@@ -470,16 +414,16 @@ collection.css
 .case-role{
 
 
-    color:#aaa;
+font-size:14px;
 
 
-    font-size:14px;
+line-height:1.8;
 
 
-    line-height:1.8;
+color:#aaa;
 
 
-    margin-bottom:20px;
+margin-bottom:20px;
 
 
 }
@@ -487,25 +431,22 @@ collection.css
 
 
 
-
-
-
 .case-data{
 
 
-    display:flex;
+display:flex;
 
 
-    gap:20px;
+gap:18px;
 
 
-    flex-wrap:wrap;
+flex-wrap:wrap;
 
 
-    font-size:13px;
+font-size:13px;
 
 
-    color:#aaa;
+color:#999;
 
 
 }
@@ -515,11 +456,10 @@ collection.css
 .case-data span{
 
 
-    color:#ddd;
+color:#ddd;
 
 
 }
-
 
 
 
@@ -537,69 +477,75 @@ collection.css
 .video-modal{
 
 
-    display:none;
+display:none;
 
 
-    position:fixed;
+position:fixed;
 
 
-    inset:0;
+inset:0;
 
 
-    background:
+background:
 
-    rgba(0,0,0,.75);
-
-
-    z-index:2000;
+rgba(0,0,0,.78);
 
 
-    align-items:center;
+z-index:99999;
 
 
-    justify-content:center;
+align-items:center;
+
+
+justify-content:center;
 
 
 }
+
+
 
 
 
 .video-modal.show{
 
 
-    display:flex;
+display:flex;
 
 
 }
+
+
 
 
 
 .video-box{
 
 
-    position:relative;
+position:relative;
 
 
-    width:min(850px,90%);
+width:min(850px,90%);
 
 
 }
+
 
 
 
 .video-box video{
 
 
-    width:100%;
+width:100%;
 
 
-    border-radius:20px;
+border-radius:20px;
 
 
-    background:black;
+background:#000;
 
 
 }
+
 
 
 
@@ -608,37 +554,61 @@ collection.css
 .close-btn{
 
 
-    position:absolute;
+position:absolute;
 
 
-    right:-15px;
+right:-15px;
 
 
-    top:-15px;
+top:-15px;
 
 
-    width:40px;
+width:40px;
 
 
-    height:40px;
+height:40px;
 
 
-    border-radius:50%;
+border-radius:50%;
 
 
-    border:none;
+border:none;
 
 
-    background:#ef4444;
+background:#ef4444;
 
 
-    color:white;
+color:white;
 
 
-    font-size:25px;
+font-size:24px;
 
 
-    cursor:pointer;
+cursor:pointer;
+
+
+z-index:5;
+
+
+}
+
+
+
+
+
+.video-error{
+
+
+display:none;
+
+
+text-align:center;
+
+
+color:#aaa;
+
+
+margin-top:20px;
 
 
 }
@@ -662,13 +632,10 @@ collection.css
 .case-grid{
 
 
-    grid-template-columns:
-
-    repeat(2,1fr);
+grid-template-columns:repeat(2,1fr);
 
 
 }
-
 
 
 }
@@ -694,51 +661,104 @@ collection.css
 .page-header{
 
 
-    padding-top:120px;
+padding-top:120px;
+
+
+padding-bottom:50px;
 
 
 }
+
+
 
 
 
 .page-header h1{
 
 
-    font-size:36px;
+font-size:36px;
 
 
 }
+
+
+
+
+
+.page-header p{
+
+
+font-size:14px;
+
+
+}
+
+
+
 
 
 
 .filter-box{
 
 
-    gap:12px;
+gap:10px;
 
 
 }
+
+
 
 
 
 .filter{
 
 
-    padding:
+padding:8px 18px;
 
-    8px 18px;
+
+font-size:13px;
 
 
 }
 
 
 
+
+
+
 .case-grid{
 
 
-    grid-template-columns:
+grid-template-columns:1fr;
 
-    1fr;
+
+gap:20px;
+
+
+}
+
+
+
+
+
+
+
+.case-info{
+
+
+padding:20px;
+
+
+}
+
+
+
+
+
+.case-title{
+
+
+gap:8px;
 
 
 }
@@ -750,7 +770,86 @@ collection.css
 .case-title h3{
 
 
-    font-size:20px;
+font-size:19px;
+
+
+}
+
+
+
+.type-tag{
+
+
+font-size:11px;
+
+
+padding:4px 9px;
+
+
+}
+
+
+
+
+
+.case-role{
+
+
+font-size:13px;
+
+
+}
+
+
+
+
+.case-data{
+
+
+gap:12px;
+
+
+font-size:12px;
+
+
+}
+
+
+
+
+.video-box{
+
+
+width:92%;
+
+
+}
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================
+超小屏
+===================== */
+
+
+@media(max-width:420px){
+
+
+
+.case-title h3{
+
+
+font-size:17px;
 
 
 }
@@ -762,59 +861,13 @@ collection.css
 .type-tag{
 
 
-    font-size:11px;
+font-size:10px;
 
 
-    padding:
-
-    4px 10px;
-
-
-}
-
+padding:3px 8px;
 
 
 }
-
-
-
-
-
-/* 小屏 */
-
-@media(max-width:480px){
-
-
-
-.page-header h1{
-
-
-    font-size:32px;
-
-
-}
-
-
-
-.case-info{
-
-
-    padding:20px;
-
-
-}
-
-
-
-
-.case-title{
-
-
-    gap:8px;
-
-
-}
-
 
 
 }
