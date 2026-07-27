@@ -1,10 +1,8 @@
- /*
- =====================================
+/* =====================================
  GSH Portfolio
  detail.js
- V5.8 Detail Page
- =====================================
- */
+ Detail Final Version
+===================================== */
 
 
 
@@ -12,11 +10,6 @@ document.addEventListener(
 "DOMContentLoaded",
 ()=>{
 
-
-
-// ===============================
-// 获取案例ID
-// ===============================
 
 
 const params =
@@ -27,14 +20,19 @@ window.location.search
 
 
 
+
+
 let caseId =
 
-params.get("id") || "1";
+params.get("id") || "01";
 
 
 
 
-// 统一格式
+
+
+// 统一两位编号
+
 
 caseId =
 
@@ -46,12 +44,6 @@ String(caseId)
 
 
 
-
-
-
-// ===============================
-// 读取JSON
-// ===============================
 
 
 fetch(
@@ -88,12 +80,12 @@ return String(item.id)
 
 
 
+
 if(!data){
 
 
 console.error(
-"案例不存在:",
-caseId
+"案例不存在"
 );
 
 
@@ -108,17 +100,19 @@ return;
 
 
 
-// ===============================
-// 基础信息
-// ===============================
+
+/* =====================
+标题
+===================== */
 
 
 
 document.getElementById(
 "caseTitle"
-).textContent =
+).innerText =
 
-data.title;
+data.title || "案例详情";
+
 
 
 
@@ -127,26 +121,27 @@ data.title;
 
 document.getElementById(
 "caseDesc"
-).textContent =
+).innerText =
 
-`${data.category} / ${data.type}`;
-
-
+data.type || "短视频案例分析";
 
 
 
 
 
 
-// ===============================
-// 数据
-// ===============================
+
+
+
+/* =====================
+数据
+===================== */
 
 
 
 document.getElementById(
 "views"
-).textContent =
+).innerText =
 
 data.views || "-";
 
@@ -154,9 +149,10 @@ data.views || "-";
 
 
 
+
 document.getElementById(
 "likes"
-).textContent =
+).innerText =
 
 data.likes || "-";
 
@@ -164,9 +160,10 @@ data.likes || "-";
 
 
 
+
 document.getElementById(
 "comments"
-).textContent =
+).innerText =
 
 data.comments || "-";
 
@@ -177,9 +174,10 @@ data.comments || "-";
 
 
 
-// ===============================
-// 视频
-// ===============================
+
+/* =====================
+视频
+===================== */
 
 
 const video =
@@ -187,6 +185,8 @@ const video =
 document.getElementById(
 "detailVideo"
 );
+
+
 
 
 
@@ -206,38 +206,107 @@ video.load();
 
 
 
-// ===============================
-// 项目介绍
-// ===============================
+/* =====================
+抖音链接
+===================== */
+
+
+const douyin =
+
+document.getElementById(
+"douyinLink"
+);
+
+
+
+
+
+if(data.douyin){
+
+
+
+douyin.href =
+
+data.douyin;
+
+
+
+douyin.innerText =
+
+data.douyin;
+
+
+
+}else{
+
+
+
+douyin.href="#";
+
+
+douyin.innerText=
+
+"请填写抖音视频链接";
+
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================
+项目介绍
+===================== */
+
 
 
 document.getElementById(
 "projectInfo"
-).textContent =
+).innerText =
 
 
 
-`${data.title}
+`
+${data.title}
 
-属于${data.type}项目，
+属于${data.type || "短视频项目"}。
 
-主要负责${data.role || "内容策划、视频剪辑以及账号运营"}。
+主要负责：
 
-通过内容分析和数据优化，
+${data.role || "内容策划、视频剪辑、账号运营"}
 
-持续提升视频传播效果。`;
-
-
-
-
-
-
+完成选题规划、
+脚本设计、
+视频制作以及数据优化。
+`;
 
 
 
-// ===============================
-// 图表
-// ===============================
+
+
+
+
+
+
+/* =====================
+三张数据图
+===================== */
+
+
+
+
+
+const chartPath =
+
+"assets/charts/";
+
+
 
 
 
@@ -245,8 +314,7 @@ document.getElementById(
 "dataImage"
 ).src =
 
-
-`assets/charts/data-${caseId}.png`;
+`${chartPath}data-${caseId}.png`;
 
 
 
@@ -257,8 +325,7 @@ document.getElementById(
 "ctrImage"
 ).src =
 
-
-`assets/charts/ctr-${caseId}.png`;
+`${chartPath}ctr-${caseId}.png`;
 
 
 
@@ -270,9 +337,7 @@ document.getElementById(
 "lossImage"
 ).src =
 
-
-`assets/charts/loss-${caseId}.png`;
-
+`${chartPath}loss-${caseId}.png`;
 
 
 
@@ -281,21 +346,24 @@ document.getElementById(
 
 
 
-// ===============================
-// 职责
-// ===============================
+
+
+
+/* =====================
+职责
+===================== */
 
 
 
 document.getElementById(
 "caseRole"
-).textContent =
-
+).innerText =
 
 data.role ||
 
+"负责项目策划、剪辑制作、运营分析";
 
-"负责视频策划、剪辑制作、账号运营以及数据复盘。";
+
 
 
 
@@ -306,14 +374,14 @@ data.role ||
 })
 
 
-
 .catch(err=>{
 
 
 console.error(
-"案例数据加载失败:",
+"detail数据加载失败:",
 err
 );
+
 
 
 });
