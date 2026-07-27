@@ -1,68 +1,66 @@
 /* =====================================
- GSH Portfolio V6.1
+ GSH Portfolio
  collection.js
- 案例集数据渲染
+ Case Page Final Stable
 ===================================== */
 
 
 const caseGrid = document.getElementById("caseGrid");
 
-const modal = document.getElementById("videoModal");
+const videoModal = document.getElementById("videoModal");
 
 const player = document.getElementById("player");
 
 const closeBtn = document.getElementById("closeBtn");
 
 
-let allCases = [];
 
-
-const noDataImage =
-"assets/images/no-data.png";
+let casesData = [];
 
 
 
 
 
-/*
-加载数据
-*/
-
-async function loadCases(){
+/* =====================
+加载案例数据
+===================== */
 
 
-try{
+fetch("data/cases.json")
 
 
-const res =
-await fetch("data/cases.json");
-
+.then(res => {
 
 
 if(!res.ok){
 
-throw new Error(
-"cases.json读取失败"
-);
+throw new Error("cases.json加载失败");
 
 }
 
 
-
-allCases =
-await res.json();
+return res.json();
 
 
-
-renderCases(allCases);
-
+})
 
 
-}catch(err){
+.then(data=>{
+
+
+casesData=data;
+
+
+renderCases(casesData);
+
+
+})
+
+
+.catch(err=>{
 
 
 console.error(err);
-
 
 
 caseGrid.innerHTML=`
@@ -76,10 +74,7 @@ caseGrid.innerHTML=`
 `;
 
 
-}
-
-
-}
+});
 
 
 
@@ -89,29 +84,26 @@ caseGrid.innerHTML=`
 
 
 
-/*
-渲染案例
-*/
+/* =====================
+生成案例
+===================== */
 
 
-function renderCases(data){
+function renderCases(list){
 
 
 caseGrid.innerHTML="";
 
 
 
-data.forEach(item=>{
+list.forEach(item=>{
 
 
 
-const card =
-document.createElement("div");
+const card=document.createElement("div");
 
 
-
-card.className =
-"case-card";
+card.className="case-card";
 
 
 
@@ -119,23 +111,25 @@ card.className =
 
 card.innerHTML=`
 
-<div class="cover-box">
+<div class="case-cover">
 
 
-<img
+<img 
 
-class="case-cover"
-
-src="${item.cover}"
+src="${item.cover || ''}"
 
 alt="${item.title}"
 
-onerror="
-this.onerror=null;
-this.src='${noDataImage}'
-"
-
 >
+
+
+
+<button class="play-btn">
+
+▶
+
+</button>
+
 
 
 </div>
@@ -147,10 +141,7 @@ this.src='${noDataImage}'
 <div class="case-info">
 
 
-
-<!-- 标题+类型 同行 -->
-
-<div class="case-title-row">
+<div class="case-title">
 
 
 <h3>
@@ -163,7 +154,7 @@ ${item.title}
 
 <span class="case-type">
 
-${item.type}
+${item.type || "类型暂未填写"}
 
 </span>
 
@@ -177,10 +168,9 @@ ${item.type}
 
 <p class="case-role">
 
-${item.role}
+${item.role || "数据暂未填写"}
 
 </p>
-
 
 
 
@@ -190,93 +180,100 @@ ${item.role}
 <div class="case-data">
 
 
-
-<div>
-
-<strong>
-
-${item.views || "暂无"}
-
-</strong>
-
 <span>
 
-播放
+播放 ${item.views || "--"}
 
 </span>
 
-</div>
-
-
-
-
-
-<div>
-
-<strong>
-
-${item.likes || "暂无"}
-
-</strong>
 
 <span>
 
-点赞
+点赞 ${item.likes || "--"}
 
 </span>
 
-</div>
-
-
-
-
-
-<div>
-
-<strong>
-
-${item.comments || "暂无"}
-
-</strong>
 
 <span>
 
-评论
+评论 ${item.comments || "--"}
 
 </span>
 
-</div>
-
-
-
-</div>
-
-
-
-
-
-
-
-<button
-
-class="play-btn"
-
-data-video="${item.video || ''}"
-
->
-
-查看视频
-
-</button>
-
-
-
 
 
 </div>
 
+
+
+</div>
 
 `;
+
+
+
+
+
+
+
+/* 图片不存在处理 */
+
+
+const img=card.querySelector("img");
+
+
+
+img.onerror=function(){
+
+
+img.style.display="none";
+
+
+const noData=document.createElement("div");
+
+
+noData.className="no-data";
+
+
+noData.innerText="该数据暂未找到";
+
+
+
+card.querySelector(".case-cover")
+
+.appendChild(noData);
+
+
+
+};
+
+
+
+
+
+
+
+
+
+/* 点击播放 */
+
+
+const playBtn=
+
+card.querySelector(".play-btn");
+
+
+
+playBtn.onclick=()=>{
+
+
+openVideo(item.video);
+
+
+};
+
+
+
 
 
 
@@ -287,10 +284,67 @@ caseGrid.appendChild(card);
 });
 
 
+}
 
 
 
-bindVideo();
+
+
+
+
+
+
+/* =====================
+打开视频
+===================== */
+
+
+function openVideo(src){
+
+
+
+if(!src){
+
+
+alert("该视频暂未上传");
+
+return;
+
+
+}
+
+
+
+
+fetch(src,{method:"HEAD"})
+
+
+.then(res=>{
+
+
+if(!res.ok){
+
+
+throw new Error();
+
+
+}
+
+
+
+showVideo(src);
+
+
+})
+
+
+.catch(()=>{
+
+
+alert("该视频暂未上传");
+
+
+});
 
 
 
@@ -304,33 +358,114 @@ bindVideo();
 
 
 
-/*
-视频播放
-*/
+function showVideo(src){
 
 
-function bindVideo(){
+videoModal.classList.add("show");
 
 
-document
-.querySelectorAll(".play-btn")
-.forEach(btn=>{
+player.src=src;
+
+
+player.play().catch(()=>{});
+
+
+}
+
+
+
+
+
+
+
+
+
+/* =====================
+关闭视频
+===================== */
+
+
+closeBtn.onclick=function(){
+
+
+
+videoModal.classList.remove("show");
+
+
+player.pause();
+
+
+player.src="";
+
+
+};
+
+
+
+
+
+
+
+videoModal.onclick=function(e){
+
+
+if(e.target===videoModal){
+
+
+closeBtn.click();
+
+
+}
+
+
+};
+
+
+
+
+
+
+
+
+
+/* =====================
+分类筛选
+===================== */
+
+
+const filters=document.querySelectorAll(".filter");
+
+
+
+filters.forEach(btn=>{
 
 
 btn.onclick=function(){
 
 
-const src =
-this.dataset.video;
+
+filters.forEach(b=>{
+
+b.classList.remove("active");
+
+});
 
 
 
-if(!src){
+this.classList.add("active");
 
 
-alert(
-"视频暂未上传"
-);
+
+
+
+const type=this.dataset.filter;
+
+
+
+if(type==="all"){
+
+
+renderCases(casesData);
 
 
 return;
@@ -342,177 +477,24 @@ return;
 
 
 
-player.src=src;
+const result=casesData.filter(item=>{
+
+
+return item.category===type;
+
+
+});
 
 
 
-player.onerror=function(){
 
+renderCases(result);
 
-alert(
-"该视频暂未找到"
-);
 
 
 };
 
 
-
-modal.classList.add(
-"show"
-);
-
-
-
-player.play();
-
-
-
-}
-
-
-
-});
-
-
-}
-
-
-
-
-
-
-
-
-
-/*
-关闭视频
-*/
-
-
-closeBtn.onclick=function(){
-
-
-modal.classList.remove(
-"show"
-);
-
-
-
-player.pause();
-
-
-
-player.removeAttribute(
-"src"
-);
-
-
-
-}
-
-
-
-
-
-
-
-modal.onclick=function(e){
-
-
-if(e.target===modal){
-
-
-closeBtn.click();
-
-
-}
-
-
-}
-
-
-
-
-
-
-
-
-
-/*
-分类筛选
-*/
-
-
-document
-.querySelectorAll(".filter")
-.forEach(btn=>{
-
-
-btn.onclick=function(){
-
-
-
-document
-.querySelectorAll(".filter")
-.forEach(b=>{
-
-
-b.classList.remove(
-"active"
-);
-
-
-});
-
-
-
-
-this.classList.add(
-"active"
-);
-
-
-
-
-const filter =
-this.dataset.filter;
-
-
-
-if(filter==="all"){
-
-
-renderCases(
-allCases
-);
-
-
-}else{
-
-
-const result =
-allCases.filter(item=>
-
-item.category===filter
-
-);
-
-
-
-renderCases(
-result
-);
-
-
-}
-
-
-
-}
-
-
-
 });
 
 
@@ -523,5 +505,31 @@ result
 
 
 
+/* =====================
+导航手机菜单
+===================== */
 
-loadCases();
+
+const menuBtn=document.querySelector(".menu-toggle");
+
+
+const nav=document.querySelector(".nav-links");
+
+
+
+if(menuBtn){
+
+
+menuBtn.onclick=function(){
+
+
+this.classList.toggle("active");
+
+
+nav.classList.toggle("show");
+
+
+};
+
+
+}
