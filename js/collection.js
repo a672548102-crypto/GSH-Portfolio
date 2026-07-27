@@ -1,17 +1,8 @@
 /* =====================================
- GSH Portfolio
- collection.js
- Case Page Final Stable
+GSH Portfolio
+collection.js
+案例集最终版
 ===================================== */
-
-
-const caseGrid = document.getElementById("caseGrid");
-
-const videoModal = document.getElementById("videoModal");
-
-const player = document.getElementById("player");
-
-const closeBtn = document.getElementById("closeBtn");
 
 
 
@@ -21,20 +12,19 @@ let casesData = [];
 
 
 
-/* =====================
-加载案例数据
-===================== */
+// =======================
+// 获取案例数据
+// =======================
 
 
 fetch("data/cases.json")
 
-
-.then(res => {
+.then(res=>{
 
 
 if(!res.ok){
 
-throw new Error("cases.json加载失败");
+throw new Error("cases.json不存在");
 
 }
 
@@ -57,13 +47,14 @@ renderCases(casesData);
 })
 
 
+
 .catch(err=>{
 
 
 console.error(err);
 
 
-caseGrid.innerHTML=`
+document.querySelector("#caseGrid").innerHTML=`
 
 <div class="no-data">
 
@@ -72,7 +63,6 @@ caseGrid.innerHTML=`
 </div>
 
 `;
-
 
 });
 
@@ -84,15 +74,21 @@ caseGrid.innerHTML=`
 
 
 
-/* =====================
-生成案例
-===================== */
+// =======================
+// 渲染案例
+// =======================
 
 
 function renderCases(list){
 
 
-caseGrid.innerHTML="";
+
+const grid=document.querySelector("#caseGrid");
+
+
+
+grid.innerHTML="";
+
 
 
 
@@ -111,25 +107,20 @@ card.className="case-card";
 
 card.innerHTML=`
 
-<div class="case-cover">
+<div class="cover-box">
 
 
-<img 
+<img
 
-src="${item.cover || ''}"
+src="${item.cover}"
+
+class="case-cover"
 
 alt="${item.title}"
 
+onerror="this.parentNode.innerHTML='<div class=no-data>该数据暂未找到</div>'"
+
 >
-
-
-
-<button class="play-btn">
-
-▶
-
-</button>
-
 
 
 </div>
@@ -138,7 +129,11 @@ alt="${item.title}"
 
 
 
+
 <div class="case-info">
+
+
+
 
 
 <div class="case-title">
@@ -152,9 +147,9 @@ ${item.title}
 
 
 
-<span class="case-type">
+<span class="type-tag">
 
-${item.type || "类型暂未填写"}
+${item.type}
 
 </span>
 
@@ -166,11 +161,14 @@ ${item.type || "类型暂未填写"}
 
 
 
+
 <p class="case-role">
 
-${item.role || "数据暂未填写"}
+
+${item.role}
 
 </p>
+
 
 
 
@@ -182,31 +180,33 @@ ${item.role || "数据暂未填写"}
 
 <span>
 
-播放 ${item.views || "--"}
+播放 ${item.views}
 
 </span>
 
 
 <span>
 
-点赞 ${item.likes || "--"}
+点赞 ${item.likes}
 
 </span>
 
 
 <span>
 
-评论 ${item.comments || "--"}
+评论 ${item.comments}
 
 </span>
 
 
-
 </div>
 
 
 
+
+
 </div>
+
 
 `;
 
@@ -215,133 +215,27 @@ ${item.role || "数据暂未填写"}
 
 
 
+// 点击播放
 
-/* 图片不存在处理 */
-
-
-const img=card.querySelector("img");
-
-
-
-img.onerror=function(){
-
-
-img.style.display="none";
-
-
-const noData=document.createElement("div");
-
-
-noData.className="no-data";
-
-
-noData.innerText="该数据暂未找到";
-
-
-
-card.querySelector(".case-cover")
-
-.appendChild(noData);
-
-
-
-};
-
-
-
-
-
-
-
-
-
-/* 点击播放 */
-
-
-const playBtn=
-
-card.querySelector(".play-btn");
-
-
-
-playBtn.onclick=()=>{
+card.addEventListener(
+"click",
+()=>{
 
 
 openVideo(item.video);
 
 
-};
-
-
-
-
-
-
-caseGrid.appendChild(card);
-
-
-
-});
-
-
 }
 
+);
 
 
 
 
 
 
+grid.appendChild(card);
 
-
-/* =====================
-打开视频
-===================== */
-
-
-function openVideo(src){
-
-
-
-if(!src){
-
-
-alert("该视频暂未上传");
-
-return;
-
-
-}
-
-
-
-
-fetch(src,{method:"HEAD"})
-
-
-.then(res=>{
-
-
-if(!res.ok){
-
-
-throw new Error();
-
-
-}
-
-
-
-showVideo(src);
-
-
-})
-
-
-.catch(()=>{
-
-
-alert("该视频暂未上传");
 
 
 });
@@ -358,107 +252,43 @@ alert("该视频暂未上传");
 
 
 
-function showVideo(src){
 
 
-videoModal.classList.add("show");
+// =======================
+// 分类筛选
+// =======================
 
-
-player.src=src;
-
-
-player.play().catch(()=>{});
-
-
-}
-
-
-
-
-
-
-
-
-
-/* =====================
-关闭视频
-===================== */
-
-
-closeBtn.onclick=function(){
-
-
-
-videoModal.classList.remove("show");
-
-
-player.pause();
-
-
-player.src="";
-
-
-};
-
-
-
-
-
-
-
-videoModal.onclick=function(e){
-
-
-if(e.target===videoModal){
-
-
-closeBtn.click();
-
-
-}
-
-
-};
-
-
-
-
-
-
-
-
-
-/* =====================
-分类筛选
-===================== */
 
 
 const filters=document.querySelectorAll(".filter");
 
 
 
+
 filters.forEach(btn=>{
 
 
-btn.onclick=function(){
+btn.addEventListener(
+"click",
+()=>{
+
+
+document
+.querySelector(".filter.active")
+.classList.remove("active");
 
 
 
-filters.forEach(b=>{
-
-b.classList.remove("active");
-
-});
-
-
-
-this.classList.add("active");
+btn.classList.add("active");
 
 
 
 
 
-const type=this.dataset.filter;
+const type=btn.dataset.filter;
+
+
+
 
 
 
@@ -468,6 +298,73 @@ if(type==="all"){
 renderCases(casesData);
 
 
+}
+
+else{
+
+
+const result=casesData.filter(
+item=>item.category===type
+);
+
+
+
+renderCases(result);
+
+
+}
+
+
+
+}
+
+);
+
+
+
+});
+
+
+
+
+
+
+
+
+
+
+
+// =======================
+// 视频弹窗
+// =======================
+
+
+
+const modal=document.querySelector("#videoModal");
+
+const player=document.querySelector("#player");
+
+const closeBtn=document.querySelector("#closeBtn");
+
+const videoError=document.querySelector("#videoError");
+
+
+
+
+
+
+
+
+function openVideo(src){
+
+
+
+if(!src){
+
+
+showVideoError();
+
+
 return;
 
 
@@ -476,25 +373,98 @@ return;
 
 
 
-
-const result=casesData.filter(item=>{
-
-
-return item.category===type;
+player.src=src;
 
 
-});
+videoError.style.display="none";
 
 
 
+modal.classList.add("show");
 
-renderCases(result);
+
+
+player.play()
+.catch(()=>{});
+
+
+
+}
+
+
+
+
+
+
+
+function showVideoError(){
+
+
+modal.classList.add("show");
+
+
+player.style.display="none";
+
+
+videoError.style.display="block";
+
+
+}
+
+
+
+
+
+//关闭
+
+
+closeBtn.onclick=function(){
+
+
+
+modal.classList.remove("show");
+
+
+
+player.pause();
+
+
+player.currentTime=0;
+
+
+player.src="";
+
+
+player.style.display="block";
 
 
 
 };
 
 
+
+
+
+
+
+//点击黑色区域关闭
+
+
+modal.addEventListener(
+"click",
+e=>{
+
+
+if(e.target===modal){
+
+
+closeBtn.click();
+
+
+}
+
+
+
 });
 
 
@@ -505,9 +475,10 @@ renderCases(result);
 
 
 
-/* =====================
-导航手机菜单
-===================== */
+
+// =======================
+// 手机导航
+// =======================
 
 
 const menuBtn=document.querySelector(".menu-toggle");
@@ -520,10 +491,11 @@ const nav=document.querySelector(".nav-links");
 if(menuBtn){
 
 
-menuBtn.onclick=function(){
+
+menuBtn.onclick=()=>{
 
 
-this.classList.toggle("active");
+menuBtn.classList.toggle("active");
 
 
 nav.classList.toggle("show");
@@ -532,4 +504,9 @@ nav.classList.toggle("show");
 };
 
 
+
 }
+
+
+
+
