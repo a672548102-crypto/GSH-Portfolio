@@ -1,7 +1,7 @@
 /* =====================================
  GSH Portfolio
  collection.js
- Project Collection Final
+ Stable Final Version
 ===================================== */
 
 
@@ -14,7 +14,6 @@ document.getElementById(
 
 
 
-
 let allCases = [];
 
 
@@ -23,41 +22,23 @@ let allCases = [];
 
 
 
+
+
 /* ===============================
-读取案例数据
-================================ */
+初始化
+=============================== */
 
 
-fetch(
-"assets/data/cases.json"
-)
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
 
 
-
-.then(res=>res.json())
-
+loadCases();
 
 
-.then(data=>{
+initModal();
 
-
-allCases=data;
-
-
-renderCases(allCases);
-
-
-})
-
-
-
-.catch(err=>{
-
-
-console.error(
-"cases.json读取失败:",
-err
-);
 
 
 });
@@ -70,12 +51,144 @@ err
 
 
 
+
+
+
+/* ===============================
+读取案例数据
+=============================== */
+
+
+function loadCases(){
+
+
+
+
+
+if(!caseGrid)
+
+return;
+
+
+
+
+
+
+fetch(
+"assets/data/cases.json"
+)
+
+.then(res=>{
+
+
+if(!res.ok){
+
+throw new Error(
+"cases.json加载失败"
+);
+
+}
+
+
+
+return res.json();
+
+
+})
+
+.then(data=>{
+
+
+
+allCases=data;
+
+
+
+renderCases(
+allCases
+);
+
+
+
+initFilter();
+
+
+
+})
+
+.catch(err=>{
+
+
+console.error(
+err
+);
+
+
+
+caseGrid.innerHTML=`
+
+<div class="empty-tip">
+
+案例数据加载失败
+
+</div>
+
+`;
+
+
+
+});
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
 /* ===============================
 生成案例卡片
-================================ */
+=============================== */
 
 
-function renderCases(cases){
+function renderCases(list){
+
+
+
+
+
+if(!list.length){
+
+
+
+caseGrid.innerHTML=`
+
+<div class="empty-tip">
+
+暂无案例
+
+</div>
+
+`;
+
+return;
+
+
+}
+
+
+
+
+
 
 
 
@@ -85,7 +198,12 @@ let html="";
 
 
 
-cases.forEach(item=>{
+
+
+
+list.forEach(item=>{
+
+
 
 
 
@@ -95,7 +213,10 @@ html += `
 
 <div class="case-card"
 
-data-video="${item.video}">
+data-video="${item.video || ''}">
+
+
+
 
 
 
@@ -105,11 +226,15 @@ data-video="${item.video}">
 
 
 
+
+
 <img
 
 class="case-cover"
 
-src="${item.cover}"
+src="${item.cover || ''}"
+
+alt="${item.title || '案例'}"
 
 loading="lazy"
 
@@ -121,17 +246,15 @@ loading="lazy"
 
 <div class="hover-play">
 
-
-
-<div class="play-circle">
+<span>
 
 ▶
 
-</div>
-
-
+</span>
 
 </div>
+
+
 
 
 
@@ -151,6 +274,9 @@ loading="lazy"
 
 
 
+
+
+
 <div class="case-number">
 
 CASE ${String(item.id).padStart(2,"0")}
@@ -163,28 +289,13 @@ CASE ${String(item.id).padStart(2,"0")}
 
 
 
-<div class="title-line">
-
 
 
 <h3>
 
-${item.title}
+${item.title || "未命名案例"}
 
 </h3>
-
-
-
-
-<span class="type-tag">
-
-${item.type}
-
-</span>
-
-
-
-</div>
 
 
 
@@ -195,18 +306,13 @@ ${item.type}
 
 <div class="tags">
 
-
-
 <span>
 
-${item.category}
+${item.category || item.type || "案例"}
 
 </span>
 
-
-
 </div>
-
 
 
 
@@ -219,8 +325,12 @@ ${item.category}
 
 
 
-<div>
 
+
+
+
+
+<div>
 
 <strong>
 
@@ -243,8 +353,9 @@ ${item.views || "-"}
 
 
 
-<div>
 
+
+<div>
 
 <strong>
 
@@ -267,8 +378,9 @@ ${item.likes || "-"}
 
 
 
-<div>
 
+
+<div>
 
 <strong>
 
@@ -285,6 +397,10 @@ ${item.comments || "-"}
 
 
 </div>
+
+
+
+
 
 
 
@@ -314,23 +430,25 @@ class="detail-link">
 
 
 
-</div>
-
-
-
-
 
 
 </div>
 
 
+
+
+
+
+</div>
 
 
 `;
 
 
 
+
 });
+
 
 
 
@@ -343,7 +461,10 @@ caseGrid.innerHTML = html;
 
 
 
-bindVideo();
+
+
+bindCards();
+
 
 
 
@@ -357,12 +478,23 @@ bindVideo();
 
 
 
+
+
+
+
+
 /* ===============================
-分类筛选
-================================ */
+筛选
+=============================== */
 
 
-const filters =
+function initFilter(){
+
+
+
+
+
+const buttons =
 
 document.querySelectorAll(
 ".filter"
@@ -373,27 +505,26 @@ document.querySelectorAll(
 
 
 
-filters.forEach(btn=>{
-
-
-
-btn.addEventListener(
-"click",
-()=>{
+buttons.forEach(btn=>{
 
 
 
 
 
-filters.forEach(b=>{
+btn.onclick=()=>{
 
+
+
+
+
+
+buttons.forEach(b=>
 
 b.classList.remove(
 "active"
+)
+
 );
-
-
-});
 
 
 
@@ -402,6 +533,7 @@ b.classList.remove(
 btn.classList.add(
 "active"
 );
+
 
 
 
@@ -420,8 +552,9 @@ btn.dataset.filter;
 if(type==="all"){
 
 
-
-renderCases(allCases);
+renderCases(
+allCases
+);
 
 
 return;
@@ -435,12 +568,20 @@ return;
 
 
 
+
+
 const result =
 
 allCases.filter(item=>{
 
 
-return item.category===type;
+return (
+
+item.category===type ||
+
+item.type===type
+
+);
 
 
 });
@@ -449,7 +590,16 @@ return item.category===type;
 
 
 
-renderCases(result);
+
+
+renderCases(
+result
+);
+
+
+
+};
+
 
 
 
@@ -457,7 +607,9 @@ renderCases(result);
 });
 
 
-});
+
+}
+
 
 
 
@@ -472,8 +624,111 @@ renderCases(result);
 
 
 /* ===============================
-视频播放
-================================ */
+绑定卡片
+=============================== */
+
+
+function bindCards(){
+
+
+
+
+
+document.querySelectorAll(
+".case-card"
+)
+
+.forEach(card=>{
+
+
+
+
+
+card.addEventListener(
+"click",
+(e)=>{
+
+
+
+
+
+// 点击详情按钮不播放
+
+if(
+e.target.closest(
+".detail-link"
+)
+
+){
+
+return;
+
+
+}
+
+
+
+
+
+
+
+const video =
+
+card.dataset.video;
+
+
+
+
+
+
+
+if(!video)
+
+return;
+
+
+
+
+
+
+
+
+openVideo(video);
+
+
+
+
+
+
+});
+
+
+
+
+
+
+});
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===============================
+视频弹窗
+=============================== */
 
 
 const modal =
@@ -506,63 +761,22 @@ document.getElementById(
 
 
 
-function bindVideo(){
+function openVideo(src){
 
 
 
 
 
-document.querySelectorAll(
-".case-card"
-)
-
-.forEach(card=>{
-
-
-
-
-
-card.onclick=function(e){
-
-
-
-
-
-// 点击查看分析按钮不播放
-
-if(
-e.target.closest(
-".detail-link"
-)
-){
-
+if(!modal || !player)
 
 return;
 
 
-}
 
 
 
 
-
-
-
-player.pause();
-
-
-player.currentTime=0;
-
-
-
-
-
-
-player.src =
-
-this.dataset.video;
-
-
+player.src=src;
 
 
 
@@ -572,36 +786,24 @@ modal.classList.add(
 
 
 
-
-
 player.load();
 
 
 
 
 
+// PC尝试播放
+
+if(window.innerWidth>768){
+
+
 player.play()
 
-.catch(()=>{
+.catch(()=>{});
 
 
-console.log(
-"等待用户播放"
-);
+}
 
-
-});
-
-
-
-
-};
-
-
-
-
-
-});
 
 
 
@@ -615,17 +817,23 @@ console.log(
 
 
 
-/* ===============================
-关闭视频
-================================ */
-
-
-
 function closeVideo(){
 
 
 
+
+
+if(!player || !modal)
+
+return;
+
+
+
+
+
+
 player.pause();
+
 
 
 
@@ -643,15 +851,28 @@ player.load();
 
 
 
+
 modal.classList.remove(
 "active"
 );
 
 
 
+
 }
 
 
+
+
+
+
+
+
+
+
+
+
+function initModal(){
 
 
 
@@ -661,11 +882,9 @@ modal.classList.remove(
 if(closeBtn){
 
 
-
 closeBtn.onclick=
 
 closeVideo;
-
 
 
 }
@@ -674,12 +893,13 @@ closeVideo;
 
 
 
+
+
 if(modal){
 
 
-modal.addEventListener(
-"click",
-e=>{
+
+modal.onclick=(e)=>{
 
 
 if(e.target===modal){
@@ -691,12 +911,12 @@ closeVideo();
 }
 
 
-});
+
+};
+
 
 
 }
-
-
 
 
 
@@ -718,4 +938,9 @@ closeVideo();
 }
 
 
+
 });
+
+
+
+}
