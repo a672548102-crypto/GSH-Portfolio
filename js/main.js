@@ -1,7 +1,7 @@
 /* =====================================
- GSH Portfolio
- main.js
- Final Tech Version
+GSH Portfolio
+main.js
+Final Tech Version
 ===================================== */
 
 
@@ -19,10 +19,21 @@ document.body.classList.add(
 
 
 
-
 // 数字动画
 
 startCounter();
+
+
+
+// 手机菜单
+
+mobileMenu();
+
+
+
+// 头像效果
+
+avatarEffect();
 
 
 
@@ -43,88 +54,56 @@ function startCounter(){
 
 
 const counters =
+
 document.querySelectorAll(
 ".counter"
 );
 
 
 
-// 如果没有counter直接退出
-
-if(!counters.length){
-
-return;
-
-}
-
-
 
 counters.forEach(counter=>{
 
 
-const text =
-counter.innerText.trim();
+const target =
 
-
-
-
-
-// 判断数字单位
-
-
-let number =
-parseFloat(
-text
+Number(
+counter.dataset.target
 );
 
 
 
-let suffix="";
+const suffix =
+
+counter.dataset.suffix || "";
 
 
 
-if(text.includes("万")){
-
-
-suffix="万";
+let current = 0;
 
 
 
-number =
-parseFloat(text.replace("万",""));
+// 根据数字大小调整速度
+
+let speed;
 
 
 
-}
+if(target > 1000000){
 
 
-
-if(text.includes("+")){
-
-
-suffix="+";
-
-
-
-number =
-parseFloat(text.replace("+",""));
-
+speed = target / 120;
 
 
 }
 
+else{
 
 
+speed = target / 80;
 
 
-
-let current=0;
-
-
-
-const step =
-number / 80;
-
+}
 
 
 
@@ -135,17 +114,20 @@ function update(){
 
 
 
-current += step;
+current += speed;
 
 
 
-if(current < number){
+
+if(current < target){
 
 
 
 counter.innerText =
 
+formatNumber(
 Math.floor(current)
+)
 +
 suffix;
 
@@ -157,13 +139,14 @@ update
 
 
 
-}else{
+}
 
+else{
 
 
 counter.innerText =
 
-number
+formatNumber(target)
 +
 suffix;
 
@@ -174,7 +157,6 @@ suffix;
 
 
 }
-
 
 
 
@@ -196,13 +178,78 @@ update();
 
 
 
+/* =====================================
+数字格式化
+===================================== */
+
+
+function formatNumber(num){
+
+
+
+if(num >= 10000000){
+
+
+return (
+
+(num / 10000000)
+.toFixed(0)
+
++
+"千万"
+
+);
+
+
+
+}
+
+
+
+if(num >=10000){
+
+
+return (
+
+(num / 10000)
+.toFixed(0)
+
++
+"万"
+
+);
+
+
+
+}
+
+
+
+return num;
+
+
+
+}
+
+
+
+
+
+
+
+
 
 /* =====================================
 移动端导航
 ===================================== */
 
 
+function mobileMenu(){
+
+
+
 const menu =
+
 document.querySelector(
 ".menu-toggle"
 );
@@ -210,13 +257,21 @@ document.querySelector(
 
 
 const nav =
+
 document.querySelector(
 ".nav-links"
 );
 
 
 
-if(menu && nav){
+
+if(!menu || !nav){
+
+return;
+
+}
+
+
 
 
 
@@ -241,71 +296,41 @@ menu.classList.toggle(
 
 
 
-}
 
 
 
 
+// 点击导航关闭
 
 
-
-
-
-
-
-/* =====================================
-平滑滚动
-===================================== */
-
-
-document
-.querySelectorAll(
-'a[href^="#"]'
+nav.querySelectorAll(
+"a"
 )
 
 .forEach(link=>{
 
 
-
 link.addEventListener(
 "click",
-function(e){
+()=>{
 
 
-
-const target =
-document.querySelector(
-this.getAttribute("href")
+nav.classList.remove(
+"open"
 );
 
 
 
-
-if(target){
-
+});
 
 
-e.preventDefault();
-
-
-
-target.scrollIntoView({
-
-behavior:"smooth"
 
 });
+
 
 
 
 }
-
-
-
-});
-
-
-
-});
 
 
 
@@ -317,31 +342,98 @@ behavior:"smooth"
 
 
 /* =====================================
-头像轻微悬浮效果
+头像轻微3D效果
 ===================================== */
 
 
+function avatarEffect(){
+
+
+
 const avatar =
+
 document.querySelector(
-".avatar-frame"
+".avatar-ring"
 );
 
 
 
-if(avatar){
+
+if(!avatar){
+
+return;
+
+}
+
+
 
 
 
 avatar.addEventListener(
-"mouseenter",
-()=>{
+"mousemove",
+(e)=>{
 
 
-avatar.style.transition=
-".4s";
+
+const rect =
+
+avatar.getBoundingClientRect();
+
+
+
+const x =
+
+e.clientX -
+rect.left;
+
+
+
+const y =
+
+e.clientY -
+rect.top;
+
+
+
+
+
+const rotateX =
+
+-(y -
+rect.height/2)
+/
+25;
+
+
+
+const rotateY =
+
+(x -
+rect.width/2)
+/
+25;
+
+
+
+
+
+avatar.style.transform =
+
+
+`
+scale(1.06)
+rotateX(${rotateX}deg)
+rotateY(${rotateY}deg)
+`;
+
+
+
 
 
 });
+
+
+
 
 
 
@@ -352,8 +444,10 @@ avatar.addEventListener(
 ()=>{
 
 
-avatar.style.transform=
-"scale(1)";
+avatar.style.transform =
+
+"scale(1) rotateX(0) rotateY(0)";
+
 
 
 });
@@ -361,3 +455,68 @@ avatar.style.transform=
 
 
 }
+
+
+
+
+
+
+
+
+
+/* =====================================
+页面滚动显示
+===================================== */
+
+
+const observer =
+
+new IntersectionObserver(
+
+(entries)=>{
+
+
+entries.forEach(
+(entry)=>{
+
+
+if(entry.isIntersecting){
+
+
+entry.target.classList.add(
+"show"
+);
+
+
+}
+
+
+});
+
+
+},
+
+{
+
+threshold:.15
+
+}
+
+);
+
+
+
+
+document.querySelectorAll(
+".advantage-card,.stats,.hero-content"
+)
+
+.forEach(
+(el)=>{
+
+
+observer.observe(el);
+
+
+
+});
