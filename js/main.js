@@ -1,7 +1,7 @@
 /* =====================================
-GSH Portfolio
-main.js
-Final Tech Version
+ GSH Portfolio
+ main.js
+ Final Version
 ===================================== */
 
 
@@ -11,7 +11,7 @@ document.addEventListener(
 ()=>{
 
 
-// 页面加载动画
+// 页面进入
 
 document.body.classList.add(
 "loaded"
@@ -45,8 +45,10 @@ avatarEffect();
 
 
 
+
+
 /* =====================================
-数字递增动画
+ 数字递增
 ===================================== */
 
 
@@ -54,28 +56,26 @@ function startCounter(){
 
 
 const counters =
-
 document.querySelectorAll(
 ".counter"
 );
 
 
 
-
 counters.forEach(counter=>{
 
 
-const target =
 
+const target =
 Number(
 counter.dataset.target
 );
 
 
 
-const suffix =
+const unit =
+counter.dataset.unit || "";
 
-counter.dataset.suffix || "";
 
 
 
@@ -83,27 +83,15 @@ let current = 0;
 
 
 
-// 根据数字大小调整速度
+// 动画速度
 
-let speed;
-
-
-
-if(target > 1000000){
+const duration = 1200;
 
 
-speed = target / 120;
+const step =
+target /
+(duration / 16);
 
-
-}
-
-else{
-
-
-speed = target / 80;
-
-
-}
 
 
 
@@ -114,8 +102,7 @@ function update(){
 
 
 
-current += speed;
-
+current += step;
 
 
 
@@ -125,11 +112,9 @@ if(current < target){
 
 counter.innerText =
 
-formatNumber(
 Math.floor(current)
-)
 +
-suffix;
+unit;
 
 
 
@@ -139,16 +124,15 @@ update
 
 
 
-}
+}else{
 
-else{
 
 
 counter.innerText =
 
-formatNumber(target)
+target
 +
-suffix;
+unit;
 
 
 
@@ -157,10 +141,13 @@ suffix;
 
 
 }
+
 
 
 
 update();
+
+
 
 
 
@@ -178,69 +165,12 @@ update();
 
 
 
-/* =====================================
-数字格式化
-===================================== */
-
-
-function formatNumber(num){
-
-
-
-if(num >= 10000000){
-
-
-return (
-
-(num / 10000000)
-.toFixed(0)
-
-+
-"千万"
-
-);
-
-
-
-}
-
-
-
-if(num >=10000){
-
-
-return (
-
-(num / 10000)
-.toFixed(0)
-
-+
-"万"
-
-);
-
-
-
-}
-
-
-
-return num;
-
-
-
-}
-
-
-
-
-
 
 
 
 
 /* =====================================
-移动端导航
+ 手机导航
 ===================================== */
 
 
@@ -249,7 +179,6 @@ function mobileMenu(){
 
 
 const menu =
-
 document.querySelector(
 ".menu-toggle"
 );
@@ -257,10 +186,10 @@ document.querySelector(
 
 
 const nav =
-
 document.querySelector(
 ".nav-links"
 );
+
 
 
 
@@ -298,38 +227,6 @@ menu.classList.toggle(
 
 
 
-
-
-// 点击导航关闭
-
-
-nav.querySelectorAll(
-"a"
-)
-
-.forEach(link=>{
-
-
-link.addEventListener(
-"click",
-()=>{
-
-
-nav.classList.remove(
-"open"
-);
-
-
-
-});
-
-
-
-});
-
-
-
-
 }
 
 
@@ -341,8 +238,11 @@ nav.classList.remove(
 
 
 
+
+
+
 /* =====================================
-头像轻微3D效果
+ 头像悬浮效果
 ===================================== */
 
 
@@ -351,11 +251,9 @@ function avatarEffect(){
 
 
 const avatar =
-
 document.querySelector(
 ".avatar-ring"
 );
-
 
 
 
@@ -369,6 +267,8 @@ return;
 
 
 
+
+
 avatar.addEventListener(
 "mousemove",
 (e)=>{
@@ -376,42 +276,32 @@ avatar.addEventListener(
 
 
 const rect =
-
 avatar.getBoundingClientRect();
 
 
 
 const x =
-
-e.clientX -
-rect.left;
+e.clientX - rect.left;
 
 
 
 const y =
-
-e.clientY -
-rect.top;
+e.clientY - rect.top;
 
 
 
 
 
 const rotateX =
-
--(y -
-rect.height/2)
-/
-25;
+-(y - rect.height/2)
+/15;
 
 
 
 const rotateY =
+(x - rect.width/2)
+/15;
 
-(x -
-rect.width/2)
-/
-25;
 
 
 
@@ -419,11 +309,14 @@ rect.width/2)
 
 avatar.style.transform =
 
-
 `
-scale(1.06)
+
+scale(1.04)
+
 rotateX(${rotateX}deg)
+
 rotateY(${rotateY}deg)
+
 `;
 
 
@@ -439,6 +332,7 @@ rotateY(${rotateY}deg)
 
 
 
+
 avatar.addEventListener(
 "mouseleave",
 ()=>{
@@ -446,7 +340,7 @@ avatar.addEventListener(
 
 avatar.style.transform =
 
-"scale(1) rotateX(0) rotateY(0)";
+"scale(1)";
 
 
 
@@ -454,7 +348,12 @@ avatar.style.transform =
 
 
 
+
+
 }
+
+
+
 
 
 
@@ -465,57 +364,49 @@ avatar.style.transform =
 
 
 /* =====================================
-页面滚动显示
+ 平滑滚动
 ===================================== */
 
 
-const observer =
+document.querySelectorAll(
+'a[href^="#"]'
+)
 
-new IntersectionObserver(
-
-(entries)=>{
-
-
-entries.forEach(
-(entry)=>{
+.forEach(link=>{
 
 
-if(entry.isIntersecting){
+link.addEventListener(
+"click",
+function(e){
 
 
-entry.target.classList.add(
-"show"
+
+const target =
+document.querySelector(
+this.getAttribute("href")
 );
 
 
-}
 
+if(target){
+
+
+e.preventDefault();
+
+
+
+target.scrollIntoView({
+
+behavior:"smooth"
 
 });
 
 
-},
-
-{
-
-threshold:.15
-
 }
 
-);
 
 
-
-
-document.querySelectorAll(
-".advantage-card,.stats,.hero-content"
-)
-
-.forEach(
-(el)=>{
-
-
-observer.observe(el);
+});
 
 
 
