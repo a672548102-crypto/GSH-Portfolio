@@ -345,30 +345,25 @@ justify-content:space-between;
 
 .logo{
 
-
 font-size:24px;
-
 
 font-weight:900;
 
-
 text-decoration:none;
-
 
 color:white;
 
+white-space:nowrap;
 
 }
 
 
 
-
-
 .logo span{
-
 
 color:#c4b5fd;
 
+font-weight:900;
 
 }
 
