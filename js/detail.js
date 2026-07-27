@@ -1,8 +1,9 @@
 /* =====================================
  GSH Portfolio
  detail.js
- Case Detail Stable Version
+ Stable Final Version
 ===================================== */
+
 
 
 document.addEventListener(
@@ -10,27 +11,67 @@ document.addEventListener(
 ()=>{
 
 
+
+loadDetail();
+
+
+
+});
+
+
+
+
+
+
+
+
+
+/* ===============================
+读取案例ID
+=============================== */
+
+
+function loadDetail(){
+
+
+
+
+
 const params =
+
 new URLSearchParams(
 window.location.search
 );
 
 
 
-let caseId =
+
+
+
+let id =
+
 params.get("id") || "01";
 
 
 
-caseId =
-String(caseId)
+
+
+
+id =
+
+String(id)
 .padStart(2,"0");
 
 
 
 
 
-fetch("./assets/data/cases.json")
+
+
+
+fetch(
+"assets/data/cases.json"
+)
 
 .then(res=>{
 
@@ -44,6 +85,7 @@ throw new Error(
 }
 
 
+
 return res.json();
 
 
@@ -53,12 +95,23 @@ return res.json();
 
 
 
-const data = cases.find(item=>{
 
 
-return String(item.id)
+const data =
+
+cases.find(item=>{
+
+
+return (
+
+String(item.id)
 .padStart(2,"0")
-===caseId;
+
+===
+
+id
+
+);
 
 
 });
@@ -67,13 +120,14 @@ return String(item.id)
 
 
 
+
+
+
 if(!data){
 
 
-console.error(
-"没有找到案例:",
-caseId
-);
+
+showError();
 
 
 return;
@@ -85,17 +139,74 @@ return;
 
 
 
-// 标题
 
-const title =
-document.getElementById(
-"caseTitle"
+
+
+renderDetail(
+data,
+id
 );
 
 
-if(title)
-title.textContent =
-data.title || "未命名案例";
+
+
+
+})
+
+
+
+.catch(err=>{
+
+
+console.error(
+"详情加载失败:",
+err
+);
+
+
+
+showError();
+
+
+
+});
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===============================
+渲染页面
+=============================== */
+
+
+function renderDetail(data,id){
+
+
+
+
+
+
+
+// 标题
+
+
+setText(
+"caseTitle",
+data.title || "未命名案例"
+);
+
 
 
 
@@ -104,15 +215,12 @@ data.title || "未命名案例";
 
 // 类型
 
-const desc =
-document.getElementById(
-"caseDesc"
+
+setText(
+"caseDesc",
+data.type || data.category || "短视频运营案例"
 );
 
-
-if(desc)
-desc.textContent =
-data.type || "";
 
 
 
@@ -124,42 +232,25 @@ data.type || "";
 // 数据
 
 
-const views =
-document.getElementById(
-"views"
+setText(
+"views",
+data.views || "0"
 );
 
 
-if(views)
-views.textContent =
-data.views || "0";
 
-
-
-
-const likes =
-document.getElementById(
-"likes"
+setText(
+"likes",
+data.likes || "0"
 );
 
 
-if(likes)
-likes.textContent =
-data.likes || "0";
 
-
-
-
-
-const comments =
-document.getElementById(
-"comments"
+setText(
+"comments",
+data.comments || "0"
 );
 
-
-if(comments)
-comments.textContent =
-data.comments || "0";
 
 
 
@@ -172,139 +263,30 @@ data.comments || "0";
 
 
 const video =
+
 document.getElementById(
 "detailVideo"
 );
 
 
+
+
+
 if(video && data.video){
+
 
 
 video.src =
 data.video;
 
 
+
 video.load();
 
 
-}
-
-
-
-
-
-
-
-
-// 项目信息
-
-
-const info =
-document.getElementById(
-"projectInfo"
-);
-
-
-
-if(info){
-
-
-info.textContent =
-
-`${data.title}
-
-属于${data.type || "短视频项目"}，
-
-主要负责：
-
-${data.role || "视频策划、剪辑制作、账号运营"}
-
-。
-
-完成选题规划、内容制作、发布运营以及数据复盘优化。`;
 
 }
 
-
-
-
-
-
-
-
-// 职责
-
-
-const role =
-document.getElementById(
-"caseRole"
-);
-
-
-
-if(role){
-
-
-role.textContent =
-
-data.role ||
-
-"负责账号策划、视频剪辑、运营分析";
-
-
-}
-
-
-
-
-
-
-
-
-// 数据图
-
-
-const charts = [
-
-[
-"dataImage",
-`assets/charts/data-${caseId}.png`
-],
-
-[
-"ctrImage",
-`assets/charts/ctr-${caseId}.png`
-],
-
-[
-"lossImage",
-`assets/charts/loss-${caseId}.png`
-]
-
-];
-
-
-
-
-
-charts.forEach(item=>{
-
-
-const img =
-document.getElementById(
-item[0]
-);
-
-
-if(img){
-
-img.src =
-item[1];
-
-}
-
-
-});
 
 
 
@@ -317,24 +299,36 @@ item[1];
 
 
 const douyin =
+
 document.getElementById(
 "douyinLink"
 );
 
 
 
+
+
+
+
 if(douyin){
 
 
+
+
+
 if(data.douyin){
+
 
 
 douyin.href =
 data.douyin;
 
 
+
 douyin.textContent =
+
 "打开抖音视频";
+
 
 
 }else{
@@ -342,14 +336,18 @@ douyin.textContent =
 
 douyin.href="#";
 
+douyin.textContent=
 
-douyin.textContent =
-"待填写抖音链接";
+"暂无抖音链接";
+
 
 
 }
 
 
+
+
+
 }
 
 
@@ -357,19 +355,287 @@ douyin.textContent =
 
 
 
-})
-
-.catch(err=>{
 
 
-console.error(
-"案例数据错误:",
-err
+
+// 项目介绍
+
+
+setText(
+
+"projectInfo",
+
+`
+
+${data.title || "该案例"}
+
+属于
+
+${data.type || "短视频项目"}。
+
+
+主要负责：
+
+${data.role || "选题策划、脚本设计、视频剪辑、账号运营"}。
+
+
+项目过程中完成内容规划、
+视频制作、发布运营以及数据复盘优化。
+
+
+`
+
 );
 
 
+
+
+
+
+
+
+
+// 职责
+
+
+setText(
+
+"caseRole",
+
+data.role ||
+
+"负责短视频策划、剪辑制作、账号运营以及数据分析。"
+
+);
+
+
+
+
+
+
+
+
+
+
+
+// 图表
+
+
+loadCharts(id);
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===============================
+设置文字
+=============================== */
+
+
+function setText(id,text){
+
+
+
+
+
+const el =
+
+document.getElementById(id);
+
+
+
+
+
+
+if(el){
+
+
+el.textContent=text;
+
+
+}
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===============================
+加载数据图
+=============================== */
+
+
+function loadCharts(id){
+
+
+
+
+
+const charts=[
+
+
+
+{
+
+id:"dataImage",
+
+src:`assets/charts/data-${id}.png`
+
+},
+
+
+
+
+{
+
+id:"ctrImage",
+
+src:`assets/charts/ctr-${id}.png`
+
+},
+
+
+
+
+{
+
+id:"lossImage",
+
+src:`assets/charts/loss-${id}.png`
+
+}
+
+
+
+];
+
+
+
+
+
+
+
+charts.forEach(item=>{
+
+
+
+
+
+
+const img =
+
+document.getElementById(
+item.id
+);
+
+
+
+
+
+
+
+if(img){
+
+
+
+img.src=item.src;
+
+
+
+img.onerror=()=>{
+
+
+img.style.display="none";
+
+
+};
+
+
+
+}
+
+
+
+
+
 });
 
 
 
-});
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===============================
+错误提示
+=============================== */
+
+
+function showError(){
+
+
+
+const title =
+
+document.getElementById(
+"caseTitle"
+);
+
+
+
+
+
+if(title){
+
+
+
+title.textContent=
+
+"案例不存在";
+
+
+}
+
+
+
+
+
+}
