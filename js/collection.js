@@ -16,7 +16,7 @@ let casesData = [];
 ======================= */
 
 
-fetch("data/cases.json")
+fetch("assets/data/cases.json")
 
 
 .then(res=>{
