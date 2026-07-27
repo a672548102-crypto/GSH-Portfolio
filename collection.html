@@ -1,45 +1,83 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
+
 <head>
 
+
 <meta charset="UTF-8">
+
 
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 
 <title>
+
 项目案例集 | 高帅航
+
 </title>
+
 
 
 <link rel="stylesheet" href="css/collection.css">
 
 
+
 </head>
+
+
+
 
 
 <body>
 
 
+
+
+
+
+<!-- =====================
+导航
+===================== -->
+
+
 <nav class="navbar">
 
 
-<div class="container">
+<div class="container nav-container">
+
+
+
 
 
 <a href="index.html" class="logo">
 
-GSH.<span>个人作品集</span>
+
+GSH.
+
+<span>
+
+个人作品集
+
+</span>
+
 
 </a>
 
 
 
-<ul>
+
+
+
+
+
+
+<ul class="nav-links">
+
 
 
 <li>
+
 
 <a href="index.html">
 
@@ -47,25 +85,31 @@ GSH.<span>个人作品集</span>
 
 </a>
 
+
 </li>
+
 
 
 
 
 <li>
 
-<a class="active">
+
+<a href="collection.html" class="active">
 
 案例
 
 </a>
 
+
 </li>
 
 
 
 
+
 <li>
+
 
 <a href="personal-video.html">
 
@@ -73,12 +117,15 @@ GSH.<span>个人作品集</span>
 
 </a>
 
+
 </li>
 
 
 
 
+
 <li>
+
 
 <a href="design-works.html">
 
@@ -86,12 +133,15 @@ GSH.<span>个人作品集</span>
 
 </a>
 
+
 </li>
 
 
 
 
+
 <li>
+
 
 <a href="resume/高帅航.pdf" target="_blank">
 
@@ -99,10 +149,36 @@ GSH.<span>个人作品集</span>
 
 </a>
 
+
 </li>
 
 
+
+
+
 </ul>
+
+
+
+
+
+
+
+<button class="menu-toggle">
+
+
+<span></span>
+
+<span></span>
+
+<span></span>
+
+
+</button>
+
+
+
+
 
 
 
@@ -116,10 +192,26 @@ GSH.<span>个人作品集</span>
 
 
 
+
+
+
+
+
+
+
+<!-- =====================
+页面标题
+===================== -->
+
+
 <section class="page-header">
 
 
 <div class="container">
+
+
+
+
 
 
 
@@ -132,11 +224,20 @@ MY PROJECTS
 
 
 
+
+
+
+
+
 <h1>
 
 项目案例集
 
 </h1>
+
+
+
+
 
 
 
@@ -152,70 +253,141 @@ MY PROJECTS
 
 
 
+
+
+
+<!-- 分类筛选 -->
+
+
 <div class="filter-box">
 
 
-<button 
+
+
+
+
+
+<button
+
 class="filter active"
+
 data-filter="all">
+
 
 全部
 
+
 </button>
 
 
 
-<button 
+
+
+
+
+
+<button
+
 class="filter"
+
 data-filter="达人">
+
 
 达人
 
+
 </button>
 
 
 
-<button 
+
+
+
+
+
+<button
+
 class="filter"
+
 data-filter="厂家">
+
 
 厂家
 
+
 </button>
 
 
 
-<button 
+
+
+
+
+
+<button
+
 class="filter"
+
 data-filter="口播">
+
 
 口播
 
+
 </button>
 
 
 
-<button 
+
+
+
+
+
+<button
+
 class="filter"
+
 data-filter="剧情">
+
 
 剧情
 
+
 </button>
 
 
 
-<button 
+
+
+
+
+
+<button
+
 class="filter"
+
 data-filter="混剪">
+
 
 混剪
 
+
 </button>
+
+
+
+
+
 
 
 
 </div>
+
+
+
+
+
+
 
 
 </div>
@@ -226,23 +398,50 @@ data-filter="混剪">
 
 
 
+
+
+
+
+
+
+
+
+
+
+<!-- =====================
+案例区域
+===================== -->
 
 
 <section class="collection">
 
 
+
 <div class="container">
 
 
-<div 
+
+
+
+<div
+
 class="case-grid"
+
 id="caseGrid">
 
 
+
+
+
 </div>
 
 
+
+
+
+
 </div>
+
 
 
 </section>
@@ -254,41 +453,86 @@ id="caseGrid">
 
 
 
-<div 
+
+
+
+
+
+
+<!-- =====================
+视频弹窗
+===================== -->
+
+
+<div
+
 class="video-modal"
+
 id="videoModal">
+
+
+
 
 
 <div class="video-box">
 
 
+
+
+
+
 <button
+
 class="close-btn"
+
 id="closeBtn">
 
+
 ×
+
 
 </button>
 
 
 
+
+
+
+
+
 <video
+
 
 id="player"
 
+
 controls
+
 
 playsinline
 
+
 preload="metadata">
+
+
 
 </video>
 
 
-</div>
+
+
 
 
 </div>
+
+
+
+
+
+</div>
+
+
+
 
 
 
@@ -297,7 +541,9 @@ preload="metadata">
 
 <footer>
 
+
 © 2026 GSH Portfolio
+
 
 </footer>
 
@@ -305,9 +551,17 @@ preload="metadata">
 
 
 
-<script src="js/collection.js" defer></script>
+
+
+
+<script src="js/collection.js"></script>
+
+
+
 
 
 </body>
+
+
 
 </html>
