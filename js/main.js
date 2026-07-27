@@ -1,9 +1,8 @@
 /* =====================================
-GSH Portfolio V7.0
-main.js
-Final Fix
+ GSH Portfolio
+ main.js
+ Stable Final Version
 ===================================== */
-
 
 
 document.addEventListener(
@@ -11,7 +10,8 @@ document.addEventListener(
 ()=>{
 
 
-// 页面加载
+
+// 页面加载动画
 
 document.body.classList.add(
 "loaded"
@@ -19,21 +19,28 @@ document.body.classList.add(
 
 
 
+
 // 数字动画
 
-startCounter();
-
-
-
-// 头像交互
-
-avatarEffect();
+initCounter();
 
 
 
 // 手机导航
 
-mobileMenu();
+initMobileMenu();
+
+
+
+// 头像效果
+
+initAvatar();
+
+
+
+// 平滑滚动
+
+initSmoothScroll();
 
 
 
@@ -45,63 +52,135 @@ mobileMenu();
 
 
 
-/* =====================
-数字递增
-===================== */
 
 
-function startCounter(){
+/* ===============================
+数字动画
+=============================== */
 
 
-const counters = 
+function initCounter(){
+
+
+
+const counters =
+
 document.querySelectorAll(
 ".counter"
 );
 
 
 
+
+
+if(!counters.length)
+
+return;
+
+
+
+
+
+
+
 counters.forEach(counter=>{
 
 
+
+
+
 const target =
+
 Number(
 counter.dataset.target
 );
 
 
 
-let current = 0;
 
 
-
-const duration = 1200;
-
-
-
-const step =
-target /
-(duration / 16);
+let start = 0;
 
 
 
 
-function update(){
+
+const duration = 1800;
 
 
-current += step;
 
 
 
-if(current < target){
+const startTime =
+
+performance.now();
+
+
+
+
+
+
+
+
+
+function update(time){
+
+
+
+
+
+
+const progress =
+
+Math.min(
+
+(time-startTime)
+/duration,
+
+1
+
+);
+
+
+
+
+
+
+
+// 缓动效果
+
+const value =
+
+Math.floor(
+
+target *
+
+(1-Math.pow(1-progress,3))
+
+);
+
+
+
+
+
 
 
 counter.innerText =
-Math.floor(current);
+
+value;
 
 
 
-requestAnimationFrame(update);
 
+
+
+
+if(progress < 1){
+
+
+requestAnimationFrame(
+update
+);
 
 
 }else{
@@ -111,15 +190,25 @@ counter.innerText =
 target;
 
 
-
-}
-
-
 }
 
 
 
-update();
+
+
+}
+
+
+
+
+
+
+requestAnimationFrame(
+update
+);
+
+
+
 
 
 
@@ -136,32 +225,208 @@ update();
 
 
 
-/* =====================
-头像效果
-===================== */
 
 
-function avatarEffect(){
+
+
+
+/* ===============================
+移动端导航
+=============================== */
+
+
+function initMobileMenu(){
+
+
+
+
+
+const menu =
+
+document.querySelector(
+".menu-toggle"
+);
+
+
+
+
+
+const nav =
+
+document.querySelector(
+".nav-links"
+);
+
+
+
+
+
+
+
+if(!menu || !nav)
+
+return;
+
+
+
+
+
+
+
+
+
+menu.addEventListener(
+"click",
+(e)=>{
+
+
+
+
+
+e.stopPropagation();
+
+
+
+
+
+nav.classList.toggle(
+"show"
+);
+
+
+
+
+menu.classList.toggle(
+"active"
+);
+
+
+
+
+
+});
+
+
+
+
+
+
+
+
+
+// 点击导航自动关闭
+
+
+nav.querySelectorAll(
+"a"
+)
+
+.forEach(link=>{
+
+
+link.addEventListener(
+"click",
+()=>{
+
+
+nav.classList.remove(
+"show"
+);
+
+
+
+menu.classList.remove(
+"active"
+);
+
+
+
+});
+
+
+});
+
+
+
+
+
+
+
+
+
+// 点击页面关闭
+
+
+document.addEventListener(
+"click",
+()=>{
+
+
+nav.classList.remove(
+"show"
+);
+
+
+
+menu.classList.remove(
+"active"
+);
+
+
+
+});
+
+
+
+
+
+
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+/* ===============================
+头像交互
+=============================== */
+
+
+function initAvatar(){
+
+
+
 
 
 const avatar =
+
 document.querySelector(
 ".avatar-ring"
 );
 
 
 
+
+
 if(!avatar)
+
 return;
 
 
 
 
-// PC
 
 
-if(window.innerWidth > 768){
 
+// PC鼠标
 
 
 avatar.addEventListener(
@@ -169,11 +434,21 @@ avatar.addEventListener(
 ()=>{
 
 
+if(window.innerWidth > 768){
+
+
 avatar.style.transform =
 "scale(1.05)";
 
 
+}
+
+
 });
+
+
+
+
 
 
 
@@ -191,7 +466,6 @@ avatar.style.transform =
 
 
 
-}
 
 
 
@@ -201,17 +475,13 @@ avatar.style.transform =
 // 手机触摸
 
 
-if(window.innerWidth <= 768){
-
-
-
 avatar.addEventListener(
 "touchstart",
 ()=>{
 
 
 avatar.style.transform =
-"scale(1.04)";
+"scale(1.03)";
 
 
 },
@@ -220,6 +490,7 @@ passive:true
 }
 
 );
+
 
 
 
@@ -237,7 +508,7 @@ avatar.style.transform =
 "scale(1)";
 
 
-},150);
+},200);
 
 
 
@@ -250,9 +521,6 @@ passive:true
 
 
 
-}
-
-
 
 
 }
@@ -264,81 +532,32 @@ passive:true
 
 
 
-/* =====================
-移动端导航
-===================== */
-
-
-function mobileMenu(){
-
-
-
-const menu =
-document.querySelector(
-".menu-toggle"
-);
-
-
-
-const nav =
-document.querySelector(
-".nav-links"
-);
 
 
 
 
 
-if(!menu || !nav)
-return;
-
-
-
-
-
-menu.addEventListener(
-"click",
-()=>{
-
-
-nav.classList.toggle(
-"show"
-);
-
-
-
-menu.classList.toggle(
-"active"
-);
-
-
-
-});
-
-
-
-
-
-}
-
-
-
-
-
-
-
-
-/* =====================
+/* ===============================
 平滑滚动
-===================== */
+=============================== */
+
+
+function initSmoothScroll(){
+
+
+
 
 
 document
+
 .querySelectorAll(
 'a[href^="#"]'
 )
 
 .forEach(link=>{
+
+
+
 
 
 link.addEventListener(
@@ -347,25 +566,38 @@ function(e){
 
 
 
+
+
 const target =
+
 document.querySelector(
 this.getAttribute("href")
 );
 
 
 
+
+
 if(target){
+
+
+
 
 
 e.preventDefault();
 
 
 
+
 target.scrollIntoView({
 
-behavior:"smooth"
+behavior:"smooth",
+
+block:"start"
 
 });
+
+
 
 
 
@@ -373,8 +605,17 @@ behavior:"smooth"
 
 
 
+
+
 });
 
 
 
+
+
+
 });
+
+
+
+}
