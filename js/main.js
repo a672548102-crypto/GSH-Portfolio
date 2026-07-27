@@ -1,7 +1,7 @@
 /* =====================================
- GSH Portfolio
- main.js
- Final Version
+GSH Portfolio V7.0
+main.js
+Final Fix
 ===================================== */
 
 
@@ -11,7 +11,7 @@ document.addEventListener(
 ()=>{
 
 
-// 页面进入
+// 页面加载
 
 document.body.classList.add(
 "loaded"
@@ -25,15 +25,15 @@ startCounter();
 
 
 
-// 手机菜单
-
-mobileMenu();
-
-
-
-// 头像效果
+// 头像交互
 
 avatarEffect();
+
+
+
+// 手机导航
+
+mobileMenu();
 
 
 
@@ -45,17 +45,15 @@ avatarEffect();
 
 
 
-
-
-/* =====================================
- 数字递增
-===================================== */
+/* =====================
+数字递增
+===================== */
 
 
 function startCounter(){
 
 
-const counters =
+const counters = 
 document.querySelectorAll(
 ".counter"
 );
@@ -65,7 +63,6 @@ document.querySelectorAll(
 counters.forEach(counter=>{
 
 
-
 const target =
 Number(
 counter.dataset.target
@@ -73,19 +70,12 @@ counter.dataset.target
 
 
 
-const unit =
-counter.dataset.unit || "";
-
-
-
-
 let current = 0;
 
 
 
-// 动画速度
-
 const duration = 1200;
+
 
 
 const step =
@@ -95,11 +85,7 @@ target /
 
 
 
-
-
-
 function update(){
-
 
 
 current += step;
@@ -109,45 +95,31 @@ current += step;
 if(current < target){
 
 
-
 counter.innerText =
-
-Math.floor(current)
-+
-unit;
+Math.floor(current);
 
 
 
-requestAnimationFrame(
-update
-);
+requestAnimationFrame(update);
 
 
 
 }else{
 
 
-
 counter.innerText =
-
-target
-+
-unit;
+target;
 
 
 
 }
 
 
-
 }
-
 
 
 
 update();
-
-
 
 
 
@@ -164,14 +136,137 @@ update();
 
 
 
+/* =====================
+头像效果
+===================== */
+
+
+function avatarEffect(){
+
+
+const avatar =
+document.querySelector(
+".avatar-ring"
+);
+
+
+
+if(!avatar)
+return;
+
+
+
+
+// PC
+
+
+if(window.innerWidth > 768){
+
+
+
+avatar.addEventListener(
+"mouseenter",
+()=>{
+
+
+avatar.style.transform =
+"scale(1.05)";
+
+
+});
+
+
+
+
+avatar.addEventListener(
+"mouseleave",
+()=>{
+
+
+avatar.style.transform =
+"scale(1)";
+
+
+});
+
+
+
+}
 
 
 
 
 
-/* =====================================
- 手机导航
-===================================== */
+
+// 手机触摸
+
+
+if(window.innerWidth <= 768){
+
+
+
+avatar.addEventListener(
+"touchstart",
+()=>{
+
+
+avatar.style.transform =
+"scale(1.04)";
+
+
+},
+{
+passive:true
+}
+
+);
+
+
+
+
+
+avatar.addEventListener(
+"touchend",
+()=>{
+
+
+setTimeout(()=>{
+
+
+avatar.style.transform =
+"scale(1)";
+
+
+},150);
+
+
+
+},
+{
+passive:true
+}
+
+);
+
+
+
+}
+
+
+
+
+}
+
+
+
+
+
+
+
+
+/* =====================
+移动端导航
+===================== */
 
 
 function mobileMenu(){
@@ -194,11 +289,8 @@ document.querySelector(
 
 
 
-if(!menu || !nav){
-
+if(!menu || !nav)
 return;
-
-}
 
 
 
@@ -210,7 +302,7 @@ menu.addEventListener(
 
 
 nav.classList.toggle(
-"open"
+"show"
 );
 
 
@@ -236,139 +328,13 @@ menu.classList.toggle(
 
 
 
+/* =====================
+平滑滚动
+===================== */
 
 
-
-
-
-/* =====================================
- 头像悬浮效果
-===================================== */
-
-
-function avatarEffect(){
-
-
-
-const avatar =
-document.querySelector(
-".avatar-ring"
-);
-
-
-
-if(!avatar){
-
-return;
-
-}
-
-
-
-
-
-
-
-avatar.addEventListener(
-"mousemove",
-(e)=>{
-
-
-
-const rect =
-avatar.getBoundingClientRect();
-
-
-
-const x =
-e.clientX - rect.left;
-
-
-
-const y =
-e.clientY - rect.top;
-
-
-
-
-
-const rotateX =
--(y - rect.height/2)
-/15;
-
-
-
-const rotateY =
-(x - rect.width/2)
-/15;
-
-
-
-
-
-
-avatar.style.transform =
-
-`
-
-scale(1.04)
-
-rotateX(${rotateX}deg)
-
-rotateY(${rotateY}deg)
-
-`;
-
-
-
-
-
-});
-
-
-
-
-
-
-
-
-
-avatar.addEventListener(
-"mouseleave",
-()=>{
-
-
-avatar.style.transform =
-
-"scale(1)";
-
-
-
-});
-
-
-
-
-
-}
-
-
-
-
-
-
-
-
-
-
-
-
-/* =====================================
- 平滑滚动
-===================================== */
-
-
-document.querySelectorAll(
+document
+.querySelectorAll(
 'a[href^="#"]'
 )
 
@@ -400,6 +366,7 @@ target.scrollIntoView({
 behavior:"smooth"
 
 });
+
 
 
 }
