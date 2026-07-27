@@ -2,7 +2,7 @@
 =====================================
 GSH Portfolio
 design-works.css
-美工设计页面样式
+美工设计页面样式 + 模态框
 =====================================
 */
 
@@ -277,7 +277,7 @@ overflow:hidden;
 
 transition:.4s;
 
-cursor:default;
+cursor:pointer;
 
 backdrop-filter:blur(15px);
 
@@ -360,7 +360,35 @@ z-index:2;
 
 }
 
-/* 不同颜色对应不同标签 */
+/* 查看全部标识 */
+.view-all-badge{
+
+position:absolute;
+
+bottom:14px;
+
+right:14px;
+
+padding:6px 14px;
+
+border-radius:20px;
+
+font-size:11px;
+
+font-weight:600;
+
+color:white;
+
+background:rgba(0,0,0,.6);
+
+backdrop-filter:blur(5px);
+
+border:1px solid rgba(255,255,255,.1);
+
+z-index:2;
+
+}
+
 .design-type.type-product{
 background:rgba(139,92,246,.75);
 }
@@ -407,9 +435,253 @@ line-height:1.7;
 
 }
 
-/* =====================
+.design-info .image-count{
+
+display:inline-block;
+
+margin-top:10px;
+
+font-size:12px;
+
+color:#71678f;
+
+}
+
+/* ========================================
+模态框样式
+======================================== */
+
+.gallery-modal{
+
+position:fixed;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+z-index:9999;
+
+display:none;
+
+align-items:center;
+
+justify-content:center;
+
+padding:30px;
+
+}
+
+.gallery-modal.active{
+
+display:flex;
+
+}
+
+.gallery-overlay{
+
+position:absolute;
+
+top:0;
+
+left:0;
+
+width:100%;
+
+height:100%;
+
+background:
+
+rgba(5,3,11,.88);
+
+backdrop-filter:blur(20px);
+
+}
+
+.gallery-box{
+
+position:relative;
+
+width:100%;
+
+max-width:1000px;
+
+max-height:90vh;
+
+background:
+
+rgba(16,10,30,.8);
+
+border-radius:24px;
+
+border:
+
+1px solid rgba(139,92,246,.15);
+
+padding:30px;
+
+overflow-y:auto;
+
+box-shadow:
+
+0 40px 100px rgba(0,0,0,.7);
+
+z-index:1;
+
+}
+
+/* 关闭按钮 */
+.gallery-close{
+
+position:sticky;
+
+top:0;
+
+float:right;
+
+width:44px;
+
+height:44px;
+
+border-radius:50%;
+
+background:rgba(255,255,255,.06);
+
+border:1px solid rgba(255,255,255,.1);
+
+color:#aaa;
+
+font-size:28px;
+
+cursor:pointer;
+
+transition:.3s;
+
+display:flex;
+
+align-items:center;
+
+justify-content:center;
+
+margin-bottom:16px;
+
+z-index:2;
+
+}
+
+.gallery-close:hover{
+
+background:rgba(239,68,68,.2);
+
+border-color:rgba(239,68,68,.3);
+
+color:#ef4444;
+
+transform:rotate(90deg);
+
+}
+
+/* 模态框标题 */
+.gallery-header{
+
+margin-bottom:24px;
+
+padding-right:60px;
+
+}
+
+.gallery-header h2{
+
+font-size:28px;
+
+color:white;
+
+margin-bottom:6px;
+
+}
+
+.gallery-header p{
+
+color:#aaa;
+
+font-size:15px;
+
+}
+
+/* 图片网格 */
+.gallery-grid{
+
+display:grid;
+
+grid-template-columns:
+
+repeat(auto-fill, minmax(200px, 1fr));
+
+gap:16px;
+
+}
+
+.gallery-grid .gallery-item{
+
+position:relative;
+
+aspect-ratio:4/3;
+
+border-radius:12px;
+
+overflow:hidden;
+
+background:#0a0618;
+
+border:1px solid rgba(255,255,255,.06);
+
+transition:.3s;
+
+}
+
+.gallery-grid .gallery-item:hover{
+
+transform:scale(1.02);
+
+border-color:rgba(139,92,246,.3);
+
+}
+
+.gallery-grid .gallery-item img{
+
+width:100%;
+
+height:100%;
+
+object-fit:cover;
+
+display:block;
+
+}
+
+/* 底部计数 */
+.gallery-footer{
+
+margin-top:20px;
+
+padding-top:16px;
+
+border-top:1px solid rgba(255,255,255,.06);
+
+text-align:center;
+
+color:#71678f;
+
+font-size:14px;
+
+}
+
+/* ========================================
 手机
-===================== */
+======================================== */
 
 @media(max-width:768px){
 
@@ -466,6 +738,47 @@ font-size:34px;
 .design-grid{
 
 grid-template-columns:1fr;
+
+}
+
+/* 模态框手机 */
+.gallery-modal{
+
+padding:16px;
+
+}
+
+.gallery-box{
+
+padding:18px;
+
+max-height:95vh;
+
+}
+
+.gallery-header h2{
+
+font-size:22px;
+
+}
+
+.gallery-grid{
+
+grid-template-columns:
+
+repeat(auto-fill, minmax(140px, 1fr));
+
+gap:12px;
+
+}
+
+.gallery-close{
+
+width:36px;
+
+height:36px;
+
+font-size:22px;
 
 }
 
