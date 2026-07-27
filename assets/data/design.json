@@ -1,26 +1,63 @@
 [
   {
-    "image": "assets/design/product-01.jpg",
-    "title": "张笨仁 · 抖音/京东主图设计",
-    "desc": "电商主图设计 · 突出产品卖点与品牌视觉",
-    "type": "商品主图"
+    "id": "product",
+    "title": "商品主图设计",
+    "desc": "抖音/京东电商主图设计 · 突出产品卖点与品牌视觉",
+    "type": "商品主图",
+    "cover": "assets/design/product-cover.jpg",
+    "images": [
+      "assets/design/product-01.jpg",
+      "assets/design/product-02.jpg",
+      "assets/design/product-03.jpg",
+      "assets/design/product-04.jpg",
+      "assets/design/product-05.jpg",
+      "assets/design/product-06.jpg",
+      "assets/design/product-07.jpg",
+      "assets/design/product-08.jpg"
+    ]
   },
   {
-    "image": "assets/design/giftbox-01.jpg",
-    "title": "张笨仁 · 礼盒包装设计",
+    "id": "giftbox",
+    "title": "礼盒包装设计",
     "desc": "品牌礼盒视觉设计 · 提升礼品属性",
-    "type": "礼盒包装"
+    "type": "礼盒包装",
+    "cover": "assets/design/giftbox-cover.jpg",
+    "images": [
+      "assets/design/giftbox-01.jpg",
+      "assets/design/giftbox-02.jpg",
+      "assets/design/giftbox-03.jpg",
+      "assets/design/giftbox-04.jpg",
+      "assets/design/giftbox-05.jpg",
+      "assets/design/giftbox-06.jpg",
+      "assets/design/giftbox-07.jpg",
+      "assets/design/giftbox-08.jpg"
+    ]
   },
   {
-    "image": "assets/design/packaging-01.jpg",
-    "title": "金刀瓜子 · 包装设计",
+    "id": "packaging",
+    "title": "瓜子包装设计",
     "desc": "休闲食品包装设计 · 终端陈列视觉",
-    "type": "瓜子包装"
+    "type": "瓜子包装",
+    "cover": "assets/design/packaging-cover.jpg",
+    "images": [
+      "assets/design/packaging-01.jpg",
+      "assets/design/packaging-02.jpg",
+      "assets/design/packaging-03.jpg"
+    ]
   },
   {
-    "image": "assets/design/poster-01.jpg",
-    "title": "张笨仁 · 展会海报设计",
+    "id": "poster",
+    "title": "海报设计",
     "desc": "品牌展会宣传海报 · 线下视觉呈现",
-    "type": "海报设计"
+    "type": "海报设计",
+    "cover": "assets/design/poster-cover.jpg",
+    "images": [
+      "assets/design/poster-01.jpg",
+      "assets/design/poster-02.jpg",
+      "assets/design/poster-03.jpg",
+      "assets/design/poster-04.jpg",
+      "assets/design/poster-05.jpg",
+      "assets/design/poster-06.jpg"
+    ]
   }
 ]
