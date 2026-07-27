@@ -1,5 +1,5 @@
 /* =====================================
- GSH Portfolio V6.0
+ GSH Portfolio V6.1
  collection.js
  案例集数据渲染
 ===================================== */
@@ -14,16 +14,8 @@ const player = document.getElementById("player");
 const closeBtn = document.getElementById("closeBtn");
 
 
-
 let allCases = [];
 
-
-
-
-
-/*
-默认无数据图片
-*/
 
 const noDataImage =
 "assets/images/no-data.png";
@@ -33,62 +25,62 @@ const noDataImage =
 
 
 /*
-加载案例数据
+加载数据
 */
 
 async function loadCases(){
 
 
-    try{
+try{
 
 
-        const res =
-        await fetch("data/cases.json");
-
-
-
-        if(!res.ok){
-
-            throw new Error(
-            "cases.json读取失败"
-            );
-
-        }
+const res =
+await fetch("data/cases.json");
 
 
 
-        allCases =
-        await res.json();
+if(!res.ok){
+
+throw new Error(
+"cases.json读取失败"
+);
+
+}
 
 
 
-        renderCases(allCases);
+allCases =
+await res.json();
 
 
 
-    }catch(err){
-
-
-        console.error(err);
+renderCases(allCases);
 
 
 
-        caseGrid.innerHTML = `
-
-        <div class="no-data">
-
-        案例数据暂未找到
-
-        </div>
-
-        `;
+}catch(err){
 
 
-    }
+console.error(err);
 
+
+
+caseGrid.innerHTML=`
+
+<div class="no-data">
+
+案例数据暂未找到
+
+</div>
+
+`;
 
 
 }
+
+
+}
+
 
 
 
@@ -105,193 +97,200 @@ async function loadCases(){
 function renderCases(data){
 
 
-    caseGrid.innerHTML="";
+caseGrid.innerHTML="";
 
 
 
-    data.forEach(item=>{
+data.forEach(item=>{
 
 
-        const card =
-        document.createElement("div");
 
+const card =
+document.createElement("div");
 
 
-        card.className =
-        "case-card";
 
+card.className =
+"case-card";
 
 
-        card.innerHTML = `
 
 
-        <div class="cover-box">
 
+card.innerHTML=`
 
-        <img
+<div class="cover-box">
 
-        class="case-cover"
 
-        src="${item.cover}"
+<img
 
-        alt="${item.title}"
+class="case-cover"
 
-        onerror="
-        this.onerror=null;
-        this.src='${noDataImage}'
-        "
+src="${item.cover}"
 
-        >
+alt="${item.title}"
 
+onerror="
+this.onerror=null;
+this.src='${noDataImage}'
+"
 
-        </div>
+>
 
 
+</div>
 
 
 
-        <div class="case-info">
 
 
-        <h3>
+<div class="case-info">
 
-        ${item.title}
 
-        </h3>
 
+<!-- 标题+类型 同行 -->
 
+<div class="case-title-row">
 
 
-        <div class="case-type">
+<h3>
 
-        ${item.type}
+${item.title}
 
-        /
+</h3>
 
-        ${item.category}
 
-        </div>
 
+<span class="case-type">
 
+${item.type}
 
+</span>
 
 
-        <p class="case-role">
+</div>
 
-        ${item.role}
 
-        </p>
 
 
 
 
+<p class="case-role">
 
-        <div class="case-data">
+${item.role}
 
+</p>
 
-        <div>
 
-        <strong>
 
-        ${item.views || "暂无"}
 
-        </strong>
 
-        <span>
 
-        播放
 
-        </span>
+<div class="case-data">
 
 
-        </div>
 
+<div>
 
+<strong>
 
+${item.views || "暂无"}
 
+</strong>
 
+<span>
 
-        <div>
+播放
 
-        <strong>
+</span>
 
-        ${item.likes || "暂无"}
+</div>
 
-        </strong>
 
-        <span>
 
-        点赞
 
-        </span>
 
+<div>
 
-        </div>
+<strong>
 
+${item.likes || "暂无"}
 
+</strong>
 
+<span>
 
+点赞
 
+</span>
 
-        <div>
+</div>
 
-        <strong>
 
-        ${item.comments || "暂无"}
 
-        </strong>
 
 
-        <span>
+<div>
 
-        评论
+<strong>
 
-        </span>
+${item.comments || "暂无"}
 
+</strong>
 
-        </div>
+<span>
 
+评论
 
+</span>
 
-        </div>
+</div>
 
 
 
+</div>
 
-        <button
 
-        class="play-btn"
 
-        data-video="${item.video}"
 
-        >
 
-        查看视频
 
-        </button>
 
+<button
 
+class="play-btn"
 
+data-video="${item.video || ''}"
 
+>
 
-        </div>
+查看视频
 
+</button>
 
-        `;
 
 
 
-        caseGrid.appendChild(card);
 
+</div>
 
 
-    });
+`;
 
 
 
+caseGrid.appendChild(card);
 
 
-    bindVideo();
+
+});
+
+
+
+
+
+bindVideo();
 
 
 
@@ -306,83 +305,74 @@ function renderCases(data){
 
 
 /*
-绑定视频按钮
+视频播放
 */
 
 
 function bindVideo(){
 
 
-    const buttons =
-    document.querySelectorAll(
-    ".play-btn"
-    );
+document
+.querySelectorAll(".play-btn")
+.forEach(btn=>{
+
+
+btn.onclick=function(){
+
+
+const src =
+this.dataset.video;
 
 
 
-    buttons.forEach(btn=>{
+if(!src){
 
 
-        btn.onclick=function(){
+alert(
+"视频暂未上传"
+);
 
 
-
-            const src =
-            this.dataset.video;
+return;
 
 
-
-            if(!src){
-
-
-                alert(
-                "视频暂未上传"
-                );
-
-
-                return;
-
-
-            }
+}
 
 
 
 
-            player.src=src;
+
+player.src=src;
 
 
 
-            player.onerror=function(){
+player.onerror=function(){
 
 
-                alert(
-                "该视频暂未找到"
-                );
+alert(
+"该视频暂未找到"
+);
 
 
-                player.removeAttribute(
-                "src"
-                );
-
-
-            };
+};
 
 
 
-            modal.classList.add(
-            "show"
-            );
+modal.classList.add(
+"show"
+);
 
 
 
-            player.play();
+player.play();
 
 
 
-        }
+}
 
 
-    })
+
+});
 
 
 }
@@ -403,19 +393,20 @@ function bindVideo(){
 closeBtn.onclick=function(){
 
 
-    modal.classList.remove(
-    "show"
-    );
+modal.classList.remove(
+"show"
+);
 
 
 
-    player.pause();
+player.pause();
 
 
 
-    player.removeAttribute(
-    "src"
-    );
+player.removeAttribute(
+"src"
+);
+
 
 
 }
@@ -425,18 +416,17 @@ closeBtn.onclick=function(){
 
 
 
+
 modal.onclick=function(e){
 
 
-    if(
-        e.target===modal
-    ){
+if(e.target===modal){
 
 
-        closeBtn.click();
+closeBtn.click();
 
 
-    }
+}
 
 
 }
@@ -454,75 +444,73 @@ modal.onclick=function(e){
 */
 
 
-const filters =
-document.querySelectorAll(
-".filter"
+document
+.querySelectorAll(".filter")
+.forEach(btn=>{
+
+
+btn.onclick=function(){
+
+
+
+document
+.querySelectorAll(".filter")
+.forEach(b=>{
+
+
+b.classList.remove(
+"active"
+);
+
+
+});
+
+
+
+
+this.classList.add(
+"active"
 );
 
 
 
 
-filters.forEach(btn=>{
-
-
-    btn.onclick=function(){
-
-
-
-        filters.forEach(b=>{
-
-            b.classList.remove(
-            "active"
-            );
-
-        });
+const filter =
+this.dataset.filter;
 
 
 
-        this.classList.add(
-        "active"
-        );
+if(filter==="all"){
+
+
+renderCases(
+allCases
+);
+
+
+}else{
+
+
+const result =
+allCases.filter(item=>
+
+item.category===filter
+
+);
 
 
 
-        const type =
-        this.dataset.filter;
+renderCases(
+result
+);
+
+
+}
 
 
 
-        if(type==="all"){
+}
 
-
-            renderCases(
-            allCases
-            );
-
-
-        }else{
-
-
-
-            const result =
-            allCases.filter(
-            item=>
-
-            item.category===type
-
-            );
-
-
-
-            renderCases(
-            result
-            );
-
-
-        }
-
-
-
-
-    }
 
 
 });
@@ -534,10 +522,6 @@ filters.forEach(btn=>{
 
 
 
-
-/*
-启动
-*/
 
 
 loadCases();
