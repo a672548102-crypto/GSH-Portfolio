@@ -1,29 +1,47 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 
+
 <head>
 
+
 <meta charset="UTF-8">
+
 
 <meta name="viewport" content="width=device-width,initial-scale=1.0">
 
 
 <title>
+
 案例详情 | GSH个人作品集
+
 </title>
+
+
 
 
 <link rel="stylesheet" href="css/detail.css">
 
 
+
 </head>
+
+
+
 
 
 <body>
 
 
 
-<!-- 导航 -->
+
+
+
+
+<!-- =====================
+导航
+===================== -->
+
 
 <nav class="navbar">
 
@@ -32,11 +50,23 @@
 
 
 
+
+
 <a href="index.html" class="logo">
 
-GSH.<span>个人作品集</span>
+
+GSH.
+
+<span>
+
+个人作品集
+
+</span>
+
 
 </a>
+
+
 
 
 
@@ -45,57 +75,99 @@ GSH.<span>个人作品集</span>
 <ul class="nav-links">
 
 
+
 <li>
+
 <a href="index.html">
 
 首页
 
 </a>
+
 </li>
 
 
 
+
+
 <li>
-<a href="collection.html">
+
+<a href="collection.html" class="active">
 
 案例
 
 </a>
+
 </li>
 
 
 
+
+
 <li>
+
 <a href="personal-video.html">
 
 抖音
 
 </a>
+
 </li>
 
 
 
+
+
 <li>
+
 <a href="design-works.html">
 
 美工
 
 </a>
+
 </li>
 
 
 
+
+
 <li>
+
 <a href="resume/高帅航.pdf" target="_blank">
 
 简历
 
 </a>
+
 </li>
 
 
 
+
+
 </ul>
+
+
+
+
+
+
+
+<button class="menu-toggle">
+
+
+<span></span>
+
+<span></span>
+
+<span></span>
+
+
+</button>
+
+
+
 
 
 
@@ -111,9 +183,17 @@ GSH.<span>个人作品集</span>
 
 
 
-<!-- 详情 -->
+
+
+
+
+<!-- =====================
+详情主体
+===================== -->
+
 
 <section class="detail-page">
+
 
 
 <div class="container">
@@ -122,7 +202,12 @@ GSH.<span>个人作品集</span>
 
 
 
+
+
 <div class="detail-header">
+
+
+
 
 
 
@@ -134,7 +219,11 @@ CASE DETAIL
 
 
 
-<h1 id="title">
+
+
+
+
+<h1 id="caseTitle">
 
 案例标题
 
@@ -143,11 +232,19 @@ CASE DETAIL
 
 
 
-<p id="type">
+
+
+
+<p id="caseDesc">
 
 短视频运营案例
 
 </p>
+
+
+
+
+
 
 
 
@@ -159,8 +256,6 @@ CASE DETAIL
 
 
 
-
-<div class="detail-main">
 
 
 
@@ -169,21 +264,41 @@ CASE DETAIL
 <!-- 视频 -->
 
 
+
 <div class="video-area">
+
+
+
 
 
 <video
 
-id="video"
+
+id="detailVideo"
+
 
 controls
 
-playsinline>
+
+playsinline
+
+
+preload="metadata">
+
+
 
 </video>
 
 
+
+
+
 </div>
+
+
+
+
+
 
 
 
@@ -196,11 +311,13 @@ playsinline>
 <!-- 数据 -->
 
 
-<div class="data-panel">
+<div class="case-data">
 
 
 
-<div class="data-item">
+
+
+<div>
 
 
 <strong id="views">
@@ -208,6 +325,7 @@ playsinline>
 0
 
 </strong>
+
 
 
 <span>
@@ -223,7 +341,9 @@ playsinline>
 
 
 
-<div class="data-item">
+
+
+<div>
 
 
 <strong id="likes">
@@ -231,6 +351,7 @@ playsinline>
 0
 
 </strong>
+
 
 
 <span>
@@ -246,7 +367,9 @@ playsinline>
 
 
 
-<div class="data-item">
+
+
+<div>
 
 
 <strong id="comments">
@@ -254,6 +377,7 @@ playsinline>
 0
 
 </strong>
+
 
 
 <span>
@@ -269,6 +393,7 @@ playsinline>
 
 
 
+
 </div>
 
 
@@ -278,22 +403,31 @@ playsinline>
 
 
 
-<!-- 抖音链接 -->
 
 
-<div class="douyin-link">
 
 
-<h3>
-
-抖音视频链接
-
-</h3>
 
 
-<a href="#" id="douyinUrl" target="_blank">
 
-填写抖音视频链接
+<!-- 抖音 -->
+
+
+<div class="douyin-box">
+
+
+
+<a
+
+id="douyinLink"
+
+href="#"
+
+target="_blank">
+
+
+打开抖音视频
+
 
 </a>
 
@@ -308,10 +442,16 @@ playsinline>
 
 
 
-<!-- 描述 -->
 
 
-<div class="description">
+
+
+
+<!-- 项目介绍 -->
+
+
+<section class="detail-section">
+
 
 
 <h2>
@@ -322,9 +462,52 @@ playsinline>
 
 
 
-<p id="desc">
+
+<p id="projectInfo">
 
 案例详细介绍内容
+
+</p>
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 项目职责 -->
+
+
+<section class="detail-section">
+
+
+
+<h2>
+
+项目职责
+
+</h2>
+
+
+
+
+
+<div class="role-box">
+
+
+
+<p id="caseRole">
+
+负责短视频策划、剪辑制作以及账号运营。
 
 </p>
 
@@ -334,12 +517,103 @@ playsinline>
 
 
 
+</section>
+
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- 数据分析图 -->
+
+
+<section class="detail-section">
+
+
+
+<h2>
+
+数据分析
+
+</h2>
+
+
+
+
+
+
+
+<div class="chart-box">
+
+
+
+
+
+<img
+
+id="dataImage"
+
+src=""
+
+alt="数据分析图">
+
+
+
+
+
+
+<img
+
+id="ctrImage"
+
+src=""
+
+alt="点击率分析">
+
+
+
+
+
+
+<img
+
+id="lossImage"
+
+src=""
+
+alt="完播率分析">
+
 
 
 
 
 
 </div>
+
+
+
+
+
+
+
+</section>
+
+
+
+
+
+
+
+
+
+
 
 
 
@@ -347,6 +621,8 @@ playsinline>
 
 
 </section>
+
+
 
 
 
@@ -368,10 +644,14 @@ playsinline>
 
 
 
+
+
 <script src="js/detail.js"></script>
 
 
+
 </body>
+
 
 
 </html>
