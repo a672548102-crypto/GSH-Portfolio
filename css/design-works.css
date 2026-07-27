@@ -1,21 +1,22 @@
+/*
+=====================================
+GSH Portfolio
+design-works.css
+美工设计页面样式
+=====================================
+*/
+
 *{
-
 margin:0;
-
 padding:0;
-
 box-sizing:border-box;
-
 }
 
 body{
 
-
 background:#06030e;
 
-
 color:#ede8ff;
-
 
 font-family:
 Inter,
@@ -26,43 +27,39 @@ sans-serif;
 
 .container{
 
-
 max-width:1200px;
 
-
 margin:auto;
-
 
 padding:0 28px;
 
 }
 
-/* 导航 */
+/* =====================
+导航
+===================== */
 
 .navbar{
 
-
 position:fixed;
-
 
 top:0;
 
+left:0;
 
 width:100%;
 
+height:72px;
 
 z-index:999;
 
-
 background:
 
-rgba(8,10,18,.65);
-
+rgba(5,3,11,.55);
 
 backdrop-filter:
 
-blur(18px);
-
+blur(25px);
 
 border-bottom:
 
@@ -70,17 +67,13 @@ border-bottom:
 
 }
 
-.navbar .container{
+.nav-container{
 
-
-height:70px;
-
+height:100%;
 
 display:flex;
 
-
 align-items:center;
-
 
 justify-content:space-between;
 
@@ -88,60 +81,107 @@ justify-content:space-between;
 
 .logo{
 
+font-size:24px;
 
-font-size:22px;
+font-weight:900;
 
-font-weight:800;
+color:white;
+
+text-decoration:none;
+
+letter-spacing:1px;
 
 }
 
 .logo span{
 
+color:#c4b5fd;
 
-color:#8b5cf6;
+font-size:18px;
+
+margin-left:4px;
 
 }
 
-.navbar ul{
-
+.nav-links{
 
 display:flex;
 
+align-items:center;
 
-gap:30px;
-
+gap:32px;
 
 list-style:none;
 
 }
 
-.navbar a{
+.nav-links a{
 
-
-color:#b4abc9;
-
+color:#aaa;
 
 text-decoration:none;
 
+font-size:15px;
+
+transition:.3s;
+
 }
 
-.navbar a:hover{
-
+.nav-links a:hover{
 
 color:white;
 
 }
 
-/* 标题 */
+.nav-links .active{
+
+color:white;
+
+}
+
+.menu-toggle{
+
+display:none;
+
+flex-direction:column;
+
+gap:5px;
+
+background:none;
+
+border:none;
+
+cursor:pointer;
+
+padding:6px 4px;
+
+}
+
+.menu-toggle span{
+
+display:block;
+
+width:26px;
+
+height:2px;
+
+background:white;
+
+border-radius:2px;
+
+transition:.3s;
+
+}
+
+/* =====================
+页面标题
+===================== */
 
 .page-header{
 
-
-padding-top:140px;
-
+padding-top:150px;
 
 padding-bottom:60px;
-
 
 text-align:center;
 
@@ -149,109 +189,197 @@ text-align:center;
 
 .tag{
 
+display:inline-block;
+
+padding:8px 22px;
+
+border-radius:30px;
+
+background:
+
+rgba(139,92,246,.15);
+
+border:
+
+1px solid rgba(139,92,246,.25);
+
+color:#c4b5fd;
 
 font-size:13px;
 
-
 letter-spacing:2px;
-
-
-color:#a78bfa;
-
-
-margin-bottom:15px;
 
 }
 
 .page-header h1{
 
+font-size:48px;
 
-font-size:42px;
+margin:25px 0 15px;
+
+background:
+
+linear-gradient(
+135deg,
+white,
+#c4b5fd
+);
+
+-webkit-background-clip:text;
+
+color:transparent;
 
 }
 
 .page-header p{
 
+color:#aaa;
 
-margin-top:15px;
-
-
-color:#b4abc9;
+font-size:16px;
 
 }
 
-/* 作品 */
+/* =====================
+设计作品网格
+===================== */
 
 .design-grid{
 
-
 display:grid;
-
 
 grid-template-columns:
 
 repeat(3,1fr);
 
-
 gap:30px;
-
 
 padding-bottom:100px;
 
 }
 
-.design-card{
+/* =====================
+设计卡片
+===================== */
 
+.design-card{
 
 background:
 
-rgba(109,40,217,.08);
-
+rgba(255,255,255,.05);
 
 border:
 
-1px solid rgba(139,92,246,.2);
+1px solid rgba(255,255,255,.08);
 
-
-border-radius:20px;
-
+border-radius:22px;
 
 overflow:hidden;
 
+transition:.4s;
 
-transition:.35s;
+cursor:default;
+
+backdrop-filter:blur(15px);
 
 }
 
 .design-card:hover{
 
-
 transform:
 
-translateY(-8px);
+translateY(-10px);
 
+border-color:
+
+rgba(139,92,246,.7);
 
 box-shadow:
 
-0 20px 50px rgba(0,0,0,.5);
+0 20px 60px rgba(139,92,246,.2);
 
 }
 
-.design-card img{
+.design-card .cover-box{
 
+position:relative;
+
+overflow:hidden;
+
+aspect-ratio:4/3;
+
+background:#0a0618;
+
+}
+
+.design-card .cover-box img{
 
 width:100%;
 
-
-height:320px;
-
+height:100%;
 
 object-fit:cover;
 
+display:block;
+
+transition:.5s;
+
 }
 
-.design-info{
+.design-card:hover .cover-box img{
 
+transform:scale(1.06);
+
+}
+
+/* 作品类型标签 */
+.design-type{
+
+position:absolute;
+
+top:14px;
+
+left:14px;
+
+padding:4px 14px;
+
+border-radius:20px;
+
+font-size:11px;
+
+font-weight:600;
+
+color:white;
+
+background:rgba(139,92,246,.7);
+
+backdrop-filter:blur(5px);
+
+border:1px solid rgba(255,255,255,.1);
+
+z-index:2;
+
+}
+
+/* 不同颜色对应不同标签 */
+.design-type.type-product{
+background:rgba(139,92,246,.75);
+}
+.design-type.type-giftbox{
+background:rgba(236,72,153,.65);
+}
+.design-type.type-packaging{
+background:rgba(251,191,36,.65);
+color:#1a1a2e;
+}
+.design-type.type-poster{
+background:rgba(0,217,255,.6);
+}
+.design-type.type-other{
+background:rgba(139,92,246,.5);
+}
+
+/* 作品信息 */
+.design-info{
 
 padding:20px;
 
@@ -259,76 +387,85 @@ padding:20px;
 
 .design-info h3{
 
+font-size:17px;
 
-font-size:18px;
+font-weight:700;
+
+color:white;
+
+margin-bottom:6px;
 
 }
 
 .design-info p{
 
-
-margin-top:8px;
-
-
-color:#b4abc9;
-
-
-font-size:14px;
-
-}
-
-footer{
-
-
-padding:30px;
-
-
-text-align:center;
-
-
-color:#71678f;
-
-}
-
-@media(max-width:768px){
-
-
-.container{
-
-padding:0 16px;
-
-}
-
-.navbar ul{
-
-
-gap:12px;
-
+color:#aaa;
 
 font-size:13px;
 
+line-height:1.7;
+
 }
 
-.design-grid{
+/* =====================
+手机
+===================== */
 
+@media(max-width:768px){
 
-grid-template-columns:
+.nav-links{
 
-1fr;
+display:none;
+
+position:absolute;
+
+top:72px;
+
+left:0;
+
+width:100%;
+
+background:
+
+rgba(5,3,11,.95);
+
+backdrop-filter:
+
+blur(25px);
+
+flex-direction:column;
+
+padding:20px 28px;
+
+gap:16px;
+
+border-bottom:
+
+1px solid rgba(255,255,255,.08);
+
+}
+
+.nav-links.open{
+
+display:flex;
+
+}
+
+.menu-toggle{
+
+display:flex;
 
 }
 
 .page-header h1{
 
-
-font-size:30px;
+font-size:34px;
 
 }
 
-.design-card img{
+.design-grid{
 
-
-height:auto;
+grid-template-columns:1fr;
 
 }
 
