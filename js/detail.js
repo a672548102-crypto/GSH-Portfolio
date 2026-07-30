@@ -172,7 +172,19 @@ data.comments || "-";
 
 
 
-
+// 抖音链接
+const douyinLink = document.getElementById("douyinUrl");
+if (douyinLink) {
+    if (data.douyinUrl) {
+        douyinLink.href = data.douyinUrl;
+        douyinLink.textContent = data.douyinUrl;
+        douyinLink.style.color = "#c4b5fd";
+    } else {
+        douyinLink.href = "#";
+        douyinLink.textContent = "暂无抖音链接";
+        douyinLink.style.color = "#666";
+    }
+}
 
 
 
