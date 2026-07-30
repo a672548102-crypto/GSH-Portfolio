@@ -1,768 +1,352 @@
 /*
 =====================================
 GSH Portfolio
-design-works.css
-美工设计页面 + 统一导航 + 模态框
+design-works.js
+美工设计作品 + 模态框 + 移动端菜单
 =====================================
 */
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
-}
 
-body{
+document.addEventListener(
+"DOMContentLoaded",
+()=>{
 
-background:#06030e;
-
-color:#ede8ff;
-
-font-family:
-Inter,
-Arial,
-sans-serif;
-
-}
-
-.container{
-
-max-width:1200px;
-
-margin:auto;
-
-padding:0 28px;
-
-}
-
-
-/* =====================
-导航（统一）
-===================== */
-
-.navbar{
-
-position:fixed;
-
-top:0;
-
-left:0;
-
-width:100%;
-
-height:72px;
-
-z-index:999;
-
-background:
-
-rgba(5,3,11,.55);
-
-backdrop-filter:
-
-blur(25px);
-
-border-bottom:
-
-1px solid rgba(255,255,255,.08);
-
-}
-
-.nav-container{
-
-height:100%;
-
-display:flex;
-
-align-items:center;
-
-justify-content:space-between;
-
-}
-
-/* ===== 统一 LOGO 样式 ===== */
-.logo{
-
-font-size:24px;
-
-font-weight:900;
-
-color:white;
-
-text-decoration:none !important;
-
-letter-spacing:1px;
-
-}
-
-.logo span{
-
-color:#c4b5fd;
-
-font-size:18px;
-
-margin-left:4px;
-
-}
-
-@media(max-width:768px){
-.logo{
-font-size:20px;
-}
-.logo span{
-font-size:15px;
-}
-}
-
-.nav-links{
-
-display:flex;
-
-align-items:center;
-
-gap:32px;
-
-list-style:none;
-
-}
-
-.nav-links a{
-
-color:#aaa;
-
-text-decoration:none;
-
-font-size:15px;
-
-transition:.3s;
-
-}
-
-.nav-links a:hover,
-
-.nav-links .active{
-
-color:white;
-
-}
-
-/* ===== 统一菜单按钮 ===== */
-.menu-toggle{
-display:none;
-flex-direction:column;
-gap:5px;
-background:none;
-border:none;
-cursor:pointer;
-padding:6px 4px;
-}
-.menu-toggle span{
-display:block;
-width:26px;
-height:2px;
-background:white;
-border-radius:2px;
-transition:.3s;
-}
-
-
-/* =====================
-页面标题
-===================== */
-
-.page-header{
-
-padding-top:150px;
-
-padding-bottom:60px;
-
-text-align:center;
-
-}
-
-.tag{
-
-display:inline-block;
-
-padding:8px 22px;
-
-border-radius:30px;
-
-background:
-
-rgba(139,92,246,.15);
-
-border:
-
-1px solid rgba(139,92,246,.25);
-
-color:#c4b5fd;
-
-font-size:13px;
-
-letter-spacing:2px;
-
-}
-
-.page-header h1{
-
-font-size:48px;
-
-margin:25px 0 15px;
-
-background:
-
-linear-gradient(
-135deg,
-white,
-#c4b5fd
+const grid =
+document.getElementById(
+"designGrid"
 );
 
--webkit-background-clip:text;
+if(!grid){
 
-color:transparent;
+console.warn(
+"没有找到设计作品容器"
+);
 
-}
-
-.page-header p{
-
-color:#aaa;
-
-font-size:16px;
+return;
 
 }
 
+// ====================================
+// 加载数据
+// ====================================
 
-/* =====================
-设计作品网格
-===================== */
+fetch("./assets/data/design.json")
 
-.design-grid{
+.then(res=>{
 
-display:grid;
+if(!res.ok){
 
-grid-template-columns:
-
-repeat(3,1fr);
-
-gap:30px;
-
-padding-bottom:100px;
+throw new Error(
+"design.json 加载失败，状态码 " + res.status
+);
 
 }
 
+return res.json();
 
-/* =====================
-设计卡片
-===================== */
+})
 
-.design-card{
+.then(works=>{
 
-background:
+if(!works || works.length === 0){
 
-rgba(255,255,255,.05);
+grid.innerHTML = `
 
-border:
+<div style="text-align:center;padding:60px 20px;color:#888;grid-column:1/-1;">
 
-1px solid rgba(255,255,255,.08);
+<h3>暂无设计作品</h3>
 
-border-radius:22px;
+<p style="margin-top:10px;">请将作品数据放入 assets/data/design.json</p>
 
-overflow:hidden;
+</div>
 
-transition:.4s;
+`;
 
-cursor:pointer;
-
-backdrop-filter:blur(15px);
+return;
 
 }
 
-.design-card:hover{
+// 渲染卡片
+grid.innerHTML = works.map(item=>{
 
-transform:
+let typeClass = 'type-other';
 
-translateY(-10px);
-
-border-color:
-
-rgba(139,92,246,.7);
-
-box-shadow:
-
-0 20px 60px rgba(139,92,246,.2);
-
+if(item.type === '商品主图' || item.type === '电商主图'){
+typeClass = 'type-product';
+} else if(item.type === '礼盒包装' || item.type === '包装设计'){
+typeClass = 'type-giftbox';
+} else if(item.type === '瓜子包装'){
+typeClass = 'type-packaging';
+} else if(item.type === '海报设计'){
+typeClass = 'type-poster';
+} else if(item.type === 'AI源文件'){
+typeClass = 'type-ai';
 }
 
-.design-card .cover-box{
+const images = item.images || [];
+const coverImg = images.length > 0 ? images[0] : '';
+const imageCount = images.length;
 
-position:relative;
+return `
 
-overflow:hidden;
+<div class="design-card" data-id="${item.id}">
 
-aspect-ratio:4/3;
+<div class="cover-box">
 
-background:#0a0618;
+<img
 
-}
+src="${coverImg}"
 
-.design-card .cover-box img{
+alt="${item.title}"
 
-width:100%;
+loading="lazy"
 
-height:100%;
+onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%231a1030%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%22200%22 y=%22150%22 text-anchor=%22middle%22 fill=%22%23666%22 font-size=%2220%22 font-family=%22sans-serif%22%3E暂无封面%3C/text%3E%3C/svg%3E'"
 
-object-fit:cover;
+>
 
-display:block;
+<span class="design-type ${typeClass}">
 
-transition:.5s;
+${item.type || '设计'}
 
-}
+</span>
 
-.design-card:hover .cover-box img{
+<span class="view-all-badge">
 
-transform:scale(1.06);
+📷 ${imageCount} 张
 
-}
+</span>
 
+</div>
 
-.design-type{
+<div class="design-info">
 
-position:absolute;
+<h3>${item.title}</h3>
 
-top:14px;
+<p>${item.desc || ''}</p>
 
-left:14px;
+<span class="image-count">共 ${imageCount} 张作品</span>
 
-padding:4px 14px;
+</div>
 
-border-radius:20px;
+</div>
 
-font-size:11px;
+`;
 
-font-weight:600;
+}).join('');
 
-color:white;
+// ====================================
+// 绑定点击事件（打开模态框）
+// ====================================
 
-background:rgba(139,92,246,.7);
+const cards =
+document.querySelectorAll(
+".design-card"
+);
 
-backdrop-filter:blur(5px);
+cards.forEach(card=>{
 
-border:1px solid rgba(255,255,255,.1);
+card.addEventListener(
+"click",
+()=>{
 
-z-index:2;
+const id =
+card.dataset.id;
 
-}
+const data =
+works.find(
+item => item.id === id
+);
 
-.view-all-badge{
+if(data){
 
-position:absolute;
-
-bottom:14px;
-
-right:14px;
-
-padding:6px 14px;
-
-border-radius:20px;
-
-font-size:11px;
-
-font-weight:600;
-
-color:white;
-
-background:rgba(0,0,0,.6);
-
-backdrop-filter:blur(5px);
-
-border:1px solid rgba(255,255,255,.1);
-
-z-index:2;
-
-}
-
-.design-type.type-product{
-background:rgba(139,92,246,.75);
-}
-.design-type.type-giftbox{
-background:rgba(236,72,153,.65);
-}
-.design-type.type-packaging{
-background:rgba(251,191,36,.65);
-color:#1a1a2e;
-}
-.design-type.type-poster{
-background:rgba(0,217,255,.6);
-}
-.design-type.type-other{
-background:rgba(139,92,246,.5);
-}
-
-
-.design-info{
-
-padding:20px;
-
-}
-
-.design-info h3{
-
-font-size:17px;
-
-font-weight:700;
-
-color:white;
-
-margin-bottom:6px;
-
-}
-
-.design-info p{
-
-color:#aaa;
-
-font-size:13px;
-
-line-height:1.7;
-
-}
-
-.design-info .image-count{
-
-display:inline-block;
-
-margin-top:10px;
-
-font-size:12px;
-
-color:#71678f;
-
-}
-
-
-/* ========================================
-模态框样式
-======================================== */
-
-.gallery-modal{
-
-position:fixed;
-
-top:0;
-
-left:0;
-
-width:100%;
-
-height:100%;
-
-z-index:9999;
-
-display:none;
-
-align-items:center;
-
-justify-content:center;
-
-padding:30px;
-
-}
-
-.gallery-modal.active{
-
-display:flex;
-
-}
-
-.gallery-overlay{
-
-position:absolute;
-
-top:0;
-
-left:0;
-
-width:100%;
-
-height:100%;
-
-background:
-
-rgba(5,3,11,.88);
-
-backdrop-filter:blur(20px);
-
-}
-
-.gallery-box{
-
-position:relative;
-
-width:100%;
-
-max-width:1000px;
-
-max-height:90vh;
-
-background:
-
-rgba(16,10,30,.8);
-
-border-radius:24px;
-
-border:
-
-1px solid rgba(139,92,246,.15);
-
-padding:30px;
-
-overflow-y:auto;
-
-box-shadow:
-
-0 40px 100px rgba(0,0,0,.7);
-
-z-index:1;
-
-}
-
-.gallery-close{
-
-position:sticky;
-
-top:0;
-
-float:right;
-
-width:44px;
-
-height:44px;
-
-border-radius:50%;
-
-background:rgba(255,255,255,.06);
-
-border:1px solid rgba(255,255,255,.1);
-
-color:#aaa;
-
-font-size:28px;
-
-cursor:pointer;
-
-transition:.3s;
-
-display:flex;
-
-align-items:center;
-
-justify-content:center;
-
-margin-bottom:16px;
-
-z-index:2;
-
-}
-
-.gallery-close:hover{
-
-background:rgba(239,68,68,.2);
-
-border-color:rgba(239,68,68,.3);
-
-color:#ef4444;
-
-transform:rotate(90deg);
-
-}
-
-.gallery-header{
-
-margin-bottom:24px;
-
-padding-right:60px;
-
-}
-
-.gallery-header h2{
-
-font-size:28px;
-
-color:white;
-
-margin-bottom:6px;
-
-}
-
-.gallery-header p{
-
-color:#aaa;
-
-font-size:15px;
-
-}
-
-.gallery-grid{
-
-display:grid;
-
-grid-template-columns:
-
-repeat(auto-fill, minmax(200px, 1fr));
-
-gap:16px;
-
-}
-
-.gallery-grid .gallery-item{
-
-position:relative;
-
-aspect-ratio:4/3;
-
-border-radius:12px;
-
-overflow:hidden;
-
-background:#0a0618;
-
-border:1px solid rgba(255,255,255,.06);
-
-transition:.3s;
-
-}
-
-.gallery-grid .gallery-item:hover{
-
-transform:scale(1.02);
-
-border-color:rgba(139,92,246,.3);
-
-}
-
-.gallery-grid .gallery-item img{
-
-width:100%;
-
-height:100%;
-
-object-fit:cover;
-
-display:block;
-
-}
-
-.gallery-footer{
-
-margin-top:20px;
-
-padding-top:16px;
-
-border-top:1px solid rgba(255,255,255,.06);
-
-text-align:center;
-
-color:#71678f;
-
-font-size:14px;
-
-}
-
-
-/* =====================
-手机
-===================== */
-
-@media(max-width:768px){
-
-.container{
-
-padding:0 16px;
-
-}
-
-.nav-links{
-display:none;
-position:absolute;
-top:72px;
-left:0;
-width:100%;
-background:
-rgba(5,3,11,.95);
-backdrop-filter:
-blur(25px);
-flex-direction:column;
-padding:20px 28px;
-gap:16px;
-border-bottom:
-1px solid rgba(255,255,255,.08);
-}
-
-.nav-links.open{
-display:flex;
-}
-
-.menu-toggle{
-display:flex;
-}
-
-.nav-links a{
-font-size:14px;
-}
-
-.page-header h1{
-
-font-size:34px;
-
-}
-
-.design-grid{
-
-grid-template-columns:1fr;
-
-}
-
-/* 模态框手机 */
-.gallery-modal{
-
-padding:16px;
-
-}
-
-.gallery-box{
-
-padding:18px;
-
-max-height:95vh;
-
-}
-
-.gallery-header h2{
-
-font-size:22px;
-
-}
-
-.gallery-grid{
-
-grid-template-columns:
-
-repeat(auto-fill, minmax(140px, 1fr));
-
-gap:12px;
-
-}
-
-.gallery-close{
-
-width:36px;
-
-height:36px;
-
-font-size:22px;
+openGallery(data);
 
 }
 
 }
+
+);
+
+});
+
+})
+
+.catch(err=>{
+
+console.error(
+
+"设计作品加载失败:",
+err
+
+);
+
+grid.innerHTML = `
+
+<div style="text-align:center;padding:60px 20px;color:#ff6b6b;grid-column:1/-1;">
+
+<h3>⚠️ 数据加载失败</h3>
+
+<p style="color:#aaa;margin-top:10px;">${err.message}</p>
+
+<p style="color:#888;font-size:14px;margin-top:16px;">请检查 assets/data/design.json 是否存在且格式正确</p>
+
+</div>
+
+`;
+
+});
+
+// ====================================
+// 模态框功能
+// ====================================
+
+const modal =
+document.getElementById(
+"galleryModal"
+);
+
+const galleryGrid =
+document.getElementById(
+"galleryGrid"
+);
+
+const galleryTitle =
+document.getElementById(
+"galleryTitle"
+);
+
+const galleryDesc =
+document.getElementById(
+"galleryDesc"
+);
+
+const galleryCount =
+document.getElementById(
+"galleryCount"
+);
+
+const galleryClose =
+document.getElementById(
+"galleryClose"
+);
+
+function openGallery(data){
+
+const images =
+data.images || [];
+
+galleryTitle.textContent =
+data.title;
+
+galleryDesc.textContent =
+data.desc || '';
+
+galleryCount.textContent =
+`共 ${images.length} 张图片`;
+
+galleryGrid.innerHTML =
+images.map(img => `
+
+<div class="gallery-item">
+
+<img
+
+src="${img}"
+
+alt="${data.title}"
+
+loading="lazy"
+
+onerror="this.style.display='none'"
+
+>
+
+</div>
+
+`).join('');
+
+modal.classList.add(
+"active"
+);
+
+document.body.style.overflow =
+"hidden";
+
+}
+
+function closeGallery(){
+
+modal.classList.remove(
+"active"
+);
+
+document.body.style.overflow =
+"";
+
+}
+
+galleryClose.addEventListener(
+"click",
+closeGallery
+);
+
+modal.addEventListener(
+"click",
+(e)=>{
+
+if(e.target === modal){
+
+closeGallery();
+
+}
+
+}
+
+);
+
+document.addEventListener(
+"keydown",
+(e)=>{
+
+if(e.key === "Escape"){
+
+closeGallery();
+
+}
+
+}
+
+);
+
+// ====================================
+// 移动端菜单
+// ====================================
+
+const menu =
+document.querySelector(
+".menu-toggle"
+);
+
+const nav =
+document.querySelector(
+".nav-links"
+);
+
+if(menu && nav){
+
+menu.addEventListener(
+"click",
+()=>{
+
+nav.classList.toggle(
+"open"
+);
+
+}
+
+);
+
+}
+
+});
