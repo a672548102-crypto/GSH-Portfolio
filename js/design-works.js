@@ -2,7 +2,7 @@
 =====================================
 GSH Portfolio
 design-works.js
-加载美工设计作品数据 + 模态框 + 封面默认使用第一张图
+美工设计作品 + 模态框 + 移动端菜单
 =====================================
 */
 
@@ -83,10 +83,8 @@ typeClass = 'type-poster';
 typeClass = 'type-ai';
 }
 
-// ========== 修复：封面优先使用 images[0] ==========
 const images = item.images || [];
 const coverImg = images.length > 0 ? images[0] : '';
-
 const imageCount = images.length;
 
 return `
@@ -231,7 +229,6 @@ document.getElementById(
 "galleryClose"
 );
 
-// 打开模态框
 function openGallery(data){
 
 const images =
@@ -246,7 +243,6 @@ data.desc || '';
 galleryCount.textContent =
 `共 ${images.length} 张图片`;
 
-// 渲染图片
 galleryGrid.innerHTML =
 images.map(img => `
 
@@ -277,7 +273,6 @@ document.body.style.overflow =
 
 }
 
-// 关闭模态框
 function closeGallery(){
 
 modal.classList.remove(
@@ -289,13 +284,11 @@ document.body.style.overflow =
 
 }
 
-// 点击关闭按钮
 galleryClose.addEventListener(
 "click",
 closeGallery
 );
 
-// 点击背景关闭
 modal.addEventListener(
 "click",
 (e)=>{
@@ -310,7 +303,6 @@ closeGallery();
 
 );
 
-// ESC 关闭
 document.addEventListener(
 "keydown",
 (e)=>{
