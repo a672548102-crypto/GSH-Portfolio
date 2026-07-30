@@ -2,7 +2,7 @@
 =====================================
 GSH Portfolio
 style.css
-方案二：淡漠蓝 + 杏仁橘 + 奶白（磨砂质感）
+方案二：磨砂网格 + 流光效果
 =====================================
 */
 
@@ -15,7 +15,7 @@ style.css
 }
 
 :root {
-    --bg: #121824;
+    --bg: #0a0e17;
     --blue-gray: #9BB0C4;
     --orange: #DBA870;
     --orange-light: #E8C9A0;
@@ -23,12 +23,11 @@ style.css
     --text-secondary: #B8C9D9;
     --text-muted: #8A9BAE;
     --card-bg: rgba(255, 255, 255, 0.04);
-    --border-subtle: rgba(155, 176, 196, 0.12);
-    --shadow-soft: rgba(155, 176, 196, 0.06);
+    --border-subtle: rgba(155, 176, 196, 0.10);
 }
 
 /* =====================
-基础
+磨砂网格 + 流光背景
 ===================== */
 
 html {
@@ -37,26 +36,85 @@ html {
 
 body {
     font-family: "Inter", "Microsoft YaHei", sans-serif;
-    background: #0F141F;
+    background: #0a0e17;
     color: var(--text);
     min-height: 100vh;
     overflow-x: hidden;
 }
 
-/* =====================
-磨砂背景（淡漠蓝 + 杏仁橘光晕）
-===================== */
-
+/* 网格背景 */
 body::before {
     content: "";
     position: fixed;
     inset: 0;
-    background:
-        radial-gradient(circle at 20% 30%, rgba(155, 176, 196, 0.10), transparent 45%),
-        radial-gradient(circle at 80% 70%, rgba(219, 168, 112, 0.07), transparent 40%),
-        linear-gradient(135deg, #0F141F, #1A1F2E);
-    pointer-events: none;
     z-index: -1;
+    background-color: #0a0e17;
+    background-image:
+        linear-gradient(rgba(219, 168, 112, 0.035) 1px, transparent 1px),
+        linear-gradient(90deg, rgba(219, 168, 112, 0.035) 1px, transparent 1px);
+    background-size: 50px 50px;
+    background-position: center center;
+    pointer-events: none;
+}
+
+/* 网格光晕（时隐时现） */
+body::after {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    background-image:
+        radial-gradient(circle at 15% 25%, rgba(219, 168, 112, 0.04) 0%, transparent 45%),
+        radial-gradient(circle at 75% 55%, rgba(219, 168, 112, 0.035) 0%, transparent 40%),
+        radial-gradient(circle at 45% 85%, rgba(155, 176, 196, 0.025) 0%, transparent 35%);
+    animation: glowPulse 8s ease-in-out infinite alternate;
+}
+
+@keyframes glowPulse {
+    0% { opacity: 0.5; }
+    50% { opacity: 1; }
+    100% { opacity: 0.6; }
+}
+
+/* 流光元素 */
+.flow-light {
+    position: fixed;
+    inset: 0;
+    z-index: -1;
+    pointer-events: none;
+    overflow: hidden;
+}
+
+.flow-light::before {
+    content: "";
+    position: absolute;
+    top: -30%;
+    left: -20%;
+    width: 70%;
+    height: 160%;
+    background: radial-gradient(ellipse at center, rgba(219, 168, 112, 0.05) 0%, rgba(219, 168, 112, 0.015) 35%, transparent 60%);
+    filter: blur(60px);
+    animation: flowLightMove 14s ease-in-out infinite alternate;
+}
+
+.flow-light::after {
+    content: "";
+    position: absolute;
+    bottom: -30%;
+    right: -20%;
+    width: 60%;
+    height: 160%;
+    background: radial-gradient(ellipse at center, rgba(155, 176, 196, 0.035) 0%, rgba(219, 168, 112, 0.01) 35%, transparent 60%);
+    filter: blur(70px);
+    animation: flowLightMove 18s ease-in-out infinite alternate-reverse;
+}
+
+@keyframes flowLightMove {
+    0% { transform: translateX(-10%) translateY(-8%) scale(1); opacity: 0.3; }
+    40% { transform: translateX(25%) translateY(12%) scale(1.15); opacity: 0.8; }
+    70% { transform: translateX(50%) translateY(-5%) scale(1.05); opacity: 0.5; }
+    100% { transform: translateX(70%) translateY(10%) scale(1.2); opacity: 0.4; }
 }
 
 .container {
@@ -75,7 +133,7 @@ body::before {
     width: 100%;
     height: 72px;
     z-index: 999;
-    background: rgba(18, 24, 36, 0.55);
+    background: rgba(10, 14, 23, 0.55);
     backdrop-filter: blur(25px);
     -webkit-backdrop-filter: blur(25px);
     border-bottom: 1px solid rgba(155, 176, 196, 0.06);
@@ -161,7 +219,7 @@ body::before {
 }
 
 /* =====================
-头像（蓝橙渐变磨砂）
+头像（蓝橙渐变）
 ===================== */
 
 .avatar-box {
@@ -177,7 +235,7 @@ body::before {
     background: linear-gradient(135deg, var(--blue-gray), var(--orange));
     position: relative;
     transition: .5s;
-    box-shadow: 0 0 30px rgba(155, 176, 196, 0.15);
+    box-shadow: 0 0 30px rgba(155, 176, 196, 0.12);
 }
 
 .avatar-ring::before {
@@ -217,7 +275,7 @@ body::before {
     display: inline-block;
     padding: 8px 20px;
     border-radius: 30px;
-    background: rgba(155, 176, 196, 0.12);
+    background: rgba(155, 176, 196, 0.10);
     color: var(--blue-gray);
     font-size: 13px;
     letter-spacing: 2px;
@@ -286,11 +344,11 @@ body::before {
 .btn {
     padding: 14px 35px;
     border-radius: 50px;
-    border: 1px solid rgba(255, 255, 255, 0.08);
+    border: 1px solid rgba(255, 255, 255, 0.06);
     text-decoration: none;
     color: var(--text);
     transition: .3s;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.02);
     backdrop-filter: blur(10px);
     -webkit-backdrop-filter: blur(10px);
 }
@@ -303,16 +361,16 @@ body::before {
 .btn.primary {
     background: linear-gradient(135deg, var(--orange), var(--orange-light));
     border: none;
-    color: #0F141F;
-    box-shadow: 0 0 35px rgba(219, 168, 112, 0.25);
+    color: #0a0e17;
+    box-shadow: 0 0 35px rgba(219, 168, 112, 0.20);
 }
 
 .btn.primary:hover {
-    box-shadow: 0 0 50px rgba(219, 168, 112, 0.35);
+    box-shadow: 0 0 50px rgba(219, 168, 112, 0.30);
 }
 
 /* =====================
-个人优势（磨砂卡片）
+个人优势
 ===================== */
 
 .advantages {
@@ -335,7 +393,7 @@ body::before {
 .advantage-card {
     padding: 32px;
     border-radius: 22px;
-    background: rgba(255, 255, 255, 0.03);
+    background: rgba(255, 255, 255, 0.02);
     border: 1px solid rgba(255, 255, 255, 0.04);
     backdrop-filter: blur(20px);
     -webkit-backdrop-filter: blur(20px);
@@ -344,8 +402,8 @@ body::before {
 
 .advantage-card:hover {
     transform: translateY(-10px);
-    border-color: rgba(219, 168, 112, 0.25);
-    box-shadow: 0 20px 60px rgba(155, 176, 196, 0.06);
+    border-color: rgba(219, 168, 112, 0.20);
+    box-shadow: 0 20px 60px rgba(155, 176, 196, 0.04);
 }
 
 .advantage-card h3 {
@@ -404,7 +462,7 @@ footer {
         top: 72px;
         left: 0;
         width: 100%;
-        background: rgba(15, 20, 31, 0.96);
+        background: rgba(10, 14, 23, 0.96);
         backdrop-filter: blur(25px);
         flex-direction: column;
         padding: 20px 28px;
