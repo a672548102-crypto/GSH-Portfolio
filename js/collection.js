@@ -1,1086 +1,293 @@
 /*
 =====================================
 GSH Portfolio
-collection.css
-V6.0 统一 LOGO + 移动端菜单
+collection.js
+V6.0 视频弹窗 + 移动端菜单 + 错误提示
 =====================================
 */
 
+const caseGrid = document.getElementById("caseGrid");
+let allCases = [];
 
-*{
-margin:0;
-padding:0;
-box-sizing:border-box;
+// ===============================
+// 加载案例数据
+// ===============================
+
+fetch("assets/data/cases.json")
+
+.then(res => {
+
+if (!res.ok) {
+throw new Error(`HTTP ${res.status}：cases.json 加载失败`);
+}
+return res.json();
+
+})
+
+.then(data => {
+
+if (!Array.isArray(data)) {
+throw new Error("数据格式错误：cases.json 不是数组");
 }
 
+allCases = data;
+renderCases(allCases);
+
+})
+
+.catch(err => {
+
+console.error("案例数据加载失败:", err);
+
+caseGrid.innerHTML = `
+
+<div style="text-align:center;padding:80px 20px;color:#ff6b6b;grid-column:1/-1;">
+
+<h2 style="font-size:24px;margin-bottom:16px;">⚠️ 数据加载失败</h2>
+
+<p style="color:#aaa;">错误：${err.message}</p>
+
+<p style="color:#888;font-size:14px;margin-top:16px;">请检查 assets/data/cases.json 是否存在且格式正确</p>
+
+</div>
+
+`;
+
+});
 
 
-:root{
+// ===============================
+// 渲染案例
+// ===============================
 
---bg:#05030b;
+function renderCases(cases) {
 
---purple:#8b5cf6;
+if (!cases || cases.length === 0) {
 
---blue:#00d9ff;
+caseGrid.innerHTML = `
 
---text:#f5f3ff;
+<div style="text-align:center;padding:80px 20px;color:#888;grid-column:1/-1;">
 
---gray:#aaa;
+<h2 style="font-size:20px;margin-bottom:12px;">📭 暂无案例数据</h2>
 
-}
+<p>请往 assets/data/cases.json 中添加数据</p>
 
+</div>
 
+`;
 
-/* =====================
-全局
-===================== */
-
-
-body{
-
-
-font-family:
-
-"Inter",
-"Microsoft YaHei",
-sans-serif;
-
-
-
-background:
-
-radial-gradient(
-circle at 20% 20%,
-rgba(139,92,246,.25),
-transparent 35%
-),
-
-
-radial-gradient(
-circle at 80% 70%,
-rgba(0,217,255,.18),
-transparent 35%
-),
-
-
-linear-gradient(
-135deg,
-#05030b,
-#090014
-);
-
-
-
-color:white;
-
-min-height:100vh;
-
-overflow-x:hidden;
-
-}
-
-
-
-.container{
-
-
-width:min(1200px,90%);
-
-margin:auto;
-
+return;
 
 }
 
+let html = "";
 
+cases.forEach(item => {
 
-/* =====================
-导航（统一）
-===================== */
+html += `
 
+<div class="case-card" data-video="${item.video || ''}" data-id="${item.id}">
 
-.navbar{
+<div class="cover-box">
 
+<img
 
-position:fixed;
+class="case-cover"
 
+src="${item.cover || ''}"
 
-top:0;
+loading="lazy"
 
-left:0;
+alt="${item.title || '案例'}"
 
+onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%231a1030%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%22200%22 y=%22150%22 text-anchor=%22middle%22 fill=%22%23666%22 font-size=%2220%22 font-family=%22sans-serif%22%3E暂无封面%3C/text%3E%3C/svg%3E'"
 
-width:100%;
+>
 
+<div class="hover-play">
 
-height:72px;
+<div class="play-circle">▶</div>
 
+</div>
 
-z-index:999;
+</div>
 
+<div class="case-info">
 
+<div class="case-number">CASE ${String(item.id).padStart(2,"0")}</div>
 
-background:
+<div class="title-line">
 
-rgba(5,3,11,.55);
+<h3>${item.title || '未命名'}</h3>
 
+<span class="case-type">${item.type || item.category || ''}</span>
 
+</div>
 
-backdrop-filter:
+<div class="data-box">
 
-blur(25px);
+<div><strong>${item.views || '--'}</strong><p>播放量</p></div>
 
+<div><strong>${item.likes || '--'}</strong><p>点赞</p></div>
 
+<div><strong>${item.comments || '--'}</strong><p>评论</p></div>
 
-border-bottom:
+</div>
 
-1px solid rgba(255,255,255,.08);
+<a href="detail.html?id=${String(item.id).padStart(2,"0")}" class="detail-link">查看数据分析 →</a>
 
+</div>
 
+</div>
 
-}
+`;
 
+});
 
+caseGrid.innerHTML = html;
 
-
-.nav-container{
-
-
-height:100%;
-
-
-display:flex;
-
-
-align-items:center;
-
-
-justify-content:space-between;
-
+bindVideo();
 
 }
 
 
+// ===============================
+// 视频弹窗播放
+// ===============================
 
+const modal = document.getElementById("videoModal");
+const player = document.getElementById("player");
+const closeBtn = document.getElementById("closeBtn");
 
-/* ===== 统一 LOGO 样式 ===== */
-.logo{
+function bindVideo() {
 
+const cards = document.querySelectorAll(".case-card");
 
-font-size:24px;
+cards.forEach(card => {
 
+card.addEventListener("click", function(e) {
 
-font-weight:900;
+if (e.target.closest(".detail-link")) return;
 
+const videoPath = this.dataset.video;
 
-color:white;
+if (!videoPath) {
 
+console.warn("该案例没有视频路径");
 
-text-decoration:none !important;
-
-
-letter-spacing:1px;
-
-
-}
-
-.logo span{
-
-
-color:#c4b5fd;
-
-
-font-size:18px;
-
-
-margin-left:4px;
-
+return;
 
 }
 
-/* 移动端 LOGO 稍小 */
-@media(max-width:768px){
-.logo{
-font-size:20px;
-}
-.logo span{
-font-size:15px;
-}
-}
+player.src = videoPath;
+player.load();
+modal.classList.add("active");
 
+setTimeout(() => {
 
-.nav-links{
+player.play().catch(() => {
 
+console.log("等待用户手动播放");
 
-display:flex;
+});
 
+}, 200);
 
-align-items:center;
+});
 
-
-gap:32px;
-
-
-list-style:none;
-
-
-}
-
-.nav-links a{
-
-
-color:#aaa;
-
-
-text-decoration:none;
-
-
-font-size:15px;
-
-
-transition:.3s;
-
-
-}
-
-.nav-links a:hover,
-
-
-.nav-links .active{
-
-
-color:white;
-
+});
 
 }
 
 
-/* ===== 统一菜单按钮 ===== */
-.menu-toggle{
-display:none;
-flex-direction:column;
-gap:5px;
-background:none;
-border:none;
-cursor:pointer;
-padding:6px 4px;
-}
-.menu-toggle span{
-display:block;
-width:26px;
-height:2px;
-background:white;
-border-radius:2px;
-transition:.3s;
-}
+// ===============================
+// 关闭视频
+// ===============================
 
+function closeVideo() {
 
-/* =====================
-标题
-===================== */
-
-
-.page-header{
-
-
-padding-top:150px;
-
-
-padding-bottom:70px;
-
-
-text-align:center;
-
+player.pause();
+player.currentTime = 0;
+player.removeAttribute("src");
+player.load();
+modal.classList.remove("active");
 
 }
 
-.tag{
+if (closeBtn) {
 
-
-display:inline-block;
-
-
-padding:8px 22px;
-
-
-border-radius:30px;
-
-
-
-background:
-
-rgba(139,92,246,.15);
-
-
-
-border:
-
-1px solid rgba(139,92,246,.25);
-
-
-
-color:#c4b5fd;
-
-
-
-font-size:13px;
-
-
-
-letter-spacing:2px;
-
+closeBtn.addEventListener("click", closeVideo);
 
 }
 
-.page-header h1{
+if (modal) {
 
+modal.addEventListener("click", function(e) {
 
-font-size:48px;
+if (e.target === modal) {
 
-
-margin:25px 0 15px;
-
-
-}
-
-.page-header p{
-
-
-color:#aaa;
-
-
-font-size:16px;
-
+closeVideo();
 
 }
 
-
-/* =====================
-筛选
-===================== */
-
-
-.filter-box{
-
-
-margin-top:40px;
-
-
-display:flex;
-
-
-justify-content:center;
-
-
-gap:15px;
-
-
-flex-wrap:wrap;
-
+});
 
 }
 
-.filter{
+document.addEventListener("keydown", function(e) {
 
+if (e.key === "Escape") {
 
-padding:
-
-9px 25px;
-
-
-border-radius:30px;
-
-
-background:
-
-rgba(255,255,255,.05);
-
-
-
-border:
-
-1px solid rgba(139,92,246,.25);
-
-
-
-color:#aaa;
-
-
-cursor:pointer;
-
-
-transition:.3s;
-
+closeVideo();
 
 }
 
-.filter:hover,
+});
 
 
-.filter.active{
+// ===============================
+// 分类筛选
+// ===============================
 
+const filters = document.querySelectorAll(".filter");
 
-background:
+filters.forEach(btn => {
 
-rgba(139,92,246,.35);
+btn.addEventListener("click", function() {
 
+filters.forEach(item => item.classList.remove("active"));
+this.classList.add("active");
 
+const type = this.dataset.filter;
 
-color:white;
+if (type === "all") {
 
-
-border-color:#8b5cf6;
-
-
-box-shadow:
-
-0 0 25px rgba(139,92,246,.35);
-
-
-}
-
-
-/* =====================
-案例网格
-===================== */
-
-
-.case-grid{
-
-
-display:grid;
-
-
-grid-template-columns:
-
-repeat(3,1fr);
-
-
-gap:30px;
-
+renderCases(allCases);
+return;
 
 }
 
+const result = allCases.filter(item => item.category === type);
+renderCases(result);
 
-/* =====================
-案例卡片
-===================== */
+});
 
+});
 
-.case-card{
 
+// ===============================
+// 移动端菜单
+// ===============================
 
-background:
+const menuToggle = document.querySelector(".menu-toggle");
+const navLinks = document.querySelector(".nav-links");
 
-rgba(255,255,255,.05);
+if (menuToggle && navLinks) {
 
+menuToggle.addEventListener("click", function() {
 
+navLinks.classList.toggle("open");
 
-border:
-
-1px solid rgba(255,255,255,.08);
-
-
-
-border-radius:22px;
-
-
-
-overflow:hidden;
-
-
-
-position:relative;
-
-
-transition:.4s;
-
-
-
-cursor:pointer;
-
-
-
-backdrop-filter:blur(15px);
-
-
-}
-
-.case-card:hover{
-
-
-transform:
-
-translateY(-10px);
-
-
-
-border-color:
-
-rgba(139,92,246,.7);
-
-
-
-box-shadow:
-
-0 20px 60px rgba(0,0,0,.5);
-
-
-}
-
-
-/* =====================
-封面
-===================== */
-
-
-.cover-box{
-
-
-position:relative;
-
-
-overflow:hidden;
-
-
-}
-
-.case-cover{
-
-
-width:100%;
-
-
-aspect-ratio:16/9;
-
-
-object-fit:cover;
-
-
-display:block;
-
-
-transition:.5s;
-
-
-}
-
-.case-card:hover .case-cover{
-
-
-transform:scale(1.08);
-
-
-}
-
-.hover-play{
-
-
-position:absolute;
-
-
-inset:0;
-
-
-display:flex;
-
-
-align-items:center;
-
-
-justify-content:center;
-
-
-background:
-
-rgba(0,0,0,.25);
-
-
-opacity:0;
-
-
-transition:.35s;
-
-
-}
-
-.case-card:hover .hover-play{
-
-
-opacity:1;
-
-
-}
-
-.play-circle{
-
-
-width:72px;
-
-
-height:72px;
-
-
-border-radius:50%;
-
-
-display:flex;
-
-
-align-items:center;
-
-
-justify-content:center;
-
-
-padding-left:5px;
-
-
-font-size:28px;
-
-
-color:white;
-
-
-background:
-
-rgba(139,92,246,.8);
-
-
-
-box-shadow:
-
-
-0 0 35px rgba(139,92,246,.8);
-
-
-
-border:
-
-1px solid rgba(255,255,255,.5);
-
-
-}
-
-
-/* =====================
-信息
-===================== */
-
-
-.case-info{
-
-
-padding:22px;
-
-
-}
-
-.case-number{
-
-
-font-size:12px;
-
-
-letter-spacing:2px;
-
-
-color:#a78bfa;
-
-
-margin-bottom:12px;
-
-
-}
-
-.title-line{
-
-
-display:flex;
-
-
-align-items:center;
-
-
-justify-content:space-between;
-
-
-gap:15px;
-
-
-margin-bottom:18px;
-
-
-}
-
-.title-line h3{
-
-
-font-size:20px;
-
-
-font-weight:700;
-
-
-}
-
-.case-type{
-
-
-font-size:12px;
-
-
-padding:
-
-5px 12px;
-
-
-
-border-radius:20px;
-
-
-
-background:
-
-rgba(139,92,246,.18);
-
-
-
-color:#d8b4fe;
-
-
-white-space:nowrap;
-
-
-}
-
-.data-box{
-
-
-display:flex;
-
-
-border-top:
-
-1px solid rgba(255,255,255,.08);
-
-
-
-border-bottom:
-
-1px solid rgba(255,255,255,.08);
-
-
-
-padding:
-
-18px 0;
-
-
-}
-
-.data-box div{
-
-
-flex:1;
-
-
-text-align:center;
-
-
-}
-
-.data-box strong{
-
-
-display:block;
-
-
-font-size:18px;
-
-
-}
-
-.data-box p{
-
-
-font-size:12px;
-
-
-color:#999;
-
-
-margin-top:5px;
-
-
-}
-
-.detail-link{
-
-
-display:block;
-
-
-margin-top:18px;
-
-
-padding:12px;
-
-
-text-align:center;
-
-
-border-radius:14px;
-
-
-text-decoration:none;
-
-
-color:#ddd;
-
-
-
-background:
-
-rgba(139,92,246,.18);
-
-
-
-border:
-
-1px solid rgba(139,92,246,.35);
-
-
-
-transition:.3s;
-
-}
-
-.detail-link:hover{
-
-
-background:
-
-rgba(139,92,246,.5);
-
-
-
-box-shadow:
-
-0 0 30px rgba(139,92,246,.5);
-
-
-
-color:white;
-
-
-}
-
-
-/* =====================
-视频弹窗
-===================== */
-
-
-.video-modal{
-
-
-position:fixed;
-
-
-inset:0;
-
-
-display:flex;
-
-
-align-items:center;
-
-
-justify-content:center;
-
-
-background:
-
-rgba(0,0,0,.8);
-
-
-
-opacity:0;
-
-
-visibility:hidden;
-
-
-transition:.3s;
-
-
-z-index:9999;
-
-
-}
-
-.video-modal.active{
-
-
-opacity:1;
-
-
-visibility:visible;
-
-
-}
-
-.video-box{
-
-
-width:90%;
-
-
-max-width:900px;
-
-
-background:#000;
-
-
-border-radius:20px;
-
-
-overflow:hidden;
-
-
-position:relative;
-
-
-}
-
-.video-box video{
-
-
-width:100%;
-
-
-max-height:80vh;
-
-
-object-fit:contain;
-
-
-}
-
-.close-btn{
-
-
-position:absolute;
-
-
-top:15px;
-
-
-right:15px;
-
-
-width:40px;
-
-
-height:40px;
-
-
-border-radius:50%;
-
-
-border:none;
-
-
-background:
-
-rgba(255,255,255,.2);
-
-
-
-color:white;
-
-
-font-size:25px;
-
-
-z-index:3;
-
-
-}
-
-footer{
-
-
-text-align:center;
-
-
-padding:40px;
-
-
-color:#777;
-
-
-}
-
-
-/* =====================
-手机
-===================== */
-
-
-@media(max-width:768px){
-
-.nav-links{
-display:none;
-position:absolute;
-top:72px;
-left:0;
-width:100%;
-background:
-rgba(5,3,11,.95);
-backdrop-filter:
-blur(25px);
-flex-direction:column;
-padding:20px 28px;
-gap:16px;
-border-bottom:
-1px solid rgba(255,255,255,.08);
-}
-
-.nav-links.open{
-display:flex;
-}
-
-.menu-toggle{
-display:flex;
-}
-
-.logo{
-font-size:20px;
-}
-.logo span{
-font-size:15px;
-}
-
-.nav-links a{
-font-size:14px;
-}
-
-.page-header h1{
-font-size:34px;
-}
-
-.case-grid{
-grid-template-columns:1fr;
-}
-
-.title-line{
-align-items:flex-start;
-flex-direction:column;
-}
-
-.case-type{
-font-size:11px;
-}
+});
 
 }
