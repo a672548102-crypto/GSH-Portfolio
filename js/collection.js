@@ -2,690 +2,279 @@
 =====================================
 GSH Portfolio
 collection.js
-V5.8 Project Collection
+V6.0 视频弹窗 + 移动端菜单
 =====================================
 */
 
-
-const caseGrid =
-document.getElementById("caseGrid");
-
-
+const caseGrid = document.getElementById("caseGrid");
 let allCases = [];
-
-
-
-
 
 // ===============================
 // 加载案例数据
 // ===============================
 
-
 fetch("assets/data/cases.json")
 
+.then(res => res.json())
 
-.then(res=>res.json())
-
-
-.then(data=>{
-
+.then(data => {
 
 allCases = data;
-
-
 renderCases(allCases);
-
 
 })
 
+.catch(err => {
 
-.catch(err=>{
+console.error("cases.json 加载失败:", err);
 
+caseGrid.innerHTML = `
 
-console.error(
-"cases.json读取失败:",
-err
-);
+<div style="text-align:center;padding:80px 20px;color:#888;grid-column:1/-1;">
 
+<h2 style="font-size:24px;margin-bottom:16px;color:#ff6b6b;">⚠️ 数据加载失败</h2>
+
+<p style="color:#aaa;">请检查 assets/data/cases.json 是否存在</p>
+
+</div>
+
+`;
 
 });
-
-
-
-
-
-
 
 
 // ===============================
 // 渲染案例
 // ===============================
 
+function renderCases(cases) {
 
-function renderCases(cases){
+if (!cases || cases.length === 0) {
 
+caseGrid.innerHTML = `
 
-let html="";
+<div style="text-align:center;padding:80px 20px;color:#888;grid-column:1/-1;">
 
+<h2 style="font-size:20px;margin-bottom:12px;">📭 暂无案例数据</h2>
 
+<p>请往 assets/data/cases.json 中添加数据</p>
 
-cases.forEach(item=>{
+</div>
 
+`;
+
+return;
+
+}
+
+let html = "";
+
+cases.forEach(item => {
 
 html += `
 
-
-<div class="case-card"
-
-data-video="${item.video}">
-
-
-
-
+<div class="case-card" data-video="${item.video || ''}" data-id="${item.id}">
 
 <div class="cover-box">
-
 
 <img
 
 class="case-cover"
 
-src="${item.cover}"
+src="${item.cover || ''}"
 
 loading="lazy"
 
-alt="${item.title}">
+alt="${item.title || '案例'}"
 
+onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%231a1030%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%22200%22 y=%22150%22 text-anchor=%22middle%22 fill=%22%23666%22 font-size=%2220%22 font-family=%22sans-serif%22%3E暂无封面%3C/text%3E%3C/svg%3E'"
 
-
-
+>
 
 <div class="hover-play">
 
-
-<div class="play-circle">
-
-▶
+<div class="play-circle">▶</div>
 
 </div>
 
-
 </div>
-
-
-
-</div>
-
-
-
-
-
-
-
 
 <div class="case-info">
 
-
-
-
-
-<div class="case-number">
-
-CASE ${String(item.id).padStart(2,"0")}
-
-</div>
-
-
-
-
-
-
+<div class="case-number">CASE ${String(item.id).padStart(2,"0")}</div>
 
 <div class="title-line">
 
+<h3>${item.title || '未命名'}</h3>
 
-
-<h3>
-
-${item.title}
-
-</h3>
-
-
-
-<span class="case-type">
-
-${item.type}
-
-</span>
-
-
+<span class="case-type">${item.type || item.category || ''}</span>
 
 </div>
-
-
-
-
-
-
-
-
 
 <div class="data-box">
 
+<div><strong>${item.views || '--'}</strong><p>播放量</p></div>
 
+<div><strong>${item.likes || '--'}</strong><p>点赞</p></div>
 
-<div>
-
-<strong>
-
-${item.views}
-
-</strong>
-
-
-<p>
-播放量
-</p>
+<div><strong>${item.comments || '--'}</strong><p>评论</p></div>
 
 </div>
 
-
-
-
-
-<div>
-
-<strong>
-
-${item.likes}
-
-</strong>
-
-
-<p>
-点赞
-</p>
+<a href="detail.html?id=${String(item.id).padStart(2,"0")}" class="detail-link">查看数据分析 →</a>
 
 </div>
 
-
-
-
-
-<div>
-
-<strong>
-
-${item.comments}
-
-</strong>
-
-
-<p>
-评论
-</p>
-
 </div>
-
-
-
-
-</div>
-
-
-
-
-
-
-
-
-<a
-
-href="detail.html?id=${item.id}"
-
-class="detail-link">
-
-
-查看数据分析 →
-
-</a>
-
-
-
-
-
-
-
-</div>
-
-
-
-
-
-
-</div>
-
-
 
 `;
 
-
-
 });
-
-
-
-
 
 caseGrid.innerHTML = html;
 
-
-
-
 bindVideo();
 
-
-
 }
 
 
-
-
-
-
-
-
-
-
-
 // ===============================
-// 分类筛选
+// 视频弹窗播放
 // ===============================
 
+const modal = document.getElementById("videoModal");
+const player = document.getElementById("player");
+const closeBtn = document.getElementById("closeBtn");
 
+function bindVideo() {
 
-const filters =
+const cards = document.querySelectorAll(".case-card");
 
-document.querySelectorAll(
-".filter"
-);
+cards.forEach(card => {
 
+card.addEventListener("click", function(e) {
 
+if (e.target.closest(".detail-link")) return;
 
+const videoPath = this.dataset.video;
 
+if (!videoPath) {
 
-filters.forEach(btn=>{
-
-
-btn.addEventListener(
-"click",
-()=>{
-
-
-
-
-
-filters.forEach(item=>{
-
-
-item.classList.remove(
-"active"
-);
-
-
-});
-
-
-
-
-
-
-btn.classList.add(
-"active"
-);
-
-
-
-
-
-
-
-const type =
-
-btn.dataset.filter;
-
-
-
-
-
-
-
-
-if(type==="all"){
-
-
-renderCases(allCases);
-
-
-return;
-
-
-}
-
-
-
-
-
-
-
-
-const result =
-
-allCases.filter(item=>{
-
-
-return item.category === type;
-
-
-});
-
-
-
-
-
-
-
-renderCases(result);
-
-
-
-
-});
-
-
-});
-
-
-
-
-
-
-
-
-
-
-
-
-// ===============================
-// 视频弹窗
-// ===============================
-
-
-const modal =
-
-document.getElementById(
-"videoModal"
-);
-
-
-
-const player =
-
-document.getElementById(
-"player"
-);
-
-
-
-const closeBtn =
-
-document.getElementById(
-"closeBtn"
-);
-
-
-
-
-
-
-
-
-
-function bindVideo(){
-
-
-
-const cards =
-
-document.querySelectorAll(
-".case-card"
-);
-
-
-
-
-
-
-
-cards.forEach(card=>{
-
-
-
-card.onclick=function(e){
-
-
-
-
-
-// 点击详情按钮不播放
-
-if(
-e.target.closest(".detail-link")
-){
+console.warn("该案例没有视频路径");
 
 return;
 
 }
-
-
-
-
-
-
-const videoPath =
-
-this.dataset.video;
-
-
-
-
-
-
-
-player.pause();
-
-
-player.currentTime=0;
-
-
-
-
-
-
 
 player.src = videoPath;
-
-
-
-
-
-
-modal.classList.add(
-"active"
-);
-
-
-
-
-
-
-
 player.load();
+modal.classList.add("active");
 
+setTimeout(() => {
 
+player.play().catch(() => {
 
-
-
-
-
-
-player.play()
-
-.catch(()=>{
-
-
-console.log(
-"等待用户操作"
-);
-
+console.log("等待用户手动播放");
 
 });
 
-
-
-
-
-
-
-};
-
-
-
-
-
+}, 200);
 
 });
 
-
+});
 
 }
-
-
-
-
-
-
-
-
-
-
 
 
 // ===============================
 // 关闭视频
 // ===============================
 
-
-
-function closeVideo(){
-
-
-if(!player)return;
-
-
+function closeVideo() {
 
 player.pause();
-
-
-player.currentTime=0;
-
-
-player.removeAttribute(
-"src"
-);
-
-
+player.currentTime = 0;
+player.removeAttribute("src");
 player.load();
-
-
-modal.classList.remove(
-"active"
-);
-
-
+modal.classList.remove("active");
 
 }
 
+if (closeBtn) {
 
-
-
-
-
-
-
-
-if(closeBtn){
-
-
-closeBtn.addEventListener(
-"click",
-closeVideo
-);
-
+closeBtn.addEventListener("click", closeVideo);
 
 }
 
+if (modal) {
 
+modal.addEventListener("click", function(e) {
 
-
-
-
-
-
-if(modal){
-
-
-modal.addEventListener(
-"click",
-(e)=>{
-
-
-if(e.target===modal){
-
+if (e.target === modal) {
 
 closeVideo();
 
+}
+
+});
 
 }
 
+document.addEventListener("keydown", function(e) {
+
+if (e.key === "Escape") {
+
+closeVideo();
+
+}
 
 });
 
 
+// ===============================
+// 分类筛选
+// ===============================
+
+const filters = document.querySelectorAll(".filter");
+
+filters.forEach(btn => {
+
+btn.addEventListener("click", function() {
+
+filters.forEach(item => item.classList.remove("active"));
+this.classList.add("active");
+
+const type = this.dataset.filter;
+
+if (type === "all") {
+
+renderCases(allCases);
+return;
+
 }
 
-
-
-
-
-
-
-
-
-document.addEventListener(
-"keydown",
-(e)=>{
-
-
-if(e.key==="Escape"){
-
-
-closeVideo();
-
-
-}
-
+const result = allCases.filter(item => item.category === type);
+renderCases(result);
 
 });
+
+});
+
+
+// ===============================
+// 移动端菜单
+// ===============================
+
+const menuToggle = document.querySelector(".menu-toggle");
+const navLinks = document.querySelector(".nav-links");
+
+if (menuToggle && navLinks) {
+
+menuToggle.addEventListener("click", function() {
+
+navLinks.classList.toggle("open");
+
+});
+
+}
