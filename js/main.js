@@ -2,7 +2,7 @@
 =====================================
 GSH Portfolio
 main.js
-静态暗金网格（无动画，无流光）
+无网格，只保留计数器 + 头像3D + 菜单
 =====================================
 */
 
@@ -11,8 +11,6 @@ document.addEventListener(
 "DOMContentLoaded",
 ()=>{
 
-initStaticGrid();
-
 startCounter();
 
 initAvatar();
@@ -20,102 +18,6 @@ initAvatar();
 initMenu();
 
 });
-
-
-/*
-=====================================
-静态暗金网格背景（无动画）
-=====================================
-*/
-
-
-function initStaticGrid(){
-
-const canvas =
-document.getElementById(
-"particleCanvas"
-);
-
-if(!canvas) return;
-
-const ctx =
-canvas.getContext(
-"2d"
-);
-
-let W, H;
-
-const GRID_SIZE = 68;
-const GAP = 6;
-const CORNER_RADIUS = 6;
-
-// 暗金暖色
-const GRID_COLOR = {
-r: 212,
-g: 165,
-b: 116,
-a: 0.12
-};
-
-let cols, rows;
-
-function resize(){
-W = canvas.width = window.innerWidth;
-H = canvas.height = window.innerHeight;
-cols = Math.ceil(W / GRID_SIZE) + 4;
-rows = Math.ceil(H / (GRID_SIZE * 0.866)) + 4;
-}
-window.addEventListener("resize", resize);
-resize();
-
-function draw(){
-
-ctx.clearRect(0, 0, W, H);
-
-// 深色底
-ctx.fillStyle = '#080605';
-ctx.fillRect(0, 0, W, H);
-
-// 绘制网格方块
-const halfGrid = GRID_SIZE / 2;
-const size = GRID_SIZE - GAP;
-
-for(let r = 0; r < rows; r++){
-for(let c = 0; c < cols; c++){
-const offsetX = (r % 2) * halfGrid;
-const x = c * GRID_SIZE + offsetX - GRID_SIZE * 0.5;
-const y = r * GRID_SIZE * 0.866 - GRID_SIZE * 0.5;
-
-const pad = GAP / 2;
-const drawSize = size;
-const radius = CORNER_RADIUS;
-
-ctx.beginPath();
-ctx.moveTo(x + pad + radius, y + pad);
-ctx.lineTo(x + pad + drawSize - radius, y + pad);
-ctx.quadraticCurveTo(x + pad + drawSize, y + pad, x + pad + drawSize, y + pad + radius);
-ctx.lineTo(x + pad + drawSize, y + pad + drawSize - radius);
-ctx.quadraticCurveTo(x + pad + drawSize, y + pad + drawSize, x + pad + drawSize - radius, y + pad + drawSize);
-ctx.lineTo(x + pad + radius, y + pad + drawSize);
-ctx.quadraticCurveTo(x + pad, y + pad + drawSize, x + pad, y + pad + drawSize - radius);
-ctx.lineTo(x + pad, y + pad + radius);
-ctx.quadraticCurveTo(x + pad, y + pad, x + pad + radius, y + pad);
-ctx.closePath();
-
-ctx.fillStyle = `rgba(${GRID_COLOR.r}, ${GRID_COLOR.g}, ${GRID_COLOR.b}, ${GRID_COLOR.a})`;
-ctx.fill();
-}
-}
-
-requestAnimationFrame(draw);
-}
-
-draw();
-
-window.addEventListener("resize", resize);
-
-console.log('✨ 静态暗金网格已启动');
-}
 
 
 /*
