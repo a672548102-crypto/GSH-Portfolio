@@ -2,7 +2,7 @@
 =====================================
 GSH Portfolio
 design-works.js
-加载美工设计作品数据 + 模态框
+加载美工设计作品数据 + 模态框 + 封面默认使用第一张图
 =====================================
 */
 
@@ -83,7 +83,11 @@ typeClass = 'type-poster';
 typeClass = 'type-ai';
 }
 
-const imageCount = (item.images || []).length;
+// ========== 修复：封面优先使用 images[0] ==========
+const images = item.images || [];
+const coverImg = images.length > 0 ? images[0] : '';
+
+const imageCount = images.length;
 
 return `
 
@@ -93,13 +97,13 @@ return `
 
 <img
 
-src="${item.cover || item.images?.[0] || ''}"
+src="${coverImg}"
 
 alt="${item.title}"
 
 loading="lazy"
 
-onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%231a1030%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%22200%22 y=%22150%22 text-anchor=%22middle%22 fill=%22%23666%22 font-size=%2220%22 font-family=%22sans-serif%22%3E暂无图片%3C/text%3E%3C/svg%3E'"
+onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%231a1030%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%22200%22 y=%22150%22 text-anchor=%22middle%22 fill=%22%23666%22 font-size=%2220%22 font-family=%22sans-serif%22%3E暂无封面%3C/text%3E%3C/svg%3E'"
 
 >
 
