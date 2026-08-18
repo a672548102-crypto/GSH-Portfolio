@@ -1,284 +1,56 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>个人视频 | 高帅航</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* ========================================
-       personal-video.html · 内联A方案
-       留白意境 · 雅士风
-    ======================================== */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-
-    :root {
-      --paper: #f7f4eb;
-      --ink: #2c241c;
-      --ink-light: #4a3f36;
-      --ink-muted: #7a6a5a;
-      --ink-faint: #b8a898;
-      --cinnabar: #c43b3b;
-      --cinnabar-light: rgba(196, 59, 59, 0.08);
-      --border-subtle: rgba(180, 160, 140, 0.20);
-      --card-bg: rgba(255, 248, 235, 0.40);
-      --font-serif: 'Noto Serif SC', 'Songti SC', serif;
-      --font-sans: 'Inter', 'PingFang SC', sans-serif;
-    }
-
-    body {
-      font-family: var(--font-sans);
-      background-color: var(--paper);
-      background-image:
-        radial-gradient(ellipse at 20% 50%, rgba(200,180,160,0.10) 0%, transparent 60%),
-        radial-gradient(ellipse at 80% 20%, rgba(180,160,140,0.06) 0%, transparent 50%),
-        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c8b8a8' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      color: var(--ink);
-      line-height: 1.7;
-      min-height: 100vh;
-      padding: 20px;
-    }
-
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-
-    /* 导航 */
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(247, 244, 235, 0.72);
-      backdrop-filter: blur(12px);
-      border-bottom: 1px solid var(--border-subtle);
-      padding: 14px 0;
-    }
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      font-family: var(--font-serif);
-      font-weight: 900;
-      font-size: 1.4rem;
-      color: var(--ink);
-      text-decoration: none;
-      letter-spacing: 1px;
-    }
-    .logo span {
-      font-weight: 400;
-      color: var(--ink-muted);
-      font-size: 0.85rem;
-      margin-left: 4px;
-    }
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 28px;
-      align-items: center;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: var(--ink-muted);
-      font-weight: 500;
-      font-size: 0.92rem;
-      padding: 4px 0;
-      border-bottom: 2px solid transparent;
-      transition: 0.2s;
-      font-family: var(--font-serif);
-    }
-    .nav-links a:hover,
-    .nav-links a.active {
-      border-bottom-color: var(--cinnabar);
-      color: var(--ink);
-    }
-    .menu-toggle {
-      display: none;
-      flex-direction: column;
-      gap: 4px;
-      background: none;
-      border: none;
-      cursor: pointer;
-      padding: 4px;
-    }
-    .menu-toggle span {
-      display: block;
-      width: 24px;
-      height: 2px;
-      background: var(--ink);
-      border-radius: 2px;
-    }
-
-    /* 标签 */
-    .tag {
-      display: inline-block;
-      background: var(--cinnabar-light);
-      color: var(--cinnabar);
-      font-size: 0.65rem;
-      letter-spacing: 2px;
-      padding: 4px 16px;
-      border-radius: 30px;
-      font-weight: 600;
-      text-transform: uppercase;
-    }
-
-    /* 页面头部 */
-    .page-header {
-      text-align: center;
-      padding: 30px 0 16px;
-    }
-    .page-header h1 {
-      font-family: var(--font-serif);
-      font-size: 2.2rem;
-      font-weight: 700;
-      margin: 10px 0 4px;
-      color: var(--ink);
-    }
-    .page-header p {
-      color: var(--ink-muted);
-      font-size: 0.95rem;
-    }
-
-    /* 视频网格 */
-    .video-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-      gap: 30px;
-      margin: 16px 0 40px;
-    }
-    .video-card {
-      background: var(--card-bg);
-      border-radius: 20px;
-      overflow: hidden;
-      border: 1px solid var(--border-subtle);
-      padding: 16px;
-      transition: 0.3s ease;
-      box-shadow: 0 2px 8px rgba(44, 36, 28, 0.02);
-    }
-    .video-card:hover {
-      transform: translateY(-6px);
-      box-shadow: 0 12px 30px rgba(44, 36, 28, 0.06);
-      border-color: rgba(196, 59, 59, 0.15);
-    }
-    .video-card video {
-      width: 100%;
-      height: auto;
-      display: block;
-      border-radius: 14px;
-      background: #1a1410;
-      outline: none;
-    }
-    .video-card h3 {
-      font-family: var(--font-serif);
-      font-size: 1.0rem;
-      margin-top: 14px;
-      color: var(--ink);
-    }
-    .video-card p {
-      color: var(--ink-muted);
-      font-size: 0.82rem;
-      margin-top: 4px;
-    }
-
-    /* 页脚 */
-    footer {
-      text-align: center;
-      padding: 28px 0 16px;
-      color: var(--ink-faint);
-      font-size: 0.82rem;
-      border-top: 1px solid var(--border-subtle);
-      margin-top: 20px;
-      font-family: var(--font-serif);
-    }
-
-    /* 响应式 */
-    @media (max-width: 768px) {
-      body { padding: 12px; }
-      .page-header h1 { font-size: 1.8rem; }
-      .video-grid { grid-template-columns: 1fr 1fr; gap: 18px; }
-      .nav-links {
-        display: none;
-        flex-direction: column;
-        background: rgba(247, 244, 235, 0.96);
-        position: absolute;
-        top: 62px;
-        left: 0;
-        width: 100%;
-        padding: 18px 24px;
-        gap: 12px;
-        border-bottom: 1px solid var(--border-subtle);
-      }
-      .nav-links.open { display: flex; }
-      .menu-toggle { display: flex; }
-      .logo { font-size: 1.2rem; }
-    }
-    @media (max-width: 500px) {
-      .video-grid { grid-template-columns: 1fr; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>个人视频 | 高帅航</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/personal-video.css">
 </head>
 <body>
 
-  <!-- 导航 -->
-  <nav class="navbar">
-    <div class="container nav-container">
-      <a href="index.html" class="logo">GSH.<span>个人作品集</span></a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">首页</a></li>
-        <li><a href="collection.html">案例</a></li>
-        <li><a href="personal-video.html" class="active">抖音</a></li>
-        <li><a href="design-works.html">美工</a></li>
-        <li><a href="resume/高帅航.pdf" target="_blank">简历</a></li>
-      </ul>
-      <button class="menu-toggle" id="menuToggle">
-        <span></span><span></span><span></span>
-      </button>
-    </div>
-  </nav>
-
-  <!-- 页面头部 -->
-  <section class="page-header">
-    <div class="container">
-      <div class="tag">PERSONAL VIDEO</div>
-      <h1>个人短视频作品</h1>
-      <p>抖音账号运营作品展示</p>
-    </div>
-  </section>
-
-  <!-- 视频作品 -->
-  <section class="video-section">
-    <div class="container">
-      <div class="video-grid">
-        <div class="video-card">
-          <video src="assets/personal/personal1.mp4" controls playsinline preload="metadata"></video>
-          <h3>男明星混剪 4137赞</h3>
-          <p>负责：赶上VOGUE时尚之力热点</p>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">GSH.<span>个人作品集</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="collection.html">案例</a></li>
+                <li><a href="personal-video.html" class="active">抖音</a></li>
+                <li><a href="design-works.html">美工</a></li>
+                <li><a href="resume/高帅航.pdf" target="_blank">简历</a></li>
+            </ul>
+            <button class="menu-toggle"><span></span><span></span><span></span></button>
         </div>
-        <div class="video-card">
-          <video src="assets/personal/personal2.mp4" controls playsinline preload="metadata"></video>
-          <h3>女明星混剪 4.4W赞</h3>
-          <p>负责：VOGUE时尚之力盛典的女明星画面进行卡点混剪用AE调色、美颜</p>
+    </nav>
+
+    <section class="page-header">
+        <div class="container">
+            <div class="tag">PERSONAL VIDEO</div>
+            <h1>个人短视频作品</h1>
+            <p>抖音账号运营作品展示</p>
         </div>
-      </div>
-    </div>
-  </section>
+    </section>
 
-  <footer>© 2026 GSH Portfolio · 留白意境 · 雅士风</footer>
+    <section class="video-section">
+        <div class="container">
+            <div class="video-grid">
+                <div class="video-card">
+                    <video src="assets/personal/personal1.mp4" controls playsinline preload="metadata"></video>
+                    <h3>男明星混剪 4137赞</h3>
+                    <p>负责：赶上VOGUE时尚之力热点</p>
+                </div>
+                <div class="video-card">
+                    <video src="assets/personal/personal2.mp4" controls playsinline preload="metadata"></video>
+                    <h3>女明星混剪 4.4W赞</h3>
+                    <p>负责：VOGUE时尚之力盛典的女明星画面进行卡点混剪用AE调色、美颜</p>
+                </div>
+            </div>
+        </div>
+    </section>
 
-  <script>
-    // 移动端菜单切换
-    document.getElementById('menuToggle').addEventListener('click', function() {
-      document.getElementById('navLinks').classList.toggle('open');
-    });
-    // 滚动时导航加深
-    window.addEventListener('scroll', function() {
-      const nav = document.querySelector('.navbar');
-      if (window.scrollY > 20) {
-        nav.style.background = 'rgba(247, 244, 235, 0.92)';
-      } else {
-        nav.style.background = 'rgba(247, 244, 235, 0.72)';
-      }
-    });
-  </script>
+    <div class="flow-light"></div>
 
+    <script src="js/main.js"></script>
 </body>
 </html>
