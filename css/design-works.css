@@ -339,3 +339,92 @@ GSH Portfolio · design-works.css
         padding-left: 8px;
     }
 }
+/* ============================================================
+   分类按钮美化（与案例页统一风格）
+============================================================ */
+
+.filter-box {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+    margin: 24px 0 20px;
+    padding: 0 4px;
+}
+
+.filter-box .filter {
+    position: relative;
+    padding: 8px 22px;
+    border-radius: 30px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    color: var(--text-muted);
+    font-size: 13px;
+    font-weight: 500;
+    font-family: var(--font-sans);
+    cursor: pointer;
+    transition: all 0.3s ease;
+    backdrop-filter: blur(10px);
+    -webkit-backdrop-filter: blur(10px);
+    letter-spacing: 0.5px;
+}
+
+.filter-box .filter .count {
+    display: inline-block;
+    font-size: 11px;
+    opacity: 0.5;
+    margin-left: 4px;
+    transition: opacity 0.3s;
+}
+
+.filter-box .filter:hover {
+    border-color: var(--gold-mid);
+    color: var(--text-primary);
+    background: rgba(201, 168, 76, 0.08);
+    transform: translateY(-2px);
+    box-shadow: 0 4px 20px rgba(201, 168, 76, 0.06);
+}
+
+.filter-box .filter:hover .count {
+    opacity: 0.8;
+}
+
+.filter-box .filter.active {
+    background: var(--gold-gradient);
+    color: #1a100a;
+    border-color: var(--gold-mid);
+    font-weight: 600;
+    box-shadow: 0 0 30px rgba(201, 168, 76, 0.15);
+    transform: translateY(-2px);
+}
+
+.filter-box .filter.active .count {
+    opacity: 0.7;
+    font-weight: 500;
+}
+
+.filter-box .filter:active {
+    transform: scale(0.96);
+}
+
+/* 响应式：手机端按钮紧凑 */
+@media (max-width: 768px) {
+    .filter-box {
+        gap: 6px;
+        margin: 16px 0 12px;
+    }
+    .filter-box .filter {
+        padding: 6px 14px;
+        font-size: 12px;
+    }
+    .filter-box .filter .count {
+        font-size: 10px;
+    }
+}
+
+@media (max-width: 480px) {
+    .filter-box .filter {
+        padding: 5px 12px;
+        font-size: 11px;
+    }
+}
