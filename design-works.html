@@ -1,171 +1,59 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>美工设计 | 高帅航</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      background-color: #f7f4eb;
-      background-image: radial-gradient(ellipse at 20% 50%, rgba(200,180,160,0.1) 0%, transparent 60%),
-                        radial-gradient(ellipse at 80% 20%, rgba(180,160,140,0.06) 0%, transparent 50%),
-                        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c8b8a8' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      font-family: 'Inter', 'Noto Serif SC', sans-serif;
-      color: #2c241c;
-      line-height: 1.6;
-      padding: 20px;
-      min-height: 100vh;
-    }
-    .container { max-width: 1100px; margin:0 auto; padding:0 20px; }
-    .navbar { position:sticky; top:0; z-index:100; background:rgba(247,244,235,0.7); backdrop-filter:blur(8px); border-bottom:1px solid rgba(200,180,160,0.2); padding:16px 0; }
-    .nav-container { display:flex; justify-content:space-between; align-items:center; }
-    .logo { font-family:'Noto Serif SC',serif; font-weight:900; font-size:1.5rem; color:#2c241c; text-decoration:none; }
-    .logo span { font-weight:400; color:#7a6a5a; font-size:0.9rem; }
-    .nav-links { list-style:none; display:flex; gap:28px; }
-    .nav-links a { text-decoration:none; color:#4a3f36; font-weight:500; font-size:0.95rem; padding:4px 0; border-bottom:2px solid transparent; transition:0.2s; font-family:'Noto Serif SC',serif; }
-    .nav-links a:hover, .nav-links a.active { border-bottom-color:#c43b3b; color:#1f1a16; }
-    .menu-toggle { display:none; flex-direction:column; gap:4px; background:none; border:none; cursor:pointer; }
-    .menu-toggle span { width:24px; height:2px; background:#2c241c; }
-    @media (max-width:768px) { .nav-links { display:none; flex-direction:column; background:rgba(247,244,235,0.95); position:absolute; top:70px; left:0; width:100%; padding:20px; gap:12px; } .nav-links.open { display:flex; } .menu-toggle { display:flex; } }
-
-    .page-header { text-align:center; padding:40px 0 20px; }
-    .tag { display:inline-block; background:rgba(196,59,59,0.08); color:#c43b3b; font-size:0.7rem; letter-spacing:2px; padding:4px 16px; border-radius:20px; }
-    .page-header h1 { font-family:'Noto Serif SC',serif; font-size:2.4rem; font-weight:700; margin:12px 0 6px; }
-    .page-header p { color:#5a4c3e; }
-
-    .design-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(260px,1fr)); gap:30px; margin:30px 0; }
-    .design-card {
-      background:rgba(255,248,235,0.5);
-      border-radius:20px;
-      overflow:hidden;
-      border:1px solid rgba(200,180,160,0.15);
-      transition:0.3s;
-      cursor:pointer;
-      box-shadow:0 4px 12px rgba(44,36,28,0.02);
-    }
-    .design-card:hover { transform:translateY(-6px); box-shadow:0 12px 30px rgba(44,36,28,0.08); border-color:rgba(196,59,59,0.2); }
-    .design-card .thumb { width:100%; height:200px; background:#d9d0c4; object-fit:cover; display:block; }
-    .design-card .info { padding:16px 20px; }
-    .design-card .info h3 { font-family:'Noto Serif SC',serif; font-size:1.1rem; }
-    .design-card .info p { font-size:0.85rem; color:#6b5f52; }
-
-    /* 画廊模态框 */
-    .gallery-modal { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(44,36,28,0.7); backdrop-filter:blur(6px); display:none; justify-content:center; align-items:center; z-index:999; }
-    .gallery-overlay { position:absolute; top:0; left:0; width:100%; height:100%; }
-    .gallery-box { position:relative; background:#f7f4eb; border-radius:24px; padding:30px; max-width:900px; width:95%; max-height:90vh; overflow-y:auto; box-shadow:0 30px 60px rgba(0,0,0,0.3); }
-    .gallery-close { position:absolute; top:10px; right:16px; background:#c43b3b; color:white; border:none; width:36px; height:36px; border-radius:50%; font-size:1.6rem; cursor:pointer; }
-    .gallery-header { margin-bottom:20px; }
-    .gallery-header h2 { font-family:'Noto Serif SC',serif; }
-    .gallery-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(150px,1fr)); gap:16px; }
-    .gallery-grid img { width:100%; height:auto; border-radius:8px; border:1px solid rgba(200,180,160,0.2); }
-    .gallery-footer { margin-top:20px; text-align:right; color:#8a7a6a; font-size:0.85rem; }
-
-    footer { text-align:center; padding:30px 0 20px; color:#8a7a6a; font-size:0.85rem; border-top:1px solid rgba(200,180,160,0.2); margin-top:40px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>美工设计 | 高帅航</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/design-works.css">
 </head>
 <body>
-  <nav class="navbar">
-    <div class="container nav-container">
-      <a href="index.html" class="logo">GSH.<span>个人作品集</span></a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">首页</a></li>
-        <li><a href="collection.html">案例</a></li>
-        <li><a href="personal-video.html">抖音</a></li>
-        <li><a href="design-works.html" class="active">美工</a></li>
-        <li><a href="resume/高帅航.pdf" target="_blank">简历</a></li>
-      </ul>
-      <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
-    </div>
-  </nav>
 
-  <section class="page-header">
-    <div class="container">
-      <div class="tag">DESIGN WORKS</div>
-      <h1>美工设计作品</h1>
-      <p>点击卡片查看全部 · 电商主图 · 包装设计 · 品牌视觉 · 海报</p>
-    </div>
-  </section>
-
-  <section class="container">
-    <div class="design-grid" id="designGrid"></div>
-  </section>
-
-  <!-- 模态框 -->
-  <div class="gallery-modal" id="galleryModal">
-    <div class="gallery-overlay"></div>
-    <div class="gallery-box">
-      <button class="gallery-close" id="galleryClose">×</button>
-      <div class="gallery-header">
-        <h2 id="galleryTitle">作品标题</h2>
-        <p id="galleryDesc">作品描述</p>
-      </div>
-      <div class="gallery-grid" id="galleryGrid"></div>
-      <div class="gallery-footer"><span id="galleryCount">共 0 张图片</span></div>
-    </div>
-  </div>
-
-  <footer>© 2026 GSH Portfolio · 留白意境 · 雅士风</footer>
-
-  <script>
-    document.getElementById('menuToggle').addEventListener('click', function() {
-      document.getElementById('navLinks').classList.toggle('open');
-    });
-
-    // 模拟美工作品数据
-    const designData = [
-      { id:1, title:'金刀瓜子包装', desc:'电商主图 + 包装设计', thumb:'assets/design/thumb1.jpg', images:['assets/design/1a.jpg','assets/design/1b.jpg','assets/design/1c.jpg'] },
-      { id:2, title:'张笨仁礼盒', desc:'品牌礼盒设计', thumb:'assets/design/thumb2.jpg', images:['assets/design/2a.jpg','assets/design/2b.jpg'] },
-      { id:3, title:'抖音主图合集', desc:'多款主图设计', thumb:'assets/design/thumb3.jpg', images:['assets/design/3a.jpg','assets/design/3b.jpg','assets/design/3c.jpg'] },
-      { id:4, title:'京东详情页', desc:'产品详情长图', thumb:'assets/design/thumb4.jpg', images:['assets/design/4a.jpg'] },
-      { id:5, title:'直播间切图', desc:'直播间贴片设计', thumb:'assets/design/thumb5.jpg', images:['assets/design/5a.jpg','assets/design/5b.jpg'] },
-      { id:6, title:'品牌海报', desc:'活动海报', thumb:'assets/design/thumb6.jpg', images:['assets/design/6a.jpg'] },
-    ];
-
-    const grid = document.getElementById('designGrid');
-    const modal = document.getElementById('galleryModal');
-    const closeBtn = document.getElementById('galleryClose');
-    const galleryTitle = document.getElementById('galleryTitle');
-    const galleryDesc = document.getElementById('galleryDesc');
-    const galleryGrid = document.getElementById('galleryGrid');
-    const galleryCount = document.getElementById('galleryCount');
-
-    function renderDesigns() {
-      grid.innerHTML = designData.map(item => `
-        <div class="design-card" data-id="${item.id}">
-          <img src="${item.thumb}" class="thumb" alt="${item.title}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22260%22 height=%22200%22%3E%3Crect fill=%22%23d9d0c4%22 width=%22260%22 height=%22200%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%237a6a5a%22 font-size=%2216%22%3E设计封面%3C/text%3E%3C/svg%3E'">
-          <div class="info">
-            <h3>${item.title}</h3>
-            <p>${item.desc}</p>
-          </div>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">GSH.<span>个人作品集</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="collection.html">案例</a></li>
+                <li><a href="personal-video.html">抖音</a></li>
+                <li><a href="design-works.html" class="active">美工</a></li>
+                <li><a href="resume/高帅航.pdf" target="_blank">简历</a></li>
+            </ul>
+            <button class="menu-toggle"><span></span><span></span><span></span></button>
         </div>
-      `).join('');
+    </nav>
 
-      document.querySelectorAll('.design-card').forEach(card => {
-        card.addEventListener('click', function() {
-          const id = parseInt(this.dataset.id);
-          const data = designData.find(d => d.id === id);
-          if (data) {
-            galleryTitle.textContent = data.title;
-            galleryDesc.textContent = data.desc;
-            galleryGrid.innerHTML = data.images.map(img => `<img src="${img}" alt="${data.title}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22150%22 height=%22150%22%3E%3Crect fill=%22%23e8e0d6%22 width=%22150%22 height=%22150%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%237a6a5a%22 font-size=%2212%22%3E图片%3C/text%3E%3C/svg%3E'">`).join('');
-            galleryCount.textContent = `共 ${data.images.length} 张图片`;
-            modal.style.display = 'flex';
-          }
-        });
-      });
-    }
-    renderDesigns();
+    <section class="page-header">
+        <div class="container">
+            <div class="tag">DESIGN WORKS</div>
+            <h1>美工设计作品</h1>
+            <p>点击卡片查看全部作品 · 电商主图 · 包装设计 · 品牌视觉 · 海报设计</p>
+        </div>
+    </section>
 
-    closeBtn.addEventListener('click', function() {
-      modal.style.display = 'none';
-    });
-    modal.addEventListener('click', function(e) {
-      if (e.target === modal || e.target.classList.contains('gallery-overlay')) {
-        modal.style.display = 'none';
-      }
-    });
-  </script>
+    <section class="design-section">
+        <div class="container">
+            <div class="design-grid" id="designGrid"></div>
+        </div>
+    </section>
+
+    <div class="gallery-modal" id="galleryModal">
+        <div class="gallery-overlay"></div>
+        <div class="gallery-box">
+            <button class="gallery-close" id="galleryClose">×</button>
+            <div class="gallery-header">
+                <h2 id="galleryTitle">作品标题</h2>
+                <p id="galleryDesc">作品描述</p>
+            </div>
+            <div class="gallery-grid" id="galleryGrid"></div>
+            <div class="gallery-footer"><span id="galleryCount">共 0 张图片</span></div>
+        </div>
+    </div>
+
+    <div class="flow-light"></div>
+
+    <script src="js/main.js"></script>
+    <script src="js/design-works.js"></script>
 </body>
 </html>
