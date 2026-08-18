@@ -28,28 +28,28 @@
         <div class="container">
             <div class="tag">DESIGN WORKS</div>
             <h1>美工设计作品</h1>
-            <p>点击卡片查看全部作品 · 电商主图 · 包装设计 · 品牌视觉 · 海报设计</p>
+            <p>点击卡片查看大图 · 分类筛选 · 分页浏览</p>
+
+            <!-- ============================================================
+            分类筛选按钮（由 JS 动态生成）
+            ============================================================ -->
+            <div class="filter-box" id="categoryFilter"></div>
         </div>
     </section>
 
     <section class="design-section">
         <div class="container">
+            <!-- 作品网格 -->
             <div class="design-grid" id="designGrid"></div>
+
+            <!-- ============================================================
+            分页控件（由 JS 动态生成）
+            ============================================================ -->
+            <div class="pagination-wrapper" id="paginationWrapper">
+                <div class="pagination" id="pagination"></div>
+            </div>
         </div>
     </section>
-
-    <div class="gallery-modal" id="galleryModal">
-        <div class="gallery-overlay"></div>
-        <div class="gallery-box">
-            <button class="gallery-close" id="galleryClose">×</button>
-            <div class="gallery-header">
-                <h2 id="galleryTitle">作品标题</h2>
-                <p id="galleryDesc">作品描述</p>
-            </div>
-            <div class="gallery-grid" id="galleryGrid"></div>
-            <div class="gallery-footer"><span id="galleryCount">共 0 张图片</span></div>
-        </div>
-    </div>
 
     <footer>© 2026 GSH Portfolio</footer>
 
