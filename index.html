@@ -1,441 +1,68 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>高帅航 · 短视频运营作品集</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* ===== 全局重置 & 宣纸底色 ===== */
-    * { margin: 0; padding: 0; box-sizing: border-box; }
-    body {
-      background-color: #f7f4eb;
-      background-image: radial-gradient(ellipse at 20% 50%, rgba(200,180,160,0.1) 0%, transparent 60%),
-                        radial-gradient(ellipse at 80% 20%, rgba(180,160,140,0.06) 0%, transparent 50%),
-                        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c8b8a8' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      font-family: 'Inter', 'Noto Serif SC', sans-serif;
-      color: #2c241c;
-      line-height: 1.6;
-      padding: 20px;
-      min-height: 100vh;
-    }
-    .container { max-width: 1100px; margin: 0 auto; padding: 0 20px; }
-
-    /* ===== 导航 ===== */
-    .navbar {
-      position: sticky;
-      top: 0;
-      z-index: 100;
-      background: rgba(247, 244, 235, 0.7);
-      backdrop-filter: blur(8px);
-      border-bottom: 1px solid rgba(200, 180, 160, 0.2);
-      padding: 16px 0;
-    }
-    .nav-container {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-    }
-    .logo {
-      font-family: 'Noto Serif SC', serif;
-      font-weight: 900;
-      font-size: 1.5rem;
-      color: #2c241c;
-      text-decoration: none;
-      letter-spacing: 1px;
-    }
-    .logo span { font-weight: 400; color: #7a6a5a; font-size: 0.9rem; margin-left: 4px; }
-    .nav-links {
-      list-style: none;
-      display: flex;
-      gap: 28px;
-    }
-    .nav-links a {
-      text-decoration: none;
-      color: #4a3f36;
-      font-weight: 500;
-      font-size: 0.95rem;
-      padding: 4px 0;
-      border-bottom: 2px solid transparent;
-      transition: 0.2s;
-      font-family: 'Noto Serif SC', serif;
-    }
-    .nav-links a:hover,
-    .nav-links a.active { border-bottom-color: #c43b3b; color: #1f1a16; }
-    .menu-toggle { display: none; flex-direction: column; gap: 4px; background: none; border: none; cursor: pointer; }
-    .menu-toggle span { width: 24px; height: 2px; background: #2c241c; }
-
-    /* ===== Hero ===== */
-    .hero {
-      padding: 60px 0 40px;
-    }
-    .hero-grid {
-      display: grid;
-      grid-template-columns: 180px 1fr;
-      gap: 50px;
-      align-items: center;
-    }
-    .avatar-box {
-      display: flex;
-      justify-content: center;
-    }
-    .avatar-ring {
-      width: 160px;
-      height: 160px;
-      border-radius: 50%;
-      border: 2px solid rgba(200,180,160,0.4);
-      padding: 6px;
-      background: #f7f4eb;
-    }
-    .avatar {
-      width: 100%;
-      height: 100%;
-      border-radius: 50%;
-      object-fit: cover;
-      background: #e0d6c8;
-    }
-    .hero-content h1 {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 2.8rem;
-      font-weight: 900;
-      line-height: 1.2;
-    }
-    .hero-content h1 span { color: #c43b3b; }
-    .hero-content .subtitle {
-      font-size: 1.2rem;
-      font-weight: 600;
-      color: #5a4c3e;
-      margin: 8px 0 4px;
-      letter-spacing: 2px;
-      font-family: 'Noto Serif SC', serif;
-    }
-    .hero-content .slogan {
-      font-size: 1.0rem;
-      font-weight: 400;
-      background: rgba(196, 59, 59, 0.06);
-      padding: 6px 18px;
-      border-radius: 30px;
-      display: inline-block;
-      border-left: 3px solid #c43b3b;
-      margin: 8px 0 16px;
-      color: #3d322a;
-    }
-    .hero-content p {
-      color: #4d4238;
-      max-width: 600px;
-      margin-bottom: 20px;
-    }
-    .stats {
-      display: flex;
-      gap: 40px;
-      margin: 24px 0 28px;
-    }
-    .stats div {
-      text-align: center;
-    }
-    .stats strong {
-      display: block;
-      font-size: 2.0rem;
-      font-weight: 700;
-      color: #c43b3b;
-      font-family: 'Inter', sans-serif;
-    }
-    .stats span {
-      font-size: 0.8rem;
-      color: #6b5f52;
-      letter-spacing: 1px;
-    }
-    .buttons { display: flex; gap: 16px; flex-wrap: wrap; }
-    .btn {
-      display: inline-block;
-      padding: 10px 32px;
-      border-radius: 40px;
-      text-decoration: none;
-      font-weight: 600;
-      transition: 0.2s;
-      border: 1px solid #c8b8a8;
-      background: transparent;
-      color: #2c241c;
-    }
-    .btn.primary { background: #2c241c; color: #f7f4eb; border-color: #2c241c; }
-    .btn.primary:hover { background: #c43b3b; border-color: #c43b3b; }
-    .btn:hover { transform: translateY(-2px); box-shadow: 0 8px 20px rgba(44,36,28,0.1); }
-
-    /* ===== 工作经历（时间轴卷轴） ===== */
-    .section-title {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 2rem;
-      font-weight: 700;
-      margin: 60px 0 30px;
-      position: relative;
-      padding-left: 20px;
-      border-left: 4px solid #c43b3b;
-    }
-    .timeline {
-      display: flex;
-      flex-direction: column;
-      gap: 40px;
-    }
-    .timeline-item {
-      display: grid;
-      grid-template-columns: 1fr 2fr;
-      gap: 30px;
-      padding: 20px 0;
-      border-bottom: 1px dashed rgba(200,180,160,0.3);
-      position: relative;
-    }
-    .timeline-item:last-child { border-bottom: none; }
-    .timeline-left .company {
-      font-weight: 700;
-      font-size: 1.2rem;
-      font-family: 'Noto Serif SC', serif;
-    }
-    .timeline-left .role {
-      font-size: 0.95rem;
-      color: #7a6a5a;
-      margin: 4px 0;
-    }
-    .timeline-left .date {
-      font-size: 0.85rem;
-      color: #c43b3b;
-      font-weight: 600;
-    }
-    .timeline-right ul {
-      list-style: none;
-      padding-left: 0;
-    }
-    .timeline-right li {
-      padding: 4px 0 4px 20px;
-      position: relative;
-      color: #3d322a;
-    }
-    .timeline-right li::before {
-      content: "•";
-      color: #c43b3b;
-      position: absolute;
-      left: 0;
-      font-weight: 700;
-    }
-    .timeline-right .highlight {
-      background: rgba(196,59,59,0.04);
-      padding: 2px 8px;
-      border-radius: 12px;
-      font-weight: 600;
-    }
-
-    /* ===== 个人优势（三列） ===== */
-    .advantage-grid {
-      display: grid;
-      grid-template-columns: repeat(3, 1fr);
-      gap: 30px;
-      margin: 30px 0 50px;
-    }
-    .advantage-card {
-      background: rgba(255,248,235,0.4);
-      padding: 20px 24px;
-      border-radius: 16px;
-      border: 1px solid rgba(200,180,160,0.2);
-      transition: 0.2s;
-    }
-    .advantage-card:hover { background: rgba(255,248,235,0.8); transform: translateY(-3px); }
-    .advantage-card h3 {
-      font-family: 'Noto Serif SC', serif;
-      font-size: 1.1rem;
-      margin-bottom: 6px;
-      color: #2c241c;
-    }
-    .advantage-card p {
-      color: #5a4c3e;
-      font-size: 0.9rem;
-    }
-
-    /* ===== 技能标签 ===== */
-    .skill-tags {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 12px;
-      margin: 20px 0 40px;
-    }
-    .skill-tag {
-      background: rgba(44,36,28,0.05);
-      padding: 4px 18px;
-      border-radius: 30px;
-      font-size: 0.85rem;
-      border: 1px solid rgba(200,180,160,0.2);
-    }
-    .skill-tag.important { background: rgba(196,59,59,0.08); border-color: rgba(196,59,59,0.2); }
-
-    /* ===== 页脚 ===== */
-    footer {
-      text-align: center;
-      padding: 30px 0 20px;
-      color: #8a7a6a;
-      font-size: 0.85rem;
-      border-top: 1px solid rgba(200,180,160,0.2);
-      margin-top: 40px;
-    }
-
-    /* ===== 响应式 ===== */
-    @media (max-width: 768px) {
-      .hero-grid { grid-template-columns: 1fr; text-align: center; gap: 20px; }
-      .stats { justify-content: center; gap: 20px; }
-      .timeline-item { grid-template-columns: 1fr; gap: 10px; }
-      .advantage-grid { grid-template-columns: 1fr 1fr; }
-      .nav-links { display: none; flex-direction: column; background: rgba(247,244,235,0.95); position: absolute; top: 70px; left: 0; width: 100%; padding: 20px; gap: 12px; }
-      .nav-links.open { display: flex; }
-      .menu-toggle { display: flex; }
-    }
-    @media (max-width: 500px) {
-      .advantage-grid { grid-template-columns: 1fr; }
-      .hero-content h1 { font-size: 2.0rem; }
-    }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>高帅航 | 短视频运营作品集</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="icon" href="assets/avatar/avatar.jpg">
 </head>
 <body>
-  <nav class="navbar">
-    <div class="container nav-container">
-      <a href="index.html" class="logo">GSH.<span>个人作品集</span></a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html" class="active">首页</a></li>
-        <li><a href="collection.html">案例</a></li>
-        <li><a href="personal-video.html">抖音</a></li>
-        <li><a href="design-works.html">美工</a></li>
-        <li><a href="resume/高帅航.pdf" target="_blank">简历</a></li>
-      </ul>
-      <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
-    </div>
-  </nav>
 
-  <main>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">GSH.<span>个人作品集</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html" class="active">首页</a></li>
+                <li><a href="collection.html">案例</a></li>
+                <li><a href="personal-video.html">抖音</a></li>
+                <li><a href="design-works.html">美工</a></li>
+                <li><a href="resume/高帅航.pdf" target="_blank">简历</a></li>
+            </ul>
+            <button class="menu-toggle"><span></span><span></span><span></span></button>
+        </div>
+    </nav>
+
     <section class="hero">
-      <div class="container hero-grid">
-        <div class="avatar-box">
-          <div class="avatar-ring"><img src="assets/avatar/avatar.jpg" class="avatar" alt="高帅航"></div>
+        <div class="container hero-grid">
+            <div class="avatar-box">
+                <div class="avatar-ring">
+                    <img src="assets/avatar/avatar.jpg" class="avatar" alt="高帅航">
+                </div>
+            </div>
+            <div class="hero-content">
+                <div class="tag">SHORT VIDEO OPERATION</div>
+                <h1>你好，我是 <span>高帅航</span></h1>
+                <h2>短视频运营 / 视频剪辑 / 电商美工</h2>
+                <p>专注短视频内容策划、账号运营、视频剪辑、电商视觉设计。通过内容策略、数据分析以及AI工具辅助创作，打造具有商业价值的视频作品。</p>
+                <div class="stats">
+                    <div><strong class="counter" data-target="30" data-unit="+">0</strong><span>爆款视频</span></div>
+                    <div><strong class="counter" data-target="2552" data-unit="万">0</strong><span>千川消耗</span></div>
+                    <div><strong class="counter" data-target="5500" data-unit="万">0</strong><span>成交额</span></div>
+                    <div><strong class="counter" data-target="2.15" data-unit="">0</strong><span>ROI</span></div>
+                </div>
+                <div class="buttons">
+                    <a href="collection.html" class="btn primary">查看案例</a>
+                    <a href="resume/高帅航.pdf" class="btn" target="_blank">下载简历</a>
+                </div>
+            </div>
         </div>
-        <div class="hero-content">
-          <h1>你好，我是 <span>高帅航</span></h1>
-          <div class="subtitle">短视频运营 · 视频剪辑 · 电商美工</div>
-          <div class="slogan">2年打造3500+素材库 · 驱动近5500万GMV · ROI 2.15</div>
-          <p>专注短视频内容策划、账号运营、视频剪辑、电商视觉设计。通过内容策略、数据分析及AI工具辅助，打造高商业价值的视频作品。</p>
-          <div class="stats">
-            <div><strong class="counter" data-target="5500" data-unit="万">0</strong><span>成交额</span></div>
-            <div><strong class="counter" data-target="2552" data-unit="万">0</strong><span>广告消耗</span></div>
-            <div><strong class="counter" data-target="30" data-unit="+">0</strong><span>爆款视频</span></div>
-            <div><strong class="counter" data-target="2.15" data-unit="">0</strong><span>ROI</span></div>
-          </div>
-          <div class="buttons">
-            <a href="collection.html" class="btn primary">查看案例</a>
-            <a href="resume/高帅航.pdf" class="btn" target="_blank">下载简历</a>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <!-- 个人优势 -->
-    <section class="container">
-      <h2 class="section-title">个人优势</h2>
-      <div class="advantage-grid">
-        <div class="advantage-card"><h3>📦 内容工业化</h3><p>2年搭建3500+条品牌素材库，支撑日均10+条视频产出，剪辑效率提升40%。</p></div>
-        <div class="advantage-card"><h3>📊 数据驱动爆款</h3><p>从点击率、完播率、转化流失倒推脚本，打造30+条爆款，单条消耗破500万。</p></div>
-        <div class="advantage-card"><h3>🎯 全链路营销</h3><p>剪辑+美工+建模多重技能，实现品牌视觉统一，减少跨部门沟通成本。</p></div>
-      </div>
-    </section>
-
-    <!-- 工作经历（时间轴） -->
-    <section class="container">
-      <h2 class="section-title">工作经历</h2>
-      <div class="timeline">
-        <div class="timeline-item">
-          <div class="timeline-left">
-            <div class="company">北京喜丽恒友科技有限公司</div>
-            <div class="role">视频剪辑 / 美工</div>
-            <div class="date">2024.06 – 2026.07</div>
-          </div>
-          <div class="timeline-right">
-            <ul>
-              <li><span class="highlight">核心成果：</span>独立负责“张笨仁”品牌，累计产出3500+条素材，年度广告消耗<span class="highlight">2552万元</span>，ROI <span class="highlight">2.15</span>，带动成交额<span class="highlight">近5500万元</span>。</li>
-              <li><span class="highlight">爆款方法论：</span>分析A3/A5人群，优化前3秒钩子与结尾转化，30+条爆款，单条达人视频获2.8万点赞，消耗破500万。</li>
-              <li><span class="highlight">视觉一体化：</span>完成包装、主图、详情页、直播间素材设计，确保品牌视觉高度统一。</li>
-              <li>视频类型：达人种草、街拍、工厂纪实、促销活动机制等。</li>
-            </ul>
-          </div>
+    <section class="advantages">
+        <div class="container">
+            <h2>个人优势</h2>
+            <div class="advantage-grid">
+                <div class="advantage-card"><h3>内容工业化</h3><p>2年搭建3500+条品牌素材库，支撑日均10+条视频产出，剪辑效率提升40%。</p></div>
+                <div class="advantage-card"><h3>数据驱动爆款</h3><p>从点击率、完播率、转化流失倒推脚本，打造30+条爆款，单条消耗破500万。</p></div>
+                <div class="advantage-card"><h3>全链路营销</h3><p>剪辑+美工+建模多重技能，实现品牌视觉统一，减少跨部门沟通成本。</p></div>
+            </div>
         </div>
-        <div class="timeline-item">
-          <div class="timeline-left">
-            <div class="company">福瑞智研（北京）科技有限公司</div>
-            <div class="role">视频剪辑（实习）</div>
-            <div class="date">2023.12 – 2024.02</div>
-          </div>
-          <div class="timeline-right">
-            <ul>
-              <li><span class="highlight">快速产出：</span>3个月内完成520条高质量信息流素材，支撑“效盛堂消痔凝胶”持续投放。</li>
-              <li><span class="highlight">竞品研究：</span>深度拆解头部爆款结构，掌握医疗健康类审核规范，素材通过率95%以上。</li>
-              <li>视频结构拆解：开头3秒（痛点/猎奇/冲突/品牌感/活动机制/实验）+ 产品卖点 + 用户期望 + 价格机制 + 引导直播间。</li>
-            </ul>
-          </div>
-        </div>
-      </div>
     </section>
 
-    <!-- 技能标签 -->
-    <section class="container">
-      <h2 class="section-title">专业技能</h2>
-      <div class="skill-tags">
-        <span class="skill-tag important">Premiere Pro</span>
-        <span class="skill-tag important">After Effects</span>
-        <span class="skill-tag">剪映专业版</span>
-        <span class="skill-tag">Blender</span>
-        <span class="skill-tag">Photoshop</span>
-        <span class="skill-tag">Illustrator</span>
-        <span class="skill-tag">即梦AI</span>
-        <span class="skill-tag">爆款拆解</span>
-        <span class="skill-tag important">数据复盘</span>
-        <span class="skill-tag">用户画像（A5）</span>
-        <span class="skill-tag">竞品分析</span>
-        <span class="skill-tag">电商营销</span>
-      </div>
-    </section>
-  </main>
+    <div class="flow-light"></div>
 
-  <footer>
-    © 2026 GSH Portfolio · 留白意境 · 雅士风
-  </footer>
-
-  <script>
-    // 移动端菜单
-    document.getElementById('menuToggle').addEventListener('click', function() {
-      document.getElementById('navLinks').classList.toggle('open');
-    });
-
-    // 数字滚动计数
-    const counters = document.querySelectorAll('.counter');
-    const speed = 80;
-    counters.forEach(counter => {
-      const updateCount = () => {
-        const target = parseFloat(counter.getAttribute('data-target'));
-        const unit = counter.getAttribute('data-unit') || '';
-        let current = parseFloat(counter.innerText) || 0;
-        const step = target / 60;
-        if (current < target) {
-          current = Math.min(current + step, target);
-          counter.innerText = current.toFixed(1) + unit;
-          setTimeout(updateCount, 20);
-        } else {
-          counter.innerText = target + unit;
-        }
-      };
-      updateCount();
-    });
-
-    // 滚动时导航背景加深
-    window.addEventListener('scroll', function() {
-      const nav = document.querySelector('.navbar');
-      if (window.scrollY > 20) {
-        nav.style.background = 'rgba(247,244,235,0.9)';
-      } else {
-        nav.style.background = 'rgba(247,244,235,0.7)';
-      }
-    });
-  </script>
+    <script src="js/main.js"></script>
 </body>
 </html>
