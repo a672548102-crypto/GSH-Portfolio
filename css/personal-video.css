@@ -1,20 +1,23 @@
 /*
-=====================================
+============================================================
 GSH Portfolio · personal-video.css
-宣纸雅士风 · 保留所有布局
-=====================================
+主题：暗夜鎏金 · 皮革（与首页统一）
+============================================================
 */
 
 :root {
-    --paper: #f7f4eb;
-    --ink: #2c241c;
-    --ink-light: #4a3f36;
-    --ink-muted: #7a6a5a;
-    --ink-faint: #b8a898;
-    --cinnabar: #c43b3b;
-    --cinnabar-light: rgba(196, 59, 59, 0.08);
-    --border-subtle: rgba(180, 160, 140, 0.20);
-    --card-bg: rgba(255, 248, 235, 0.40);
+    --bg-deep: #0d0805;
+    --text-primary: #f5ede4;
+    --text-secondary: #d4c8b8;
+    --text-muted: #a89480;
+    --text-faint: #7a6a5a;
+    --gold-mid: #c9a84c;
+    --gold-light: #e8d5a3;
+    --gold-gradient: linear-gradient(135deg, #c9a84c, #e8d5a3, #b8943a);
+    --glass-bg: rgba(44, 32, 24, 0.65);
+    --glass-border: rgba(201, 168, 76, 0.15);
+    --glass-shadow: rgba(0, 0, 0, 0.60);
+    --glass-blur: 24px;
     --font-serif: 'Noto Serif SC', 'Songti SC', serif;
 }
 
@@ -27,10 +30,10 @@ GSH Portfolio · personal-video.css
     font-size: 2.2rem;
     font-weight: 700;
     margin: 10px 0 4px;
-    color: var(--ink);
+    color: var(--text-primary);
 }
 .page-header p {
-    color: var(--ink-muted);
+    color: var(--text-muted);
     font-size: 0.95rem;
 }
 
@@ -42,33 +45,37 @@ GSH Portfolio · personal-video.css
 }
 
 .video-card {
-    background: var(--card-bg);
+    background: var(--glass-bg);
     border-radius: 20px;
     padding: 20px;
-    border: 1px solid var(--border-subtle);
-    backdrop-filter: blur(15px);
+    border: 1px solid var(--glass-border);
+    backdrop-filter: blur(var(--glass-blur));
+    -webkit-backdrop-filter: blur(var(--glass-blur));
     transition: .35s;
+    box-shadow: 0 8px 32px var(--glass-shadow);
 }
 .video-card:hover {
     transform: translateY(-8px);
-    border-color: var(--cinnabar-glow);
-    box-shadow: 0 20px 60px rgba(196, 59, 59, 0.04);
+    border-color: rgba(201, 168, 76, 0.25);
+    background: rgba(44, 32, 24, 0.80);
+    box-shadow: 0 20px 60px rgba(0, 0, 0, 0.40);
 }
 .video-card video {
     width: 100%;
     height: auto;
     display: block;
     border-radius: 14px;
-    background: #1a1410;
+    background: var(--bg-deep);
     object-fit: contain;
+    border: 1px solid var(--glass-border);
 }
 .video-card h3 {
     margin-top: 20px;
-    color: var(--ink);
+    color: var(--text-primary);
     font-family: var(--font-serif);
 }
 .video-card p {
-    color: var(--ink-muted);
+    color: var(--text-muted);
     margin-top: 10px;
     font-size: 14px;
 }
@@ -76,7 +83,8 @@ GSH Portfolio · personal-video.css
 footer {
     text-align: center;
     padding: 30px;
-    color: var(--ink-faint);
+    color: var(--text-faint);
+    border-top: 1px solid var(--glass-border);
 }
 
 @media (max-width: 768px) {
