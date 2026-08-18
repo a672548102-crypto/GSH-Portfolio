@@ -1,84 +1,85 @@
-/* ========================================
-   GSH Portfolio · personal-video.css
-   方案A：留白意境 · 雅士风
-======================================== */
+/*
+=====================================
+GSH Portfolio · personal-video.css
+宣纸雅士风 · 保留所有布局
+=====================================
+*/
 
 :root {
-  --paper: #f7f4eb;
-  --ink: #2c241c;
-  --ink-light: #4a3f36;
-  --ink-muted: #7a6a5a;
-  --ink-faint: #b8a898;
-  --cinnabar: #c43b3b;
-  --cinnabar-light: rgba(196, 59, 59, 0.08);
-  --border-subtle: rgba(180, 160, 140, 0.20);
-  --card-bg: rgba(255, 248, 235, 0.40);
-  --font-serif: 'Noto Serif SC', 'Songti SC', serif;
+    --paper: #f7f4eb;
+    --ink: #2c241c;
+    --ink-light: #4a3f36;
+    --ink-muted: #7a6a5a;
+    --ink-faint: #b8a898;
+    --cinnabar: #c43b3b;
+    --cinnabar-light: rgba(196, 59, 59, 0.08);
+    --border-subtle: rgba(180, 160, 140, 0.20);
+    --card-bg: rgba(255, 248, 235, 0.40);
+    --font-serif: 'Noto Serif SC', 'Songti SC', serif;
 }
 
 .page-header {
-  text-align: center;
-  padding: 30px 0 16px;
+    text-align: center;
+    padding: 30px 0 16px;
 }
 .page-header h1 {
-  font-family: var(--font-serif);
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin: 10px 0 4px;
-  color: var(--ink);
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 10px 0 4px;
+    color: var(--ink);
 }
 .page-header p {
-  color: var(--ink-muted);
-  font-size: 0.95rem;
+    color: var(--ink-muted);
+    font-size: 0.95rem;
 }
 
-/* 视频网格 · 竖屏卡片 */
 .video-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-  gap: 30px;
-  margin: 16px 0 40px;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 40px;
+    padding-bottom: 100px;
 }
 
 .video-card {
-  background: var(--card-bg);
-  border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid var(--border-subtle);
-  padding: 16px;
-  transition: 0.3s ease;
-  box-shadow: 0 2px 8px rgba(44, 36, 28, 0.02);
+    background: var(--card-bg);
+    border-radius: 20px;
+    padding: 20px;
+    border: 1px solid var(--border-subtle);
+    backdrop-filter: blur(15px);
+    transition: .35s;
 }
 .video-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(44, 36, 28, 0.06);
-  border-color: var(--cinnabar-glow);
+    transform: translateY(-8px);
+    border-color: var(--cinnabar-glow);
+    box-shadow: 0 20px 60px rgba(196, 59, 59, 0.04);
 }
 .video-card video {
-  width: 100%;
-  height: auto;
-  display: block;
-  border-radius: 14px;
-  background: #1a1410;
-  outline: none;
+    width: 100%;
+    height: auto;
+    display: block;
+    border-radius: 14px;
+    background: #1a1410;
+    object-fit: contain;
 }
 .video-card h3 {
-  font-family: var(--font-serif);
-  font-size: 1.0rem;
-  margin-top: 14px;
-  color: var(--ink);
+    margin-top: 20px;
+    color: var(--ink);
+    font-family: var(--font-serif);
 }
 .video-card p {
-  color: var(--ink-muted);
-  font-size: 0.82rem;
-  margin-top: 4px;
+    color: var(--ink-muted);
+    margin-top: 10px;
+    font-size: 14px;
 }
 
-/* 响应式 */
-@media (max-width: 768px) {
-  .page-header h1 { font-size: 1.8rem; }
-  .video-grid { grid-template-columns: 1fr 1fr; gap: 18px; }
+footer {
+    text-align: center;
+    padding: 30px;
+    color: var(--ink-faint);
 }
-@media (max-width: 500px) {
-  .video-grid { grid-template-columns: 1fr; }
+
+@media (max-width: 768px) {
+    .video-grid { grid-template-columns: 1fr; gap: 24px; }
+    .page-header h1 { font-size: 1.8rem; }
 }
