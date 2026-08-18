@@ -1,165 +1,228 @@
-/* ========================================
-   GSH Portfolio · design-works.css
-   方案A：留白意境 · 雅士风
-======================================== */
+/*
+=====================================
+GSH Portfolio · design-works.css
+宣纸雅士风 · 保留所有布局
+=====================================
+*/
 
 :root {
-  --paper: #f7f4eb;
-  --ink: #2c241c;
-  --ink-light: #4a3f36;
-  --ink-muted: #7a6a5a;
-  --ink-faint: #b8a898;
-  --cinnabar: #c43b3b;
-  --cinnabar-light: rgba(196, 59, 59, 0.08);
-  --border-subtle: rgba(180, 160, 140, 0.20);
-  --card-bg: rgba(255, 248, 235, 0.40);
-  --font-serif: 'Noto Serif SC', 'Songti SC', serif;
+    --paper: #f7f4eb;
+    --ink: #2c241c;
+    --ink-light: #4a3f36;
+    --ink-muted: #7a6a5a;
+    --ink-faint: #b8a898;
+    --cinnabar: #c43b3b;
+    --cinnabar-light: rgba(196, 59, 59, 0.08);
+    --border-subtle: rgba(180, 160, 140, 0.20);
+    --card-bg: rgba(255, 248, 235, 0.40);
+    --font-serif: 'Noto Serif SC', 'Songti SC', serif;
 }
 
 .page-header {
-  text-align: center;
-  padding: 30px 0 16px;
+    text-align: center;
+    padding: 30px 0 16px;
 }
 .page-header h1 {
-  font-family: var(--font-serif);
-  font-size: 2.2rem;
-  font-weight: 700;
-  margin: 10px 0 4px;
-  color: var(--ink);
+    font-family: var(--font-serif);
+    font-size: 2.2rem;
+    font-weight: 700;
+    margin: 10px 0 4px;
+    color: var(--ink);
 }
 .page-header p {
-  color: var(--ink-muted);
-  font-size: 0.95rem;
+    color: var(--ink-muted);
+    font-size: 0.95rem;
 }
 
-/* 设计网格 */
 .design-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
-  gap: 28px;
-  margin: 20px 0 40px;
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 30px;
+    padding-bottom: 100px;
 }
 
 .design-card {
-  background: var(--card-bg);
-  border-radius: 20px;
-  overflow: hidden;
-  border: 1px solid var(--border-subtle);
-  transition: 0.3s ease;
-  cursor: pointer;
-  box-shadow: 0 2px 8px rgba(44, 36, 28, 0.02);
+    background: var(--card-bg);
+    border-radius: 22px;
+    overflow: hidden;
+    border: 1px solid var(--border-subtle);
+    transition: .4s;
+    cursor: pointer;
+    backdrop-filter: blur(15px);
 }
 .design-card:hover {
-  transform: translateY(-6px);
-  box-shadow: 0 12px 30px rgba(44, 36, 28, 0.06);
-  border-color: var(--cinnabar-glow);
-}
-.design-card .thumb {
-  width: 100%;
-  height: 190px;
-  background: #e0d6c8;
-  object-fit: cover;
-  display: block;
-}
-.design-card .info {
-  padding: 14px 18px;
-}
-.design-card .info h3 {
-  font-family: var(--font-serif);
-  font-size: 1.05rem;
-  color: var(--ink);
-}
-.design-card .info p {
-  font-size: 0.82rem;
-  color: var(--ink-muted);
-  margin-top: 2px;
+    transform: translateY(-10px);
+    border-color: var(--cinnabar-glow);
+    box-shadow: 0 20px 60px rgba(196, 59, 59, 0.04);
 }
 
-/* 画廊模态框 · 宣纸卷轴 */
+.design-card .cover-box {
+    position: relative;
+    overflow: hidden;
+    aspect-ratio: 4/3;
+    background: var(--paper);
+}
+.design-card .cover-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+    transition: .5s;
+}
+.design-card:hover .cover-box img { transform: scale(1.06); }
+
+.design-type {
+    position: absolute;
+    top: 14px;
+    left: 14px;
+    padding: 4px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--paper);
+    background: var(--cinnabar);
+    backdrop-filter: blur(5px);
+    z-index: 2;
+}
+.design-type.type-product { background: var(--ink-muted); }
+.design-type.type-giftbox { background: var(--cinnabar); }
+.design-type.type-packaging { background: var(--ink); }
+.design-type.type-poster { background: var(--ink-muted); }
+.design-type.type-other { background: var(--ink-faint); color: var(--ink); }
+
+.view-all-badge {
+    position: absolute;
+    bottom: 14px;
+    right: 14px;
+    padding: 6px 14px;
+    border-radius: 20px;
+    font-size: 11px;
+    font-weight: 600;
+    color: var(--paper);
+    background: rgba(44, 36, 28, 0.50);
+    backdrop-filter: blur(5px);
+    z-index: 2;
+}
+
+.design-info { padding: 20px; }
+.design-info h3 {
+    font-size: 17px;
+    font-weight: 700;
+    color: var(--ink);
+    margin-bottom: 6px;
+    font-family: var(--font-serif);
+}
+.design-info p { color: var(--ink-muted); font-size: 13px; line-height: 1.7; }
+.design-info .image-count {
+    display: inline-block;
+    margin-top: 10px;
+    font-size: 12px;
+    color: var(--ink-muted);
+}
+
+/* 模态框 */
 .gallery-modal {
-  position: fixed;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
-  background: rgba(44, 36, 28, 0.60);
-  backdrop-filter: blur(6px);
-  display: none;
-  justify-content: center;
-  align-items: center;
-  z-index: 999;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: 9999;
+    display: none;
+    align-items: center;
+    justify-content: center;
+    padding: 30px;
 }
+.gallery-modal.active { display: flex; }
+
 .gallery-overlay {
-  position: absolute;
-  top: 0;
-  left: 0;
-  width: 100%;
-  height: 100%;
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: rgba(44, 36, 28, 0.70);
+    backdrop-filter: blur(20px);
 }
+
 .gallery-box {
-  position: relative;
-  background: var(--paper);
-  border-radius: 24px;
-  padding: 28px;
-  max-width: 900px;
-  width: 95%;
-  max-height: 90vh;
-  overflow-y: auto;
-  box-shadow: 0 30px 60px rgba(44, 36, 28, 0.20);
+    position: relative;
+    width: 100%;
+    max-width: 1000px;
+    max-height: 90vh;
+    background: var(--paper);
+    border-radius: 24px;
+    padding: 30px;
+    overflow-y: auto;
+    box-shadow: 0 40px 100px rgba(44, 36, 28, 0.20);
+    z-index: 1;
 }
+
 .gallery-close {
-  position: sticky;
-  float: right;
-  top: 8px;
-  background: var(--cinnabar);
-  color: #fff;
-  border: none;
-  width: 36px;
-  height: 36px;
-  border-radius: 50%;
-  font-size: 1.6rem;
-  cursor: pointer;
-  z-index: 10;
-  transition: 0.2s;
+    position: sticky;
+    top: 0;
+    float: right;
+    width: 44px;
+    height: 44px;
+    border-radius: 50%;
+    background: var(--cinnabar);
+    border: none;
+    color: var(--paper);
+    font-size: 28px;
+    cursor: pointer;
+    transition: .3s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-bottom: 16px;
+    z-index: 2;
 }
-.gallery-close:hover {
-  transform: rotate(90deg);
-}
-.gallery-header {
-  margin-bottom: 18px;
-}
+.gallery-close:hover { transform: rotate(90deg); }
+
+.gallery-header { margin-bottom: 24px; padding-right: 60px; }
 .gallery-header h2 {
-  font-family: var(--font-serif);
-  color: var(--ink);
+    font-size: 28px;
+    color: var(--ink);
+    margin-bottom: 6px;
+    font-family: var(--font-serif);
 }
-.gallery-header p {
-  color: var(--ink-muted);
-  font-size: 0.9rem;
-}
+.gallery-header p { color: var(--ink-muted); font-size: 15px; }
+
 .gallery-grid {
-  display: grid;
-  grid-template-columns: repeat(auto-fill, minmax(140px, 1fr));
-  gap: 14px;
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+    gap: 16px;
 }
-.gallery-grid img {
-  width: 100%;
-  height: auto;
-  border-radius: 10px;
-  border: 1px solid var(--border-subtle);
-  background: #e0d6c8;
+.gallery-grid .gallery-item {
+    position: relative;
+    aspect-ratio: 4/3;
+    border-radius: 12px;
+    overflow: hidden;
+    background: var(--paper);
+    border: 1px solid var(--border-subtle);
+    transition: .3s;
 }
+.gallery-grid .gallery-item:hover { transform: scale(1.02); }
+.gallery-grid .gallery-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
 .gallery-footer {
-  margin-top: 16px;
-  text-align: right;
-  color: var(--ink-muted);
-  font-size: 0.82rem;
+    margin-top: 20px;
+    padding-top: 16px;
+    border-top: 1px solid var(--border-subtle);
+    text-align: center;
+    color: var(--ink-muted);
+    font-size: 14px;
 }
 
 @media (max-width: 768px) {
-  .page-header h1 { font-size: 1.8rem; }
-  .design-grid { grid-template-columns: 1fr 1fr; gap: 16px; }
-  .gallery-box { padding: 18px; }
-}
-@media (max-width: 500px) {
-  .design-grid { grid-template-columns: 1fr; }
+    .design-grid { grid-template-columns: 1fr; }
+    .page-header h1 { font-size: 1.8rem; }
+    .gallery-box { padding: 18px; }
+    .gallery-header h2 { font-size: 22px; }
+    .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
 }
