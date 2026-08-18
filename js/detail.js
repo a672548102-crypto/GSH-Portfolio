@@ -1,8 +1,8 @@
 /*
 ============================================================
 GSH Portfolio · detail.js
-修复：图片路径映射到 assets/charts/
-兼容 analysis 对象 + 直接字段 两种格式
+纯目录版：图片路径完全由 id 驱动
+assets/charts/data-01.png、ctr-01.png、loss-01.png
 ============================================================
 */
 
@@ -10,7 +10,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const caseId = urlParams.get('id') || '01';
 
 // ===============================
-// 加载案例数据
+// 加载案例数据（只取文字信息）
 // ===============================
 
 fetch('assets/data/cases.json')
@@ -31,19 +31,6 @@ fetch('assets/data/cases.json')
         document.querySelector('.detail-header h1').textContent = '加载失败';
         document.getElementById('projectInfo').textContent = '数据加载失败，请检查 assets/data/cases.json';
     });
-
-// ===============================
-// 工具：修正图片路径
-// 将 assets/data/ 或 assets/analysis/ 替换为 assets/charts/
-// ===============================
-
-function fixImagePath(path) {
-    if (!path) return '';
-    // 如果已经是 charts 路径，直接返回
-    if (path.includes('assets/charts/')) return path;
-    // 替换 data 或 analysis 为 charts
-    return path.replace(/assets\/(data|analysis)\//, 'assets/charts/');
-}
 
 // ===============================
 // 渲染详情
@@ -87,31 +74,17 @@ function renderDetail(item) {
     }
 
     // ============================================================
-    // 🎯 核心修复：提取图片路径并修正
+    // 🎯 纯目录版：图片路径完全由 id 驱动
+    // case id "01" → assets/charts/data-01.png
+    // case id "01" → assets/charts/ctr-01.png
+    // case id "01" → assets/charts/loss-01.png
     // ============================================================
 
-    let dataImg = '';
-    let ctrImg = '';
-    let lossImg = '';
+    const paddedId = String(caseId).padStart(2, '0');
 
-    // 格式1：analysis 对象（第1-10条、第31-34条）
-    if (item.analysis && typeof item.analysis === 'object') {
-        dataImg = fixImagePath(item.analysis.data || '');
-        ctrImg = fixImagePath(item.analysis.ctr || '');
-        lossImg = fixImagePath(item.analysis.loss || '');
-    }
-
-    // 格式2：直接字段（第11-30条）
-    if (!dataImg && item.dataImage) dataImg = fixImagePath(item.dataImage);
-    if (!ctrImg && item.ctrImage) ctrImg = fixImagePath(item.ctrImage);
-    if (!lossImg && item.lossImage) lossImg = fixImagePath(item.lossImage);
-
-    // 兜底：如果还没有，尝试从 analysis 里再捞一次
-    if (!dataImg && item.analysis) {
-        dataImg = fixImagePath(item.analysis.data || item.analysis.dataImage || '');
-        ctrImg = fixImagePath(item.analysis.ctr || item.analysis.ctrImage || '');
-        lossImg = fixImagePath(item.analysis.loss || item.analysis.lossImage || '');
-    }
+    const dataImg = `assets/charts/data-${paddedId}.png`;
+    const ctrImg = `assets/charts/ctr-${paddedId}.png`;
+    const lossImg = `assets/charts/loss-${paddedId}.png`;
 
     // ============================================================
     // 渲染分析图
@@ -121,56 +94,56 @@ function renderDetail(item) {
     const ctrEl = document.getElementById('ctrImage');
     const lossEl = document.getElementById('lossImage');
 
-    // 辅助函数：设置图片或隐藏容器
-    function setImage(el, src, containerSelector) {
+    // 辅助：设置图片
+    function setImage(el, src, label) {
         const container = el?.closest('.chart-box') || el?.parentElement;
-        if (src && src.trim() !== '') {
+        if (el) {
             el.src = src;
             el.style.display = 'block';
-            if (container) container.style.display = 'block';
-            // 显示整个 analysis-card
-            const card = container?.closest('.analysis-card');
+            el.alt = label;
+        }
+        if (container) {
+            container.style.display = 'block';
+            // 显示父级 analysis-card
+            const card = container.closest('.analysis-card');
             if (card) card.style.display = 'block';
-            return true;
-        } else {
-            if (el) el.style.display = 'none';
-            if (container) container.style.display = 'none';
-            const card = container?.closest('.analysis-card');
-            if (card) card.style.display = 'none';
-            return false;
         }
     }
 
-    const hasData = setImage(dataEl, dataImg);
-    const hasCtr = setImage(ctrEl, ctrImg);
-    const hasLoss = setImage(lossEl, lossImg);
+    // 直接设置三张图（不判断是否存在，让浏览器自然加载）
+    setImage(dataEl, dataImg, '投放数据');
+    setImage(ctrEl, ctrImg, '点击率分析');
+    setImage(lossEl, lossImg, '用户流失分析');
 
-    // 如果所有图都没有，显示友好的提示
-    if (!hasData && !hasCtr && !hasLoss) {
-        const firstCard = document.querySelector('.analysis-card');
-        if (firstCard) {
-            firstCard.style.display = 'block';
-            const chartBox = firstCard.querySelector('.chart-box');
-            if (chartBox) {
-                chartBox.style.display = 'block';
-                chartBox.innerHTML = `
-                    <div style="display:flex;align-items:center;justify-content:center;height:100%;color:#7a6a5a;padding:40px;text-align:center;">
-                        <div>
-                            <p style="font-size:24px;margin-bottom:12px;">📊</p>
-                            <p>该案例暂无分析数据截图</p>
-                            <p style="font-size:12px;color:#5a4a3a;">请将图片放在 assets/charts/ 目录下</p>
+    // 如果图片加载失败，显示占位提示
+    [dataEl, ctrEl, lossEl].forEach((el, index) => {
+        if (el) {
+            el.onerror = function() {
+                this.style.display = 'none';
+                const container = this.closest('.chart-box') || this.parentElement;
+                if (container) {
+                    container.innerHTML = `
+                        <div style="display:flex;align-items:center;justify-content:center;height:100%;color:#7a6a5a;padding:40px;text-align:center;">
+                            <div>
+                                <p style="font-size:20px;margin-bottom:8px;">🖼️</p>
+                                <p>图片加载失败</p>
+                                <p style="font-size:12px;color:#5a4a3a;">请确认 assets/charts/ 目录下存在对应图片</p>
+                            </div>
                         </div>
-                    </div>
-                `;
-            }
+                    `;
+                    container.style.display = 'block';
+                    const card = container.closest('.analysis-card');
+                    if (card) card.style.display = 'block';
+                }
+            };
         }
-    }
+    });
 
-    // 控制台输出调试信息
-    console.log('🔍 案例ID:', caseId);
-    console.log('📊 数据图:', dataImg || '❌ 无');
-    console.log('📈 点击率图:', ctrImg || '❌ 无');
-    console.log('📉 流失量图:', lossImg || '❌ 无');
+    // 控制台输出（方便排查）
+    console.log('🔍 案例ID:', paddedId);
+    console.log('📊 数据图:', dataImg);
+    console.log('📈 点击率图:', ctrImg);
+    console.log('📉 流失量图:', lossImg);
 }
 
 // ===============================
