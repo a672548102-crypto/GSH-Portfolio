@@ -1,199 +1,65 @@
 <!DOCTYPE html>
 <html lang="zh-CN">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>项目案例集 | 高帅航</title>
-  <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
-  <style>
-    /* ===== 与 index 相同的基础样式，此处精简重复部分 ===== */
-    * { margin:0; padding:0; box-sizing:border-box; }
-    body {
-      background-color: #f7f4eb;
-      background-image: radial-gradient(ellipse at 20% 50%, rgba(200,180,160,0.1) 0%, transparent 60%),
-                        radial-gradient(ellipse at 80% 20%, rgba(180,160,140,0.06) 0%, transparent 50%),
-                        url("data:image/svg+xml,%3Csvg width='60' height='60' viewBox='0 0 60 60' xmlns='http://www.w3.org/2000/svg'%3E%3Cg fill='none' fill-rule='evenodd'%3E%3Cg fill='%23c8b8a8' fill-opacity='0.08'%3E%3Cpath d='M36 34v-4h-2v4h-4v2h4v4h2v-4h4v-2h-4zm0-30V0h-2v4h-4v2h4v4h2V6h4V4h-4zM6 34v-4H4v4H0v2h4v4h2v-4h4v-2H6zM6 4V0H4v4H0v2h4v4h2V6h4V4H6z'/%3E%3C/g%3E%3C/g%3E%3C/svg%3E");
-      font-family: 'Inter', 'Noto Serif SC', sans-serif;
-      color: #2c241c;
-      line-height: 1.6;
-      padding: 20px;
-      min-height: 100vh;
-    }
-    .container { max-width: 1100px; margin:0 auto; padding:0 20px; }
-    /* 导航（同index，略） */
-    .navbar { position:sticky; top:0; z-index:100; background:rgba(247,244,235,0.7); backdrop-filter:blur(8px); border-bottom:1px solid rgba(200,180,160,0.2); padding:16px 0; }
-    .nav-container { display:flex; justify-content:space-between; align-items:center; }
-    .logo { font-family:'Noto Serif SC',serif; font-weight:900; font-size:1.5rem; color:#2c241c; text-decoration:none; }
-    .logo span { font-weight:400; color:#7a6a5a; font-size:0.9rem; }
-    .nav-links { list-style:none; display:flex; gap:28px; }
-    .nav-links a { text-decoration:none; color:#4a3f36; font-weight:500; font-size:0.95rem; padding:4px 0; border-bottom:2px solid transparent; transition:0.2s; font-family:'Noto Serif SC',serif; }
-    .nav-links a:hover, .nav-links a.active { border-bottom-color:#c43b3b; color:#1f1a16; }
-    .menu-toggle { display:none; flex-direction:column; gap:4px; background:none; border:none; cursor:pointer; }
-    .menu-toggle span { width:24px; height:2px; background:#2c241c; }
-    @media (max-width:768px) { .nav-links { display:none; flex-direction:column; background:rgba(247,244,235,0.95); position:absolute; top:70px; left:0; width:100%; padding:20px; gap:12px; } .nav-links.open { display:flex; } .menu-toggle { display:flex; } }
-
-    /* 页面头部 */
-    .page-header { padding:40px 0 20px; text-align:center; }
-    .tag { display:inline-block; background:rgba(196,59,59,0.08); color:#c43b3b; font-size:0.7rem; letter-spacing:2px; padding:4px 16px; border-radius:20px; font-weight:600; }
-    .page-header h1 { font-family:'Noto Serif SC',serif; font-size:2.4rem; font-weight:700; margin:12px 0 6px; }
-    .page-header p { color:#5a4c3e; }
-
-    /* 筛选按钮 */
-    .filter-box { display:flex; flex-wrap:wrap; justify-content:center; gap:8px; margin:20px 0 30px; }
-    .filter { padding:6px 18px; border-radius:30px; border:1px solid rgba(200,180,160,0.3); background:transparent; color:#4d4238; cursor:pointer; font-size:0.85rem; transition:0.2s; font-family:'Noto Serif SC',serif; }
-    .filter.active, .filter:hover { background:#2c241c; color:#f7f4eb; border-color:#2c241c; }
-
-    /* 案例网格 */
-    .case-grid { display:grid; grid-template-columns:repeat(auto-fill, minmax(280px,1fr)); gap:30px; margin:20px 0; }
-    .case-card {
-      background:rgba(255,248,235,0.5);
-      border-radius:20px;
-      overflow:hidden;
-      border:1px solid rgba(200,180,160,0.15);
-      transition:0.3s;
-      cursor:pointer;
-      box-shadow:0 4px 12px rgba(44,36,28,0.02);
-    }
-    .case-card:hover { transform:translateY(-6px); box-shadow:0 12px 30px rgba(44,36,28,0.08); border-color:rgba(196,59,59,0.2); }
-    .case-card .thumb { width:100%; height:180px; background:#d9d0c4; object-fit:cover; display:block; }
-    .case-card .info { padding:16px 20px; }
-    .case-card .info h3 { font-family:'Noto Serif SC',serif; font-size:1.1rem; margin-bottom:4px; }
-    .case-card .info .meta { font-size:0.8rem; color:#7a6a5a; display:flex; justify-content:space-between; }
-    .case-card .info .tag-label { background:rgba(196,59,59,0.06); padding:2px 12px; border-radius:12px; color:#c43b3b; font-size:0.7rem; }
-
-    /* 视频弹窗 */
-    .video-modal { position:fixed; top:0; left:0; width:100%; height:100%; background:rgba(44,36,28,0.6); backdrop-filter:blur(4px); display:none; justify-content:center; align-items:center; z-index:999; }
-    .video-box { position:relative; background:#f7f4eb; border-radius:24px; padding:20px; max-width:800px; width:95%; box-shadow:0 30px 60px rgba(0,0,0,0.3); }
-    .video-box .close-btn { position:absolute; top:-12px; right:-12px; background:#c43b3b; color:white; border:none; width:36px; height:36px; border-radius:50%; font-size:1.4rem; cursor:pointer; }
-    .video-box video { width:100%; border-radius:12px; outline:none; }
-
-    footer { text-align:center; padding:30px 0 20px; color:#8a7a6a; font-size:0.85rem; border-top:1px solid rgba(200,180,160,0.2); margin-top:40px; }
-  </style>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>项目案例集 | 高帅航</title>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Serif+SC:wght@400;600;700;900&family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="css/style.css">
+    <link rel="stylesheet" href="css/collection.css">
 </head>
 <body>
-  <nav class="navbar">
-    <div class="container nav-container">
-      <a href="index.html" class="logo">GSH.<span>个人作品集</span></a>
-      <ul class="nav-links" id="navLinks">
-        <li><a href="index.html">首页</a></li>
-        <li><a href="collection.html" class="active">案例</a></li>
-        <li><a href="personal-video.html">抖音</a></li>
-        <li><a href="design-works.html">美工</a></li>
-        <li><a href="resume/高帅航.pdf" target="_blank">简历</a></li>
-      </ul>
-      <button class="menu-toggle" id="menuToggle"><span></span><span></span><span></span></button>
-    </div>
-  </nav>
 
-  <section class="page-header">
-    <div class="container">
-      <div class="tag">MY PROJECTS</div>
-      <h1>项目案例集</h1>
-      <p>30个爆款视频 · 点击卡片观看</p>
-      <div class="filter-box" id="filterBox">
-        <button class="filter active" data-filter="all">全部</button>
-        <button class="filter" data-filter="达人">达人</button>
-        <button class="filter" data-filter="厂家">厂家</button>
-        <button class="filter" data-filter="口播">口播</button>
-        <button class="filter" data-filter="剧情">剧情</button>
-        <button class="filter" data-filter="混剪">混剪</button>
-        <button class="filter" data-filter="建模">建模</button>
-        <button class="filter" data-filter="短剧">短剧</button>
-        <button class="filter" data-filter="比赛">比赛</button>
-        <button class="filter" data-filter="动画">动画</button>
-      </div>
-    </div>
-  </section>
-
-  <section class="container">
-    <div class="case-grid" id="caseGrid"></div>
-  </section>
-
-  <!-- 视频弹窗 -->
-  <div class="video-modal" id="videoModal">
-    <div class="video-box">
-      <button class="close-btn" id="closeBtn">×</button>
-      <video id="player" controls playsinline preload="metadata"></video>
-    </div>
-  </div>
-
-  <footer>© 2026 GSH Portfolio · 留白意境 · 雅士风</footer>
-
-  <script>
-    // 移动端菜单
-    document.getElementById('menuToggle').addEventListener('click', function() {
-      document.getElementById('navLinks').classList.toggle('open');
-    });
-
-    // 模拟案例数据（30+条，仅展示部分）
-    const caseData = [
-      { id:1, title:'达人种草 · 月牙美仁', category:'达人', views:'120w', likes:'2.8w', video:'assets/videos/demo1.mp4', thumb:'assets/thumb/thumb1.jpg' },
-      { id:2, title:'工厂纪实 · 张笨仁生产', category:'厂家', views:'85w', likes:'1.2w', video:'assets/videos/demo2.mp4', thumb:'assets/thumb/thumb2.jpg' },
-      { id:3, title:'品牌感口播 · 新包装', category:'口播', views:'60w', likes:'0.9w', video:'assets/videos/demo3.mp4', thumb:'assets/thumb/thumb3.jpg' },
-      { id:4, title:'剧情短剧 · 办公室日常', category:'剧情', views:'200w', likes:'3.5w', video:'assets/videos/demo4.mp4', thumb:'assets/thumb/thumb4.jpg' },
-      { id:5, title:'混剪 · 品牌年度回顾', category:'混剪', views:'45w', likes:'0.6w', video:'assets/videos/demo5.mp4', thumb:'assets/thumb/thumb5.jpg' },
-      { id:6, title:'3D建模 · 毕业设计', category:'建模', views:'15w', likes:'0.3w', video:'assets/videos/demo6.mp4', thumb:'assets/thumb/thumb6.jpg' },
-      { id:7, title:'短剧 · 校园故事', category:'短剧', views:'30w', likes:'0.7w', video:'assets/videos/demo7.mp4', thumb:'assets/thumb/thumb7.jpg' },
-      { id:8, title:'比赛作品 · 《神寝》', category:'比赛', views:'50w', likes:'1.1w', video:'assets/videos/demo8.mp4', thumb:'assets/thumb/thumb8.jpg' },
-      { id:9, title:'动画 · Ikun', category:'动画', views:'22w', likes:'0.4w', video:'assets/videos/demo9.mp4', thumb:'assets/thumb/thumb9.jpg' },
-      // 更多...
-    ];
-    // 生成更多（模拟30+）
-    for(let i=10; i<=30; i++) {
-      caseData.push({ id:i, title:`爆款视频 #${i}`, category:['达人','厂家','口播','混剪'][i%4], views:`${50+i}w`, likes:`${(i*0.3).toFixed(1)}w`, video:'assets/videos/demo.mp4', thumb:'assets/thumb/thumb.jpg' });
-    }
-
-    let currentFilter = 'all';
-    const grid = document.getElementById('caseGrid');
-    const modal = document.getElementById('videoModal');
-    const player = document.getElementById('player');
-    const closeBtn = document.getElementById('closeBtn');
-
-    function renderCards(filter) {
-      const filtered = filter === 'all' ? caseData : caseData.filter(c => c.category === filter);
-      grid.innerHTML = filtered.map(item => `
-        <div class="case-card" data-id="${item.id}">
-          <img src="${item.thumb}" class="thumb" alt="${item.title}" onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22280%22 height=%22180%22%3E%3Crect fill=%22%23d9d0c4%22 width=%22280%22 height=%22180%22/%3E%3Ctext x=%2250%25%22 y=%2250%25%22 text-anchor=%22middle%22 dy=%22.3em%22 fill=%22%237a6a5a%22 font-size=%2216%22%3E视频封面%3C/text%3E%3C/svg%3E'">
-          <div class="info">
-            <h3>${item.title}</h3>
-            <div class="meta"><span>👁️ ${item.views}</span><span>❤️ ${item.likes}</span><span class="tag-label">${item.category}</span></div>
-          </div>
+    <nav class="navbar">
+        <div class="container nav-container">
+            <a href="index.html" class="logo">GSH.<span>个人作品集</span></a>
+            <ul class="nav-links">
+                <li><a href="index.html">首页</a></li>
+                <li><a href="collection.html" class="active">案例</a></li>
+                <li><a href="personal-video.html">抖音</a></li>
+                <li><a href="design-works.html">美工</a></li>
+                <li><a href="resume/高帅航.pdf" target="_blank">简历</a></li>
+            </ul>
+            <button class="menu-toggle"><span></span><span></span><span></span></button>
         </div>
-      `).join('');
+    </nav>
 
-      // 点击卡片播放（模拟）
-      document.querySelectorAll('.case-card').forEach(card => {
-        card.addEventListener('click', function() {
-          const id = parseInt(this.dataset.id);
-          const data = caseData.find(c => c.id === id);
-          if (data) {
-            player.src = data.video || 'assets/videos/demo.mp4';
-            modal.style.display = 'flex';
-            player.play().catch(()=>{});
-          }
-        });
-      });
-    }
+    <section class="page-header">
+        <div class="container">
+            <div class="tag">MY PROJECTS</div>
+            <h1>项目案例集</h1>
+            <p>30个爆款视频供您观看</p>
+            <div class="filter-box">
+                <button class="filter active" data-filter="all">全部</button>
+                <button class="filter" data-filter="达人">达人</button>
+                <button class="filter" data-filter="厂家">厂家</button>
+                <button class="filter" data-filter="口播">口播</button>
+                <button class="filter" data-filter="剧情">剧情</button>
+                <button class="filter" data-filter="混剪">混剪</button>
+                <button class="filter" data-filter="建模">建模</button>
+                <button class="filter" data-filter="短剧">短剧</button>
+                <button class="filter" data-filter="比赛">比赛</button>
+                <button class="filter" data-filter="动画">动画</button>
+            </div>
+        </div>
+    </section>
 
-    renderCards('all');
+    <section class="collection">
+        <div class="container">
+            <div class="case-grid" id="caseGrid"></div>
+        </div>
+    </section>
 
-    // 筛选按钮
-    document.querySelectorAll('.filter').forEach(btn => {
-      btn.addEventListener('click', function() {
-        document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
-        this.classList.add('active');
-        currentFilter = this.dataset.filter;
-        renderCards(currentFilter);
-      });
-    });
+    <div class="video-modal" id="videoModal">
+        <div class="video-box">
+            <button class="close-btn" id="closeBtn">×</button>
+            <video id="player" controls playsinline preload="metadata"></video>
+        </div>
+    </div>
 
-    closeBtn.addEventListener('click', function() {
-      modal.style.display = 'none';
-      player.pause();
-    });
-    modal.addEventListener('click', function(e) {
-      if (e.target === modal) { modal.style.display = 'none'; player.pause(); }
-    });
-  </script>
+    <div class="flow-light"></div>
+
+    <script src="js/main.js"></script>
+    <script src="js/collection.js"></script>
 </body>
 </html>
