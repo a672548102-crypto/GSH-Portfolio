@@ -1,7 +1,7 @@
 /*
 =====================================
 GSH Portfolio · detail.js
-修复：兼容 analysis 对象 + 直接字段 两种格式
+兼容 analysis 对象 + 直接字段 两种格式
 路径完全匹配你的目录结构
 =====================================
 */
@@ -62,7 +62,7 @@ function renderDetail(item) {
         douyinLink.href = '#';
     }
 
-    // 项目介绍（展示 role）
+    // 项目介绍
     const info = document.getElementById('projectInfo');
     if (item.role) {
         info.textContent = item.role;
@@ -76,12 +76,10 @@ function renderDetail(item) {
     let lossImg = '';
 
     if (item.analysis && typeof item.analysis === 'object') {
-        // 格式1：analysis 对象 (第1-10条, 第31-34条)
         dataImg = item.analysis.data || '';
         ctrImg = item.analysis.ctr || '';
         lossImg = item.analysis.loss || '';
     } else {
-        // 格式2：直接字段 (第11-30条)
         dataImg = item.dataImage || '';
         ctrImg = item.ctrImage || '';
         lossImg = item.lossImage || '';
@@ -95,28 +93,28 @@ function renderDetail(item) {
     if (dataImg) {
         dataEl.src = dataImg;
         dataEl.style.display = 'block';
-        dataEl.parentElement.querySelector('.chart-box').style.display = 'block';
+        dataEl.parentElement.style.display = 'block';
     } else {
         dataEl.style.display = 'none';
-        dataEl.parentElement.querySelector('.chart-box').style.display = 'none';
+        dataEl.parentElement.style.display = 'none';
     }
 
     if (ctrImg) {
         ctrEl.src = ctrImg;
         ctrEl.style.display = 'block';
-        ctrEl.parentElement.querySelector('.chart-box').style.display = 'block';
+        ctrEl.parentElement.style.display = 'block';
     } else {
         ctrEl.style.display = 'none';
-        ctrEl.parentElement.querySelector('.chart-box').style.display = 'none';
+        ctrEl.parentElement.style.display = 'none';
     }
 
     if (lossImg) {
         lossEl.src = lossImg;
         lossEl.style.display = 'block';
-        lossEl.parentElement.querySelector('.chart-box').style.display = 'block';
+        lossEl.parentElement.style.display = 'block';
     } else {
         lossEl.style.display = 'none';
-        lossEl.parentElement.querySelector('.chart-box').style.display = 'none';
+        lossEl.parentElement.style.display = 'none';
     }
 }
 
