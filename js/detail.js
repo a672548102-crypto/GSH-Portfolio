@@ -1,335 +1,129 @@
- /*
- =====================================
- GSH Portfolio
- detail.js
- V5.8 Detail Page
- =====================================
- */
+/*
+=====================================
+GSH Portfolio · detail.js
+修复：兼容 analysis 对象 + 直接字段 两种格式
+路径完全匹配你的目录结构
+=====================================
+*/
 
-
-
-document.addEventListener(
-"DOMContentLoaded",
-()=>{
-
-
+const urlParams = new URLSearchParams(window.location.search);
+const caseId = urlParams.get('id') || '01';
 
 // ===============================
-// 获取案例ID
+// 加载案例数据
 // ===============================
 
-
-const params =
-
-new URLSearchParams(
-window.location.search
-);
-
-
-
-let caseId =
-
-params.get("id") || "1";
-
-
-
-
-// 统一格式
-
-caseId =
-
-String(caseId)
-.padStart(2,"0");
-
-
-
-
-
-
-
-
+fetch('assets/data/cases.json')
+    .then(res => {
+        if (!res.ok) throw new Error('cases.json 加载失败');
+        return res.json();
+    })
+    .then(data => {
+        const item = data.find(d => String(d.id).padStart(2, '0') === caseId);
+        if (!item) {
+            document.querySelector('.detail-header h1').textContent = '案例未找到';
+            return;
+        }
+        renderDetail(item);
+    })
+    .catch(err => {
+        console.error(err);
+        document.querySelector('.detail-header h1').textContent = '加载失败';
+    });
 
 // ===============================
-// 读取JSON
+// 渲染详情
 // ===============================
 
-
-fetch(
-"assets/data/cases.json"
-)
-
-
-
-.then(res=>res.json())
-
-
-
-.then(cases=>{
-
-
-
-
-
-const data =
-
-cases.find(item=>{
-
-
-return String(item.id)
-.padStart(2,"0")
-===caseId;
-
-
-
-});
-
-
-
-
-
-
-if(!data){
-
-
-console.error(
-"案例不存在:",
-caseId
-);
-
-
-return;
-
-
-}
-
-
-
-
-
-
-
-// ===============================
-// 基础信息
-// ===============================
-
-
-
-document.getElementById(
-"caseTitle"
-).textContent =
-
-data.title;
-
-
-
-
-
-
-document.getElementById(
-"caseDesc"
-).textContent =
-
-`${data.category} / ${data.type}`;
-
-
-
-
-
-
-
-
-// ===============================
-// 数据
-// ===============================
-
-
-
-document.getElementById(
-"views"
-).textContent =
-
-data.views || "-";
-
-
-
-
-
-document.getElementById(
-"likes"
-).textContent =
-
-data.likes || "-";
-
-
-
-
-
-document.getElementById(
-"comments"
-).textContent =
-
-data.comments || "-";
-
-
-
-// 抖音链接
-const douyinLink = document.getElementById("douyinUrl");
-if (douyinLink) {
-    if (data.douyinUrl) {
-        douyinLink.href = data.douyinUrl;
-        douyinLink.textContent = data.douyinUrl;
-        douyinLink.style.color = "#c4b5fd";
+function renderDetail(item) {
+    // 标题
+    document.querySelector('.detail-header h1').textContent = item.title || '未命名';
+    document.querySelector('.detail-header p').textContent = item.type || '';
+
+    // 视频
+    const video = document.getElementById('detailVideo');
+    if (item.video) {
+        video.src = item.video;
+        video.load();
+    }
+
+    // 数据卡片
+    document.getElementById('views').textContent = item.views || '--';
+    document.getElementById('likes').textContent = item.likes || '--';
+    document.getElementById('comments').textContent = item.comments || '--';
+
+    // 抖音链接
+    const douyinLink = document.getElementById('douyinUrl');
+    if (item.douyinUrl) {
+        douyinLink.href = item.douyinUrl;
+        douyinLink.textContent = item.douyinUrl;
     } else {
-        douyinLink.href = "#";
-        douyinLink.textContent = "暂无抖音链接";
-        douyinLink.style.color = "#666";
+        douyinLink.textContent = '暂无链接';
+        douyinLink.href = '#';
+    }
+
+    // 项目介绍（展示 role）
+    const info = document.getElementById('projectInfo');
+    if (item.role) {
+        info.textContent = item.role;
+    } else {
+        info.textContent = '暂无项目介绍';
+    }
+
+    // ===== 分析图：兼容两种格式 =====
+    let dataImg = '';
+    let ctrImg = '';
+    let lossImg = '';
+
+    if (item.analysis && typeof item.analysis === 'object') {
+        // 格式1：analysis 对象 (第1-10条, 第31-34条)
+        dataImg = item.analysis.data || '';
+        ctrImg = item.analysis.ctr || '';
+        lossImg = item.analysis.loss || '';
+    } else {
+        // 格式2：直接字段 (第11-30条)
+        dataImg = item.dataImage || '';
+        ctrImg = item.ctrImage || '';
+        lossImg = item.lossImage || '';
+    }
+
+    // 渲染分析图
+    const dataEl = document.getElementById('dataImage');
+    const ctrEl = document.getElementById('ctrImage');
+    const lossEl = document.getElementById('lossImage');
+
+    if (dataImg) {
+        dataEl.src = dataImg;
+        dataEl.style.display = 'block';
+        dataEl.parentElement.querySelector('.chart-box').style.display = 'block';
+    } else {
+        dataEl.style.display = 'none';
+        dataEl.parentElement.querySelector('.chart-box').style.display = 'none';
+    }
+
+    if (ctrImg) {
+        ctrEl.src = ctrImg;
+        ctrEl.style.display = 'block';
+        ctrEl.parentElement.querySelector('.chart-box').style.display = 'block';
+    } else {
+        ctrEl.style.display = 'none';
+        ctrEl.parentElement.querySelector('.chart-box').style.display = 'none';
+    }
+
+    if (lossImg) {
+        lossEl.src = lossImg;
+        lossEl.style.display = 'block';
+        lossEl.parentElement.querySelector('.chart-box').style.display = 'block';
+    } else {
+        lossEl.style.display = 'none';
+        lossEl.parentElement.querySelector('.chart-box').style.display = 'none';
     }
 }
 
-
-
-
 // ===============================
-// 视频
+// 移动端菜单
 // ===============================
 
-
-const video =
-
-document.getElementById(
-"detailVideo"
-);
-
-
-
-video.src =
-
-data.video;
-
-
-
-video.load();
-
-
-
-
-
-
-
-
-
-// ===============================
-// 项目介绍
-// ===============================
-
-
-document.getElementById(
-"projectInfo"
-).textContent =
-
-
-
-`${data.title}
-
-属于${data.type}项目，
-
-主要负责${data.role || "内容策划、视频剪辑以及账号运营"}。
-
-通过内容分析和数据优化，
-
-持续提升视频传播效果。`;
-
-
-
-
-
-
-
-
-
-// ===============================
-// 图表
-// ===============================
-
-
-
-document.getElementById(
-"dataImage"
-).src =
-
-
-`assets/charts/data-${caseId}.png`;
-
-
-
-
-
-
-document.getElementById(
-"ctrImage"
-).src =
-
-
-`assets/charts/ctr-${caseId}.png`;
-
-
-
-
-
-
-
-document.getElementById(
-"lossImage"
-).src =
-
-
-`assets/charts/loss-${caseId}.png`;
-
-
-
-
-
-
-
-
-
-// ===============================
-// 职责
-// ===============================
-
-
-
-document.getElementById(
-"caseRole"
-).textContent =
-
-
-data.role ||
-
-
-"负责视频策划、剪辑制作、账号运营以及数据复盘。";
-
-
-
-
-
-
-
-})
-
-
-
-.catch(err=>{
-
-
-console.error(
-"案例数据加载失败:",
-err
-);
-
-
-});
-
-
-
+document.querySelector('.menu-toggle')?.addEventListener('click', function() {
+    document.querySelector('.nav-links')?.classList.toggle('open');
 });
