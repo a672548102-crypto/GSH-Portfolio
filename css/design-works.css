@@ -120,7 +120,6 @@ GSH Portfolio · design-works.css
     color: var(--ink-muted);
 }
 
-/* 模态框 */
 .gallery-modal {
     position: fixed;
     top: 0;
