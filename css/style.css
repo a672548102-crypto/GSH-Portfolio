@@ -1,8 +1,7 @@
 /*
 =====================================
 GSH Portfolio · style.css
-方案A：留白意境 · 雅士风
-仅替换颜色/背景/字体，保留原有排版结构
+方案A：宣纸雅士风 · 仅换色，保留布局
 =====================================
 */
 
@@ -15,7 +14,6 @@ GSH Portfolio · style.css
 }
 
 :root {
-    /* ===== 宣纸雅士色板 ===== */
     --paper: #f7f4eb;
     --ink: #2c241c;
     --ink-light: #4a3f36;
@@ -26,19 +24,14 @@ GSH Portfolio · style.css
     --cinnabar-glow: rgba(196, 59, 59, 0.12);
     --border-subtle: rgba(180, 160, 140, 0.20);
     --card-bg: rgba(255, 248, 235, 0.40);
-
-    /* ===== 字体（保留原风格） ===== */
     --font-sans: 'Inter', 'PingFang SC', 'Microsoft YaHei', sans-serif;
 }
 
-html {
-    scroll-behavior: smooth;
-}
+html { scroll-behavior: smooth; }
 
 body {
     font-family: var(--font-sans);
     background-color: var(--paper);
-    /* 宣纸纹理 + 暖调光晕（代替原来的深色流光） */
     background-image:
         radial-gradient(ellipse at 20% 50%, rgba(200, 180, 160, 0.10) 0%, transparent 60%),
         radial-gradient(ellipse at 80% 20%, rgba(180, 160, 140, 0.06) 0%, transparent 50%),
@@ -48,7 +41,6 @@ body {
     overflow-x: hidden;
 }
 
-/* 去掉深色流光，保留宣纸光晕（柔和版） */
 body::before {
     content: "";
     position: fixed;
@@ -68,7 +60,6 @@ body::before {
     100% { opacity: 0.6; }
 }
 
-/* 保留原.flow-light结构，但改为柔和暖光 */
 .flow-light {
     position: fixed;
     inset: 0;
@@ -113,9 +104,7 @@ body::before {
     margin: auto;
 }
 
-/* ========================================
-   导航 · 宣纸毛玻璃
-======================================== */
+/* 导航 */
 .navbar {
     position: fixed;
     top: 0;
@@ -160,12 +149,8 @@ body::before {
     font-size: 15px;
     transition: .3s;
 }
-.nav-links a:hover {
-    color: var(--ink);
-}
-.nav-links .active {
-    color: var(--cinnabar);
-}
+.nav-links a:hover { color: var(--ink); }
+.nav-links .active { color: var(--cinnabar); }
 
 .menu-toggle {
     display: none;
@@ -182,19 +167,15 @@ body::before {
     height: 2px;
     background: var(--ink);
     border-radius: 2px;
-    transition: .3s;
 }
 
-/* ========================================
-   首页 HERO（保留原排版结构）
-======================================== */
+/* ===== Hero（保留原布局） ===== */
 .hero {
     min-height: 100vh;
     display: flex;
     align-items: center;
     padding-top: 80px;
 }
-
 .hero-grid {
     display: grid;
     grid-template-columns: 280px 1fr;
@@ -202,14 +183,7 @@ body::before {
     align-items: center;
 }
 
-/* ========================================
-   头像 · 朱砂/墨色环（替换蓝橙渐变）
-======================================== */
-.avatar-box {
-    display: flex;
-    justify-content: center;
-}
-
+.avatar-box { display: flex; justify-content: center; }
 .avatar-ring {
     width: 220px;
     height: 220px;
@@ -220,7 +194,6 @@ body::before {
     transition: .5s;
     box-shadow: 0 0 30px rgba(196, 59, 59, 0.08);
 }
-
 .avatar-ring::before {
     content: "";
     position: absolute;
@@ -232,15 +205,8 @@ body::before {
     z-index: -1;
     transition: .5s;
 }
-
-.avatar-ring:hover {
-    transform: scale(1.06) rotateY(8deg);
-}
-.avatar-ring:hover::before {
-    opacity: .4;
-    filter: blur(45px);
-}
-
+.avatar-ring:hover { transform: scale(1.06) rotateY(8deg); }
+.avatar-ring:hover::before { opacity: .4; filter: blur(45px); }
 .avatar {
     width: 100%;
     height: 100%;
@@ -249,9 +215,6 @@ body::before {
     display: block;
 }
 
-/* ========================================
-   文字内容（保留原排版）
-======================================== */
 .tag {
     display: inline-block;
     padding: 8px 20px;
@@ -268,16 +231,12 @@ body::before {
     font-weight: 900;
     color: var(--ink);
 }
-.hero-content h1 span {
-    color: var(--cinnabar);
-}
-
+.hero-content h1 span { color: var(--cinnabar); }
 .hero-content h2 {
     font-size: 25px;
     margin-bottom: 25px;
     color: var(--ink-light);
 }
-
 .hero-content p {
     max-width: 560px;
     color: var(--ink-muted);
@@ -285,22 +244,17 @@ body::before {
     font-size: 16px;
 }
 
-/* ========================================
-   数据看板 · 朱砂数字（保留原布局）
-======================================== */
 .stats {
     display: flex;
     gap: 55px;
     margin: 40px 0;
 }
-
 .stats strong {
     display: block;
     font-size: 34px;
     font-weight: 900;
     color: var(--cinnabar);
 }
-
 .stats span {
     display: block;
     margin-top: 8px;
@@ -308,14 +262,7 @@ body::before {
     color: var(--ink-muted);
 }
 
-/* ========================================
-   按钮（保留原样式，换色）
-======================================== */
-.buttons {
-    display: flex;
-    gap: 20px;
-}
-
+.buttons { display: flex; gap: 20px; }
 .btn {
     padding: 14px 35px;
     border-radius: 50px;
@@ -325,84 +272,51 @@ body::before {
     transition: .3s;
     background: var(--card-bg);
     backdrop-filter: blur(10px);
-    -webkit-backdrop-filter: blur(10px);
 }
-
-.btn:hover {
-    transform: translateY(-5px);
-    border-color: var(--cinnabar);
-}
-
+.btn:hover { transform: translateY(-5px); border-color: var(--cinnabar); }
 .btn.primary {
     background: var(--ink);
     border: none;
     color: var(--paper);
     box-shadow: 0 0 35px rgba(44, 36, 28, 0.10);
 }
-
 .btn.primary:hover {
     background: var(--cinnabar);
     box-shadow: 0 0 50px rgba(196, 59, 59, 0.20);
 }
 
-/* ========================================
-   个人优势（保留原网格布局）
-======================================== */
-.advantages {
-    padding: 100px 0;
-}
+/* 优势 */
+.advantages { padding: 100px 0; }
 .advantages h2 {
     text-align: center;
     font-size: 38px;
     margin-bottom: 50px;
     color: var(--ink);
 }
-
 .advantage-grid {
     display: grid;
     grid-template-columns: repeat(3, 1fr);
     gap: 25px;
 }
-
 .advantage-card {
     padding: 32px;
     border-radius: 22px;
     background: var(--card-bg);
     border: 1px solid var(--border-subtle);
     backdrop-filter: blur(20px);
-    -webkit-backdrop-filter: blur(20px);
     transition: .35s;
 }
-
 .advantage-card:hover {
     transform: translateY(-10px);
     border-color: var(--cinnabar-glow);
     box-shadow: 0 20px 60px rgba(196, 59, 59, 0.04);
 }
+.advantage-card h3 { color: var(--cinnabar); margin-bottom: 15px; font-size: 20px; }
+.advantage-card p { color: var(--ink-muted); line-height: 1.8; font-size: 14px; }
 
-.advantage-card h3 {
-    color: var(--cinnabar);
-    margin-bottom: 15px;
-    font-size: 20px;
-}
-.advantage-card p {
-    color: var(--ink-muted);
-    line-height: 1.8;
-    font-size: 14px;
-}
-
-/* ========================================
-   创作领域（保留原布局）
-======================================== */
-.work-areas {
-    padding: 100px 0;
-    background: rgba(255, 248, 235, 0.20);
-}
-
-.section-header {
-    text-align: center;
-    margin-bottom: 50px;
-}
+/* 创作领域 */
+.work-areas { padding: 100px 0; background: rgba(255, 248, 235, 0.20); }
+.section-header { text-align: center; margin-bottom: 50px; }
 .section-header .tag {
     display: inline-block;
     padding: 8px 22px;
@@ -413,15 +327,8 @@ body::before {
     letter-spacing: 2px;
     margin-bottom: 15px;
 }
-.section-header h2 {
-    font-size: 38px;
-    color: var(--ink);
-    margin-bottom: 10px;
-}
-.section-header p {
-    color: var(--ink-muted);
-    font-size: 16px;
-}
+.section-header h2 { font-size: 38px; color: var(--ink); margin-bottom: 10px; }
+.section-header p { color: var(--ink-muted); font-size: 16px; }
 
 .area-grid {
     display: grid;
@@ -430,14 +337,12 @@ body::before {
     max-width: 900px;
     margin: 0 auto;
 }
-
 .area-card {
     padding: 40px 35px;
     border-radius: 22px;
     background: var(--card-bg);
     border: 1px solid var(--border-subtle);
     backdrop-filter: blur(15px);
-    -webkit-backdrop-filter: blur(15px);
     transition: .4s;
     text-align: center;
 }
@@ -446,23 +351,9 @@ body::before {
     border-color: var(--cinnabar-glow);
     box-shadow: 0 20px 60px rgba(196, 59, 59, 0.04);
 }
-.area-icon {
-    font-size: 48px;
-    margin-bottom: 18px;
-    display: block;
-}
-.area-card h3 {
-    font-size: 20px;
-    color: var(--ink);
-    margin-bottom: 12px;
-}
-.area-card p {
-    color: var(--ink-muted);
-    font-size: 14px;
-    line-height: 1.8;
-    margin-bottom: 20px;
-}
-
+.area-icon { font-size: 48px; margin-bottom: 18px; display: block; }
+.area-card h3 { font-size: 20px; color: var(--ink); margin-bottom: 12px; }
+.area-card p { color: var(--ink-muted); font-size: 14px; line-height: 1.8; margin-bottom: 20px; }
 .area-link {
     display: inline-block;
     padding: 10px 28px;
@@ -474,39 +365,14 @@ body::before {
     transition: .3s;
     font-size: 14px;
 }
-.area-link:hover {
-    background: var(--cinnabar);
-    color: var(--paper);
-    border-color: var(--cinnabar);
-}
+.area-link:hover { background: var(--cinnabar); color: var(--paper); border-color: var(--cinnabar); }
 
-/* ========================================
-   联系（保留原布局）
-======================================== */
-.contact {
-    padding: 100px 0;
-    text-align: center;
-}
-.contact h2 {
-    color: var(--ink);
-    font-size: 32px;
-}
+/* 联系 */
+.contact { padding: 100px 0; text-align: center; }
+.contact h2 { color: var(--ink); font-size: 32px; }
+.qr { display: flex; justify-content: center; gap: 50px; margin-top: 40px; }
+.qr img { width: 130px; border-radius: 18px; border: 1px solid var(--border-subtle); }
 
-.qr {
-    display: flex;
-    justify-content: center;
-    gap: 50px;
-    margin-top: 40px;
-}
-.qr img {
-    width: 130px;
-    border-radius: 18px;
-    border: 1px solid var(--border-subtle);
-}
-
-/* ========================================
-   页脚
-======================================== */
 footer {
     padding: 30px;
     text-align: center;
@@ -514,9 +380,7 @@ footer {
     border-top: 1px solid var(--border-subtle);
 }
 
-/* ========================================
-   响应式（完全保留原断点）
-======================================== */
+/* ===== 响应式（保留原断点） ===== */
 @media (max-width: 768px) {
     .nav-links {
         display: none;
@@ -531,124 +395,45 @@ footer {
         gap: 16px;
         border-bottom: 1px solid var(--border-subtle);
     }
-    .nav-links.open {
-        display: flex;
-    }
-    .menu-toggle {
-        display: flex;
-    }
+    .nav-links.open { display: flex; }
+    .menu-toggle { display: flex; }
 
-    .logo {
-        font-size: 18px;
-    }
-    .logo span {
-        font-size: 14px;
-    }
-    .nav-links a {
-        font-size: 14px;
-    }
+    .logo { font-size: 18px; }
+    .logo span { font-size: 14px; }
 
-    .hero {
-        padding-top: 110px;
-    }
+    .hero { padding-top: 110px; }
     .hero-grid {
         grid-template-columns: 1fr;
         text-align: center;
         gap: 30px;
     }
-    .avatar-ring {
-        width: 150px;
-        height: 150px;
-    }
-    .hero-content h1 {
-        font-size: 28px;
-        margin: 15px 0;
-    }
-    .hero-content h2 {
-        font-size: 17px;
-        margin-bottom: 15px;
-    }
-    .hero-content p {
-        font-size: 14px;
-        max-width: 100%;
-    }
-    .tag {
-        font-size: 11px;
-        padding: 6px 16px;
-    }
-    .stats {
-        justify-content: center;
-        gap: 20px;
-        margin: 25px 0;
-    }
-    .stats strong {
-        font-size: 20px;
-    }
-    .stats span {
-        font-size: 12px;
-    }
-    .buttons {
-        justify-content: center;
-        flex-wrap: wrap;
-        gap: 12px;
-    }
-    .btn {
-        padding: 10px 24px;
-        font-size: 13px;
-    }
+    .avatar-ring { width: 150px; height: 150px; }
+    .hero-content h1 { font-size: 28px; margin: 15px 0; }
+    .hero-content h2 { font-size: 17px; margin-bottom: 15px; }
+    .hero-content p { font-size: 14px; max-width: 100%; }
+    .tag { font-size: 11px; padding: 6px 16px; }
+    .stats { justify-content: center; gap: 20px; margin: 25px 0; }
+    .stats strong { font-size: 20px; }
+    .stats span { font-size: 12px; }
+    .buttons { justify-content: center; flex-wrap: wrap; gap: 12px; }
+    .btn { padding: 10px 24px; font-size: 13px; }
 
-    .advantages {
-        padding: 60px 0;
-    }
-    .advantages h2 {
-        font-size: 28px;
-        margin-bottom: 30px;
-    }
-    .advantage-grid {
-        grid-template-columns: 1fr;
-        gap: 16px;
-    }
-    .advantage-card {
-        padding: 22px;
-    }
-    .advantage-card h3 {
-        font-size: 17px;
-    }
-    .advantage-card p {
-        font-size: 13px;
-    }
+    .advantages { padding: 60px 0; }
+    .advantages h2 { font-size: 28px; margin-bottom: 30px; }
+    .advantage-grid { grid-template-columns: 1fr; gap: 16px; }
+    .advantage-card { padding: 22px; }
+    .advantage-card h3 { font-size: 17px; }
+    .advantage-card p { font-size: 13px; }
 
-    .work-areas {
-        padding: 60px 0;
-    }
-    .section-header h2 {
-        font-size: 28px;
-    }
-    .area-grid {
-        grid-template-columns: 1fr;
-        gap: 20px;
-        max-width: 100%;
-    }
-    .area-card {
-        padding: 28px 20px;
-    }
-    .area-icon {
-        font-size: 38px;
-    }
-    .area-card h3 {
-        font-size: 18px;
-    }
+    .work-areas { padding: 60px 0; }
+    .section-header h2 { font-size: 28px; }
+    .area-grid { grid-template-columns: 1fr; gap: 20px; max-width: 100%; }
+    .area-card { padding: 28px 20px; }
+    .area-icon { font-size: 38px; }
+    .area-card h3 { font-size: 18px; }
 
-    .contact {
-        padding: 60px 0;
-    }
-    .contact h2 {
-        font-size: 24px;
-    }
-    .qr {
-        gap: 30px;
-    }
-    .qr img {
-        width: 100px;
-    }
+    .contact { padding: 60px 0; }
+    .contact h2 { font-size: 24px; }
+    .qr { gap: 30px; }
+    .qr img { width: 100px; }
 }
