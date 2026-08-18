@@ -1,7 +1,7 @@
 /*
 ============================================================
 GSH Portfolio · design-works.js
-功能：分类筛选 + 分页（每页12张）
+功能：分类筛选 + 分页（每页12张）+ 大图预览
 主题：暗夜鎏金 · 皮革
 ============================================================
 */
@@ -92,7 +92,7 @@ document.addEventListener("DOMContentLoaded", () => {
     // ============================================================
 
     function renderCategoryButtons() {
-        const filterBox = document.querySelector('.filter-box');
+        const filterBox = document.getElementById('categoryFilter');
         if (!filterBox) return;
 
         // 计算每个分类的数量
@@ -107,7 +107,7 @@ document.addEventListener("DOMContentLoaded", () => {
             return `
                 <button class="filter ${active}" data-category="${cat}">
                     ${cat}
-                    <span style="font-size:11px;opacity:0.6;margin-left:4px;">(${count})</span>
+                    <span class="count">(${count})</span>
                 </button>
             `;
         }).join('');
