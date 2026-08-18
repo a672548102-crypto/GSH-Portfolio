@@ -1,7 +1,8 @@
 /*
 ============================================================
 GSH Portfolio · detail.js
-纯目录版 + 页面级错误显示（方便排查）
+纯目录版：图片路径完全由 id 驱动
+assets/charts/data-01.png、ctr-01.png、loss-01.png
 ============================================================
 */
 
@@ -9,7 +10,7 @@ const urlParams = new URLSearchParams(window.location.search);
 const caseId = urlParams.get('id') || '01';
 
 // ===============================
-// 加载案例数据
+// 加载案例数据（只取文字信息）
 // ===============================
 
 fetch('assets/data/cases.json')
@@ -27,8 +28,8 @@ fetch('assets/data/cases.json')
     })
     .catch(err => {
         console.error('加载失败:', err);
-        document.querySelector('.detail-header h1').textContent = '⚠️ 数据加载失败';
-        document.getElementById('projectInfo').textContent = '加载失败：' + err.message;
+        document.querySelector('.detail-header h1').textContent = '加载失败';
+        document.getElementById('projectInfo').textContent = '数据加载失败，请检查 assets/data/cases.json';
     });
 
 // ===============================
@@ -45,6 +46,8 @@ function renderDetail(item) {
     if (item.video) {
         video.src = item.video;
         video.load();
+    } else {
+        video.parentElement.innerHTML = '<p style="padding:40px;text-align:center;color:#7a6a5a;">暂无视频</p>';
     }
 
     // ----- 数据卡片 -----
@@ -71,7 +74,7 @@ function renderDetail(item) {
     }
 
     // ============================================================
-    // 图片路径（由 id 驱动）
+    // 🎯 图片路径：id 驱动，格式 data-01.png
     // ============================================================
 
     const paddedId = String(caseId).padStart(2, '0');
@@ -81,60 +84,59 @@ function renderDetail(item) {
     const lossImg = `assets/charts/loss-${paddedId}.png`;
 
     // ============================================================
-    // 设置图片（带页面级错误提示）
+    // 渲染分析图
     // ============================================================
 
     const dataEl = document.getElementById('dataImage');
     const ctrEl = document.getElementById('ctrImage');
     const lossEl = document.getElementById('lossImage');
 
-    function setImageWithErrorDisplay(el, src, label, containerSelector) {
+    function setImage(el, src, label) {
         const container = el?.closest('.chart-box') || el?.parentElement;
-        if (!el || !container) {
-            console.warn(`元素 ${label} 未找到`);
-            return;
+        if (el) {
+            el.src = src;
+            el.style.display = 'block';
+            el.alt = label;
         }
-
-        // 清空容器可能存在的旧内容，恢复 img 标签
-        // 但最好保留 img，我们只设置 src
-        el.src = src;
-        el.style.display = 'block';
-        el.alt = label;
-
-        // 确保容器显示
-        container.style.display = 'block';
-        const card = container.closest('.analysis-card');
-        if (card) card.style.display = 'block';
-
-        // 监听加载失败，在页面上显示详细错误
-        el.onerror = function() {
-            this.style.display = 'none';
-            // 在容器中显示错误信息和完整路径
-            container.innerHTML = `
-                <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;color:#e8a87c;padding:30px;text-align:center;background:rgba(13,8,5,0.5);border-radius:12px;">
-                    <p style="font-size:18px;margin-bottom:8px;">🖼️ 图片加载失败</p>
-                    <p style="font-size:13px;color:#a89480;word-break:break-all;max-width:100%;background:rgba(0,0,0,0.3);padding:8px 16px;border-radius:8px;font-family:monospace;">
-                        ${src}
-                    </p>
-                    <p style="font-size:12px;color:#7a6a5a;margin-top:8px;">💡 请检查该路径下是否存在图片</p>
-                </div>
-            `;
+        if (container) {
             container.style.display = 'block';
             const card = container.closest('.analysis-card');
             if (card) card.style.display = 'block';
-        };
+        }
     }
 
-    setImageWithErrorDisplay(dataEl, dataImg, '投放数据');
-    setImageWithErrorDisplay(ctrEl, ctrImg, '点击率');
-    setImageWithErrorDisplay(lossEl, lossImg, '流失量');
+    setImage(dataEl, dataImg, '投放数据');
+    setImage(ctrEl, ctrImg, '点击率分析');
+    setImage(lossEl, lossImg, '用户流失分析');
 
-    // 控制台输出
+    // 图片加载失败时显示占位
+    [dataEl, ctrEl, lossEl].forEach((el) => {
+        if (el) {
+            el.onerror = function() {
+                this.style.display = 'none';
+                const container = this.closest('.chart-box') || this.parentElement;
+                if (container) {
+                    container.innerHTML = `
+                        <div style="display:flex;align-items:center;justify-content:center;height:100%;color:#7a6a5a;padding:40px;text-align:center;">
+                            <div>
+                                <p style="font-size:20px;margin-bottom:8px;">🖼️</p>
+                                <p>图片加载失败</p>
+                                <p style="font-size:12px;color:#5a4a3a;word-break:break-all;">${this.src}</p>
+                            </div>
+                        </div>
+                    `;
+                    container.style.display = 'block';
+                    const card = container.closest('.analysis-card');
+                    if (card) card.style.display = 'block';
+                }
+            };
+        }
+    });
+
     console.log('🔍 案例ID:', paddedId);
-    console.log('📊 数据图路径:', dataImg);
-    console.log('📈 点击率图路径:', ctrImg);
-    console.log('📉 流失量图路径:', lossImg);
-    console.log('💡 请在浏览器新标签页打开以上路径，验证图片是否存在');
+    console.log('📊 数据图:', dataImg);
+    console.log('📈 点击率图:', ctrImg);
+    console.log('📉 流失量图:', lossImg);
 }
 
 // ===============================
