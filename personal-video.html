@@ -55,5 +55,30 @@
     <div class="stardust"></div>
 
     <script src="js/main.js"></script>
+
+    <!-- ============================================================
+    🎯 互斥播放功能：点击播放一个视频，另一个自动暂停
+    ============================================================ -->
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            // 获取当前页面所有视频
+            const videos = document.querySelectorAll('.video-card video');
+
+            videos.forEach(function(video) {
+                // 监听 play 事件
+                video.addEventListener('play', function() {
+                    // 暂停其他所有视频
+                    videos.forEach(function(otherVideo) {
+                        if (otherVideo !== video && !otherVideo.paused) {
+                            otherVideo.pause();
+                        }
+                    });
+                });
+            });
+
+            console.log('✅ 互斥播放已启用（个人视频页）');
+        });
+    </script>
+
 </body>
 </html>
