@@ -104,7 +104,9 @@ body::before {
     margin: auto;
 }
 
-/* 导航 */
+/* ========================================
+   导航
+======================================== */
 .navbar {
     position: fixed;
     top: 0;
@@ -169,7 +171,9 @@ body::before {
     border-radius: 2px;
 }
 
-/* ===== Hero（保留原布局） ===== */
+/* ========================================
+   首页 Hero
+======================================== */
 .hero {
     min-height: 100vh;
     display: flex;
@@ -285,7 +289,9 @@ body::before {
     box-shadow: 0 0 50px rgba(196, 59, 59, 0.20);
 }
 
-/* 优势 */
+/* ========================================
+   个人优势
+======================================== */
 .advantages { padding: 100px 0; }
 .advantages h2 {
     text-align: center;
@@ -314,7 +320,9 @@ body::before {
 .advantage-card h3 { color: var(--cinnabar); margin-bottom: 15px; font-size: 20px; }
 .advantage-card p { color: var(--ink-muted); line-height: 1.8; font-size: 14px; }
 
-/* 创作领域 */
+/* ========================================
+   创作领域
+======================================== */
 .work-areas { padding: 100px 0; background: rgba(255, 248, 235, 0.20); }
 .section-header { text-align: center; margin-bottom: 50px; }
 .section-header .tag {
@@ -367,12 +375,17 @@ body::before {
 }
 .area-link:hover { background: var(--cinnabar); color: var(--paper); border-color: var(--cinnabar); }
 
-/* 联系 */
+/* ========================================
+   联系
+======================================== */
 .contact { padding: 100px 0; text-align: center; }
 .contact h2 { color: var(--ink); font-size: 32px; }
 .qr { display: flex; justify-content: center; gap: 50px; margin-top: 40px; }
 .qr img { width: 130px; border-radius: 18px; border: 1px solid var(--border-subtle); }
 
+/* ========================================
+   页脚
+======================================== */
 footer {
     padding: 30px;
     text-align: center;
@@ -380,7 +393,9 @@ footer {
     border-top: 1px solid var(--border-subtle);
 }
 
-/* ===== 响应式（保留原断点） ===== */
+/* ========================================
+   响应式
+======================================== */
 @media (max-width: 768px) {
     .nav-links {
         display: none;
