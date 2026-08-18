@@ -238,3 +238,104 @@ GSH Portfolio · design-works.css
     .gallery-header h2 { font-size: 22px; }
     .gallery-grid { grid-template-columns: repeat(auto-fill, minmax(140px, 1fr)); }
 }
+/* ============================================================
+   分页控件
+============================================================ */
+
+.pagination-wrapper {
+    display: flex;
+    justify-content: center;
+    padding: 40px 0 20px;
+}
+
+.pagination {
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    flex-wrap: wrap;
+    justify-content: center;
+}
+
+.page-btn {
+    min-width: 40px;
+    height: 40px;
+    padding: 0 12px;
+    border-radius: 30px;
+    border: 1px solid var(--glass-border);
+    background: var(--glass-bg);
+    color: var(--text-muted);
+    font-size: 14px;
+    cursor: pointer;
+    transition: .3s;
+    backdrop-filter: blur(10px);
+    font-family: var(--font-sans);
+}
+
+.page-btn:hover:not(:disabled) {
+    border-color: var(--gold-mid);
+    color: var(--text-primary);
+    background: rgba(201, 168, 76, 0.08);
+}
+
+.page-btn.active {
+    background: var(--gold-gradient);
+    color: #1a100a;
+    border-color: var(--gold-mid);
+    font-weight: 600;
+}
+
+.page-btn:disabled {
+    opacity: 0.3;
+    cursor: not-allowed;
+}
+
+.page-ellipsis {
+    color: var(--text-faint);
+    padding: 0 4px;
+    font-size: 14px;
+}
+
+.page-info {
+    color: var(--text-faint);
+    font-size: 13px;
+    margin-left: 12px;
+    padding-left: 12px;
+    border-left: 1px solid var(--glass-border);
+}
+
+/* ============================================================
+   分类徽章（卡片右上角）
+============================================================ */
+
+.category-badge {
+    position: absolute;
+    bottom: 14px;
+    right: 14px;
+    padding: 3px 12px;
+    border-radius: 20px;
+    font-size: 10px;
+    font-weight: 500;
+    color: var(--text-primary);
+    background: rgba(13, 8, 5, 0.60);
+    backdrop-filter: blur(5px);
+    border: 1px solid var(--glass-border);
+    z-index: 2;
+    letter-spacing: 0.5px;
+}
+
+@media (max-width: 768px) {
+    .pagination {
+        gap: 4px;
+    }
+    .page-btn {
+        min-width: 34px;
+        height: 34px;
+        font-size: 12px;
+        padding: 0 8px;
+    }
+    .page-info {
+        font-size: 11px;
+        margin-left: 8px;
+        padding-left: 8px;
+    }
+}
