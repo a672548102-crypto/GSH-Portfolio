@@ -1,8 +1,8 @@
 /*
 ============================================================
 GSH Portfolio · design-works.js
-适配新 design.json（每张图片独立）
-功能：分类筛选 + 分页 + 大图预览
+支持多文件类型：.ai / .pdf / .png
+8个分类：AI设计、产品包装、店铺主图、海报、精修、礼盒设计、详情页、直播间
 ============================================================
 */
 
@@ -24,6 +24,33 @@ document.addEventListener("DOMContentLoaded", () => {
     const pageSize = 12;
 
     const categories = ['全部', 'AI设计', '产品包装', '店铺主图', '海报', '精修', '礼盒设计', '详情页', '直播间'];
+
+    const fileTypeConfig = {
+        'ai': { icon: '🎨', label: 'AI源文件', color: '#9B59B6' },
+        'pdf': { icon: '📄', label: 'PDF文档', color: '#E74C3C' },
+        'png': { icon: '🖼️', label: '图片', color: '#2ECC71' },
+        'jpg': { icon: '🖼️', label: '图片', color: '#2ECC71' },
+        'jpeg': { icon: '🖼️', label: '图片', color: '#2ECC71' },
+        'webp': { icon: '🖼️', label: '图片', color: '#2ECC71' }
+    };
+
+    function isImageFile(fileType) {
+        return ['png', 'jpg', 'jpeg', 'webp'].includes(fileType?.toLowerCase());
+    }
+
+    function getTypeClass(type) {
+        const map = {
+            'AI设计': 'type-ai',
+            '产品包装': 'type-packaging',
+            '店铺主图': 'type-product',
+            '海报': 'type-poster',
+            '精修': 'type-retouch',
+            '礼盒设计': 'type-giftbox',
+            '详情页': 'type-detail',
+            '直播间': 'type-live'
+        };
+        return map[type] || 'type-other';
+    }
 
     // ============================================================
     // 加载数据
@@ -47,18 +74,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // 直接使用数据（每张图片已经是独立条目）
             allItems = data.map(item => ({
                 id: item.id,
                 title: item.title || '未命名',
                 desc: item.desc || '',
                 type: item.type || '设计',
                 category: item.category || '其他',
-                image: item.image || ''
+                file: item.file || '',
+                fileType: item.fileType || 'png'
             }));
 
-            // 过滤掉没有图片的条目
-            allItems = allItems.filter(item => item.image && item.image.trim() !== '');
+            allItems = allItems.filter(item => item.file && item.file.trim() !== '');
 
             filteredItems = [...allItems];
             renderCategoryButtons();
@@ -155,20 +181,25 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         grid.innerHTML = items.map(item => {
-            let typeClass = 'type-other';
-            if (item.type === '商品主图' || item.type === '电商主图') typeClass = 'type-product';
-            else if (item.type === '礼盒包装' || item.type === '包装设计') typeClass = 'type-giftbox';
-            else if (item.type === '瓜子包装') typeClass = 'type-packaging';
-            else if (item.type === '海报设计') typeClass = 'type-poster';
-            else if (item.type === '直播间切片') typeClass = 'type-live';
-            else if (item.type === '精修') typeClass = 'type-retouch';
+            const isImage = isImageFile(item.fileType);
+            const config = fileTypeConfig[item.fileType?.toLowerCase()] || { icon: '📎', label: '文件', color: '#7a6a5a' };
+            const typeClass = getTypeClass(item.type);
+
+            const previewContent = isImage
+                ? `<img src="${item.file}" alt="${item.title}" loading="lazy" 
+                       onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;font-size:48px;color:#7a6a5a;\\'>📎</div>'">`
+                : `<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:64px;color:${config.color};">${config.icon}</div>`;
 
             return `
-                <div class="design-card" data-id="${item.id}" data-image="${item.image}">
+                <div class="design-card" 
+                     data-id="${item.id}" 
+                     data-file="${item.file}" 
+                     data-filetype="${item.fileType}"
+                     data-isimage="${isImage}">
                     <div class="cover-box">
-                        <img src="${item.image}" alt="${item.title}" loading="lazy" 
-                             onerror="this.src='data:image/svg+xml,%3Csvg xmlns=%22http://www.w3.org/2000/svg%22 width=%22400%22 height=%22300%22%3E%3Crect fill=%22%23e8e0d6%22 width=%22400%22 height=%22300%22/%3E%3Ctext x=%22200%22 y=%22150%22 text-anchor=%22middle%22 fill=%22%237a6a5a%22 font-size=%2220%22 font-family=%22sans-serif%22%3E暂无图片%3C/text%3E%3C/svg%3E'">
+                        ${previewContent}
                         <span class="design-type ${typeClass}">${item.type || '设计'}</span>
+                        <span class="file-badge" style="background:${config.color};">${config.label}</span>
                         <span class="category-badge">${item.category || ''}</span>
                     </div>
                     <div class="design-info">
@@ -180,6 +211,86 @@ document.addEventListener("DOMContentLoaded", () => {
         }).join('');
 
         bindCardClick();
+    }
+
+    // ============================================================
+    // 点击卡片
+    // ============================================================
+
+    function bindCardClick() {
+        document.querySelectorAll(".design-card").forEach(card => {
+            card.addEventListener("click", function() {
+                const file = this.dataset.file;
+                const fileType = this.dataset.filetype;
+                const isImage = this.dataset.isimage === 'true';
+
+                if (!file) return;
+
+                if (isImage) {
+                    openImagePreview(file);
+                } else {
+                    downloadFile(file);
+                }
+            });
+        });
+    }
+
+    // ============================================================
+    // 图片预览
+    // ============================================================
+
+    function openImagePreview(src) {
+        const overlay = document.createElement('div');
+        overlay.style.cssText = `
+            position: fixed; inset: 0; z-index: 9999;
+            background: rgba(13, 8, 5, 0.92);
+            backdrop-filter: blur(20px);
+            display: flex; align-items: center; justify-content: center;
+            cursor: pointer; padding: 40px;
+        `;
+
+        const img = document.createElement('img');
+        img.src = src;
+        img.style.cssText = `
+            max-width: 90%; max-height: 90%;
+            object-fit: contain; border-radius: 16px;
+            box-shadow: 0 30px 80px rgba(0,0,0,0.6);
+        `;
+
+        const closeHint = document.createElement('div');
+        closeHint.style.cssText = `
+            position: absolute; bottom: 40px; left: 50%;
+            transform: translateX(-50%);
+            color: #7a6a5a; font-size: 14px;
+            letter-spacing: 1px;
+        `;
+        closeHint.textContent = '点击任意处关闭 · ESC';
+
+        overlay.appendChild(img);
+        overlay.appendChild(closeHint);
+        document.body.appendChild(overlay);
+
+        overlay.addEventListener('click', function() { this.remove(); });
+        document.addEventListener('keydown', function escHandler(e) {
+            if (e.key === 'Escape') {
+                overlay.remove();
+                document.removeEventListener('keydown', escHandler);
+            }
+        });
+    }
+
+    // ============================================================
+    // 文件下载
+    // ============================================================
+
+    function downloadFile(filePath) {
+        const fileName = filePath.split('/').pop();
+        const link = document.createElement('a');
+        link.href = filePath;
+        link.download = fileName;
+        document.body.appendChild(link);
+        link.click();
+        document.body.removeChild(link);
     }
 
     // ============================================================
@@ -220,7 +331,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         html += `<button class="page-btn" data-page="${currentPage + 1}" ${currentPage === totalPages ? 'disabled' : ''}>→</button>`;
-        html += `<span class="page-info">共 ${filteredItems.length} 张作品</span>`;
+        html += `<span class="page-info">共 ${filteredItems.length} 个文件</span>`;
 
         pagination.innerHTML = html;
 
@@ -232,57 +343,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     renderPage();
                     document.querySelector('.design-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
-            });
-        });
-    }
-
-    // ============================================================
-    // 大图预览
-    // ============================================================
-
-    function bindCardClick() {
-        document.querySelectorAll(".design-card").forEach(card => {
-            card.addEventListener("click", function() {
-                const imageSrc = this.dataset.image;
-                if (!imageSrc) return;
-
-                const overlay = document.createElement('div');
-                overlay.style.cssText = `
-                    position: fixed; inset: 0; z-index: 9999;
-                    background: rgba(13, 8, 5, 0.92);
-                    backdrop-filter: blur(20px);
-                    display: flex; align-items: center; justify-content: center;
-                    cursor: pointer; padding: 40px;
-                `;
-
-                const img = document.createElement('img');
-                img.src = imageSrc;
-                img.style.cssText = `
-                    max-width: 90%; max-height: 90%;
-                    object-fit: contain; border-radius: 16px;
-                    box-shadow: 0 30px 80px rgba(0,0,0,0.6);
-                `;
-
-                const closeHint = document.createElement('div');
-                closeHint.style.cssText = `
-                    position: absolute; bottom: 40px; left: 50%;
-                    transform: translateX(-50%);
-                    color: #7a6a5a; font-size: 14px;
-                    letter-spacing: 1px;
-                `;
-                closeHint.textContent = '点击任意处关闭 · ESC';
-
-                overlay.appendChild(img);
-                overlay.appendChild(closeHint);
-                document.body.appendChild(overlay);
-
-                overlay.addEventListener('click', function() { this.remove(); });
-                document.addEventListener('keydown', function escHandler(e) {
-                    if (e.key === 'Escape') {
-                        overlay.remove();
-                        document.removeEventListener('keydown', escHandler);
-                    }
-                });
             });
         });
     }
