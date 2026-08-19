@@ -888,7 +888,7 @@
   "type": "精修",
   "category": "精修",
   "image": "assets/design/retouch/retouch-14.png",
-  "fileType": retouch"
+  "fileType": "retouch"
 },
 {
   "id": "retouch-15",
