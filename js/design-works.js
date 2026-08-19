@@ -34,8 +34,23 @@ document.addEventListener("DOMContentLoaded", () => {
         'webp': { icon: '🖼️', label: '图片', color: '#2ECC71' }
     };
 
-    function isImageFile(fileType) {
-        return ['png', 'jpg', 'jpeg', 'webp'].includes(fileType?.toLowerCase());
+    // ============================================================
+    // 🎯 核心修改：同时检查 fileType 和文件扩展名
+    // ============================================================
+
+    function isImageFile(fileType, filePath) {
+        // 1. 先检查 fileType 是否为标准图片格式
+        if (['png', 'jpg', 'jpeg', 'webp'].includes(fileType?.toLowerCase())) {
+            return true;
+        }
+        // 2. 再检查文件路径的扩展名
+        if (filePath) {
+            const ext = filePath.split('.').pop()?.toLowerCase();
+            if (['png', 'jpg', 'jpeg', 'webp'].includes(ext)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     function getTypeClass(type) {
@@ -74,17 +89,13 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // ============================================================
-            // 🎯 关键修改：同时支持 "file" 和 "image" 字段
-            // ============================================================
-
             allItems = data.map(item => ({
                 id: item.id,
                 title: item.title || '未命名',
                 desc: item.desc || '',
                 type: item.type || '设计',
                 category: item.category || '其他',
-                file: item.file || item.image || '',  // 优先 file，没有则取 image
+                file: item.file || item.image || '',
                 fileType: item.fileType || 'png'
             }));
 
@@ -168,7 +179,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ============================================================
-    // 渲染卡片（AI/PDF显示文字提示，PNG显示缩略图）
+    // 渲染卡片
     // ============================================================
 
     function renderCards(items) {
@@ -185,8 +196,11 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         grid.innerHTML = items.map(item => {
-            const isImage = isImageFile(item.fileType);
-            const config = fileTypeConfig[item.fileType?.toLowerCase()] || { icon: '📎', label: '文件', color: '#7a6a5a' };
+            // ============================================================
+            // 🎯 核心修改：传入 file 路径，让函数同时检查扩展名
+            // ============================================================
+            const isImage = isImageFile(item.fileType, item.file);
+            const config = fileTypeConfig[item.fileType?.toLowerCase()] || { icon: '🖼️', label: '图片', color: '#2ECC71' };
             const typeClass = getTypeClass(item.type);
 
             let previewContent = '';
@@ -241,7 +255,6 @@ document.addEventListener("DOMContentLoaded", () => {
         document.querySelectorAll(".design-card").forEach(card => {
             card.addEventListener("click", function() {
                 const file = this.dataset.file;
-                const fileType = this.dataset.filetype;
                 const isImage = this.dataset.isimage === 'true';
 
                 if (!file) return;
