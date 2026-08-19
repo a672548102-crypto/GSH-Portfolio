@@ -112,99 +112,99 @@
     "title": "礼盒主图 · 01",
     "desc": "详情页",
     "type": "详情页",
-    "category": "礼盒主图",
-    "file": "assets/design/detail/detail-01.png",
-    "fileType": "detail"
+    "category": "详情页",
+    "image": "assets/design/detail/detail-01.png",
+    "fileType": "png"
   },
   {
     "id": "detail-02",
     "title": "礼盒主图 · 02",
     "desc": "详情页",
     "type": "详情页",
-    "category": "礼盒主图",
-    "file": "assets/design/detail/detail-02.png",
-    "fileType": "detail"
+    "category": "详情页",
+    "image": "assets/design/detail/detail-02.png",
+    "fileType": "png"
   },
   {
     "id": "detail-03",
     "title": "礼盒主图 · 03",
     "desc": "详情页",
     "type": "详情页",
-    "category": "礼盒主图",
-    "file": "assets/design/detail/detail-03.png",
-    "fileType": "detail"
+    "category": "详情页",
+    "image": "assets/design/detail/detail-03.png",
+    "fileType": "png"
   },
   {
     "id": "detail-04",
     "title": "礼盒主图 · 04",
     "desc": "详情页",
     "type": "详情页",
-    "category": "礼盒主图",
-    "file": "assets/design/detail/detail-04.png",
-    "fileType": "detail"
+    "category": "详情页",
+    "image": "assets/design/detail/detail-04.png",
+    "fileType": "png"
   },
   {
     "id": "detail-05",
     "title": "礼盒主图 · 05",
     "desc": "详情页",
     "type": "详情页",
-    "category": "礼盒主图",
-    "file": "assets/design/detail/detail-05.png",
-    "fileType": "detail"
+    "category": "详情页",
+    "image": "assets/design/detail/detail-05.png",
+    "fileType": "png"
   },
   {
     "id": "detail-06",
     "title": "礼盒主图 · 06",
     "desc": "详情页",
     "type": "详情页",
-    "category": "礼盒主图",
-    "file": "assets/design/detail/detail-06.png",
-    "fileType": "detail"
+    "category": "详情页",
+    "image": "assets/design/detail/detail-06.png",
+    "fileType": "png"
   },
   {
     "id": "detail-07",
     "title": "礼盒主图 · 07",
     "desc": "详情页",
     "type": "详情页",
-    "category": "礼盒主图",
-    "file": "assets/design/detail/detail-07.png",
-    "fileType": "detail"
+    "category": "详情页",
+    "image": "assets/design/detail/detail-07.png",
+    "fileType": "png"
   },
   {
     "id": "detail-10",
     "title": "礼盒主图 · 08",
     "desc": "详情页",
     "type": "详情页",
-    "category": "礼盒主图",
-    "file": "assets/design/detail/detail-10.png",
-    "fileType": "detail"
+    "category": "详情页",
+    "image": "assets/design/detail/detail-10.png",
+    "fileType": "png"
   },
   {
     "id": "detail-12",
     "title": "礼盒主图 · 09",
     "desc": "详情页",
     "type": "详情页",
-    "category": "礼盒主图",
-    "file": "assets/design/detail/detail-12.png",
-    "fileType": "detail"
+    "category": "详情页",
+    "image": "assets/design/detail/detail-12.png",
+    "fileType": "png"
   },
   {
     "id": "detail-11",
     "title": "礼盒主图 · 10",
     "desc": "详情页",
     "type": "详情页",
-    "category": "礼盒主图",
-    "file": "assets/design/detail/detail-11.png",
-    "fileType": "detail"
+    "category": "详情页",
+    "image": "assets/design/detail/detail-11.png",
+    "fileType": "png"
   },
   {
     "id": "detail-13",
     "title": "礼盒主图 · 11",
     "desc": "详情页",
     "type": "详情页",
-    "category": "礼盒主图",
-    "file": "assets/design/detail/detail-13.png",
-    "fileType": "detail"
+    "category": "详情页",
+    "image": "assets/design/detail/detail-13.png",
+    "fileType": "png"
   },
   {
     "id": "packaging-01",
@@ -212,8 +212,8 @@
     "desc": "包装图",
     "type": "产品包装",
     "category": "产品包装",
-    "file": "assets/design/packaging/packaging-01.png",
-    "fileType": "packaging"
+    "image": "assets/design/packaging/packaging-01.png",
+    "fileType": "png"
   },
   {
     "id": "packaging-02",
@@ -221,8 +221,8 @@
     "desc": "包装图",
     "type": "产品包装",
     "category": "产品包装",
-    "file": "assets/design/packaging/packaging-02.png",
-    "fileType": "packaging"
+    "image": "assets/design/packaging/packaging-02.png",
+    "fileType": "png"
   },
   {
     "id": "packaging-03",
@@ -230,8 +230,8 @@
     "desc": "包装图",
     "type": "产品包装",
     "category": "产品包装",
-    "file": "assets/design/packaging/packaging-03.png",
-    "fileType": "packaging"
+    "image": "assets/design/packaging/packaging-03.png",
+    "fileType": "png"
   },
   {
     "id": "packaging-04",
@@ -239,8 +239,8 @@
     "desc": "包装图",
     "type": "产品包装",
     "category": "产品包装",
-    "file": "assets/design/packaging/packaging-04.png",
-    "fileType": "packaging"
+    "image": "assets/design/packaging/packaging-04.png",
+    "fileType": "png"
   },
   {
     "id": "packaging-05",
@@ -248,8 +248,8 @@
     "desc": "包装图",
     "type": "产品包装",
     "category": "产品包装",
-    "file": "assets/design/packaging/packaging-05.png",
-    "fileType": "packaging"
+    "image": "assets/design/packaging/packaging-05.png",
+    "fileType": "png"
   },
   {
     "id": "packaging-06",
@@ -257,8 +257,8 @@
     "desc": "包装图",
     "type": "产品包装",
     "category": "产品包装",
-    "file": "assets/design/packaging/packaging-06.png",
-    "fileType": "packaging"
+    "image": "assets/design/packaging/packaging-06.png",
+    "fileType": "png"
   },
   {
     "id": "packaging-07",
@@ -266,8 +266,8 @@
     "desc": "包装图",
     "type": "产品包装",
     "category": "产品包装",
-    "file": "assets/design/packaging/packaging-07.png",
-    "fileType": "packaging"
+    "image": "assets/design/packaging/packaging-07.png",
+    "fileType": "png"
   },
   {
     "id": "packaging-08",
@@ -275,8 +275,8 @@
     "desc": "包装图",
     "type": "产品包装",
     "category": "产品包装",
-    "file": "assets/design/packaging/packaging-08.png",
-    "fileType": "packaging"
+    "image": "assets/design/packaging/packaging-08.png",
+    "fileType": "png"
   },
   {
     "id": "packaging-09",
@@ -284,8 +284,8 @@
     "desc": "包装图",
     "type": "产品包装",
     "category": "产品包装",
-    "file": "assets/design/packaging/packaging-09.png",
-    "fileType": "packaging"
+    "image": "assets/design/packaging/packaging-09.png",
+    "fileType": "png"
   },
   {
     "id": "packaging-10",
@@ -293,8 +293,8 @@
     "desc": "包装图",
     "type": "产品包装",
     "category": "产品包装",
-    "file": "assets/design/packaging/packaging-10.png",
-    "fileType": "packaging"
+    "image": "assets/design/packaging/packaging-10.png",
+    "fileType": "png"
   },
   {
     "id": "packaging-11",
@@ -302,8 +302,8 @@
     "desc": "包装图",
     "type": "产品包装",
     "category": "产品包装",
-    "file": "assets/design/packaging/packaging-11.png",
-    "fileType": "packaging"
+    "image": "assets/design/packaging/packaging-11.png",
+    "fileType": "png"
   },
   {
     "id": "packaging-12",
@@ -311,7 +311,7 @@
     "desc": "包装图",
     "type": "产品包装",
     "category": "产品包装",
-    "file": "assets/design/packaging/packaging-12.png",
-    "fileType": "packaging"
+    "image": "assets/design/packaging/packaging-12.png",
+    "fileType": "png"
   }
 ]
