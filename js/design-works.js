@@ -74,13 +74,17 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
+            // ============================================================
+            // 🎯 关键修改：同时支持 "file" 和 "image" 字段
+            // ============================================================
+
             allItems = data.map(item => ({
                 id: item.id,
                 title: item.title || '未命名',
                 desc: item.desc || '',
                 type: item.type || '设计',
                 category: item.category || '其他',
-                file: item.file || '',
+                file: item.file || item.image || '',  // 优先 file，没有则取 image
                 fileType: item.fileType || 'png'
             }));
 
@@ -164,7 +168,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ============================================================
-    // 🎯 渲染卡片（核心修改：AI/PDF显示文字提示）
+    // 渲染卡片（AI/PDF显示文字提示，PNG显示缩略图）
     // ============================================================
 
     function renderCards(items) {
@@ -184,10 +188,6 @@ document.addEventListener("DOMContentLoaded", () => {
             const isImage = isImageFile(item.fileType);
             const config = fileTypeConfig[item.fileType?.toLowerCase()] || { icon: '📎', label: '文件', color: '#7a6a5a' };
             const typeClass = getTypeClass(item.type);
-
-            // ============================================================
-            // 🎯 核心修改：图片显示缩略图，AI/PDF显示文字提示
-            // ============================================================
 
             let previewContent = '';
 
