@@ -1,8 +1,8 @@
 /*
 ============================================================
 GSH Portfolio · design-works.js
-功能：分类筛选 + 分页（每页12张）+ 大图预览
-主题：暗夜鎏金 · 皮革
+适配新 design.json（每张图片独立）
+功能：分类筛选 + 分页 + 大图预览
 ============================================================
 */
 
@@ -17,13 +17,12 @@ document.addEventListener("DOMContentLoaded", () => {
     // 状态管理
     // ============================================================
 
-    let allItems = [];          // 所有扁平化后的图片数据
-    let filteredItems = [];     // 当前分类筛选后的数据
+    let allItems = [];
+    let filteredItems = [];
     let currentCategory = '全部';
     let currentPage = 1;
-    const pageSize = 12;        // 每页12张图片
+    const pageSize = 12;
 
-    // 分类列表（按顺序显示）
     const categories = ['全部', '详情页', '电商主图', 'AI设计', '产品包装', '直播间切片', '精修'];
 
     // ============================================================
@@ -37,8 +36,8 @@ document.addEventListener("DOMContentLoaded", () => {
             }
             return res.json();
         })
-        .then(works => {
-            if (!works || works.length === 0) {
+        .then(data => {
+            if (!data || data.length === 0) {
                 grid.innerHTML = `
                     <div style="text-align:center;padding:60px 20px;color:#7a6a5a;grid-column:1/-1;">
                         <h3>暂无设计作品</h3>
@@ -48,30 +47,19 @@ document.addEventListener("DOMContentLoaded", () => {
                 return;
             }
 
-            // ============================================================
-            // 扁平化数据：每组作品拆分成单张图片，携带 category
-            // ============================================================
+            // 直接使用数据（每张图片已经是独立条目）
+            allItems = data.map(item => ({
+                id: item.id,
+                title: item.title || '未命名',
+                desc: item.desc || '',
+                type: item.type || '设计',
+                category: item.category || '其他',
+                image: item.image || ''
+            }));
 
-            works.forEach(group => {
-                const images = group.images || [];
-                const category = group.category || '其他';
-                const type = group.type || '';
-                const groupTitle = group.title || '未命名';
-                const groupDesc = group.desc || '';
+            // 过滤掉没有图片的条目
+            allItems = allItems.filter(item => item.image && item.image.trim() !== '');
 
-                images.forEach((img, index) => {
-                    allItems.push({
-                        id: group.id + '-' + String(index + 1).padStart(2, '0'),
-                        title: groupTitle + (images.length > 1 ? ' · ' + String(index + 1).padStart(2, '0') : ''),
-                        desc: groupDesc,
-                        type: type,
-                        category: category,
-                        image: img
-                    });
-                });
-            });
-
-            // 初始状态：显示全部
             filteredItems = [...allItems];
             renderCategoryButtons();
             renderPage();
@@ -95,7 +83,6 @@ document.addEventListener("DOMContentLoaded", () => {
         const filterBox = document.getElementById('categoryFilter');
         if (!filterBox) return;
 
-        // 计算每个分类的数量
         const countMap = {};
         allItems.forEach(item => {
             countMap[item.category] = (countMap[item.category] || 0) + 1;
@@ -112,21 +99,18 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
         }).join('');
 
-        // 绑定点击事件
         filterBox.querySelectorAll('.filter').forEach(btn => {
             btn.addEventListener('click', function() {
                 const cat = this.dataset.category;
                 currentCategory = cat;
                 currentPage = 1;
 
-                // 筛选数据
                 if (cat === '全部') {
                     filteredItems = [...allItems];
                 } else {
                     filteredItems = allItems.filter(item => item.category === cat);
                 }
 
-                // 重新渲染
                 document.querySelectorAll('.filter').forEach(b => b.classList.remove('active'));
                 this.classList.add('active');
                 renderPage();
@@ -135,26 +119,21 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ============================================================
-    // 渲染当前页（分页）
+    // 渲染当前页
     // ============================================================
 
     function renderPage() {
         const totalItems = filteredItems.length;
         const totalPages = Math.ceil(totalItems / pageSize) || 1;
 
-        // 确保当前页不超出范围
         if (currentPage > totalPages) currentPage = totalPages;
         if (currentPage < 1) currentPage = 1;
 
-        // 计算当前页的数据
         const start = (currentPage - 1) * pageSize;
         const end = Math.min(start + pageSize, totalItems);
         const pageItems = filteredItems.slice(start, end);
 
-        // 渲染卡片
         renderCards(pageItems);
-
-        // 渲染分页控件
         renderPagination(totalPages);
     }
 
@@ -200,12 +179,11 @@ document.addEventListener("DOMContentLoaded", () => {
             `;
         }).join('');
 
-        // 绑定点击预览
         bindCardClick();
     }
 
     // ============================================================
-    // 渲染分页控件
+    // 分页控件
     // ============================================================
 
     function renderPagination(totalPages) {
@@ -218,15 +196,8 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         let html = '';
+        html += `<button class="page-btn" data-page="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''}>←</button>`;
 
-        // 上一页
-        html += `
-            <button class="page-btn" data-page="${currentPage - 1}" ${currentPage === 1 ? 'disabled' : ''}>
-                ←
-            </button>
-        `;
-
-        // 页码
         const maxVisible = 5;
         let startPage = Math.max(1, currentPage - Math.floor(maxVisible / 2));
         let endPage = Math.min(totalPages, startPage + maxVisible - 1);
@@ -240,11 +211,7 @@ document.addEventListener("DOMContentLoaded", () => {
         }
 
         for (let i = startPage; i <= endPage; i++) {
-            html += `
-                <button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">
-                    ${i}
-                </button>
-            `;
+            html += `<button class="page-btn ${i === currentPage ? 'active' : ''}" data-page="${i}">${i}</button>`;
         }
 
         if (endPage < totalPages) {
@@ -252,28 +219,17 @@ document.addEventListener("DOMContentLoaded", () => {
             html += `<button class="page-btn" data-page="${totalPages}">${totalPages}</button>`;
         }
 
-        // 下一页
-        html += `
-            <button class="page-btn" data-page="${currentPage + 1}" ${currentPage === totalPages ? 'disabled' : ''}>
-                →
-            </button>
-        `;
-
-        // 显示总数
-        html += `
-            <span class="page-info">共 ${filteredItems.length} 张作品</span>
-        `;
+        html += `<button class="page-btn" data-page="${currentPage + 1}" ${currentPage === totalPages ? 'disabled' : ''}>→</button>`;
+        html += `<span class="page-info">共 ${filteredItems.length} 张作品</span>`;
 
         pagination.innerHTML = html;
 
-        // 绑定分页点击
         pagination.querySelectorAll('.page-btn').forEach(btn => {
             btn.addEventListener('click', function() {
                 const page = parseInt(this.dataset.page);
                 if (page && page >= 1 && page <= totalPages && page !== currentPage) {
                     currentPage = page;
                     renderPage();
-                    // 滚动到顶部
                     document.querySelector('.design-section')?.scrollIntoView({ behavior: 'smooth', block: 'start' });
                 }
             });
@@ -281,12 +237,11 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ============================================================
-    // 点击卡片 → 大图预览
+    // 大图预览
     // ============================================================
 
     function bindCardClick() {
-        const cards = document.querySelectorAll(".design-card");
-        cards.forEach(card => {
+        document.querySelectorAll(".design-card").forEach(card => {
             card.addEventListener("click", function() {
                 const imageSrc = this.dataset.image;
                 if (!imageSrc) return;
@@ -298,7 +253,6 @@ document.addEventListener("DOMContentLoaded", () => {
                     backdrop-filter: blur(20px);
                     display: flex; align-items: center; justify-content: center;
                     cursor: pointer; padding: 40px;
-                    animation: fadeIn 0.3s ease;
                 `;
 
                 const img = document.createElement('img');
