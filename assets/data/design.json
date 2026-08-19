@@ -4,95 +4,107 @@
     "title": "AI礼盒设计 · 01",
     "desc": "张笨仁品牌礼盒",
     "type": "AI设计",
-    "category": "礼盒设计",
-    "image": "assets/design/ai/gift-04.ai"
+    "category": "AI设计",
+    "file": "assets/design/ai/gift-04.ai",
+    "fileType": "ai"
   },
   {
     "id": "gift-03",
     "title": "AI礼盒设计 · 02",
     "desc": "张笨仁品牌礼盒",
     "type": "AI设计",
-    "category": "礼盒设计",
-    "image": "assets/design/ai/gift-03.ai"
+    "category": "AI设计",
+    "file": "assets/design/ai/gift-03.ai",
+    "fileType": "ai"
   },
   {
     "id": "gift-01",
     "title": "AI礼盒设计 · 03",
     "desc": "张笨仁品牌礼盒",
     "type": "AI设计",
-    "category": "礼盒设计",
-    "image": "assets/design/ai/gift-01.ai"
+    "category": "AI设计",
+    "file": "assets/design/ai/gift-01.ai",
+    "fileType": "ai"
   },
   {
     "id": "gift-06",
     "title": "AI礼盒设计 · 04",
     "desc": "张笨仁品牌礼盒",
     "type": "AI设计",
-    "category": "礼盒设计",
-    "image": "assets/design/ai/gift-06.ai"
+    "category": "AI设计",
+    "file": "assets/design/ai/gift-06.ai",
+    "fileType": "ai"
   },
   {
     "id": "gold-01",
     "title": "AI金刀包装箱 · 05",
     "desc": "包装箱设计",
     "type": "AI设计",
-    "category": "包装箱设计",
-    "image": "assets/design/ai/gold-01.ai"
+    "category": "AI设计",
+    "file": "assets/design/ai/gold-01.ai",
+    "fileType": "ai"
   },
   {
     "id": "Blue-01",
     "title": "AI青花手抓包 · 06",
     "desc": "手抓包设计",
     "type": "AI设计",
-    "category": "包装设计",
-    "image": "assets/design/ai/Blue-01.ai"
+    "category": "AI设计",
+    "file": "assets/design/ai/Blue-01.ai",
+    "fileType": "ai"
   },
   {
     "id": "Silver-01",
     "title": "AI银刀包装箱 · 07",
     "desc": "包装箱设计",
     "type": "AI设计",
-    "category": "包装箱设计",
-    "image": "assets/design/ai/Silver-01.ai"
+    "category": "AI设计",
+    "file": "assets/design/ai/Silver-01.ai",
+    "fileType": "ai"
   },
   {
     "id": "Sugar-01",
     "title": "AI焦糖包装 · 08",
     "desc": "包装设计",
     "type": "AI设计",
-    "category": "包装设计",
-    "image": "assets/design/ai/Sugar-01.ai"
+    "category": "AI设计",
+    "file": "assets/design/ai/Sugar-01.ai",
+    "fileType": "ai"
   },
   {
     "id": "moon-01",
     "title": "AI月牙包装 · 09",
     "desc": "包装设计",
     "type": "AI设计",
-    "category": "包装设计",
-    "image": "assets/design/ai/moon-01.pdf"
+    "category": "AI设计",
+    "file": "assets/design/ai/moon-01.pdf",
+    "fileType": "pdf"
   },
   {
     "id": "newgold-02",
     "title": "AI金刀包装 · 10",
     "desc": "包装设计",
     "type": "AI设计",
-    "category": "包装设计",
-    "image": "assets/design/ai/newgold-02.ai"
+    "category": "AI设计",
+    "file": "assets/design/ai/newgold-02.ai",
+    "fileType": "ai"
   },
   {
     "id": "newgold-05",
     "title": "AI金刀包装箱 · 11",
     "desc": "包装箱设计",
     "type": "AI设计",
-    "category": "包装箱设计",
-    "image": "assets/design/ai/newgold-05.ai"
+    "category": "AI设计",
+    "file": "assets/design/ai/newgold-05.ai",
+    "fileType": "ai"
   },
   {
     "id": "gift-08",
     "title": "AI礼盒设计 · 12",
     "desc": "礼盒设计",
     "type": "AI设计",
-    "category": "礼盒设计",
-    "image": "assets/design/ai/gift-08.ai"
+    "category": "AI设计",
+    "file": "assets/design/ai/gift-08.ai",
+    "fileType": "ai"
   }
 ]
