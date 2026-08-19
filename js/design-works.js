@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentPage = 1;
     const pageSize = 12;
 
-    const categories = ['全部', '详情页', '电商主图', 'AI设计', '产品包装', '直播间切片', '精修'];
+    const categories = ['全部', 'AI设计', '产品包装', '店铺主图', '海报', '精修', '礼盒设计', '详情页', '直播间'];
 
     // ============================================================
     // 加载数据
