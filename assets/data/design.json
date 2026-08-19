@@ -1,87 +1,250 @@
 [
   {
-    "id": "product",
-    "title": "商品主图设计",
+    "id": "product-01",
+    "title": "商品主图 · 01",
     "desc": "抖音/京东电商主图设计 · 突出产品卖点与品牌视觉",
     "type": "商品主图",
     "category": "电商主图",
-    "images": [
-      "assets/design/product-01.jpg",
-      "assets/design/product-02.jpg",
-      "assets/design/product-03.jpg",
-      "assets/design/product-04.jpg",
-      "assets/design/product-05.jpg",
-      "assets/design/product-06.jpg",
-      "assets/design/product-07.jpg",
-      "assets/design/product-08.jpg"
-    ]
+    "image": "assets/design/product-01.jpg"
   },
   {
-    "id": "giftbox",
-    "title": "礼盒包装设计",
+    "id": "product-02",
+    "title": "商品主图 · 02",
+    "desc": "抖音/京东电商主图设计 · 突出产品卖点与品牌视觉",
+    "type": "商品主图",
+    "category": "电商主图",
+    "image": "assets/design/product-02.jpg"
+  },
+  {
+    "id": "product-03",
+    "title": "商品主图 · 03",
+    "desc": "抖音/京东电商主图设计 · 突出产品卖点与品牌视觉",
+    "type": "商品主图",
+    "category": "电商主图",
+    "image": "assets/design/product-03.jpg"
+  },
+  {
+    "id": "product-04",
+    "title": "商品主图 · 04",
+    "desc": "抖音/京东电商主图设计 · 突出产品卖点与品牌视觉",
+    "type": "商品主图",
+    "category": "电商主图",
+    "image": "assets/design/product-04.jpg"
+  },
+  {
+    "id": "product-05",
+    "title": "商品主图 · 05",
+    "desc": "抖音/京东电商主图设计 · 突出产品卖点与品牌视觉",
+    "type": "商品主图",
+    "category": "电商主图",
+    "image": "assets/design/product-05.jpg"
+  },
+  {
+    "id": "product-06",
+    "title": "商品主图 · 06",
+    "desc": "抖音/京东电商主图设计 · 突出产品卖点与品牌视觉",
+    "type": "商品主图",
+    "category": "电商主图",
+    "image": "assets/design/product-06.jpg"
+  },
+  {
+    "id": "product-07",
+    "title": "商品主图 · 07",
+    "desc": "抖音/京东电商主图设计 · 突出产品卖点与品牌视觉",
+    "type": "商品主图",
+    "category": "电商主图",
+    "image": "assets/design/product-07.jpg"
+  },
+  {
+    "id": "product-08",
+    "title": "商品主图 · 08",
+    "desc": "抖音/京东电商主图设计 · 突出产品卖点与品牌视觉",
+    "type": "商品主图",
+    "category": "电商主图",
+    "image": "assets/design/product-08.jpg"
+  },
+  {
+    "id": "giftbox-01",
+    "title": "礼盒包装 · 01",
     "desc": "品牌礼盒视觉设计 · 提升礼品属性",
     "type": "礼盒包装",
     "category": "产品包装",
-    "images": [
-      "assets/design/giftbox-01.jpg",
-      "assets/design/giftbox-02.jpg",
-      "assets/design/giftbox-03.jpg",
-      "assets/design/giftbox-04.jpg",
-      "assets/design/giftbox-05.jpg",
-      "assets/design/giftbox-06.jpg",
-      "assets/design/giftbox-07.jpg",
-      "assets/design/giftbox-08.jpg"
-    ]
+    "image": "assets/design/giftbox-01.jpg"
   },
   {
-    "id": "packaging",
-    "title": "瓜子包装设计",
+    "id": "giftbox-02",
+    "title": "礼盒包装 · 02",
+    "desc": "品牌礼盒视觉设计 · 提升礼品属性",
+    "type": "礼盒包装",
+    "category": "产品包装",
+    "image": "assets/design/giftbox-02.jpg"
+  },
+  {
+    "id": "giftbox-03",
+    "title": "礼盒包装 · 03",
+    "desc": "品牌礼盒视觉设计 · 提升礼品属性",
+    "type": "礼盒包装",
+    "category": "产品包装",
+    "image": "assets/design/giftbox-03.jpg"
+  },
+  {
+    "id": "giftbox-04",
+    "title": "礼盒包装 · 04",
+    "desc": "品牌礼盒视觉设计 · 提升礼品属性",
+    "type": "礼盒包装",
+    "category": "产品包装",
+    "image": "assets/design/giftbox-04.jpg"
+  },
+  {
+    "id": "giftbox-05",
+    "title": "礼盒包装 · 05",
+    "desc": "品牌礼盒视觉设计 · 提升礼品属性",
+    "type": "礼盒包装",
+    "category": "产品包装",
+    "image": "assets/design/giftbox-05.jpg"
+  },
+  {
+    "id": "giftbox-06",
+    "title": "礼盒包装 · 06",
+    "desc": "品牌礼盒视觉设计 · 提升礼品属性",
+    "type": "礼盒包装",
+    "category": "产品包装",
+    "image": "assets/design/giftbox-06.jpg"
+  },
+  {
+    "id": "giftbox-07",
+    "title": "礼盒包装 · 07",
+    "desc": "品牌礼盒视觉设计 · 提升礼品属性",
+    "type": "礼盒包装",
+    "category": "产品包装",
+    "image": "assets/design/giftbox-07.jpg"
+  },
+  {
+    "id": "giftbox-08",
+    "title": "礼盒包装 · 08",
+    "desc": "品牌礼盒视觉设计 · 提升礼品属性",
+    "type": "礼盒包装",
+    "category": "产品包装",
+    "image": "assets/design/giftbox-08.jpg"
+  },
+  {
+    "id": "packaging-01",
+    "title": "瓜子包装 · 01",
     "desc": "休闲食品包装设计 · 终端陈列视觉",
     "type": "瓜子包装",
     "category": "产品包装",
-    "images": [
-      "assets/design/packaging-01.jpg",
-      "assets/design/packaging-02.jpg",
-      "assets/design/packaging-03.jpg"
-    ]
+    "image": "assets/design/packaging-01.jpg"
   },
   {
-    "id": "poster",
-    "title": "海报设计",
+    "id": "packaging-02",
+    "title": "瓜子包装 · 02",
+    "desc": "休闲食品包装设计 · 终端陈列视觉",
+    "type": "瓜子包装",
+    "category": "产品包装",
+    "image": "assets/design/packaging-02.jpg"
+  },
+  {
+    "id": "packaging-03",
+    "title": "瓜子包装 · 03",
+    "desc": "休闲食品包装设计 · 终端陈列视觉",
+    "type": "瓜子包装",
+    "category": "产品包装",
+    "image": "assets/design/packaging-03.jpg"
+  },
+  {
+    "id": "poster-01",
+    "title": "海报设计 · 01",
     "desc": "品牌展会宣传海报 · 线下视觉呈现",
     "type": "海报设计",
     "category": "详情页",
-    "images": [
-      "assets/design/poster-01.jpg",
-      "assets/design/poster-02.jpg",
-      "assets/design/poster-03.jpg",
-      "assets/design/poster-04.jpg",
-      "assets/design/poster-05.jpg",
-      "assets/design/poster-06.jpg"
-    ]
+    "image": "assets/design/poster-01.jpg"
   },
   {
-    "id": "live-clip",
-    "title": "直播间切片",
+    "id": "poster-02",
+    "title": "海报设计 · 02",
+    "desc": "品牌展会宣传海报 · 线下视觉呈现",
+    "type": "海报设计",
+    "category": "详情页",
+    "image": "assets/design/poster-02.jpg"
+  },
+  {
+    "id": "poster-03",
+    "title": "海报设计 · 03",
+    "desc": "品牌展会宣传海报 · 线下视觉呈现",
+    "type": "海报设计",
+    "category": "详情页",
+    "image": "assets/design/poster-03.jpg"
+  },
+  {
+    "id": "poster-04",
+    "title": "海报设计 · 04",
+    "desc": "品牌展会宣传海报 · 线下视觉呈现",
+    "type": "海报设计",
+    "category": "详情页",
+    "image": "assets/design/poster-04.jpg"
+  },
+  {
+    "id": "poster-05",
+    "title": "海报设计 · 05",
+    "desc": "品牌展会宣传海报 · 线下视觉呈现",
+    "type": "海报设计",
+    "category": "详情页",
+    "image": "assets/design/poster-05.jpg"
+  },
+  {
+    "id": "poster-06",
+    "title": "海报设计 · 06",
+    "desc": "品牌展会宣传海报 · 线下视觉呈现",
+    "type": "海报设计",
+    "category": "详情页",
+    "image": "assets/design/poster-06.jpg"
+  },
+  {
+    "id": "live-01",
+    "title": "直播间切片 · 01",
     "desc": "直播间画面切片设计 · 提升直播视觉质感",
     "type": "直播间切片",
     "category": "直播间切片",
-    "images": [
-      "assets/design/live-01.jpg",
-      "assets/design/live-02.jpg",
-      "assets/design/live-03.jpg"
-    ]
+    "image": "assets/design/live-01.jpg"
   },
   {
-    "id": "retouch",
-    "title": "精修作品",
+    "id": "live-02",
+    "title": "直播间切片 · 02",
+    "desc": "直播间画面切片设计 · 提升直播视觉质感",
+    "type": "直播间切片",
+    "category": "直播间切片",
+    "image": "assets/design/live-02.jpg"
+  },
+  {
+    "id": "live-03",
+    "title": "直播间切片 · 03",
+    "desc": "直播间画面切片设计 · 提升直播视觉质感",
+    "type": "直播间切片",
+    "category": "直播间切片",
+    "image": "assets/design/live-03.jpg"
+  },
+  {
+    "id": "retouch-01",
+    "title": "精修作品 · 01",
     "desc": "产品精修 · 人像精修 · 商业修图",
     "type": "精修",
     "category": "精修",
-    "images": [
-      "assets/design/retouch-01.jpg",
-      "assets/design/retouch-02.jpg",
-      "assets/design/retouch-03.jpg"
-    ]
+    "image": "assets/design/retouch-01.jpg"
+  },
+  {
+    "id": "retouch-02",
+    "title": "精修作品 · 02",
+    "desc": "产品精修 · 人像精修 · 商业修图",
+    "type": "精修",
+    "category": "精修",
+    "image": "assets/design/retouch-02.jpg"
+  },
+  {
+    "id": "retouch-03",
+    "title": "精修作品 · 03",
+    "desc": "产品精修 · 人像精修 · 商业修图",
+    "type": "精修",
+    "category": "精修",
+    "image": "assets/design/retouch-03.jpg"
   }
 ]
