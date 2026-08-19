@@ -114,7 +114,7 @@
     "type": "详情页",
     "category": "详情页",
     "image": "assets/design/detail/detail-01.png",
-    "fileType": "png"
+    "fileType": "detail"
   },
   {
     "id": "detail-02",
@@ -123,7 +123,7 @@
     "type": "详情页",
     "category": "详情页",
     "image": "assets/design/detail/detail-02.png",
-    "fileType": "png"
+    "fileType": "detail"
   },
   {
     "id": "detail-03",
@@ -132,7 +132,7 @@
     "type": "详情页",
     "category": "详情页",
     "image": "assets/design/detail/detail-03.png",
-    "fileType": "png"
+    "fileType": "detail"
   },
   {
     "id": "detail-04",
@@ -141,7 +141,7 @@
     "type": "详情页",
     "category": "详情页",
     "image": "assets/design/detail/detail-04.png",
-    "fileType": "png"
+    "fileType": "detail"
   },
   {
     "id": "detail-05",
@@ -150,7 +150,7 @@
     "type": "详情页",
     "category": "详情页",
     "image": "assets/design/detail/detail-05.png",
-    "fileType": "png"
+    "fileType": "detail"
   },
   {
     "id": "detail-06",
@@ -159,7 +159,7 @@
     "type": "详情页",
     "category": "详情页",
     "image": "assets/design/detail/detail-06.png",
-    "fileType": "png"
+    "fileType": "detail"
   },
   {
     "id": "detail-07",
@@ -168,7 +168,7 @@
     "type": "详情页",
     "category": "详情页",
     "image": "assets/design/detail/detail-07.png",
-    "fileType": "png"
+    "fileType": "detail"
   },
   {
     "id": "detail-10",
@@ -177,7 +177,7 @@
     "type": "详情页",
     "category": "详情页",
     "image": "assets/design/detail/detail-10.png",
-    "fileType": "png"
+    "fileType": "detail"
   },
   {
     "id": "detail-12",
@@ -186,7 +186,7 @@
     "type": "详情页",
     "category": "详情页",
     "image": "assets/design/detail/detail-12.png",
-    "fileType": "png"
+    "fileType": "detail"
   },
   {
     "id": "detail-11",
@@ -195,7 +195,7 @@
     "type": "详情页",
     "category": "详情页",
     "image": "assets/design/detail/detail-11.png",
-    "fileType": "png"
+    "fileType": "detail"
   },
   {
     "id": "detail-13",
@@ -204,7 +204,7 @@
     "type": "详情页",
     "category": "详情页",
     "image": "assets/design/detail/detail-13.png",
-    "fileType": "png"
+    "fileType": "detail"
   },
   {
     "id": "packaging-01",
@@ -213,7 +213,7 @@
     "type": "产品包装",
     "category": "产品包装",
     "image": "assets/design/packaging/packaging-01.png",
-    "fileType": "png"
+    "fileType": "packaging"
   },
   {
     "id": "packaging-02",
@@ -222,7 +222,7 @@
     "type": "产品包装",
     "category": "产品包装",
     "image": "assets/design/packaging/packaging-02.png",
-    "fileType": "png"
+    "fileType": "packaging"
   },
   {
     "id": "packaging-03",
@@ -231,7 +231,7 @@
     "type": "产品包装",
     "category": "产品包装",
     "image": "assets/design/packaging/packaging-03.png",
-    "fileType": "png"
+    "fileType": "packaging"
   },
   {
     "id": "packaging-04",
@@ -240,7 +240,7 @@
     "type": "产品包装",
     "category": "产品包装",
     "image": "assets/design/packaging/packaging-04.png",
-    "fileType": "png"
+    "fileType": "packaging"
   },
   {
     "id": "packaging-05",
@@ -249,7 +249,7 @@
     "type": "产品包装",
     "category": "产品包装",
     "image": "assets/design/packaging/packaging-05.png",
-    "fileType": "png"
+    "fileType": "packaging"
   },
   {
     "id": "packaging-06",
@@ -258,7 +258,7 @@
     "type": "产品包装",
     "category": "产品包装",
     "image": "assets/design/packaging/packaging-06.png",
-    "fileType": "png"
+    "fileType": "packaging"
   },
   {
     "id": "packaging-07",
@@ -267,7 +267,7 @@
     "type": "产品包装",
     "category": "产品包装",
     "image": "assets/design/packaging/packaging-07.png",
-    "fileType": "png"
+    "fileType": "packaging"
   },
   {
     "id": "packaging-08",
@@ -276,7 +276,7 @@
     "type": "产品包装",
     "category": "产品包装",
     "image": "assets/design/packaging/packaging-08.png",
-    "fileType": "png"
+    "fileType": "packaging"
   },
   {
     "id": "packaging-09",
@@ -285,7 +285,7 @@
     "type": "产品包装",
     "category": "产品包装",
     "image": "assets/design/packaging/packaging-09.png",
-    "fileType": "png"
+    "fileType": "packaging"
   },
   {
     "id": "packaging-10",
@@ -294,7 +294,7 @@
     "type": "产品包装",
     "category": "产品包装",
     "image": "assets/design/packaging/packaging-10.png",
-    "fileType": "png"
+    "fileType": "packaging"
   },
   {
     "id": "packaging-11",
@@ -303,7 +303,7 @@
     "type": "产品包装",
     "category": "产品包装",
     "image": "assets/design/packaging/packaging-11.png",
-    "fileType": "png"
+    "fileType": "packaging"
   },
   {
     "id": "packaging-12",
@@ -312,6 +312,294 @@
     "type": "产品包装",
     "category": "产品包装",
     "image": "assets/design/packaging/packaging-12.png",
-    "fileType": "png"
+    "fileType": "packaging"
+  },
+  {
+  "id": "product-02",
+  "title": "店铺主图 · 01",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-02.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-03",
+  "title": "店铺主图 · 02",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-03.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-04",
+  "title": "店铺主图 · 03",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-04.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-05",
+  "title": "店铺主图 · 04",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-05.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-06",
+  "title": "店铺主图 · 05",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-06.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-07",
+  "title": "店铺主图 · 06",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-07.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-08",
+  "title": "店铺主图 · 07",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-07.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-09",
+  "title": "店铺主图 · 08",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-09.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-10",
+  "title": "店铺主图 · 09",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-10.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-11",
+  "title": "店铺主图 · 10",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-11.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-12",
+  "title": "店铺主图 · 11",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-12.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-13",
+  "title": "店铺主图 · 12",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-13.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-14",
+  "title": "店铺主图 · 13",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-14.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-15",
+  "title": "店铺主图 · 14",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-15.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-16",
+  "title": "店铺主图 · 15",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-16.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-17",
+  "title": "店铺主图 · 16",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-17.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-18",
+  "title": "店铺主图 · 17",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-18.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-19",
+  "title": "店铺主图 · 18",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-19.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-20",
+  "title": "店铺主图 · 19",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-20.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-21",
+  "title": "店铺主图 · 20",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-21.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-22",
+  "title": "店铺主图 · 21",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-22.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-23",
+  "title": "店铺主图 · 22",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-23.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-24",
+  "title": "店铺主图 · 23",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-24.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-25",
+  "title": "店铺主图 · 24",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-25.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-26",
+  "title": "店铺主图 · 25",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-26.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-27",
+  "title": "店铺主图 · 26",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-27.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-28",
+  "title": "店铺主图 · 27",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-28.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-29",
+  "title": "店铺主图 · 28",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-29.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-30",
+  "title": "店铺主图 · 29",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-30.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-31",
+  "title": "店铺主图 · 30",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-31.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-32",
+  "title": "店铺主图 · 31",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-32.png",
+  "fileType": "product"
+  },
+  {
+  "id": "product-33",
+  "title": "店铺主图 · 32",
+  "desc": "抖音/京东店铺主图设计",
+  "type": "店铺主图",
+  "category": "店铺主图",
+  "image": "assets/design/product/product-33.png",
+  "fileType": "product"
   }
 ]
