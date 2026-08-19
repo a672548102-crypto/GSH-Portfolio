@@ -1,7 +1,7 @@
 /*
 ============================================================
 GSH Portfolio · design-works.js
-支持多文件类型：.ai / .pdf / .png
+支持多文件类型：.ai / .pdf / .png / .jpg
 8个分类：AI设计、产品包装、店铺主图、海报、精修、礼盒设计、详情页、直播间
 ============================================================
 */
@@ -164,7 +164,7 @@ document.addEventListener("DOMContentLoaded", () => {
     }
 
     // ============================================================
-    // 渲染卡片
+    // 🎯 渲染卡片（核心修改：AI/PDF显示文字提示）
     // ============================================================
 
     function renderCards(items) {
@@ -185,10 +185,30 @@ document.addEventListener("DOMContentLoaded", () => {
             const config = fileTypeConfig[item.fileType?.toLowerCase()] || { icon: '📎', label: '文件', color: '#7a6a5a' };
             const typeClass = getTypeClass(item.type);
 
-            const previewContent = isImage
-                ? `<img src="${item.file}" alt="${item.title}" loading="lazy" 
-                       onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;font-size:48px;color:#7a6a5a;\\'>📎</div>'">`
-                : `<div style="display:flex;align-items:center;justify-content:center;height:100%;font-size:64px;color:${config.color};">${config.icon}</div>`;
+            // ============================================================
+            // 🎯 核心修改：图片显示缩略图，AI/PDF显示文字提示
+            // ============================================================
+
+            let previewContent = '';
+
+            if (isImage) {
+                // 图片：显示缩略图
+                previewContent = `<img src="${item.file}" alt="${item.title}" loading="lazy" 
+                                       onerror="this.style.display='none';this.parentElement.innerHTML='<div style=\\'display:flex;align-items:center;justify-content:center;height:100%;font-size:48px;color:#7a6a5a;\\'>📎</div>'">`;
+            } else {
+                // AI 或 PDF 文件：显示文字提示
+                const fileTypeName = item.fileType === 'ai' ? 'AI 源文件' : 'PDF 文档';
+                const openSoftware = item.fileType === 'ai' ? 'Adobe Illustrator' : 'Adobe Acrobat 或 浏览器';
+                previewContent = `
+                    <div style="display:flex;flex-direction:column;align-items:center;justify-content:center;height:100%;padding:20px;text-align:center;color:#a89480;">
+                        <div style="font-size:40px;margin-bottom:10px;">${config.icon}</div>
+                        <div style="font-size:14px;font-weight:600;color:#d4c8b8;margin-bottom:4px;">${fileTypeName}</div>
+                        <div style="font-size:11px;color:#7a6a5a;line-height:1.7;max-width:90%;">
+                            点击后即可下载<br>可在 ${openSoftware} 中打开预览
+                        </div>
+                    </div>
+                `;
+            }
 
             return `
                 <div class="design-card" 
