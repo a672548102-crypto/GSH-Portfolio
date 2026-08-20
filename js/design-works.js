@@ -23,7 +23,7 @@ document.addEventListener("DOMContentLoaded", () => {
     let currentPage = 1;
     const pageSize = 12;
 
-    const categories = ['全部', 'AI设计', '产品包装', '店铺主图', '海报', '精修', '礼盒设计', '详情页', '直播间'];
+    const categories = ['全部', '产品包装', 'AI设计', '店铺主图', '海报', '精修', '礼盒设计', '详情页', '直播间'];
 
     const fileTypeConfig = {
         'ai': { icon: '🎨', label: 'AI源文件', color: '#9B59B6' },
@@ -55,8 +55,8 @@ document.addEventListener("DOMContentLoaded", () => {
 
     function getTypeClass(type) {
         const map = {
-            'AI设计': 'type-ai',
             '产品包装': 'type-packaging',
+            'AI设计': 'type-ai',
             '店铺主图': 'type-product',
             '海报': 'type-poster',
             '精修': 'type-retouch',
