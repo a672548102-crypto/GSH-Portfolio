@@ -685,7 +685,7 @@
 },
 {
   "id": "poster-16",
-  "title": "海报设计 · 16",
+  "title": "海报设计 · 17",
   "desc": "品牌展会宣传海报",
   "type": "海报",
   "category": "海报",
@@ -694,20 +694,11 @@
 },
 {
   "id": "poster-17",
-  "title": "海报设计 · 17",
-  "desc": "品牌展会宣传海报",
-  "type": "海报",
-  "category": "海报",
-  "image": "assets/design/poster/poster-17.png",
-  "fileType": "poster"
-},
-{
-  "id": "poster-18",
   "title": "海报设计 · 18",
   "desc": "品牌展会宣传海报",
   "type": "海报",
   "category": "海报",
-  "image": "assets/design/poster/poster-18.png",
+  "image": "assets/design/poster/poster-17.png",
   "fileType": "poster"
 },
 {
