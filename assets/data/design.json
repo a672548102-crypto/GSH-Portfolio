@@ -225,17 +225,8 @@
     "fileType": "packaging"
   },
   {
-    "id": "packaging-03",
-    "title": "产品包装 · 03",
-    "desc": "包装图",
-    "type": "产品包装",
-    "category": "产品包装",
-    "image": "assets/design/packaging/packaging-03.png",
-    "fileType": "packaging"
-  },
-  {
     "id": "packaging-04",
-    "title": "产品包装 · 04",
+    "title": "产品包装 · 03",
     "desc": "包装图",
     "type": "产品包装",
     "category": "产品包装",
@@ -243,26 +234,8 @@
     "fileType": "packaging"
   },
   {
-    "id": "packaging-05",
-    "title": "产品包装 · 05",
-    "desc": "包装图",
-    "type": "产品包装",
-    "category": "产品包装",
-    "image": "assets/design/packaging/packaging-05.png",
-    "fileType": "packaging"
-  },
-  {
-    "id": "packaging-06",
-    "title": "产品包装 · 06",
-    "desc": "包装图",
-    "type": "产品包装",
-    "category": "产品包装",
-    "image": "assets/design/packaging/packaging-06.png",
-    "fileType": "packaging"
-  },
-  {
     "id": "packaging-07",
-    "title": "产品包装 · 07",
+    "title": "产品包装 · 04",
     "desc": "包装图",
     "type": "产品包装",
     "category": "产品包装",
@@ -270,17 +243,8 @@
     "fileType": "packaging"
   },
   {
-    "id": "packaging-08",
-    "title": "产品包装 · 08",
-    "desc": "包装图",
-    "type": "产品包装",
-    "category": "产品包装",
-    "image": "assets/design/packaging/packaging-08.png",
-    "fileType": "packaging"
-  },
-  {
     "id": "packaging-09",
-    "title": "产品包装 · 09",
+    "title": "产品包装 · 05",
     "desc": "包装图",
     "type": "产品包装",
     "category": "产品包装",
@@ -289,7 +253,7 @@
   },
   {
     "id": "packaging-10",
-    "title": "产品包装 · 10",
+    "title": "产品包装 · 6",
     "desc": "包装图",
     "type": "产品包装",
     "category": "产品包装",
@@ -298,20 +262,11 @@
   },
   {
     "id": "packaging-11",
-    "title": "产品包装 · 11",
+    "title": "产品包装 · 7",
     "desc": "包装图",
     "type": "产品包装",
     "category": "产品包装",
     "image": "assets/design/packaging/packaging-11.png",
-    "fileType": "packaging"
-  },
-  {
-    "id": "packaging-12",
-    "title": "产品包装 · 12",
-    "desc": "包装图",
-    "type": "产品包装",
-    "category": "产品包装",
-    "image": "assets/design/packaging/packaging-12.png",
     "fileType": "packaging"
   },
   {
