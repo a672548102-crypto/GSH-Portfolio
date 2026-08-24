@@ -563,11 +563,6 @@
 "role":"全流程制作：脚本策划 · 拍摄 · 剪辑 · 后期包装",
 "cover":"assets/covers/cover-31.png",
 "video":"assets/videos/videos-31.mp4",
-"analysis":{
-"data":"assets/data/31-data.png",
-"ctr":"assets/data/31-ctr.png",
-"loss":"assets/data/31-loss.png"
-}
 },
 
 
@@ -579,11 +574,6 @@
 "role":"脚本策划 · 视频剪辑 · 节奏把控 · 情绪渲染",
 "cover":"assets/covers/cover-32.png",
 "video":"assets/videos/videos-32.mp4",
-"analysis":{
-"data":"assets/data/32-data.png",
-"ctr":"assets/data/32-ctr.png",
-"loss":"assets/data/32-loss.png"
-}
 },
 
 
@@ -595,11 +585,6 @@
 "role":"全流程制作：建模 · 材质贴图 · 灯光渲染 · 场景合成",
 "cover":"assets/covers/cover-33.png",
 "video":"assets/videos/videos-33.mp4",
-"analysis":{
-"data":"assets/data/33-data.png",
-"ctr":"assets/data/33-ctr.png",
-"loss":"assets/data/33-loss.png"
-}
 },
 
 
@@ -611,10 +596,23 @@
 "role":"全流程制作：角色设计 · 动画制作 · 后期合成",
 "cover":"assets/covers/cover-34.png",
 "video":"assets/videos/videos-34.mp4",
-"analysis":{
-"data":"assets/data/34-data.png",
-"ctr":"assets/data/34-ctr.png",
-"loss":"assets/data/34-loss.png"
-}
+},
+{
+"id":"35",
+"title":"品牌宣传 · 01",
+"type":"品牌宣传",
+"category":"宣传片",
+"role":"全程由本人剪辑制作。",
+"cover":"assets/covers/cover-35.png",
+"video":"assets/videos/promo-01.mp4",
+},
+{
+"id":"36",
+"title":"产品宣传 · 02",
+"type":"打手瓜子产品卖点宣传片",
+"category":"宣传片",
+"role":"全程由本人剪辑制作。",
+"cover":"assets/covers/cover-36.png",
+"video":"assets/videos/promo-01.mp4",
 }
 ]
