@@ -562,7 +562,7 @@
 "category":"比赛",
 "role":"全流程制作：脚本策划 · 拍摄 · 剪辑 · 后期包装",
 "cover":"assets/covers/cover-31.png",
-"video":"assets/videos/videos-31.mp4",
+"video":"assets/videos/videos-31.mp4"
 },
 
 
@@ -573,7 +573,7 @@
 "category":"短剧",
 "role":"脚本策划 · 视频剪辑 · 节奏把控 · 情绪渲染",
 "cover":"assets/covers/cover-32.png",
-"video":"assets/videos/videos-32.mp4",
+"video":"assets/videos/videos-32.mp4"
 },
 
 
@@ -584,7 +584,7 @@
 "category":"建模",
 "role":"全流程制作：建模 · 材质贴图 · 灯光渲染 · 场景合成",
 "cover":"assets/covers/cover-33.png",
-"video":"assets/videos/videos-33.mp4",
+"video":"assets/videos/videos-33.mp4"
 },
 
 
@@ -595,7 +595,7 @@
 "category":"动画",
 "role":"全流程制作：角色设计 · 动画制作 · 后期合成",
 "cover":"assets/covers/cover-34.png",
-"video":"assets/videos/videos-34.mp4",
+"video":"assets/videos/videos-34.mp4"
 },
 {
 "id":"35",
@@ -604,7 +604,7 @@
 "category":"宣传片",
 "role":"全程由本人剪辑制作。",
 "cover":"assets/covers/cover-35.png",
-"video":"assets/videos/promo-01.mp4",
+"video":"assets/videos/promo-01.mp4"
 },
 {
 "id":"36",
@@ -613,6 +613,6 @@
 "category":"宣传片",
 "role":"全程由本人剪辑制作。",
 "cover":"assets/covers/cover-36.png",
-"video":"assets/videos/promo-01.mp4",
+"video":"assets/videos/promo-02.mp4"
 }
 ]
